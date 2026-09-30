@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-29T05:56:35.490Z",
+  "generated_at": "2026-09-30T05:47:12.229Z",
   "total_repos_scanned": 11,
   "projects": [
     {
@@ -61,7 +61,7 @@
       "nameWithOwner": "pid7-org/ashwa",
       "desc": "Hardware accelerated routines for single substring search.",
       "url": "https://github.com/pid7-org/ashwa",
-      "stars": 19,
+      "stars": 20,
       "forks": 0,
       "language": "Rust",
       "languageColor": "#dea584",
