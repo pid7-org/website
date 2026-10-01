@@ -1,43 +1,43 @@
 {
-  "generated_at": "2026-09-30T05:47:09.312Z",
+  "generated_at": "2026-10-01T06:15:42.393Z",
   "repos": 11,
-  "total_bytes": 1325813,
+  "total_bytes": 1337911,
   "languages": [
     {
       "name": "Rust",
       "color": "#dea584",
-      "bytes": 874203,
-      "percentage": 65.94
+      "bytes": 886301,
+      "percentage": 66.25
     },
     {
       "name": "JavaScript",
       "color": "#f1e05a",
       "bytes": 122263,
-      "percentage": 9.22
+      "percentage": 9.14
     },
     {
       "name": "TypeScript",
       "color": "#3178c6",
       "bytes": 113340,
-      "percentage": 8.55
+      "percentage": 8.47
     },
     {
       "name": "Astro",
       "color": "#ff5a03",
       "bytes": 94306,
-      "percentage": 7.11
+      "percentage": 7.05
     },
     {
       "name": "Python",
       "color": "#3572A5",
       "bytes": 56738,
-      "percentage": 4.28
+      "percentage": 4.24
     },
     {
       "name": "Shell",
       "color": "#89e051",
       "bytes": 49009,
-      "percentage": 3.7
+      "percentage": 3.66
     },
     {
       "name": "HCL",
@@ -49,7 +49,7 @@
       "name": "CSS",
       "color": "#663399",
       "bytes": 5006,
-      "percentage": 0.38
+      "percentage": 0.37
     },
     {
       "name": "Nix",
