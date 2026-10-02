@@ -1,7 +1,34 @@
 {
-  "generated_at": "2026-10-01T06:15:45.005Z",
+  "generated_at": "2026-10-02T05:57:00.043Z",
   "total_repos_scanned": 11,
   "projects": [
+    {
+      "name": "frozen-core",
+      "nameWithOwner": "pid7-org/frozen-core",
+      "desc": "Core utilities for frozen codebases.",
+      "url": "https://github.com/pid7-org/frozen-core",
+      "stars": 0,
+      "forks": 0,
+      "language": "Rust",
+      "languageColor": "#dea584",
+      "languages": [
+        {
+          "name": "Rust",
+          "color": "#dea584",
+          "bytes": 19960
+        },
+        {
+          "name": "Nix",
+          "color": "#7e7eff",
+          "bytes": 493
+        }
+      ],
+      "commits": 394,
+      "releases": 32,
+      "pullRequests": 43,
+      "issues": 53,
+      "contributions": 522
+    },
     {
       "name": "turbofox",
       "nameWithOwner": "pid7-org/turbofox",
@@ -28,33 +55,6 @@
       "pullRequests": 1,
       "issues": 1,
       "contributions": 507
-    },
-    {
-      "name": "frozen-core",
-      "nameWithOwner": "pid7-org/frozen-core",
-      "desc": "Core utilities for frozen codebases.",
-      "url": "https://github.com/pid7-org/frozen-core",
-      "stars": 0,
-      "forks": 0,
-      "language": "Rust",
-      "languageColor": "#dea584",
-      "languages": [
-        {
-          "name": "Rust",
-          "color": "#dea584",
-          "bytes": 367670
-        },
-        {
-          "name": "Nix",
-          "color": "#7e7eff",
-          "bytes": 493
-        }
-      ],
-      "commits": 364,
-      "releases": 31,
-      "pullRequests": 43,
-      "issues": 53,
-      "contributions": 491
     },
     {
       "name": "ashwa",
