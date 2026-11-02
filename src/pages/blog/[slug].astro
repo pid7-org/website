@@ -1,7 +1,5 @@
 ---
 import Layout from '../../layouts/Layout.astro';
-import Header from '../../components/Header.astro';
-import Footer from '../../components/Footer.astro';
 import AnimationWidget from '../../components/blog/AnimationWidget.astro';
 import { formatBlogDate, getAllBlogPosts, getBlogPostById } from '../../lib/blog';
 import type { ParsedBlogPost } from '../../lib/parser/types';
@@ -45,13 +43,16 @@ const pageDescription = post.frontmatter.description || fallbackExcerpt || 'engi
   modifiedTime={post.frontmatter.lastUpdated}
   tags={post.frontmatter.tags}
 >
-	<main class="w-full max-w-screen-md mx-auto px-4 sm:px-6 py-8 sm:py-14 space-y-8 sm:space-y-10 min-w-0 overflow-hidden">
 		<div
 			id="blog-eyeline"
-			class="hidden sm:flex fixed top-[28vh] left-0 right-0 pointer-events-none z-20 border-b border-dashed border-[var(--color-accent)] items-center justify-end px-4 sm:px-8 select-none transition-[top,opacity] duration-150"
+			class="fixed top-[25vh] left-0 right-0 pointer-events-none z-20 border-b border-dashed
+				border-[var(--color-accent)] flex items-center justify-end px-4 sm:px-8 select-none
+				transition-[top,opacity] duration-150"
 			style="opacity: 0.35;"
 		>
-			<span class="font-mono text-[9px] uppercase tracking-widest text-[var(--color-accent)]">eyeline</span>
+			<span class="font-mono text-[9px] uppercase tracking-widest text-[var(--color-accent)]">
+				eyeline
+			</span>
 		</div>
 
 		<script is:inline>
@@ -59,14 +60,14 @@ const pageDescription = post.frontmatter.description || fallbackExcerpt || 'engi
 				const el = document.getElementById('blog-eyeline');
 				if (!el) return;
 
-				let config = { enabled: true, opacity: 35, pos: 28 };
+				let config = { enabled: true, opacity: 35, pos: 25 };
 				try {
 					const saved = localStorage.getItem('pid7_eyeline');
 					if (saved) {
 						const parsed = JSON.parse(saved);
 						if (typeof parsed.enabled === 'boolean') config.enabled = parsed.enabled;
 						if (typeof parsed.opacity === 'number') config.opacity = parsed.opacity;
-						if (typeof parsed.pos === 'number') config.pos = parsed.pos;
+						config.pos = 25;
 					}
 				} catch {}
 
@@ -97,10 +98,6 @@ const pageDescription = post.frontmatter.description || fallbackExcerpt || 'engi
 				};
 			})();
 		</script>
-
-		<div id="section-intro">
-			<Header />
-		</div>
 
 		<header class="space-y-2.5 sm:space-y-3">
 			<h1 class="font-serif italic text-2xl sm:text-4xl font-semibold tracking-tight text-ctp-text leading-tight break-words">
@@ -184,8 +181,6 @@ const pageDescription = post.frontmatter.description || fallbackExcerpt || 'engi
 
 		<div class="h-[40vh]"></div>
 
-		<Footer />
-	</main>
 </Layout>
 
 <script>
