@@ -45,7 +45,7 @@ const pageDescription = post.frontmatter.description || fallbackExcerpt || 'engi
 >
 		<div
 			id="blog-eyeline"
-			class="fixed top-[25vh] left-0 right-0 pointer-events-none z-20 border-b border-dashed
+			class="fixed top-[28vh] left-0 right-0 pointer-events-none z-20 border-b border-dashed
 				border-[var(--color-accent)] flex items-center justify-end px-4 sm:px-8 select-none
 				transition-[top,opacity] duration-150"
 			style="opacity: 0.35;"
@@ -60,14 +60,14 @@ const pageDescription = post.frontmatter.description || fallbackExcerpt || 'engi
 				const el = document.getElementById('blog-eyeline');
 				if (!el) return;
 
-				let config = { enabled: true, opacity: 35, pos: 25 };
+				let config = { enabled: true, opacity: 35, pos: 28 };
 				try {
 					const saved = localStorage.getItem('pid7_eyeline');
 					if (saved) {
 						const parsed = JSON.parse(saved);
 						if (typeof parsed.enabled === 'boolean') config.enabled = parsed.enabled;
 						if (typeof parsed.opacity === 'number') config.opacity = parsed.opacity;
-						config.pos = 25;
+						config.pos = 28;
 					}
 				} catch {}
 
