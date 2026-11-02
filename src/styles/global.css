@@ -1,5 +1,6 @@
 @import "@fontsource-variable/space-grotesk";
 @import "@fontsource-variable/jetbrains-mono";
+@import "@fontsource/libre-barcode-128-text";
 @import "katex/dist/katex.min.css";
 
 @import "tailwindcss";
@@ -8,7 +9,7 @@
 @import "@catppuccin/tailwindcss/macchiato.css";
 
 @theme {
-  --font-clash: "Clash Grotesk", sans-serif;
+  --font-barcode: "Libre Barcode 128 Text", system-ui;
   --font-serif: "Space Grotesk Variable", "Space Grotesk", sans-serif;
   --font-mono: "JetBrains Mono Variable", "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
 }
