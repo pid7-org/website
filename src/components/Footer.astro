@@ -1,21 +1,110 @@
 ---
+const buildDate = new Intl.DateTimeFormat('en-GB', {
+  timeZone: 'Asia/Kolkata',
+  day: '2-digit',
+  month: 'short',
+  year: 'numeric'
+}).format(new Date());
 ---
 
-<footer class="mt-10 sm:mt-14 pt-6 sm:pt-8 pb-4 sm:pb-6 font-mono text-xs text-ctp-subtext0 space-y-6 sm:space-y-8">
-	<div class="text-center font-mono text-xs text-ctp-subtext0/70 select-none">
+<footer class="font-mono text-xs select-none">
+	<p class="text-ctp-subtext0/60 text-xs font-mono text-center mb-10 sm:mb-14 tracking-wide">
 		[padded at the bottom to maintain a consistent reading eyeline]
-	</div>
+	</p>
 
-	<div class="border-t border-ctp-surface0/40 pt-6 sm:pt-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-		<a href="/" class="font-clash text-base font-medium text-[var(--color-accent)] hover:opacity-90 transition-opacity">
-			pid7
-		</a>
+	<div
+		class="border border-ctp-surface1 bg-ctp-surface0/20 flex flex-nowrap items-stretch
+			justify-between text-xs divide-x divide-ctp-surface1 w-full overflow-hidden"
+	>
+		<!-- Left: Brand and Last Built -->
+		<div class="flex items-center divide-x divide-ctp-surface1 shrink-0">
+			<a
+				href="/"
+				class="px-3.5 sm:px-4 py-2 font-semibold text-[var(--color-accent)]
+					hover:opacity-85 transition-opacity flex items-center gap-1.5 shrink-0"
+				title="Home (key: '1')"
+			>
+				<span class="w-1.5 h-1.5 rounded-full bg-[var(--color-accent)] inline-block"></span>
+				<span>pid7</span>
+			</a>
+			<div
+				class="hidden md:flex px-3.5 sm:px-4 py-2 text-ctp-subtext0 items-center
+					gap-1.5 whitespace-nowrap"
+			>
+				<span class="text-ctp-subtext0/70">last built:</span>
+				<span class="text-ctp-subtext1">{buildDate}</span>
+			</div>
+		</div>
 
-		<div class="flex flex-wrap items-center gap-x-4 gap-y-2 text-xs">
-			<a href="/" class="hover:text-[var(--color-accent)] transition-colors">home</a>
-			<a href="https://github.com/pid7-org" target="_blank" rel="noreferrer" class="hover:text-[var(--color-accent)] transition-colors">github</a>
-			<a href="/rss.xml" target="_blank" class="hover:text-[var(--color-accent)] transition-colors">rss</a>
-			<a href="/sitemap.xml" target="_blank" class="hover:text-[var(--color-accent)] transition-colors">sitemap</a>
+		<!-- Right: Links -->
+		<div
+			class="flex items-center gap-x-3 sm:gap-x-4 md:gap-x-5 px-3 sm:px-4 py-2
+				text-ctp-subtext1 shrink-0 overflow-x-auto"
+		>
+			<a
+				href="/"
+				class="hover:text-[var(--color-accent)] transition-colors whitespace-nowrap"
+				title="Go home (key: '1')"
+			>
+				<span class="text-ctp-subtext0">[1]</span> home
+			</a>
+			<a
+				href="https://github.com/pid7-org"
+				target="_blank"
+				rel="noreferrer"
+				class="hover:text-[var(--color-accent)] transition-colors whitespace-nowrap"
+				title="GitHub (key: '2')"
+			>
+				<span class="text-ctp-subtext0">[2]</span> github
+			</a>
+			<a
+				href="/rss.xml"
+				target="_blank"
+				class="hover:text-[var(--color-accent)] transition-colors whitespace-nowrap"
+				title="RSS feed (key: '3')"
+			>
+				<span class="text-ctp-subtext0">[3]</span> rss
+			</a>
+			<a
+				href="/sitemap.xml"
+				target="_blank"
+				class="hover:text-[var(--color-accent)] transition-colors whitespace-nowrap"
+				title="Sitemap (key: '4')"
+			>
+				<span class="text-ctp-subtext0">[4]</span> sitemap
+			</a>
+			<a
+				href="https://github.com/pid7-org/website/blob/master/LICENSE"
+				target="_blank"
+				rel="noreferrer"
+				class="hover:text-[var(--color-accent)] transition-colors whitespace-nowrap"
+				title="License (key: '5')"
+			>
+				<span class="text-ctp-subtext0">[5]</span> license
+			</a>
 		</div>
 	</div>
 </footer>
+
+<script>
+	document.addEventListener('keydown', (e) => {
+		const target = e.target as HTMLElement | null;
+		const isInput = target && (
+			target.tagName === 'INPUT' ||
+			target.tagName === 'TEXTAREA' ||
+			target.isContentEditable
+		);
+		if (isInput) return;
+		if (e.key === '1') {
+			window.location.href = '/';
+		} else if (e.key === '2') {
+			window.open('https://github.com/pid7-org', '_blank');
+		} else if (e.key === '3') {
+			window.open('/rss.xml', '_blank');
+		} else if (e.key === '4') {
+			window.open('/sitemap.xml', '_blank');
+		} else if (e.key === '5') {
+			window.open('https://github.com/pid7-org/website/blob/master/LICENSE', '_blank');
+		}
+	});
+</script>
