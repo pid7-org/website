@@ -15,6 +15,19 @@ const posts = await getAllBlogPosts();
 			<Header />
 		</div>
 
+		<section id="section-quote">
+			<blockquote
+				class="border-l-2 border-ctp-surface1 hover:border-[var(--color-accent)] pl-4 py-0.5 space-y-1 transition-colors"
+			>
+				<p class="font-mono text-sm text-ctp-text leading-relaxed">
+					&ldquo;Keep it simple; do not generalize; generalization is usually wrong&rdquo;
+				</p>
+				<footer class="font-mono text-xs text-ctp-subtext0">
+					— Butler Lampson, <cite class="italic">Hints for Computer System Design</cite> (1983)
+				</footer>
+			</blockquote>
+		</section>
+
 		<section id="section-building">
 			<h2 class="mb-3 font-mono text-xs uppercase tracking-widest text-ctp-subtext0">
 				Building
