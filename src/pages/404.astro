@@ -1,33 +1,25 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import Header from '../components/Header.astro';
-import Footer from '../components/Footer.astro';
 ---
 
 <Layout title="404 — Page Not Found | pid7" description="The page you are looking for does not exist.">
-	<main class="w-full max-w-screen-md mx-auto px-4 sm:px-6 py-8 sm:py-14 min-h-screen flex flex-col justify-between">
-		<Header />
-
-		<section class="flex flex-col items-center justify-center text-center space-y-4 py-12 my-auto">
-			<span class="font-mono text-xs uppercase tracking-widest text-[var(--color-accent)]">
-				404 error
-			</span>
-			<h1 class="font-serif text-3xl sm:text-4xl font-semibold text-ctp-text tracking-tight">
-				Page not found
-			</h1>
-			<p class="font-mono text-xs sm:text-sm text-ctp-subtext0 max-w-md leading-relaxed">
-				The route you requested could not be found or may have been moved.
-			</p>
-			<div class="pt-2">
-				<a
-					href="/"
-					class="inline-flex items-center justify-center font-mono text-xs font-medium px-4 py-2 rounded border border-ctp-surface1 bg-ctp-surface0/50 text-ctp-text hover:border-[var(--color-accent)] hover:text-[var(--color-accent)] transition-colors duration-200"
-				>
-					Back to Home
-				</a>
-			</div>
-		</section>
-
-		<Footer />
-	</main>
+	<section class="flex flex-col items-center justify-center text-center space-y-4 py-12 my-auto">
+		<span class="font-mono text-xs uppercase tracking-widest text-[var(--color-accent)]">
+			404 error
+		</span>
+		<h1 class="font-serif text-3xl sm:text-4xl font-semibold text-ctp-text tracking-tight">
+			Page not found
+		</h1>
+		<p class="font-mono text-xs sm:text-sm text-ctp-subtext0 max-w-md leading-relaxed">
+			The route you requested could not be found or may have been moved.
+		</p>
+		<div class="pt-2">
+			<a
+				href="/"
+				class="inline-flex items-center justify-center font-mono text-xs font-medium px-4 py-2 rounded border border-ctp-surface1 bg-ctp-surface0/50 text-ctp-text hover:border-[var(--color-accent)] hover:text-[var(--color-accent)] transition-colors duration-200"
+			>
+				Back to Home
+			</a>
+		</div>
+	</section>
 </Layout>
