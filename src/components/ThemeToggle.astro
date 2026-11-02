@@ -28,8 +28,14 @@ const isBlog = Astro.url.pathname.startsWith('/blog');
       class="text-[var(--color-accent)] font-mono text-xs select-none tracking-wider
         sm:tracking-widest whitespace-nowrap overflow-hidden inline-block"
     >[<span
+      class="text-[var(--color-accent)]"
+    >█</span><span
+      class="text-[var(--color-accent)] opacity-85"
+    >▓</span><span
+      class="text-[var(--color-accent)] opacity-65"
+    >▒</span><span
       class="text-ctp-surface2 opacity-35"
-    >░░░░░░░░░░░░░░░░░░░░</span>]</span>
+    >░░░░░░░░░░░░░░░░░</span>]</span>
   </div>
 
   <button
@@ -72,7 +78,7 @@ const isBlog = Astro.url.pathname.startsWith('/blog');
       text-ctp-subtext1 hover:text-ctp-text hover:bg-ctp-surface1/30 transition-colors
       cursor-pointer focus:outline-none whitespace-nowrap shrink-0`}
     aria-label="Toggle Eyeline"
-    title="Toggle reading eyeline at 25% (or press 'e')"
+    title="Toggle reading eyeline at 28% (or press 'e')"
   >
     <span class="text-ctp-subtext0">[e]</span>
     <span id="eyeline-label" class="text-ctp-text font-medium">eyeline</span>
@@ -240,7 +246,11 @@ const isBlog = Astro.url.pathname.startsWith('/blog');
     }
 
     const pct = Math.min(1, Math.max(0, scrollTop / docHeight));
-    const filled = Math.round(pct * innerCells);
+    const initFilled = Math.min(3, innerCells);
+    const filled = Math.min(
+      innerCells,
+      Math.round(initFilled + pct * (innerCells - initFilled))
+    );
     const empty = Math.max(0, innerCells - filled);
 
     let fillStr = '';
@@ -306,14 +316,14 @@ const isBlog = Astro.url.pathname.startsWith('/blog');
       const saved = localStorage.getItem('pid7_eyeline');
       const parsed = saved ? JSON.parse(saved) : {};
       parsed.enabled = enabled;
-      parsed.pos = 25;
+      parsed.pos = 28;
       localStorage.setItem('pid7_eyeline', JSON.stringify(parsed));
     } catch {}
 
     const eyelineEl = document.getElementById('blog-eyeline');
     if (eyelineEl) {
       eyelineEl.style.display = enabled ? 'flex' : 'none';
-      eyelineEl.style.top = '25vh';
+      eyelineEl.style.top = '28vh';
     }
 
     const eyelineBtn = document.getElementById('eyeline-toggle');
