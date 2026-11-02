@@ -20,7 +20,7 @@
   - **Accents**: `--color-accent` (`peach`, default / `mono`, `yellow`, `mauve`, `blue`, `green`).
   - **Theme Background**: Body background uses clean theme base color (`var(--color-ctp-base)`) without accent tinting.
 - **Fonts**:
-  - Logo/Header: `Playwrite US Trad` (`var(--font-playwrite)`)
+  - Logo/Header: `Clash Grotesk` (`var(--font-clash)`)
   - Headings: `Space Grotesk` (`var(--font-serif)`)
   - Body/Code/UI: `JetBrains Mono` (`var(--font-mono)`)
 - **Layout**: Constrained width `max-w-screen-md` (`max-w-3xl`), centered with `mx-auto px-6`.

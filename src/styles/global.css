@@ -1,4 +1,3 @@
-@import "@fontsource-variable/playwrite-us-trad";
 @import "@fontsource-variable/space-grotesk";
 @import "@fontsource-variable/jetbrains-mono";
 @import "katex/dist/katex.min.css";
@@ -9,7 +8,7 @@
 @import "@catppuccin/tailwindcss/macchiato.css";
 
 @theme {
-  --font-playwrite: "Playwrite US Trad Variable", "Playwrite US Trad", cursive, sans-serif;
+  --font-clash: "Clash Grotesk", sans-serif;
   --font-serif: "Space Grotesk Variable", "Space Grotesk", sans-serif;
   --font-mono: "JetBrains Mono Variable", "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
 }
