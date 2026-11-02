@@ -1,7 +1,6 @@
 ---
 import '../styles/global.css';
 import { flavors } from '@catppuccin/palette';
-import CommandLine from '../components/CommandLine.astro';
 import KeyboardNav from '../components/KeyboardNav.astro';
 
 interface Props {
@@ -159,7 +158,6 @@ const jsonLd = type === 'article' ? {
 	<body class="text-ctp-text min-h-screen transition-colors duration-200 antialiased pb-12 sm:pb-14">
 		<slot />
 		<KeyboardNav />
-		<CommandLine />
 	</body>
 </html>
 
