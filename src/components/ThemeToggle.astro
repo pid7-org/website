@@ -1,40 +1,133 @@
 ---
+const isBlog = Astro.url.pathname.startsWith('/blog');
 ---
 
-<div class="flex items-center gap-2">
+<div
+  id="status-bar"
+  data-stuck="false"
+  class="border border-ctp-surface1 bg-ctp-surface0/20 flex flex-nowrap items-stretch
+    divide-x divide-ctp-surface1 text-xs font-mono select-none w-full overflow-hidden"
+>
+  <div
+    class="hidden min-[480px]:flex items-center justify-center gap-1.5 px-3 py-1.5
+      text-ctp-text font-medium whitespace-nowrap shrink-0"
+  >
+    <span
+      class="w-1.5 h-1.5 rounded-full bg-[var(--color-accent)] inline-block animate-pulse
+        shrink-0 transition-colors duration-300"
+    ></span>
+    <span>v1.1.0</span>
+  </div>
+
+  <div
+    id="ascii-scroll-container"
+    class="flex-1 min-w-0 flex items-center justify-center px-1 sm:px-2 py-1.5 overflow-hidden"
+  >
+    <span
+      id="ascii-scroll-bar"
+      class="text-[var(--color-accent)] font-mono text-xs select-none tracking-wider
+        sm:tracking-widest whitespace-nowrap overflow-hidden inline-block"
+    >[<span
+      class="text-ctp-surface2 opacity-35"
+    >░░░░░░░░░░░░░░░░░░░░</span>]</span>
+  </div>
+
   <button
     id="accent-toggle"
     type="button"
-    class="w-4 h-4 rounded-full border border-ctp-text transition-transform duration-200 hover:scale-110 cursor-pointer focus:outline-none shrink-0"
+    class="flex items-center justify-center gap-1.5 px-2.5 sm:px-3 py-1.5 text-ctp-subtext1
+      hover:text-ctp-text hover:bg-ctp-surface1/30 transition-colors cursor-pointer
+      focus:outline-none whitespace-nowrap shrink-0"
     aria-label="Cycle Accent Color"
-    title="Change accent color"
-  ></button>
+    title="Cycle accent color (or press 'a')"
+  >
+    <span
+      id="accent-indicator"
+      class="w-1.5 h-1.5 rounded-full shrink-0 ring-1 ring-ctp-surface1 transition-colors"
+    ></span>
+    <span class="text-ctp-subtext0">[a]</span>
+    <span id="accent-label" class="text-ctp-text font-medium">peach</span>
+  </button>
 
   <button
     id="theme-toggle"
     type="button"
-    class="w-4 h-4 rounded-full text-ctp-text transition-transform duration-500 ease-in-out hover:rotate-180 cursor-pointer focus:outline-none flex items-center justify-center shrink-0"
+    class="flex items-center justify-center gap-1.5 px-2.5 sm:px-3 py-1.5 text-ctp-subtext1
+      hover:text-ctp-text hover:bg-ctp-surface1/30 transition-colors cursor-pointer
+      focus:outline-none whitespace-nowrap shrink-0"
     aria-label="Toggle Theme"
-    title="Toggle light/dark theme"
+    title="Toggle light/dark theme (or press 't')"
   >
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      stroke-width="2"
-      stroke-linecap="round"
-      stroke-linejoin="round"
-      class="w-4 h-4 block"
-    >
-      <circle cx="12" cy="12" r="11" stroke="currentColor" stroke-width="2" fill="none" />
-      <path d="M12 1v22a11 11 0 0 0 0-22z" fill="currentColor" stroke="none" />
-    </svg>
+    <span
+      class="text-[11px] text-[var(--color-accent)] font-semibold leading-none select-none"
+    >◐</span>
+    <span class="text-ctp-subtext0">[t]</span>
+    <span id="theme-label" class="text-ctp-text font-medium">dark</span>
   </button>
+
+  <button
+    id="eyeline-toggle"
+    type="button"
+    class={`${isBlog ? 'flex' : 'hidden'} items-center justify-center gap-1.5 px-2.5 sm:px-3 py-1.5
+      text-ctp-subtext1 hover:text-ctp-text hover:bg-ctp-surface1/30 transition-colors
+      cursor-pointer focus:outline-none whitespace-nowrap shrink-0`}
+    aria-label="Toggle Eyeline"
+    title="Toggle reading eyeline at 25% (or press 'e')"
+  >
+    <span class="text-ctp-subtext0">[e]</span>
+    <span id="eyeline-label" class="text-ctp-text font-medium">eyeline</span>
+  </button>
+
+  <div
+    class="flex items-center justify-center px-2.5 sm:px-3 py-1.5 text-ctp-subtext0
+      whitespace-nowrap shrink-0"
+  >
+    <span id="ist-clock">--:--:-- IST</span>
+  </div>
 </div>
+
+<style>
+  #status-bar {
+    transition:
+      background-color 200ms ease,
+      border-color 200ms ease;
+  }
+
+  #status-bar[data-stuck="true"] {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    z-index: 50;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: 1px solid var(--color-ctp-surface1);
+    background-color: color-mix(in srgb, var(--color-ctp-base) 94%, transparent);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    box-shadow: none;
+    animation: statusBarSlideDown 150ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  @keyframes statusBarSlideDown {
+    from {
+      transform: translateY(-100%);
+      opacity: 0.8;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+</style>
 
 <script>
   const accents = ['peach', 'mono', 'yellow', 'mauve', 'blue', 'green'];
+
+  let cachedCharWidth = 0;
+  let cachedInnerCells = 20;
 
   function getStoredAccent(): string {
     const stored = localStorage.getItem('accent');
@@ -67,9 +160,172 @@
     const currentVarMap = isLatte ? accentVarMap.latte : accentVarMap.dark;
     const accentVar = currentVarMap[accentName] || currentVarMap.peach;
 
-    const accentBtn = document.getElementById('accent-toggle');
-    if (accentBtn) {
-      accentBtn.style.backgroundColor = accentVar;
+    const accentIndicator = document.getElementById('accent-indicator');
+    if (accentIndicator) {
+      accentIndicator.style.backgroundColor = accentVar;
+    }
+    const accentLabel = document.getElementById('accent-label');
+    if (accentLabel) {
+      accentLabel.textContent = accentName;
+    }
+
+    const themeLabel = document.getElementById('theme-label');
+    if (themeLabel) {
+      themeLabel.textContent = isLatte ? 'latte' : 'dark';
+    }
+  }
+
+  function updateISTClock() {
+    const clockEl = document.getElementById('ist-clock');
+    if (!clockEl) return;
+    const now = new Date();
+    const formatter = new Intl.DateTimeFormat('en-GB', {
+      timeZone: 'Asia/Kolkata',
+      hour: '2-digit',
+      minute: '2-digit',
+      second: '2-digit',
+      hour12: false
+    });
+    clockEl.textContent = `${formatter.format(now)} IST`;
+  }
+
+  function measureCharWidth(): number {
+    const span = document.createElement('span');
+    span.style.cssText =
+      'position:absolute;visibility:hidden;white-space:nowrap;display:inline-block;width:auto;';
+    span.className =
+      'text-xs font-mono select-none tracking-wider sm:tracking-widest';
+    span.textContent = '██████████';
+    document.body.appendChild(span);
+    const width = span.getBoundingClientRect().width / 10;
+    document.body.removeChild(span);
+    return width > 0 ? width : 7.5;
+  }
+
+  function calculateCapacity(): number {
+    const container = document.getElementById('ascii-scroll-container');
+    if (!container) return 20;
+
+    const containerRect = container.getBoundingClientRect();
+    const containerWidth = containerRect.width;
+    if (containerWidth <= 0) return 20;
+
+    if (cachedCharWidth <= 0) {
+      cachedCharWidth = measureCharWidth();
+    }
+
+    const style = window.getComputedStyle(container);
+    const pad =
+      (parseFloat(style.paddingLeft) || 0) +
+      (parseFloat(style.paddingRight) || 0);
+    const availableWidth = Math.max(20, containerWidth - pad - 4);
+    const totalChars = Math.floor(availableWidth / cachedCharWidth);
+    return Math.max(4, totalChars - 2);
+  }
+
+  function updateScrollIndicator() {
+    const barEl = document.getElementById('ascii-scroll-bar');
+    if (!barEl) return;
+
+    const innerCells = cachedInnerCells;
+    const scrollTop = window.scrollY || document.documentElement.scrollTop;
+    const docHeight =
+      document.documentElement.scrollHeight - window.innerHeight;
+
+    if (docHeight <= 4 || scrollTop >= docHeight - 2) {
+      const full = '█'.repeat(innerCells);
+      barEl.innerHTML =
+        `[<span class="text-[var(--color-accent)]">${full}</span>]`;
+      return;
+    }
+
+    const pct = Math.min(1, Math.max(0, scrollTop / docHeight));
+    const filled = Math.round(pct * innerCells);
+    const empty = Math.max(0, innerCells - filled);
+
+    let fillStr = '';
+    if (filled >= 3) {
+      const solid = '█'.repeat(filled - 2);
+      fillStr =
+        `<span class="text-[var(--color-accent)]">${solid}</span>` +
+        `<span class="text-[var(--color-accent)] opacity-85">▓</span>` +
+        `<span class="text-[var(--color-accent)] opacity-65">▒</span>`;
+    } else if (filled === 2) {
+      fillStr =
+        `<span class="text-[var(--color-accent)]">█</span>` +
+        `<span class="text-[var(--color-accent)] opacity-75">▒</span>`;
+    } else if (filled === 1) {
+      fillStr = `<span class="text-[var(--color-accent)] opacity-65">▒</span>`;
+    }
+
+    const emptyStr = empty > 0
+      ? `<span class="text-ctp-surface2 opacity-35">${'░'.repeat(empty)}</span>`
+      : '';
+
+    barEl.innerHTML = `[${fillStr}${emptyStr}]`;
+  }
+
+  function refreshScrollCapacity() {
+    cachedCharWidth = 0;
+    cachedInnerCells = calculateCapacity();
+    updateScrollIndicator();
+  }
+
+  function updateStuckState(isStuck: boolean) {
+    const bar = document.getElementById('status-bar');
+    const wrap = document.getElementById('status-bar-sticky-wrap');
+    if (!bar) return;
+    const current = bar.getAttribute('data-stuck') === 'true';
+    if (current !== isStuck) {
+      bar.setAttribute('data-stuck', isStuck ? 'true' : 'false');
+      wrap?.setAttribute('data-stuck', isStuck ? 'true' : 'false');
+      refreshScrollCapacity();
+    }
+  }
+
+  function checkStuck() {
+    const sentinel = document.getElementById('status-bar-sentinel');
+    if (!sentinel) return;
+    const isStuck = sentinel.getBoundingClientRect().top <= 0;
+    updateStuckState(isStuck);
+  }
+
+  function getEyelineState(): boolean {
+    try {
+      const saved = localStorage.getItem('pid7_eyeline');
+      if (saved) {
+        const parsed = JSON.parse(saved);
+        if (typeof parsed.enabled === 'boolean') return parsed.enabled;
+      }
+    } catch {}
+    return true;
+  }
+
+  function setEyelineState(enabled: boolean) {
+    try {
+      const saved = localStorage.getItem('pid7_eyeline');
+      const parsed = saved ? JSON.parse(saved) : {};
+      parsed.enabled = enabled;
+      parsed.pos = 25;
+      localStorage.setItem('pid7_eyeline', JSON.stringify(parsed));
+    } catch {}
+
+    const eyelineEl = document.getElementById('blog-eyeline');
+    if (eyelineEl) {
+      eyelineEl.style.display = enabled ? 'flex' : 'none';
+      eyelineEl.style.top = '25vh';
+    }
+
+    const eyelineBtn = document.getElementById('eyeline-toggle');
+    const labelEl = document.getElementById('eyeline-label');
+    if (eyelineBtn && labelEl) {
+      if (enabled) {
+        labelEl.className = 'text-ctp-text font-medium';
+        eyelineBtn.classList.remove('opacity-40');
+      } else {
+        labelEl.className = 'text-ctp-subtext0 font-medium';
+        eyelineBtn.classList.add('opacity-40');
+      }
     }
   }
 
@@ -99,8 +355,79 @@
       }
       applyAccent(getStoredAccent());
     });
+
+    const isBlog = window.location.pathname.startsWith('/blog');
+    const eyelineBtn = document.getElementById('eyeline-toggle');
+    if (eyelineBtn) {
+      eyelineBtn.style.display = isBlog ? 'flex' : 'none';
+      if (isBlog) {
+        const enabled = getEyelineState();
+        setEyelineState(enabled);
+        eyelineBtn.onclick = () => {
+          const current = getEyelineState();
+          setEyelineState(!current);
+        };
+      }
+    }
+
+    updateISTClock();
+    refreshScrollCapacity();
+    checkStuck();
+
+    const sentinel = document.getElementById('status-bar-sentinel');
+    if (sentinel && 'IntersectionObserver' in window) {
+      const observer = new IntersectionObserver(
+        ([entry]) => {
+          const isStuck = !entry.isIntersecting && entry.boundingClientRect.top <= 0;
+          updateStuckState(isStuck);
+        },
+        { threshold: [0, 1] }
+      );
+      observer.observe(sentinel);
+    }
+
+    const container = document.getElementById('ascii-scroll-container');
+    if (container && 'ResizeObserver' in window) {
+      const ro = new ResizeObserver(() => {
+        refreshScrollCapacity();
+      });
+      ro.observe(container);
+    }
+
+    if ('fonts' in document) {
+      document.fonts.ready.then(() => {
+        refreshScrollCapacity();
+      });
+    }
   }
 
   setupControls();
+  setInterval(updateISTClock, 1000);
+  window.addEventListener('scroll', () => {
+    updateScrollIndicator();
+    checkStuck();
+  }, { passive: true });
+  window.addEventListener('resize', refreshScrollCapacity);
   document.addEventListener('astro:after-swap', setupControls);
+
+  // Keyboard navigation shortcuts: 'a' for accent, 't' for theme
+  document.addEventListener('keydown', (e) => {
+    const target = e.target as HTMLElement | null;
+    const isInput = target && (
+      target.tagName === 'INPUT' ||
+      target.tagName === 'TEXTAREA' ||
+      target.isContentEditable
+    );
+    if (isInput) return;
+    if (e.key === 'a' || e.key === 'A') {
+      const accentBtn = document.getElementById('accent-toggle');
+      accentBtn?.click();
+    } else if (e.key === 't' || e.key === 'T') {
+      const themeBtn = document.getElementById('theme-toggle');
+      themeBtn?.click();
+    } else if (e.key === 'e' || e.key === 'E') {
+      const eyelineBtn = document.getElementById('eyeline-toggle');
+      eyelineBtn?.click();
+    }
+  });
 </script>
