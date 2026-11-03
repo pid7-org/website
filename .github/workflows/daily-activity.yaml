@@ -8,13 +8,14 @@ on:
 
 permissions:
   contents: write
+  actions: write
 
 jobs:
   collect-data:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v5
+        uses: actions/checkout@v7
         with:
           fetch-depth: 0
 
@@ -45,3 +46,9 @@ jobs:
             git commit -m "(gh-actions) data: update org gh-data dataset [skip ci]"
             git push
           fi
+
+      - name: Trigger Cloudflare deployment
+        run: |
+          gh workflow run deploy-cloudflare.yaml --ref master
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
