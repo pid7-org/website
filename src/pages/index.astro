@@ -9,24 +9,18 @@ const posts = await getAllBlogPosts();
 ---
 
 <Layout>
-	<section id="section-quote">
-		<div class="border border-ctp-surface1 bg-ctp-surface0/20 hover:border-[var(--color-accent)] transition-colors font-mono">
-			<div class="px-3.5 py-1.5 border-b border-ctp-surface1/70 bg-ctp-surface0/40 flex items-center justify-between text-xs select-none">
-				<span class="text-ctp-subtext0 text-[11px] flex items-center gap-1.5">
-					<span class="text-[var(--color-accent)] font-bold">&gt;</span>
-					<span>quote</span>
-				</span>
-				<span class="text-ctp-subtext0/70 text-[11px]">Butler Lampson (1983)</span>
-			</div>
-			<div class="p-4 sm:p-5 space-y-2">
-				<p class="text-sm sm:text-base text-ctp-text leading-relaxed font-mono">
-					&ldquo;Keep it simple; do not generalize; generalization is usually wrong&rdquo;
-				</p>
-				<p class="text-xs text-ctp-subtext0 font-mono">
-					&mdash; <cite class="not-italic text-ctp-subtext1">Hints for Computer System Design</cite>
-				</p>
-			</div>
-		</div>
+	<section id="section-quote" class="font-mono">
+		<blockquote
+			class="pl-3.5 sm:pl-4 border-l border-ctp-surface1 hover:border-[var(--color-accent)]
+				transition-colors py-0.5 space-y-1.5"
+		>
+			<p class="text-sm sm:text-base text-ctp-text leading-relaxed">
+				&ldquo;Keep it simple; do not generalize; generalization is usually wrong&rdquo;
+			</p>
+			<footer class="text-xs text-ctp-subtext0">
+				&mdash; <cite class="not-italic text-ctp-subtext1">Hints for Computer System Design</cite>
+			</footer>
+		</blockquote>
 	</section>
 
 	<GithubStatsSection />
