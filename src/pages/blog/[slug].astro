@@ -44,8 +44,8 @@ const pageDescription = post.frontmatter.description || fallbackExcerpt || 'engi
 >
 		<div
 			id="blog-eyeline"
-			class="fixed top-[30vh] left-0 right-0 pointer-events-none z-20 border-b border-dashed
-				border-[var(--color-accent)] flex items-center justify-end px-4 sm:px-8 select-none
+			class="hidden sm:flex fixed top-[30vh] left-0 right-0 pointer-events-none z-20 border-b border-dashed
+				border-[var(--color-accent)] items-center justify-end px-4 sm:px-8 select-none
 				transition-[top,opacity] duration-150"
 			style="opacity: 0.80;"
 		>
@@ -73,8 +73,10 @@ const pageDescription = post.frontmatter.description || fallbackExcerpt || 'engi
 				} catch {}
 
 				function applyConfig(cfg) {
-					if (typeof cfg.enabled === 'boolean') {
+					if (window.innerWidth >= 640 && typeof cfg.enabled === 'boolean') {
 						el.style.display = cfg.enabled ? 'flex' : 'none';
+					} else if (window.innerWidth < 640) {
+						el.style.display = '';
 					}
 					if (typeof cfg.opacity === 'number') {
 						el.style.opacity = (cfg.opacity / 100).toFixed(2);

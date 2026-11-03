@@ -26,7 +26,7 @@ const isBlog = Astro.url.pathname.startsWith('/blog');
   >
     <span
       id="ascii-idle-bar"
-      class={`${isBlog ? 'hidden' : 'inline-block'} font-mono text-xs select-none tracking-wider
+      class={`${isBlog ? 'inline-block sm:hidden' : 'inline-block'} font-mono text-xs select-none tracking-wider
         sm:tracking-widest whitespace-nowrap overflow-hidden`}
       aria-hidden="true"
     ><span class="text-ctp-surface2 opacity-30">···</span><span
@@ -83,10 +83,10 @@ const isBlog = Astro.url.pathname.startsWith('/blog');
 
   <div
     id="eyeline-group"
-    class={`${isBlog ? 'flex' : 'hidden'} items-center justify-center gap-1 sm:gap-2 px-1 sm:px-2.5 py-1.5 whitespace-nowrap shrink-0`}
+    class={`${isBlog ? 'hidden sm:flex' : 'hidden'} items-center justify-center gap-1 sm:gap-2 px-1.5 sm:px-2.5 py-1.5 whitespace-nowrap shrink-0`}
   >
     <div class="flex items-center gap-1">
-      <span class="hidden min-[540px]:inline text-ctp-subtext0 font-medium">eyeline</span>
+      <span class="hidden min-[460px]:inline text-ctp-subtext0 font-medium">eyeline</span>
       <button
         id="eyeline-toggle"
         type="button"
@@ -110,7 +110,7 @@ const isBlog = Astro.url.pathname.startsWith('/blog');
     >
       <span class="text-ctp-subtext0">[o]</span>
       <span class="hidden sm:inline text-ctp-subtext0">opacity</span>
-      <span class="hidden min-[500px]:inline sm:hidden text-ctp-subtext0">op</span>
+      <span class="hidden min-[440px]:inline sm:hidden text-ctp-subtext0">op</span>
       <span id="eyeline-opacity-label" class="text-ctp-text font-medium w-[4ch] inline-block text-left">80%</span>
     </button>
 
@@ -125,13 +125,14 @@ const isBlog = Astro.url.pathname.startsWith('/blog');
     >
       <span class="text-ctp-subtext0">[p]</span>
       <span class="hidden sm:inline text-ctp-subtext0">position at</span>
-      <span class="hidden min-[500px]:inline sm:hidden text-ctp-subtext0">pos</span>
+      <span class="hidden min-[440px]:inline sm:hidden text-ctp-subtext0">pos</span>
       <span id="eyeline-pos-label" class="text-ctp-text font-medium w-[3ch] inline-block text-left">30%</span>
     </button>
   </div>
 
   <div
-    class={`${isBlog ? 'hidden' : 'flex'} items-center justify-center px-2 sm:px-3 py-1.5
+    id="ist-clock-container"
+    class={`${isBlog ? 'hidden sm:hidden' : 'flex'} items-center justify-center px-2 sm:px-3 py-1.5
       text-ctp-subtext0 whitespace-nowrap shrink-0`}
   >
     <span id="ist-clock">--:--:-- IST</span>
@@ -145,28 +146,40 @@ const isBlog = Astro.url.pathname.startsWith('/blog');
       border-color 200ms ease;
   }
 
-  #status-bar[data-blog="true"][data-stuck="false"] #ascii-idle-bar {
-    display: none !important;
+  @media (max-width: 639px) {
+    #status-bar[data-blog="true"] #eyeline-group {
+      display: none !important;
+    }
+
+    #status-bar[data-blog="true"] #ist-clock-container {
+      display: flex !important;
+    }
   }
 
-  #status-bar[data-blog="true"][data-stuck="false"] #ascii-scroll-container {
-    display: none !important;
-  }
+  @media (min-width: 640px) {
+    #status-bar[data-blog="true"][data-stuck="false"] #ascii-idle-bar {
+      display: none !important;
+    }
 
-  #status-bar[data-blog="true"][data-stuck="false"] #eyeline-group {
-    flex: 1 1 0% !important;
-  }
+    #status-bar[data-blog="true"][data-stuck="false"] #ascii-scroll-container {
+      display: none !important;
+    }
 
-  #status-bar[data-blog="true"][data-stuck="true"] #ascii-idle-bar {
-    display: inline-block !important;
-  }
+    #status-bar[data-blog="true"][data-stuck="false"] #eyeline-group {
+      flex: 1 1 0% !important;
+    }
 
-  #status-bar[data-blog="true"][data-stuck="true"] #ascii-scroll-container {
-    display: flex !important;
-  }
+    #status-bar[data-blog="true"][data-stuck="true"] #ascii-idle-bar {
+      display: inline-block !important;
+    }
 
-  #status-bar[data-blog="true"][data-stuck="true"] #eyeline-group {
-    flex: 0 0 auto !important;
+    #status-bar[data-blog="true"][data-stuck="true"] #ascii-scroll-container {
+      display: flex !important;
+    }
+
+    #status-bar[data-blog="true"][data-stuck="true"] #eyeline-group {
+      flex: 0 0 auto !important;
+    }
   }
 
   #status-bar[data-stuck="true"] {
@@ -286,6 +299,7 @@ const isBlog = Astro.url.pathname.startsWith('/blog');
   function shouldAnimateIdle(): boolean {
     const onBlog = window.location.pathname.startsWith('/blog');
     if (!onBlog) return true;
+    if (window.innerWidth < 640) return true;
     const bar = document.getElementById('status-bar');
     return bar?.getAttribute('data-stuck') === 'true';
   }
@@ -505,7 +519,11 @@ const isBlog = Astro.url.pathname.startsWith('/blog');
 
     const eyelineEl = document.getElementById('blog-eyeline');
     if (eyelineEl) {
-      eyelineEl.style.display = config.enabled ? 'flex' : 'none';
+      if (window.innerWidth >= 640) {
+        eyelineEl.style.display = config.enabled ? 'flex' : 'none';
+      } else {
+        eyelineEl.style.display = '';
+      }
       eyelineEl.style.opacity = (config.opacity / 100).toFixed(2);
       eyelineEl.style.top = `${config.pos}vh`;
     }
@@ -598,20 +616,22 @@ const isBlog = Astro.url.pathname.startsWith('/blog');
     const idleEl = document.getElementById('ascii-idle-bar');
     if (onBlog && idleEl) {
       const isStuck = checkStuck();
-      if (!isStuck) idleEl.style.display = 'none';
+      if (!isStuck && window.innerWidth >= 640) idleEl.style.display = 'none';
     }
 
     const eyelineGroup = document.getElementById('eyeline-group');
-    const eyelineBtn = document.getElementById('eyeline-toggle');
-    const opacityBtn = document.getElementById('eyeline-opacity-toggle');
-    const posBtn = document.getElementById('eyeline-pos-toggle');
-
-    if (eyelineGroup) eyelineGroup.style.display = onBlog ? 'flex' : 'none';
-    if (eyelineBtn) eyelineBtn.style.display = onBlog ? 'flex' : 'none';
-    if (opacityBtn) opacityBtn.style.display = onBlog ? 'flex' : 'none';
-    if (posBtn) posBtn.style.display = onBlog ? 'flex' : 'none';
+    if (eyelineGroup) {
+      if (window.innerWidth >= 640) {
+        eyelineGroup.style.display = onBlog ? 'flex' : 'none';
+      } else {
+        eyelineGroup.style.display = '';
+      }
+    }
 
     if (onBlog) {
+      const eyelineBtn = document.getElementById('eyeline-toggle');
+      const opacityBtn = document.getElementById('eyeline-opacity-toggle');
+      const posBtn = document.getElementById('eyeline-pos-toggle');
       const config = getEyelineConfig();
       applyEyelineConfig(config);
       if (eyelineBtn) eyelineBtn.onclick = toggleEyeline;
@@ -655,15 +675,12 @@ const isBlog = Astro.url.pathname.startsWith('/blog');
 
   let clockInterval: number | null = null;
   function ensureClockTimer() {
-    const onBlog = window.location.pathname.startsWith('/blog');
     if (clockInterval !== null) {
       clearInterval(clockInterval);
       clockInterval = null;
     }
-    if (!onBlog) {
-      updateISTClock();
-      clockInterval = window.setInterval(updateISTClock, 1000);
-    }
+    updateISTClock();
+    clockInterval = window.setInterval(updateISTClock, 1000);
   }
 
   setupControls();
