@@ -14,13 +14,13 @@ const buildDate = new Intl.DateTimeFormat('en-GB', {
 
 	<div
 		class="border border-ctp-surface1 bg-ctp-surface0/20 flex flex-nowrap items-stretch
-			justify-between text-xs divide-x divide-ctp-surface1 w-full overflow-hidden"
+			justify-between text-xs divide-x divide-ctp-surface1 w-full max-w-full overflow-hidden"
 	>
-		<!-- Left: Brand and Last Built -->
-		<div class="flex items-center divide-x divide-ctp-surface1 shrink-0">
+		<!-- Left: Brand, Version and Last Built -->
+		<div class="flex items-center flex-1 sm:flex-initial">
 			<a
 				href="/"
-				class="px-3.5 sm:px-4 py-2 font-semibold text-[var(--color-accent)]
+				class="flex-1 sm:flex-initial justify-center sm:justify-start px-4 sm:px-4 py-2 font-semibold text-[var(--color-accent)]
 					hover:opacity-85 transition-opacity flex items-center gap-1.5 shrink-0"
 				title="Home (key: '1')"
 			>
@@ -28,17 +28,23 @@ const buildDate = new Intl.DateTimeFormat('en-GB', {
 				<span>pid7</span>
 			</a>
 			<div
-				class="hidden md:flex px-3.5 sm:px-4 py-2 text-ctp-subtext0 items-center
-					gap-1.5 whitespace-nowrap"
+				class="flex px-3 py-2 text-ctp-subtext1 items-center
+					gap-1.5 whitespace-nowrap border-l border-ctp-surface1 shrink-0"
+			>
+				<span class="text-ctp-subtext0/70">v1.1.0</span>
+			</div>
+			<div
+				class="flex px-3 sm:px-4 py-2 text-ctp-subtext0 items-center
+					gap-1.5 whitespace-nowrap border-l border-ctp-surface1 shrink-0"
 			>
 				<span class="text-ctp-subtext0/70">last built:</span>
 				<span class="text-ctp-subtext1">{buildDate}</span>
 			</div>
 		</div>
 
-		<!-- Right: Links -->
+		<!-- Right: Links (hidden on < sm, visible on >= sm) -->
 		<div
-			class="flex items-center gap-x-3 sm:gap-x-4 md:gap-x-5 px-3 sm:px-4 py-2
+			class="hidden sm:flex flex-1 items-center justify-around px-3 sm:px-6 py-2
 				text-ctp-subtext1 shrink-0 overflow-x-auto"
 		>
 			<a
@@ -73,15 +79,6 @@ const buildDate = new Intl.DateTimeFormat('en-GB', {
 			>
 				<span class="text-ctp-subtext0">[4]</span> sitemap
 			</a>
-			<a
-				href="https://github.com/pid7-org/website/blob/master/LICENSE"
-				target="_blank"
-				rel="noreferrer"
-				class="hover:text-[var(--color-accent)] transition-colors whitespace-nowrap"
-				title="License (key: '5')"
-			>
-				<span class="text-ctp-subtext0">[5]</span> license
-			</a>
 		</div>
 	</div>
 </footer>
@@ -103,8 +100,6 @@ const buildDate = new Intl.DateTimeFormat('en-GB', {
 			window.open('/rss.xml', '_blank');
 		} else if (e.key === '4') {
 			window.open('/sitemap.xml', '_blank');
-		} else if (e.key === '5') {
-			window.open('https://github.com/pid7-org/website/blob/master/LICENSE', '_blank');
 		}
 	});
 </script>
