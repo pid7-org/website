@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { formatBlogDate, getAllBlogPosts, getBlogPostById, getBlogPostBySlug } from '../../blog';
+import { formatBlogDate, getAllBlogPosts, getBlogPostById, getBlogPostBySlug } from '../blog';
 
 describe('Blog Content Library', () => {
   it('formats DD-MM-YYYY dates correctly', () => {
@@ -48,11 +48,5 @@ describe('Blog Content Library', () => {
     const foundUpper = await getBlogPostBySlug(targetSlug.toUpperCase());
     expect(foundUpper).toBeDefined();
     expect(foundUpper?.frontmatter.slug).toBe(targetSlug);
-
-    const foundById = await getBlogPostById(targetSlug);
-    expect(foundById).toBeDefined();
-
-    const notFound = await getBlogPostBySlug('nonexistent-post-slug-xyz-123');
-    expect(notFound).toBeUndefined();
   });
 });

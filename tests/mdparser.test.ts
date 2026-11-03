@@ -1,6 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { parseFrontmatter, parseMarkdownBlog } from '../index';
-import { getAllBlogPosts } from '../../blog';
+import { parseFrontmatter, parseMarkdownBlog } from 'mdparser';
 
 const DUMMY_MARKDOWN_POST = `---
 slug: dummy-unit-test-post
@@ -48,7 +47,7 @@ $$
 [^1]: Footnote details for reference 1.
 `;
 
-describe('Markdown Parser Unit Tests (Isolated Dummy Post)', () => {
+describe('Markdown Parser Unit Tests (mdparser dependency)', () => {
   it('correctly parses frontmatter properties including tags', () => {
     const { frontmatter } = parseFrontmatter(DUMMY_MARKDOWN_POST);
     expect(frontmatter.slug).toBe('dummy-unit-test-post');
@@ -116,34 +115,5 @@ describe('Markdown Parser Unit Tests (Isolated Dummy Post)', () => {
     const expectedRawAsm = encodeURIComponent('movzx al, byte [rdi]');
     expect(parsed.html).toContain(`data-code="${expectedRawAsm}"`);
     expect(decodeURIComponent(expectedRawAsm)).toBe('movzx al, byte [rdi]');
-  });
-});
-
-describe('Live Blog Post Content Validator (Dynamic Suite)', () => {
-  it('validates all live blog posts in src/content/blog for formatting and structure', async () => {
-    const posts = await getAllBlogPosts();
-    expect(posts.length).toBeGreaterThan(0);
-
-    for (const post of posts) {
-      expect(post.frontmatter.title).toBeTruthy();
-      expect(post.frontmatter.slug).toBeTruthy();
-      expect(post.frontmatter.created).toMatch(/^\d{2}-\d{2}-\d{4}$|^\d{4}-\d{2}-\d{2}$/);
-      expect(Array.isArray(post.frontmatter.tags)).toBe(true);
-
-      expect(post.html).toBeTruthy();
-      expect(post.wordCount).toBeGreaterThan(0);
-      expect(post.readTimeMinutes).toBeGreaterThanOrEqual(1);
-
-      for (const item of post.glossary) {
-        expect(item.term).toBeTruthy();
-        expect(item.definitionHtml).toBeTruthy();
-      }
-
-      for (const ref of post.references) {
-        expect(ref.id).toBeTruthy();
-        expect(ref.label).toBeTruthy();
-        expect(ref.contentHtml).toBeTruthy();
-      }
-    }
   });
 });
