@@ -6,23 +6,24 @@
 
 ## 1. Core Workflow Commands
 
-Node and npm are managed via fnm at `~/.local/share/fnm/node-versions/v24.18.0/installation/bin`;
-commands requiring node/npm in the workspace environment should prepend this path to `PATH`
+Node and pnpm are managed via fnm at `~/.local/share/fnm/node-versions/v24.18.0/installation/bin`;
+commands requiring node/pnpm in the workspace environment should prepend this path to `PATH`
 with `BypassSandbox: true`:
 
 ```bash
 export PATH="/home/adii/.local/share/fnm/node-versions/v24.18.0/installation/bin:$PATH"
 ```
 
-- `npm run dev` — Launch local development server
-- `npm run build` — Build static site to `dist/`
-- `npm test` — Run Vitest unit test suite
+- `pnpm dev` — Launch local development server
+- `pnpm build` — Build static site to `dist/`
+- `pnpm test` — Run Vitest unit test suite
 
 ---
 
 ## 2. Tech Stack & Styling Architecture
 
 - **Framework**: Astro (`output: 'static'`).
+- **Package Manager**: pnpm.
 - **Styling**: Tailwind CSS v4 + `@catppuccin/tailwindcss` + `@tailwindcss/typography`.
   - **Themes**: Dark (Catppuccin Macchiato, default) / Light (Catppuccin Latte).
   - **Accents**: `--color-accent` (`peach`, default / `mono`, `yellow`, `mauve`, `blue`, `green`).
@@ -35,9 +36,9 @@ export PATH="/home/adii/.local/share/fnm/node-versions/v24.18.0/installation/bin
 
 ---
 
-## 3. Blog Markdown Dialect (`src/lib/parser/`)
+## 3. Blog Markdown Dialect (`mdparser`)
 
-Blog articles in `src/content/blog/*.md` are parsed by a custom engine ([src/lib/parser/index.ts](file:///home/adii/pid7/src/lib/parser/index.ts)):
+Blog articles in `src/content/blog/*.md` are parsed by `mdparser` (`adityamotale/adityamotale`):
 
 - **Frontmatter**:
   ```yaml
