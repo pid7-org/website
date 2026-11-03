@@ -33,6 +33,7 @@
     "@tailwindcss/typography": "^0.5.20",
     "@types/katex": "^0.16.8",
     "katex": "^0.18.6",
+    "mdparser": "github:adityamotale/adityamotale#master&path:mdparser",
     "shiki": "^4.4.3",
     "vitest": "^5.0.0"
   }
