@@ -1,6 +1,5 @@
 ---
 import Layout from '../../layouts/Layout.astro';
-import AnimationWidget from '../../components/blog/AnimationWidget.astro';
 import { formatBlogDate, getAllBlogPosts, getBlogPostById } from '../../lib/blog';
 import type { ParsedBlogPost } from 'mdparser';
 
@@ -186,26 +185,6 @@ const pageDescription = post.frontmatter.description || fallbackExcerpt || 'engi
 </Layout>
 
 <script>
-  import { getAnimationWidget } from '../../components/blog/animations';
-
-  function renderAnimationWidgets() {
-    const wrappers = document.querySelectorAll('.blog-animation-wrapper');
-    wrappers.forEach((wrapper) => {
-      const animId = wrapper.getAttribute('data-anim-id');
-      const desc = wrapper.getAttribute('data-anim-desc') || '';
-      if (!animId) return;
-
-      const widget = getAnimationWidget(animId);
-      if (!widget) return;
-
-      const slot = wrapper.querySelector('.anim-slot');
-      if (slot) {
-        slot.outerHTML = widget.render(desc);
-        widget.init(wrapper);
-      }
-    });
-  }
-
   function setupCopyButtons() {
     document.querySelectorAll('.copy-code-btn').forEach((btn) => {
       btn.addEventListener('click', async () => {
@@ -228,11 +207,9 @@ const pageDescription = post.frontmatter.description || fallbackExcerpt || 'engi
     });
   }
 
-  renderAnimationWidgets();
   setupCopyButtons();
 
   document.addEventListener('astro:after-swap', () => {
-    renderAnimationWidgets();
     setupCopyButtons();
   });
 </script>
