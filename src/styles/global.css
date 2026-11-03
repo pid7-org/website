@@ -4,6 +4,7 @@
 @import "katex/dist/katex.min.css";
 
 @import "tailwindcss";
+@source "../../node_modules/mdparser";
 @plugin "@tailwindcss/typography";
 @import "@catppuccin/palette/css/catppuccin.css";
 @import "@catppuccin/tailwindcss/macchiato.css";
@@ -12,6 +13,13 @@
   --font-barcode: "Libre Barcode 128 Text", system-ui;
   --font-serif: "Space Grotesk Variable", "Space Grotesk", sans-serif;
   --font-mono: "JetBrains Mono Variable", "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  --color-rp-base: var(--color-ctp-base);
+  --color-rp-surface: var(--color-ctp-surface0);
+  --color-rp-overlay: var(--color-ctp-surface1);
+  --color-rp-muted: var(--color-ctp-subtext0);
+  --color-rp-subtle: var(--color-ctp-subtext1);
+  --color-rp-text: var(--color-ctp-text);
+  --color-rp-highlight-med: var(--color-ctp-surface1);
 }
 
 /* Explicit Catppuccin Accent Colors for Dark (Macchiato) */
@@ -117,10 +125,117 @@ html, body, * {
   font-size: 0.875em;
 }
 
+/* Callout & Blockquote Styling */
+blockquote,
 .prose blockquote {
-  border-left-color: var(--color-accent);
-  color: var(--color-ctp-subtext0);
+  border-left: 3px solid var(--color-accent) !important;
+  background-color: color-mix(in srgb, var(--color-accent) 7%, transparent) !important;
+  padding: 0.875rem 1.25rem !important;
+  border-radius: 0 0.5rem 0.5rem 0 !important;
+  color: var(--color-ctp-text) !important;
+  font-style: normal !important;
+  margin: 1.5rem 0 !important;
+}
+
+.callout {
+  border-left: 3px solid var(--color-accent) !important;
+  background-color: color-mix(in srgb, var(--color-accent) 7%, transparent) !important;
+  border-radius: 0 0.5rem 0.5rem 0 !important;
+  padding: 0.875rem 1.25rem !important;
+  margin: 1.5rem 0 !important;
+  transition: border-color 0.2s ease, background-color 0.2s ease;
+}
+
+.callout-header {
+  font-family: var(--font-serif);
   font-style: italic;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  text-transform: lowercase;
+  color: var(--color-accent) !important;
+  margin-bottom: 0.35rem;
+}
+
+.callout-body,
+.callout-body p {
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  line-height: 1.625;
+  color: var(--color-ctp-text) !important;
+}
+
+/* Custom Code Block Container & Highlighting */
+.custom-code-block {
+  background-color: var(--ctp-macchiato-surface0, #363a4f) !important;
+  border: 1px solid var(--ctp-macchiato-surface1, #494d64) !important;
+  border-radius: 0.5rem;
+  margin: 1.5rem 0;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+html.latte .custom-code-block {
+  background-color: var(--ctp-latte-surface0, #ccd0da) !important;
+  border: 1px solid var(--ctp-latte-surface1, #bcc0cc) !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.code-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.4rem 0.875rem;
+  background-color: rgba(73, 77, 100, 0.45) !important;
+  border-bottom: 1px solid var(--ctp-macchiato-surface1, #494d64) !important;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--ctp-macchiato-subtext1, #b8c0e0) !important;
+}
+
+html.latte .code-header {
+  background-color: rgba(188, 192, 204, 0.45) !important;
+  border-bottom: 1px solid var(--ctp-latte-surface1, #bcc0cc) !important;
+  color: var(--ctp-latte-subtext1, #5c5f77) !important;
+}
+
+.code-header .code-lang {
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  color: var(--color-accent);
+}
+
+.code-body {
+  padding: 0.875rem 1rem !important;
+  background-color: rgba(30, 32, 48, 0.5) !important;
+  overflow-x: auto;
+}
+
+html.latte .code-body {
+  background-color: rgba(239, 241, 245, 0.5) !important;
+}
+
+.code-body pre {
+  margin: 0 !important;
+  padding: 0 !important;
+  background: transparent !important;
+  border: none !important;
+  filter: brightness(1.22) contrast(1.08);
+}
+
+.code-desc {
+  padding: 0.5rem 0.875rem;
+  font-family: var(--font-mono);
+  font-style: italic;
+  font-size: 0.6875rem;
+  color: var(--ctp-macchiato-subtext0, #a5adcb) !important;
+  border-top: 1px solid var(--ctp-macchiato-surface1, #494d64) !important;
+  background-color: rgba(73, 77, 100, 0.25) !important;
+}
+
+html.latte .code-desc {
+  color: var(--ctp-latte-subtext0, #6c6f85) !important;
+  border-top: 1px solid var(--ctp-latte-surface1, #bcc0cc) !important;
+  background-color: rgba(188, 192, 204, 0.25) !important;
 }
 
 /* KaTeX Display Styling (Transparent Background & Borderless) */
@@ -149,7 +264,7 @@ html, body, * {
   padding: 0 !important;
 }
 
-/* Force Shiki syntax tokens to use Catppuccin Macchiato in Dark Mode */
+/* Force Shiki syntax tokens in Dark and Light Modes */
 html.dark .shiki span,
 html.macchiato .shiki span,
 html:not(.latte) .shiki span {
@@ -159,9 +274,11 @@ html:not(.latte) .shiki span {
   text-decoration: var(--shiki-dark-text-decoration, inherit) !important;
 }
 
-/* Callout Styling */
-.callout {
-  transition: border-color 0.2s ease, background-color 0.2s ease;
+html.latte .shiki span {
+  color: var(--shiki-light) !important;
+  font-style: var(--shiki-light-font-style, inherit) !important;
+  font-weight: var(--shiki-light-font-weight, inherit) !important;
+  text-decoration: var(--shiki-light-text-decoration, inherit) !important;
 }
 
 /* Mobile Responsive Touch & Overflow Safety */
