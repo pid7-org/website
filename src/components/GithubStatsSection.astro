@@ -14,6 +14,10 @@ const monthlyLoc = ghData.monthly_loc || [];
 const cumulativePoints = ghData.cumulative_commits || [];
 const totalNetLoc = ghData.total_net_loc || 0;
 const reposCount = ghData.repos_count || 11;
+const totalIssues = Object.values(ghData.activity || {}).reduce(
+  (acc: number, curr: any) => acc + (curr.issues || 0),
+  0
+);
 
 // 33-week equalizer matrix calculation for Box 2
 const sortedDates = Object.keys(ghData.activity || {}).sort();
@@ -42,8 +46,9 @@ for (let w = 0; w < 33; w++) {
   matrixWeeks.push({ total, level });
 }
 
-// Max value for monthly LOC bar chart
+// Max values for bar charts
 const maxMonthly = Math.max(...monthlyLoc.map((m) => m.additions), 1);
+const maxRepoCommits = Math.max(...topRepos.map((r) => r.commits), 1);
 
 // Coordinate calculations for full-width plotted curve
 const svgWidth = 760;
@@ -86,30 +91,13 @@ const xTickStep = Math.max(1, Math.floor(plotPoints.length / 6));
 const xTicks = plotPoints.filter((_, idx) => idx % xTickStep === 0 || idx === plotPoints.length - 1);
 ---
 
-<section id="section-metrics" class="w-full my-10 font-mono">
-  <!-- Section Eyebrow & Lead -->
-  <div class="mb-5 flex flex-col gap-1.5">
-    <div class="flex items-center gap-2">
-      <span class="relative flex h-2 w-2">
-        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-[var(--color-accent)] opacity-75"></span>
-        <span class="relative inline-flex rounded-full h-2 w-2 bg-[var(--color-accent)]"></span>
-      </span>
-      <h2 class="text-xs uppercase tracking-widest text-ctp-subtext0 font-semibold select-none">
-        IN PRODUCTION // CODEBASE METRICS
-      </h2>
-    </div>
-    <p class="font-serif text-sm sm:text-base text-ctp-subtext1 leading-relaxed">
-      Continuous engineering throughput, code churn, and delivery velocity across the organization.
-    </p>
-  </div>
-
-  <!-- Bento Grid Container -->
-  <div class="proof-grid">
+<section id="section-metrics" class="w-full my-10 font-mono flex flex-col gap-6">
+  <!-- Row 1: Operations & Repository Churn (Matched Equal Height) -->
+  <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 items-stretch">
     <!-- Box 1: Engineering Cadence Ledger Table -->
     <div
-      style="grid-area: cadence;"
       class="border-l border-ctp-surface1 hover:border-[var(--color-accent)] transition-colors
-        duration-200 pl-3.5 sm:pl-4 py-1 flex flex-col justify-between"
+        duration-200 pl-3.5 sm:pl-4 py-1 flex flex-col justify-between h-full"
     >
       <div class="space-y-0.5 mb-3">
         <div class="flex items-center justify-between">
@@ -137,21 +125,32 @@ const xTicks = plotPoints.filter((_, idx) => idx % xTickStep === 0 || idx === pl
           <tr>
             <td class="py-2 text-ctp-subtext1">Commits</td>
             <td class="py-2 text-right font-semibold text-ctp-text">
-              {cadence.total_commits.toLocaleString()}<i class="text-[10px] text-ctp-subtext0 font-normal not-italic ml-0.5">c</i>
+              {cadence.total_commits.toLocaleString()}<i
+                class="text-[10px] text-ctp-subtext0 font-normal not-italic ml-0.5">c</i>
             </td>
             <td class="py-2 text-right text-ctp-subtext0">~{cadence.monthly_avg_commits}/mo</td>
           </tr>
           <tr>
             <td class="py-2 text-ctp-subtext1">Pull Requests</td>
             <td class="py-2 text-right font-semibold text-ctp-text">
-              {cadence.total_prs.toLocaleString()}<i class="text-[10px] text-ctp-subtext0 font-normal not-italic ml-0.5">pr</i>
+              {cadence.total_prs.toLocaleString()}<i
+                class="text-[10px] text-ctp-subtext0 font-normal not-italic ml-0.5">pr</i>
             </td>
             <td class="py-2 text-right text-ctp-subtext0">{cadence.merge_rate_pct}% merged</td>
           </tr>
           <tr>
+            <td class="py-2 text-ctp-subtext1">Issues</td>
+            <td class="py-2 text-right font-semibold text-ctp-text">
+              {totalIssues.toLocaleString()}<i
+                class="text-[10px] text-ctp-subtext0 font-normal not-italic ml-0.5">iss</i>
+            </td>
+            <td class="py-2 text-right text-ctp-subtext0">closed</td>
+          </tr>
+          <tr>
             <td class="py-2 text-ctp-subtext1">Releases</td>
             <td class="py-2 text-right font-semibold text-ctp-text">
-              {cadence.total_releases.toLocaleString()}<i class="text-[10px] text-ctp-subtext0 font-normal not-italic ml-0.5">rel</i>
+              {cadence.total_releases.toLocaleString()}<i
+                class="text-[10px] text-ctp-subtext0 font-normal not-italic ml-0.5">rel</i>
             </td>
             <td class="py-2 text-right text-ctp-subtext0">semver</td>
           </tr>
@@ -159,229 +158,226 @@ const xTicks = plotPoints.filter((_, idx) => idx % xTickStep === 0 || idx === pl
       </table>
     </div>
 
-    <!-- Box 2: Total Codebase Volume & LOC -->
+    <!-- Box 4: Repository Churn -->
     <div
-      style="grid-area: loc;"
       class="border-l border-ctp-surface1 hover:border-[var(--color-accent)] transition-colors
-        duration-200 pl-3.5 sm:pl-4 py-1 flex flex-col justify-between"
+        duration-200 pl-3.5 sm:pl-4 py-1 flex flex-col justify-between h-full"
     >
-      <div class="space-y-0.5 mb-2">
-        <div class="flex items-center justify-between">
-          <span class="text-xs font-semibold text-ctp-text uppercase tracking-wide">
-            Lines of Code
-          </span>
-          <span class="text-[10px] text-ctp-subtext0/70 uppercase tracking-wider">
-            Net Codebase
-          </span>
-        </div>
+      <div class="space-y-0.5 mb-3">
+        <span class="text-xs font-semibold text-ctp-text uppercase tracking-wide block">
+          Repository Churn
+        </span>
         <span class="text-[10px] text-ctp-subtext0 uppercase tracking-wider block">
-          Net written since Jan 2025
+          Top 3 codebases by activity
         </span>
       </div>
 
-      <div class="flex items-baseline gap-1 my-2">
-        <span class="text-3xl sm:text-4xl font-bold font-mono text-ctp-text tracking-tight">
-          +{Math.round(totalNetLoc / 1000)}k
-        </span>
-        <span class="text-xs text-[var(--color-accent)] font-mono font-medium">LOC</span>
-      </div>
+      <div class="flex-1 flex flex-col justify-between py-1">
+        {topRepos.slice(0, 3).map((repo, idx) => {
+          const widthPct = Math.max(8, Math.round((repo.commits / maxRepoCommits) * 100));
+          const isTop = idx === 0;
 
-      <!-- 33-week equalizer matrix stream (Supermemory style) -->
-      <div class="mt-3 pt-2 border-t border-ctp-surface1/30">
-        <div class="flex items-center justify-between text-[10px] text-ctp-subtext0 uppercase mb-1.5">
-          <span>Weekly Density</span>
-          <span>Past 33 Weeks</span>
-        </div>
-        <svg class="w-full h-8 overflow-visible" viewBox="0 0 231 56" preserveAspectRatio="none" aria-hidden="true">
-          {matrixWeeks.map((wk, colIdx) => {
-            const x = colIdx * 7;
-            return Array.from({ length: 8 }).map((_, rowIdx) => {
-              const y = 49 - rowIdx * 7;
-              const isOn = rowIdx < wk.level;
-              const opacity = isOn ? (0.35 + (rowIdx / 7) * 0.65).toFixed(2) : '0.12';
-              return (
-                <rect
-                  x={x}
-                  y={y}
-                  width="5.5"
-                  height="5.5"
-                  rx="1"
-                  fill={isOn ? 'var(--color-accent)' : 'var(--color-ctp-surface1)'}
-                  opacity={opacity}
+          return (
+            <div class="space-y-1 group">
+              <div class="flex items-center justify-between text-xs select-none">
+                <a
+                  href={repo.url}
+                  target="_blank"
+                  rel="noreferrer"
+                  class={`font-medium transition-colors ${
+                    isTop
+                      ? 'text-ctp-text font-semibold hover:text-[var(--color-accent)]'
+                      : 'text-ctp-subtext1 hover:text-[var(--color-accent)]'
+                  }`}
+                >
+                  {repo.name}
+                </a>
+                <span class="text-[10px] text-ctp-subtext0 font-mono">
+                  {repo.commits} commits ·{' '}
+                  <span
+                    class={
+                      isTop
+                        ? 'text-[var(--color-accent)] font-semibold'
+                        : 'text-ctp-subtext0'
+                    }
+                  >
+                    +{Math.round(repo.net_loc / 1000)}k
+                  </span>
+                </span>
+              </div>
+
+              <!-- Horizontal Bar -->
+              <div class="w-full flex">
+                <div
+                  style={`width: ${widthPct}%;`}
+                  class={`h-3.5 sm:h-4 rounded-r transition-all duration-300 ${
+                    isTop
+                      ? 'bg-[var(--color-accent)] opacity-100'
+                      : 'bg-ctp-surface2 group-hover:bg-[var(--color-accent)]/80 opacity-70 ' +
+                        'group-hover:opacity-100'
+                  }`}
+                  title={`${repo.name}: ${repo.commits} commits (+${repo.net_loc} LOC)`}
                 />
-              );
-            });
-          })}
-        </svg>
+              </div>
+            </div>
+          );
+        })}
       </div>
     </div>
+  </div>
 
-    <!-- Box 3: Repositories & Scope -->
+  <!-- Row 2: Ecosystem & Monthly Velocity (Matched Equal Height) -->
+  <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 items-stretch">
+    <!-- Box 3: Repositories & Scope (Ecosystem) -->
     <div
-      style="grid-area: scope;"
       class="border-l border-ctp-surface1 hover:border-[var(--color-accent)] transition-colors
-        duration-200 pl-3.5 sm:pl-4 py-1 flex flex-col justify-between"
+        duration-200 pl-3.5 sm:pl-4 py-1 flex flex-col justify-between h-full"
     >
-      <div class="space-y-0.5">
-        <div class="flex items-center justify-between">
-          <span class="text-xs font-semibold text-ctp-text uppercase tracking-wide">
-            Ecosystem
-          </span>
-          <span class="text-[10px] text-ctp-subtext0/70 uppercase tracking-wider">
-            Open Source
-          </span>
-        </div>
+      <div class="space-y-0.5 mb-3">
+        <span class="text-xs font-semibold text-ctp-text uppercase tracking-wide block">
+          Ecosystem
+        </span>
         <span class="text-[10px] text-ctp-subtext0 uppercase tracking-wider block">
           Repositories on GitHub
         </span>
       </div>
 
-      <div class="flex items-baseline gap-2 my-2">
+      <div class="flex items-baseline gap-2 my-auto py-2">
         <span class="text-3xl sm:text-4xl font-bold font-mono text-ctp-text tracking-tight">
           {reposCount}
         </span>
-        <span class="text-xs text-[var(--color-accent)] font-mono font-medium">public repos</span>
+        <span class="text-xs text-[var(--color-accent)] font-mono font-medium">
+          public repos
+        </span>
       </div>
 
       <div class="text-[11px] text-ctp-subtext0 flex items-center gap-2 pt-2 border-t border-ctp-surface1/30">
-        <span class="inline-block w-1.5 h-1.5 rounded-full bg-ctp-green"></span>
+        <span class="inline-block w-1.5 h-1.5 rounded-full bg-[var(--color-accent)]"></span>
         <span>100% Public · MIT / Apache</span>
       </div>
     </div>
 
-    <!-- Box 4: Code Churn & Monthly Velocity (Tall Card spanning rows 1-3) -->
+    <!-- Box 5: Monthly LOC Velocity -->
     <div
-      style="grid-area: bench;"
       class="border-l border-ctp-surface1 hover:border-[var(--color-accent)] transition-colors
-        duration-200 pl-3.5 sm:pl-4 py-1 flex flex-col justify-between"
+        duration-200 pl-3.5 sm:pl-4 py-1 flex flex-col justify-between h-full"
     >
-      <!-- Top Section: Top 5 Repositories with Additions vs Deletions Stacked Churn Bars -->
-      <div class="space-y-3 mb-6">
-        <div class="flex items-center justify-between">
-          <div>
-            <span class="text-xs font-semibold text-ctp-text uppercase tracking-wide block">
-              Repository Churn
-            </span>
-            <span class="text-[10px] text-ctp-subtext0 uppercase tracking-wider block">
-              Additions vs. Deletions (Top 5)
-            </span>
-          </div>
-          <span class="text-[10px] text-ctp-subtext0/70 uppercase tracking-wider">
-            Top Codebases
-          </span>
-        </div>
-
-        <div class="space-y-2.5 pt-1">
-          {topRepos.map((repo) => {
-            const totalChurn = repo.additions + repo.deletions;
-            const addPct = totalChurn > 0 ? (repo.additions / totalChurn) * 100 : 80;
-            const delPct = 100 - addPct;
-
-            return (
-              <div class="space-y-1">
-                <div class="flex items-center justify-between text-xs select-none">
-                  <a
-                    href={repo.url}
-                    target="_blank"
-                    rel="noreferrer"
-                    class="font-medium text-ctp-text hover:text-[var(--color-accent)] transition-colors"
-                  >
-                    {repo.name}
-                  </a>
-                  <span class="text-[10px] text-ctp-subtext0 font-mono">
-                    {repo.commits} commits · <span class="text-ctp-green font-medium">+{Math.round(repo.net_loc / 1000)}k</span>
-                  </span>
-                </div>
-
-                <!-- Vertically segmented / stacked churn bar -->
-                <div class="h-2 w-full rounded-full overflow-hidden flex bg-ctp-surface1/40 gap-[1px]" title={`+${repo.additions.toLocaleString()} / -${repo.deletions.toLocaleString()}`}>
-                  <div
-                    style={`width: ${addPct.toFixed(1)}%;`}
-                    class="h-full bg-ctp-green transition-all"
-                  />
-                  <div
-                    style={`width: ${delPct.toFixed(1)}%;`}
-                    class="h-full bg-ctp-red/70 transition-all"
-                  />
-                </div>
-              </div>
-            );
-          })}
-        </div>
-
-        <div class="flex items-center gap-4 text-[10px] text-ctp-subtext0 select-none pt-1">
-          <span class="flex items-center gap-1.5">
-            <span class="w-2 h-2 rounded-full bg-ctp-green shrink-0"></span>
-            <span>Additions</span>
-          </span>
-          <span class="flex items-center gap-1.5">
-            <span class="w-2 h-2 rounded-full bg-ctp-red/70 shrink-0"></span>
-            <span>Deletions</span>
-          </span>
-        </div>
+      <div class="space-y-0.5 mb-3">
+        <span class="text-xs font-semibold text-ctp-text uppercase tracking-wide block">
+          Monthly LOC Velocity
+        </span>
+        <span class="text-[10px] text-ctp-subtext0 uppercase tracking-wider block">
+          Lines of code added per month
+        </span>
       </div>
 
-      <!-- Divider -->
-      <div class="border-t border-ctp-surface1/50 my-2"></div>
+      <div class="flex items-end justify-between gap-2 h-28 pt-4 pb-1 select-none">
+        {monthlyLoc.map((m, idx) => {
+          const heightPct = Math.max(12, Math.round((m.additions / maxMonthly) * 100));
+          const isCurrent = idx === monthlyLoc.length - 1;
 
-      <!-- Bottom Section: Monthly LOC Added Vertical Bar Graph -->
-      <div class="space-y-3 pt-2">
-        <div>
-          <span class="text-xs font-semibold text-ctp-text uppercase tracking-wide block">Monthly LOC Velocity</span>
-          <span class="text-[10px] text-ctp-subtext0 uppercase tracking-wider block">Lines of code added per month</span>
-        </div>
+          return (
+            <div class="flex-1 flex flex-col items-center justify-end h-full group relative">
+              <!-- Numeric reading above bar -->
+              <span class="text-[10px] font-mono text-ctp-subtext0 group-hover:text-ctp-text
+                transition-colors mb-1">
+                {(m.additions / 1000).toFixed(0)}k
+              </span>
 
-        <div class="flex items-end justify-between gap-2 h-28 pt-4 pb-1 select-none">
-          {monthlyLoc.map((m, idx) => {
-            const heightPct = Math.max(12, Math.round((m.additions / maxMonthly) * 100));
-            const isCurrent = idx === monthlyLoc.length - 1;
+              <!-- Bar -->
+              <div
+                style={`height: ${heightPct}%;`}
+                class={`w-full rounded-t transition-all duration-300 ${
+                  isCurrent
+                    ? 'bg-[var(--color-accent)] shadow-[0_0_10px_var(--color-accent)] ' +
+                      'opacity-100'
+                    : 'bg-ctp-surface2 group-hover:bg-[var(--color-accent)]/80 opacity-70 ' +
+                      'group-hover:opacity-100'
+                }`}
+                title={`${m.label}: +${m.additions.toLocaleString()} LOC`}
+              />
 
-            return (
-              <div class="flex-1 flex flex-col items-center justify-end h-full group relative">
-                <!-- Numeric reading above bar -->
-                <span class="text-[10px] font-mono text-ctp-subtext0 group-hover:text-ctp-text transition-colors mb-1">
-                  {(m.additions / 1000).toFixed(0)}k
-                </span>
+              <!-- Month label -->
+              <span
+                class={`text-[10px] font-mono mt-2 ${
+                  isCurrent ? 'text-[var(--color-accent)] font-bold' : 'text-ctp-subtext0'
+                }`}
+              >
+                {m.label}
+              </span>
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  </div>
 
-                <!-- Bar -->
-                <div
-                  style={`height: ${heightPct}%;`}
-                  class={`w-full rounded-t transition-all duration-300 ${
-                    isCurrent
-                      ? 'bg-[var(--color-accent)] shadow-[0_0_10px_var(--color-accent)] opacity-100'
-                      : 'bg-ctp-surface2 group-hover:bg-[var(--color-accent)]/80 opacity-70 group-hover:opacity-100'
-                  }`}
-                  title={`${m.label}: +${m.additions.toLocaleString()} LOC`}
-                />
+  <!-- Box 2: Total Codebase Volume & LOC (Full Width) -->
+  <div
+    class="border-l border-ctp-surface1 hover:border-[var(--color-accent)] transition-colors
+      duration-200 pl-3.5 sm:pl-4 py-1"
+  >
+    <div class="flex flex-col sm:flex-row sm:items-baseline justify-between gap-2 mb-3">
+      <div class="space-y-0.5">
+        <span class="text-xs font-semibold text-ctp-text uppercase tracking-wide block">
+          Lines of Code
+        </span>
+        <span class="text-[10px] text-ctp-subtext0 uppercase tracking-wider block">
+          Net written since Jan 2025
+        </span>
+      </div>
 
-                <!-- Month label -->
-                <span class={`text-[10px] font-mono mt-2 ${isCurrent ? 'text-[var(--color-accent)] font-bold' : 'text-ctp-subtext0'}`}>
-                  {m.label}
-                </span>
-              </div>
-            );
-          })}
-        </div>
+      <div class="flex items-baseline gap-1.5">
+        <span class="text-2xl sm:text-3xl font-bold font-mono text-ctp-text tracking-tight">
+          +{Math.round(totalNetLoc / 1000)}k
+        </span>
+        <span class="text-xs text-[var(--color-accent)] font-mono font-medium">LOC</span>
       </div>
     </div>
 
-    <!-- Box 5: Cumulative Commits Growth Coordinate Graph (Full Width) -->
-    <div
-      style="grid-area: growth;"
-      class="border-l border-ctp-surface1 hover:border-[var(--color-accent)] transition-colors
-        duration-200 pl-3.5 sm:pl-4 py-1 flex flex-col justify-between"
-    >
+    <!-- 33-week equalizer matrix stream (Supermemory style) -->
+    <div class="pt-2 border-t border-ctp-surface1/30">
+      <div class="flex items-center justify-between text-[10px] text-ctp-subtext0 uppercase mb-2">
+        <span>Weekly Density</span>
+        <span>Past 33 Weeks</span>
+      </div>
+      <svg
+        class="w-full h-10 sm:h-12 overflow-visible"
+        viewBox="0 0 231 56"
+        preserveAspectRatio="none"
+        aria-hidden="true"
+      >
+        {matrixWeeks.map((wk, colIdx) => {
+          const x = colIdx * 7;
+          return Array.from({ length: 8 }).map((_, rowIdx) => {
+            const y = 49 - rowIdx * 7;
+            const isOn = rowIdx < wk.level;
+            const opacity = isOn ? (0.35 + (rowIdx / 7) * 0.65).toFixed(2) : '0.12';
+            return (
+              <rect
+                x={x}
+                y={y}
+                width="5.5"
+                height="5.5"
+                rx="1"
+                fill={isOn ? 'var(--color-accent)' : 'var(--color-ctp-surface1)'}
+                opacity={opacity}
+              />
+            );
+          });
+        })}
+      </svg>
+    </div>
+  </div>
+
+  <!-- Box 6: Cumulative Commits Growth Coordinate Graph (Full Width) -->
+  <div
+    class="border-l border-ctp-surface1 hover:border-[var(--color-accent)] transition-colors
+      duration-200 pl-3.5 sm:pl-4 py-1"
+  >
       <!-- Graph Header (No Tabs) -->
       <div class="flex flex-col sm:flex-row sm:items-baseline justify-between gap-2 mb-4">
         <div>
-          <div class="flex items-center gap-2">
-            <span class="text-[10px] text-ctp-subtext0 font-mono uppercase tracking-wider">
-              Figure 1 · Cumulative Velocity
-            </span>
-            <span class="text-[10px] text-ctp-subtext0/70 uppercase">
-              Jan 2025 → Present
-            </span>
-          </div>
           <h3 class="text-sm sm:text-base font-semibold text-ctp-text">
             Total Commits Growth Over Time
           </h3>
@@ -517,36 +513,9 @@ const xTicks = plotPoints.filter((_, idx) => idx % xTickStep === 0 || idx === pl
           </div>
           <div id="tooltip-delta" class="text-[10px] text-ctp-green font-medium"></div>
         </div>
-      </div>
     </div>
   </div>
 </section>
-
-<style>
-  .proof-grid {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr);
-    grid-template-areas:
-      "cadence"
-      "loc"
-      "scope"
-      "bench"
-      "growth";
-    gap: 1.5rem;
-  }
-
-  @media (min-width: 768px) {
-    .proof-grid {
-      grid-template-columns: minmax(0, 1fr) minmax(0, 1.25fr);
-      grid-template-areas:
-        "cadence bench"
-        "loc bench"
-        "scope bench"
-        "growth growth";
-      gap: 1.75rem 2rem;
-    }
-  }
-</style>
 
 <script define:vars={{ plotPoints, pad, svgWidth }}>
   function initCurveInteractivity() {
