@@ -200,8 +200,13 @@ export async function collectOrgProjects(
     });
   }
 
-  // Sort projects by total contributions descending, then commits, then stars
+  // Sort projects: newest release descending, then total contributions, commits, stars
   qualifyingProjects.sort((a, b) => {
+    const timeA = a.latestRelease?.publishedAt ? new Date(a.latestRelease.publishedAt).getTime() : 0;
+    const timeB = b.latestRelease?.publishedAt ? new Date(b.latestRelease.publishedAt).getTime() : 0;
+    if (timeA !== timeB) {
+      return timeB - timeA;
+    }
     if (b.contributions !== a.contributions) {
       return b.contributions - a.contributions;
     }
