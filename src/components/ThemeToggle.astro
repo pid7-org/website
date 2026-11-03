@@ -7,7 +7,7 @@ const isBlog = Astro.url.pathname.startsWith('/blog');
   data-stuck="false"
   data-blog={isBlog ? 'true' : 'false'}
   class="border border-ctp-surface1 bg-ctp-surface0/20 flex flex-nowrap items-stretch
-    divide-x divide-ctp-surface1 text-xs font-mono select-none w-full overflow-hidden"
+    divide-x divide-ctp-surface1 text-xs font-mono select-none w-full max-w-full overflow-hidden"
 >
   <div
     class="hidden min-[480px]:flex items-center justify-center gap-1.5 px-3 py-1.5
@@ -40,25 +40,12 @@ const isBlog = Astro.url.pathname.startsWith('/blog');
       class="text-[var(--color-accent)] opacity-60">░</span><span
       class="text-ctp-overlay0 opacity-45">~~</span><span
       class="text-ctp-surface2 opacity-30">·····</span></span>
-    <span
-      id="ascii-scroll-bar"
-      class="text-[var(--color-accent)] font-mono text-xs select-none tracking-wider
-        sm:tracking-widest whitespace-nowrap overflow-hidden hidden"
-    >[<span
-      class="text-[var(--color-accent)]"
-    >█</span><span
-      class="text-[var(--color-accent)] opacity-85"
-    >▓</span><span
-      class="text-[var(--color-accent)] opacity-65"
-    >▒</span><span
-      class="text-ctp-surface2 opacity-35"
-    >░░░░░░░░░░░░░░░░░</span>]</span>
   </div>
 
   <button
     id="accent-toggle"
     type="button"
-    class="flex items-center justify-center gap-1.5 px-2.5 sm:px-3 py-1.5 text-ctp-subtext1
+    class="flex items-center justify-center gap-1 sm:gap-1.5 px-2 sm:px-3 py-1.5 text-ctp-subtext1
       hover:text-ctp-text hover:bg-ctp-surface1/30 transition-colors cursor-pointer
       focus:outline-none whitespace-nowrap shrink-0"
     aria-label="Cycle Accent Color"
@@ -69,13 +56,16 @@ const isBlog = Astro.url.pathname.startsWith('/blog');
       class="w-1.5 h-1.5 rounded-full shrink-0 ring-1 ring-ctp-surface1 transition-colors"
     ></span>
     <span class="text-ctp-subtext0">[a]</span>
-    <span id="accent-label" class="text-ctp-text font-medium w-[6ch] inline-block text-left">peach</span>
+    <span
+      id="accent-label"
+      class="hidden min-[480px]:inline-block text-ctp-text font-medium w-[6ch] text-left"
+    >peach</span>
   </button>
 
   <button
     id="theme-toggle"
     type="button"
-    class="flex items-center justify-center gap-1.5 px-2.5 sm:px-3 py-1.5 text-ctp-subtext1
+    class="flex items-center justify-center gap-1 sm:gap-1.5 px-2 sm:px-3 py-1.5 text-ctp-subtext1
       hover:text-ctp-text hover:bg-ctp-surface1/30 transition-colors cursor-pointer
       focus:outline-none whitespace-nowrap shrink-0"
     aria-label="Toggle Theme"
@@ -85,12 +75,15 @@ const isBlog = Astro.url.pathname.startsWith('/blog');
       class="text-[11px] text-[var(--color-accent)] font-semibold leading-none select-none"
     >◐</span>
     <span class="text-ctp-subtext0">[t]</span>
-    <span id="theme-label" class="text-ctp-text font-medium w-[6ch] inline-block text-left">device</span>
+    <span
+      id="theme-label"
+      class="hidden min-[480px]:inline-block text-ctp-text font-medium w-[6ch] text-left"
+    >device</span>
   </button>
 
   <div
     id="eyeline-group"
-    class={`${isBlog ? 'flex' : 'hidden'} items-center justify-center gap-1.5 sm:gap-2.5 px-2 sm:px-2.5 py-1.5 whitespace-nowrap shrink-0`}
+    class={`${isBlog ? 'flex' : 'hidden'} items-center justify-center gap-1 sm:gap-2 px-1.5 sm:px-2.5 py-1.5 whitespace-nowrap shrink-0`}
   >
     <div class="flex items-center gap-1">
       <span class="hidden min-[460px]:inline text-ctp-subtext0 font-medium">eyeline</span>
@@ -117,7 +110,7 @@ const isBlog = Astro.url.pathname.startsWith('/blog');
     >
       <span class="text-ctp-subtext0">[o]</span>
       <span class="hidden sm:inline text-ctp-subtext0">opacity</span>
-      <span class="sm:hidden text-ctp-subtext0">op</span>
+      <span class="hidden min-[440px]:inline sm:hidden text-ctp-subtext0">op</span>
       <span id="eyeline-opacity-label" class="text-ctp-text font-medium w-[4ch] inline-block text-left">80%</span>
     </button>
 
@@ -132,13 +125,13 @@ const isBlog = Astro.url.pathname.startsWith('/blog');
     >
       <span class="text-ctp-subtext0">[p]</span>
       <span class="hidden sm:inline text-ctp-subtext0">position at</span>
-      <span class="sm:hidden text-ctp-subtext0">pos</span>
+      <span class="hidden min-[440px]:inline sm:hidden text-ctp-subtext0">pos</span>
       <span id="eyeline-pos-label" class="text-ctp-text font-medium w-[3ch] inline-block text-left">30%</span>
     </button>
   </div>
 
   <div
-    class={`${isBlog ? 'hidden' : 'flex'} items-center justify-center px-2.5 sm:px-3 py-1.5
+    class={`${isBlog ? 'hidden' : 'flex'} items-center justify-center px-2 sm:px-3 py-1.5
       text-ctp-subtext0 whitespace-nowrap shrink-0`}
   >
     <span id="ist-clock">--:--:-- IST</span>
@@ -152,7 +145,7 @@ const isBlog = Astro.url.pathname.startsWith('/blog');
       border-color 200ms ease;
   }
 
-  #status-bar[data-blog="true"] #ascii-idle-bar {
+  #status-bar[data-blog="true"][data-stuck="false"] #ascii-idle-bar {
     display: none !important;
   }
 
@@ -164,27 +157,15 @@ const isBlog = Astro.url.pathname.startsWith('/blog');
     flex: 1 1 0% !important;
   }
 
-  #status-bar[data-stuck="false"]:not([data-blog="true"]) #ascii-scroll-bar {
-    display: none !important;
-  }
-
-  #status-bar[data-stuck="false"]:not([data-blog="true"]) #ascii-idle-bar {
+  #status-bar[data-blog="true"][data-stuck="true"] #ascii-idle-bar {
     display: inline-block !important;
   }
 
-  #status-bar[data-stuck="true"] #ascii-scroll-bar {
-    display: inline-block !important;
-  }
-
-  #status-bar[data-stuck="true"] #ascii-idle-bar {
-    display: none !important;
-  }
-
-  #status-bar[data-stuck="true"] #ascii-scroll-container {
+  #status-bar[data-blog="true"][data-stuck="true"] #ascii-scroll-container {
     display: flex !important;
   }
 
-  #status-bar[data-stuck="true"] #eyeline-group {
+  #status-bar[data-blog="true"][data-stuck="true"] #eyeline-group {
     flex: 0 0 auto !important;
   }
 
@@ -194,6 +175,7 @@ const isBlog = Astro.url.pathname.startsWith('/blog');
     left: 0;
     right: 0;
     width: 100%;
+    max-width: 100vw;
     z-index: 50;
     border-top: none;
     border-left: none;
@@ -222,7 +204,6 @@ const isBlog = Astro.url.pathname.startsWith('/blog');
   const accents = ['peach', 'mono', 'yellow', 'mauve', 'blue', 'green'];
 
   let cachedCharWidth = 0;
-  let cachedInnerCells = 0x14;
   let cachedIdleCapacity = 0x16;
   let idleAnimationTimer: number | null = null;
   let idleFrame = 0;
@@ -292,15 +273,25 @@ const isBlog = Astro.url.pathname.startsWith('/blog');
     const idleEl = document.getElementById('ascii-idle-bar');
     if (!idleEl) return;
     const capacity = cachedIdleCapacity;
-    if (capacity > 0) {
+    if (capacity >= 4) {
       idleEl.innerHTML = renderIdleAscii(capacity, idleFrame);
+      idleEl.style.display = 'inline-block';
       idleFrame = (idleFrame + 1) % 0x2710;
+    } else {
+      idleEl.innerHTML = '';
+      idleEl.style.display = 'none';
     }
   }
 
-  function startIdleAnimation() {
+  function shouldAnimateIdle(): boolean {
     const onBlog = window.location.pathname.startsWith('/blog');
-    if (onBlog || idleAnimationTimer !== null) return;
+    if (!onBlog) return true;
+    const bar = document.getElementById('status-bar');
+    return bar?.getAttribute('data-stuck') === 'true';
+  }
+
+  function startIdleAnimation() {
+    if (!shouldAnimateIdle() || idleAnimationTimer !== null) return;
     tickIdleAnimation();
     idleAnimationTimer = window.setInterval(tickIdleAnimation, 0x41);
   }
@@ -423,13 +414,13 @@ const isBlog = Astro.url.pathname.startsWith('/blog');
     return width > 0 ? width : 7.5;
   }
 
-  function calculateCapacity(): { inner: number; total: number } {
+  function calculateCapacity(): number {
     const container = document.getElementById('ascii-scroll-container');
-    if (!container) return { inner: 0x14, total: 0x16 };
+    if (!container) return 0x16;
 
     const containerRect = container.getBoundingClientRect();
     const containerWidth = containerRect.width;
-    if (containerWidth <= 0) return { inner: 0x14, total: 0x16 };
+    if (containerWidth <= 0) return 0;
 
     if (cachedCharWidth <= 0) {
       cachedCharWidth = measureCharWidth();
@@ -439,66 +430,14 @@ const isBlog = Astro.url.pathname.startsWith('/blog');
     const pad =
       (parseFloat(style.paddingLeft) || 0) +
       (parseFloat(style.paddingRight) || 0);
-    const availableWidth = Math.max(0x14, containerWidth - pad - 4);
-    const totalChars = Math.max(6, Math.floor(availableWidth / cachedCharWidth));
-    return {
-      inner: Math.max(4, totalChars - 2),
-      total: totalChars
-    };
-  }
-
-  function updateScrollIndicator() {
-    const barEl = document.getElementById('ascii-scroll-bar');
-    if (!barEl) return;
-
-    const innerCells = cachedInnerCells;
-    const scrollTop = window.scrollY || document.documentElement.scrollTop;
-    const docHeight =
-      document.documentElement.scrollHeight - window.innerHeight;
-
-    if (docHeight <= 4 || scrollTop >= docHeight - 2) {
-      const full = '█'.repeat(innerCells);
-      barEl.innerHTML =
-        `[<span class="text-[var(--color-accent)]">${full}</span>]`;
-      return;
-    }
-
-    const pct = Math.min(1, Math.max(0, scrollTop / docHeight));
-    const initFilled = Math.min(3, innerCells);
-    const filled = Math.min(
-      innerCells,
-      Math.round(initFilled + pct * (innerCells - initFilled))
-    );
-    const empty = Math.max(0, innerCells - filled);
-
-    let fillStr = '';
-    if (filled >= 3) {
-      const solid = '█'.repeat(filled - 2);
-      fillStr =
-        `<span class="text-[var(--color-accent)]">${solid}</span>` +
-        `<span class="text-[var(--color-accent)] opacity-85">▓</span>` +
-        `<span class="text-[var(--color-accent)] opacity-65">▒</span>`;
-    } else if (filled === 2) {
-      fillStr =
-        `<span class="text-[var(--color-accent)]">█</span>` +
-        `<span class="text-[var(--color-accent)] opacity-75">▒</span>`;
-    } else if (filled === 1) {
-      fillStr = `<span class="text-[var(--color-accent)] opacity-65">▒</span>`;
-    }
-
-    const emptyStr = empty > 0
-      ? `<span class="text-ctp-surface2 opacity-35">${'░'.repeat(empty)}</span>`
-      : '';
-
-    barEl.innerHTML = `[${fillStr}${emptyStr}]`;
+    const availableWidth = Math.max(0, containerWidth - pad - 4);
+    const totalChars = Math.floor(availableWidth / cachedCharWidth);
+    return Math.max(0, totalChars);
   }
 
   function refreshScrollCapacity() {
     cachedCharWidth = 0;
-    const cap = calculateCapacity();
-    cachedInnerCells = cap.inner;
-    cachedIdleCapacity = cap.total;
-    updateScrollIndicator();
+    cachedIdleCapacity = calculateCapacity();
     tickIdleAnimation();
   }
 
@@ -511,10 +450,10 @@ const isBlog = Astro.url.pathname.startsWith('/blog');
       bar.setAttribute('data-stuck', isStuck ? 'true' : 'false');
       wrap?.setAttribute('data-stuck', isStuck ? 'true' : 'false');
       refreshScrollCapacity();
-      if (isStuck) {
-        stopIdleAnimation();
-      } else {
+      if (shouldAnimateIdle()) {
         startIdleAnimation();
+      } else {
+        stopIdleAnimation();
       }
     }
   }
@@ -658,7 +597,8 @@ const isBlog = Astro.url.pathname.startsWith('/blog');
     const onBlog = window.location.pathname.startsWith('/blog');
     const idleEl = document.getElementById('ascii-idle-bar');
     if (onBlog && idleEl) {
-      idleEl.style.display = 'none';
+      const isStuck = checkStuck();
+      if (!isStuck) idleEl.style.display = 'none';
     }
 
     const eyelineGroup = document.getElementById('eyeline-group');
@@ -681,10 +621,8 @@ const isBlog = Astro.url.pathname.startsWith('/blog');
 
     ensureClockTimer();
     refreshScrollCapacity();
-    const isStuck = checkStuck();
-    if (isStuck) {
-      stopIdleAnimation();
-    } else {
+    checkStuck();
+    if (shouldAnimateIdle()) {
       startIdleAnimation();
     }
 
@@ -732,19 +670,14 @@ const isBlog = Astro.url.pathname.startsWith('/blog');
   ensureClockTimer();
   window.addEventListener('scroll', () => {
     checkStuck();
-    updateScrollIndicator();
   }, { passive: true });
   window.addEventListener('resize', refreshScrollCapacity);
   document.addEventListener('astro:after-swap', setupControls);
   document.addEventListener('visibilitychange', () => {
     if (document.hidden) {
       stopIdleAnimation();
-    } else {
-      const onBlog = window.location.pathname.startsWith('/blog');
-      const bar = document.getElementById('status-bar');
-      if (!onBlog && bar && bar.getAttribute('data-stuck') !== 'true') {
-        startIdleAnimation();
-      }
+    } else if (shouldAnimateIdle()) {
+      startIdleAnimation();
     }
   });
 
@@ -783,3 +716,4 @@ const isBlog = Astro.url.pathname.startsWith('/blog');
     }
   });
 </script>
+

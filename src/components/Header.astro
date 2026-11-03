@@ -12,10 +12,11 @@ import ThemeToggle from './ThemeToggle.astro';
 			<a href="/" class="hover:opacity-85 transition-opacity inline-block">pid7</a>
 		</h1>
 	</div>
+
+	<div id="status-bar-sentinel" class="w-full h-px pointer-events-none opacity-0 -mb-px"></div>
+
+	<div id="status-bar-sticky-wrap" class="mt-3 sm:mt-4 h-[34px] w-full max-w-full">
+		<ThemeToggle />
+	</div>
 </header>
 
-<div id="status-bar-sentinel" class="w-full h-px pointer-events-none opacity-0 -mb-px"></div>
-
-<div id="status-bar-sticky-wrap" class="mt-3 sm:mt-4 h-[34px]">
-	<ThemeToggle />
-</div>
