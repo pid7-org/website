@@ -1,5 +1,9 @@
 # Changelog
 
+## [2.0.0] - 2026-11-04
+
+- redesign of UI
+
 ## [1.1.0] - 2026-09-10
 
 - interactive terminal (`pid7-sh`) with autocomplete, search, glossary, and eyeline
