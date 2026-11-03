@@ -1,0 +1,7290 @@
+{
+  "generated_at": "2026-11-03T05:37:18.758Z",
+  "start_date": "2025-01-01",
+  "end_date": "2026-11-02",
+  "repos_count": 11,
+  "total_net_loc": 144335,
+  "cadence": {
+    "total_commits": 2164,
+    "total_prs": 89,
+    "total_releases": 75,
+    "monthly_avg_commits": 94,
+    "merge_rate_pct": 98
+  },
+  "top_repos": [
+    {
+      "name": "turbofox",
+      "nameWithOwner": "pid7-org/turbofox",
+      "url": "https://github.com/pid7-org/turbofox",
+      "commits": 850,
+      "additions": 58420,
+      "deletions": 12150,
+      "net_loc": 46270,
+      "primaryLanguage": "Rust",
+      "primaryColor": "#dea584"
+    },
+    {
+      "name": "frozen-core",
+      "nameWithOwner": "pid7-org/frozen-core",
+      "url": "https://github.com/pid7-org/frozen-core",
+      "commits": 541,
+      "additions": 82140,
+      "deletions": 21300,
+      "net_loc": 60840,
+      "primaryLanguage": "Rust",
+      "primaryColor": "#dea584"
+    },
+    {
+      "name": "ashwa",
+      "nameWithOwner": "pid7-org/ashwa",
+      "url": "https://github.com/pid7-org/ashwa",
+      "commits": 163,
+      "additions": 24500,
+      "deletions": 5120,
+      "net_loc": 19380,
+      "primaryLanguage": "Rust",
+      "primaryColor": "#dea584"
+    },
+    {
+      "name": "website",
+      "nameWithOwner": "pid7-org/website",
+      "url": "https://github.com/pid7-org/website",
+      "commits": 112,
+      "additions": 15400,
+      "deletions": 3200,
+      "net_loc": 12200,
+      "primaryLanguage": "Astro",
+      "primaryColor": "#ff5a03"
+    },
+    {
+      "name": "sher",
+      "nameWithOwner": "pid7-org/sher",
+      "url": "https://github.com/pid7-org/sher",
+      "commits": 48,
+      "additions": 7850,
+      "deletions": 1420,
+      "net_loc": 6430,
+      "primaryLanguage": "Rust",
+      "primaryColor": "#dea584"
+    }
+  ],
+  "monthly_loc": [
+    {
+      "month": "2026-06",
+      "label": "Jun",
+      "year": 2026,
+      "additions": 6870,
+      "deletions": 1955,
+      "net": 4915
+    },
+    {
+      "month": "2026-07",
+      "label": "Jul",
+      "year": 2026,
+      "additions": 15726,
+      "deletions": 4199,
+      "net": 11527
+    },
+    {
+      "month": "2026-08",
+      "label": "Aug",
+      "year": 2026,
+      "additions": 24543,
+      "deletions": 5711,
+      "net": 18832
+    },
+    {
+      "month": "2026-09",
+      "label": "Sep",
+      "year": 2026,
+      "additions": 11427,
+      "deletions": 3261,
+      "net": 8166
+    },
+    {
+      "month": "2026-10",
+      "label": "Oct",
+      "year": 2026,
+      "additions": 47562,
+      "deletions": 11142,
+      "net": 36420
+    },
+    {
+      "month": "2026-11",
+      "label": "Nov",
+      "year": 2026,
+      "additions": 2126,
+      "deletions": 507,
+      "net": 1619
+    }
+  ],
+  "cumulative_commits": [
+    {
+      "date": "2025-01-14",
+      "label": "Jan '25",
+      "cumulative": 21,
+      "interval_delta": 21
+    },
+    {
+      "date": "2025-01-28",
+      "label": "Jan '25",
+      "cumulative": 44,
+      "interval_delta": 23
+    },
+    {
+      "date": "2025-02-11",
+      "label": "Feb '25",
+      "cumulative": 59,
+      "interval_delta": 15
+    },
+    {
+      "date": "2025-02-25",
+      "label": "Feb '25",
+      "cumulative": 78,
+      "interval_delta": 19
+    },
+    {
+      "date": "2025-03-11",
+      "label": "Mar '25",
+      "cumulative": 97,
+      "interval_delta": 19
+    },
+    {
+      "date": "2025-03-25",
+      "label": "Mar '25",
+      "cumulative": 118,
+      "interval_delta": 21
+    },
+    {
+      "date": "2025-04-08",
+      "label": "Apr '25",
+      "cumulative": 139,
+      "interval_delta": 21
+    },
+    {
+      "date": "2025-04-22",
+      "label": "Apr '25",
+      "cumulative": 163,
+      "interval_delta": 24
+    },
+    {
+      "date": "2025-05-06",
+      "label": "May '25",
+      "cumulative": 181,
+      "interval_delta": 18
+    },
+    {
+      "date": "2025-05-20",
+      "label": "May '25",
+      "cumulative": 194,
+      "interval_delta": 13
+    },
+    {
+      "date": "2025-06-03",
+      "label": "Jun '25",
+      "cumulative": 219,
+      "interval_delta": 25
+    },
+    {
+      "date": "2025-06-17",
+      "label": "Jun '25",
+      "cumulative": 242,
+      "interval_delta": 23
+    },
+    {
+      "date": "2025-07-01",
+      "label": "Jul '25",
+      "cumulative": 270,
+      "interval_delta": 28
+    },
+    {
+      "date": "2025-07-15",
+      "label": "Jul '25",
+      "cumulative": 301,
+      "interval_delta": 31
+    },
+    {
+      "date": "2025-07-29",
+      "label": "Jul '25",
+      "cumulative": 321,
+      "interval_delta": 20
+    },
+    {
+      "date": "2025-08-12",
+      "label": "Aug '25",
+      "cumulative": 336,
+      "interval_delta": 15
+    },
+    {
+      "date": "2025-08-26",
+      "label": "Aug '25",
+      "cumulative": 364,
+      "interval_delta": 28
+    },
+    {
+      "date": "2025-09-09",
+      "label": "Sep '25",
+      "cumulative": 388,
+      "interval_delta": 24
+    },
+    {
+      "date": "2025-09-23",
+      "label": "Sep '25",
+      "cumulative": 411,
+      "interval_delta": 23
+    },
+    {
+      "date": "2025-10-07",
+      "label": "Oct '25",
+      "cumulative": 429,
+      "interval_delta": 18
+    },
+    {
+      "date": "2025-10-21",
+      "label": "Oct '25",
+      "cumulative": 453,
+      "interval_delta": 24
+    },
+    {
+      "date": "2025-11-04",
+      "label": "Nov '25",
+      "cumulative": 465,
+      "interval_delta": 12
+    },
+    {
+      "date": "2025-11-18",
+      "label": "Nov '25",
+      "cumulative": 491,
+      "interval_delta": 26
+    },
+    {
+      "date": "2025-12-02",
+      "label": "Dec '25",
+      "cumulative": 509,
+      "interval_delta": 18
+    },
+    {
+      "date": "2025-12-16",
+      "label": "Dec '25",
+      "cumulative": 524,
+      "interval_delta": 15
+    },
+    {
+      "date": "2025-12-30",
+      "label": "Dec '25",
+      "cumulative": 547,
+      "interval_delta": 23
+    },
+    {
+      "date": "2026-01-13",
+      "label": "Jan '26",
+      "cumulative": 586,
+      "interval_delta": 39
+    },
+    {
+      "date": "2026-01-27",
+      "label": "Jan '26",
+      "cumulative": 613,
+      "interval_delta": 27
+    },
+    {
+      "date": "2026-02-10",
+      "label": "Feb '26",
+      "cumulative": 647,
+      "interval_delta": 34
+    },
+    {
+      "date": "2026-02-24",
+      "label": "Feb '26",
+      "cumulative": 735,
+      "interval_delta": 88
+    },
+    {
+      "date": "2026-03-10",
+      "label": "Mar '26",
+      "cumulative": 794,
+      "interval_delta": 59
+    },
+    {
+      "date": "2026-03-24",
+      "label": "Mar '26",
+      "cumulative": 864,
+      "interval_delta": 70
+    },
+    {
+      "date": "2026-04-07",
+      "label": "Apr '26",
+      "cumulative": 908,
+      "interval_delta": 44
+    },
+    {
+      "date": "2026-04-21",
+      "label": "Apr '26",
+      "cumulative": 909,
+      "interval_delta": 1
+    },
+    {
+      "date": "2026-05-05",
+      "label": "May '26",
+      "cumulative": 927,
+      "interval_delta": 18
+    },
+    {
+      "date": "2026-05-19",
+      "label": "May '26",
+      "cumulative": 953,
+      "interval_delta": 26
+    },
+    {
+      "date": "2026-06-02",
+      "label": "Jun '26",
+      "cumulative": 976,
+      "interval_delta": 23
+    },
+    {
+      "date": "2026-06-16",
+      "label": "Jun '26",
+      "cumulative": 1006,
+      "interval_delta": 30
+    },
+    {
+      "date": "2026-06-30",
+      "label": "Jun '26",
+      "cumulative": 1049,
+      "interval_delta": 43
+    },
+    {
+      "date": "2026-07-14",
+      "label": "Jul '26",
+      "cumulative": 1169,
+      "interval_delta": 120
+    },
+    {
+      "date": "2026-07-28",
+      "label": "Jul '26",
+      "cumulative": 1220,
+      "interval_delta": 51
+    },
+    {
+      "date": "2026-08-11",
+      "label": "Aug '26",
+      "cumulative": 1283,
+      "interval_delta": 63
+    },
+    {
+      "date": "2026-08-25",
+      "label": "Aug '26",
+      "cumulative": 1358,
+      "interval_delta": 75
+    },
+    {
+      "date": "2026-09-08",
+      "label": "Sep '26",
+      "cumulative": 1544,
+      "interval_delta": 186
+    },
+    {
+      "date": "2026-09-22",
+      "label": "Sep '26",
+      "cumulative": 1595,
+      "interval_delta": 51
+    },
+    {
+      "date": "2026-10-06",
+      "label": "Oct '26",
+      "cumulative": 1678,
+      "interval_delta": 83
+    },
+    {
+      "date": "2026-10-20",
+      "label": "Oct '26",
+      "cumulative": 1862,
+      "interval_delta": 184
+    },
+    {
+      "date": "2026-11-02",
+      "label": "Nov '26",
+      "cumulative": 2164,
+      "interval_delta": 302
+    }
+  ],
+  "activity": {
+    "2025-01-01": {
+      "commits": 4,
+      "pull_requests": 1,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 410,
+      "deletions": 99,
+      "total": 5
+    },
+    "2025-01-02": {
+      "commits": 0,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 0,
+      "deletions": 0,
+      "total": 0
+    },
+    "2025-01-03": {
+      "commits": 4,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 483,
+      "deletions": 139,
+      "total": 4
+    },
+    "2025-01-04": {
+      "commits": 1,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 58,
+      "deletions": 21,
+      "total": 1
+    },
+    "2025-01-05": {
+      "commits": 0,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 0,
+      "deletions": 0,
+      "total": 0
+    },
+    "2025-01-06": {
+      "commits": 3,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 238,
+      "deletions": 85,
+      "total": 3
+    },
+    "2025-01-07": {
+      "commits": 0,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 0,
+      "deletions": 0,
+      "total": 0
+    },
+    "2025-01-08": {
+      "commits": 2,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 144,
+      "deletions": 58,
+      "total": 2
+    },
+    "2025-01-09": {
+      "commits": 0,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 0,
+      "deletions": 0,
+      "total": 0
+    },
+    "2025-01-10": {
+      "commits": 0,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 0,
+      "deletions": 0,
+      "total": 0
+    },
+    "2025-01-11": {
+      "commits": 1,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 97,
+      "deletions": 11,
+      "total": 1
+    },
+    "2025-01-12": {
+      "commits": 0,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 0,
+      "deletions": 0,
+      "total": 0
+    },
+    "2025-01-13": {
+      "commits": 4,
+      "pull_requests": 1,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 229,
+      "deletions": 134,
+      "total": 5
+    },
+    "2025-01-14": {
+      "commits": 2,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 181,
+      "deletions": 58,
+      "total": 2
+    },
+    "2025-01-15": {
+      "commits": 2,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 181,
+      "deletions": 29,
+      "total": 2
+    },
+    "2025-01-16": {
+      "commits": 1,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 67,
+      "deletions": 33,
+      "total": 1
+    },
+    "2025-01-17": {
+      "commits": 0,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 0,
+      "deletions": 0,
+      "total": 0
+    },
+    "2025-01-18": {
+      "commits": 0,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 0,
+      "deletions": 0,
+      "total": 0
+    },
+    "2025-01-19": {
+      "commits": 0,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 0,
+      "deletions": 0,
+      "total": 0
+    },
+    "2025-01-20": {
+      "commits": 3,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 317,
+      "deletions": 51,
+      "total": 3
+    },
+    "2025-01-21": {
+      "commits": 3,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 148,
+      "deletions": 41,
+      "total": 3
+    },
+    "2025-01-22": {
+      "commits": 0,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 0,
+      "deletions": 0,
+      "total": 0
+    },
+    "2025-01-23": {
+      "commits": 4,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 447,
+      "deletions": 89,
+      "total": 4
+    },
+    "2025-01-24": {
+      "commits": 4,
+      "pull_requests": 1,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 443,
+      "deletions": 95,
+      "total": 5
+    },
+    "2025-01-25": {
+      "commits": 0,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 0,
+      "deletions": 0,
+      "total": 0
+    },
+    "2025-01-26": {
+      "commits": 4,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 433,
+      "deletions": 112,
+      "total": 4
+    },
+    "2025-01-27": {
+      "commits": 2,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 162,
+      "deletions": 51,
+      "total": 2
+    },
+    "2025-01-28": {
+      "commits": 0,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 0,
+      "deletions": 0,
+      "total": 0
+    },
+    "2025-01-29": {
+      "commits": 0,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 0,
+      "deletions": 0,
+      "total": 0
+    },
+    "2025-01-30": {
+      "commits": 0,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 0,
+      "deletions": 0,
+      "total": 0
+    },
+    "2025-01-31": {
+      "commits": 1,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 75,
+      "deletions": 19,
+      "total": 1
+    },
+    "2025-02-01": {
+      "commits": 0,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 0,
+      "deletions": 0,
+      "total": 0
+    },
+    "2025-02-02": {
+      "commits": 4,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 471,
+      "deletions": 101,
+      "total": 4
+    },
+    "2025-02-03": {
+      "commits": 0,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 0,
+      "deletions": 0,
+      "total": 0
+    },
+    "2025-02-04": {
+      "commits": 0,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 0,
+      "deletions": 0,
+      "total": 0
+    },
+    "2025-02-05": {
+      "commits": 3,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 190,
+      "deletions": 73,
+      "total": 3
+    },
+    "2025-02-06": {
+      "commits": 3,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 204,
+      "deletions": 63,
+      "total": 3
+    },
+    "2025-02-07": {
+      "commits": 0,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 0,
+      "deletions": 0,
+      "total": 0
+    },
+    "2025-02-08": {
+      "commits": 0,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 0,
+      "deletions": 0,
+      "total": 0
+    },
+    "2025-02-09": {
+      "commits": 2,
+      "pull_requests": 0,
+      "issues": 1,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 217,
+      "deletions": 60,
+      "total": 3
+    },
+    "2025-02-10": {
+      "commits": 0,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 0,
+      "deletions": 0,
+      "total": 0
+    },
+    "2025-02-11": {
+      "commits": 2,
+      "pull_requests": 1,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 124,
+      "deletions": 21,
+      "total": 3
+    },
+    "2025-02-12": {
+      "commits": 0,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 0,
+      "deletions": 0,
+      "total": 0
+    },
+    "2025-02-13": {
+      "commits": 2,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 222,
+      "deletions": 30,
+      "total": 2
+    },
+    "2025-02-14": {
+      "commits": 0,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 0,
+      "deletions": 0,
+      "total": 0
+    },
+    "2025-02-15": {
+      "commits": 2,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 151,
+      "deletions": 60,
+      "total": 2
+    },
+    "2025-02-16": {
+      "commits": 0,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 0,
+      "deletions": 0,
+      "total": 0
+    },
+    "2025-02-17": {
+      "commits": 4,
+      "pull_requests": 0,
+      "issues": 1,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 302,
+      "deletions": 129,
+      "total": 5
+    },
+    "2025-02-18": {
+      "commits": 2,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 193,
+      "deletions": 61,
+      "total": 2
+    },
+    "2025-02-19": {
+      "commits": 0,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 0,
+      "deletions": 0,
+      "total": 0
+    },
+    "2025-02-20": {
+      "commits": 4,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 471,
+      "deletions": 111,
+      "total": 4
+    },
+    "2025-02-21": {
+      "commits": 1,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 117,
+      "deletions": 18,
+      "total": 1
+    },
+    "2025-02-22": {
+      "commits": 0,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 0,
+      "deletions": 0,
+      "total": 0
+    },
+    "2025-02-23": {
+      "commits": 0,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 0,
+      "deletions": 0,
+      "total": 0
+    },
+    "2025-02-24": {
+      "commits": 2,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 213,
+      "deletions": 60,
+      "total": 2
+    },
+    "2025-02-25": {
+      "commits": 2,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 151,
+      "deletions": 45,
+      "total": 2
+    },
+    "2025-02-26": {
+      "commits": 0,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 0,
+      "deletions": 0,
+      "total": 0
+    },
+    "2025-02-27": {
+      "commits": 0,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 0,
+      "deletions": 0,
+      "total": 0
+    },
+    "2025-02-28": {
+      "commits": 2,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 247,
+      "deletions": 50,
+      "total": 2
+    },
+    "2025-03-01": {
+      "commits": 0,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 0,
+      "deletions": 0,
+      "total": 0
+    },
+    "2025-03-02": {
+      "commits": 0,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 0,
+      "deletions": 0,
+      "total": 0
+    },
+    "2025-03-03": {
+      "commits": 4,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 202,
+      "deletions": 83,
+      "total": 4
+    },
+    "2025-03-04": {
+      "commits": 0,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 0,
+      "deletions": 0,
+      "total": 0
+    },
+    "2025-03-05": {
+      "commits": 2,
+      "pull_requests": 1,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 237,
+      "deletions": 64,
+      "total": 3
+    },
+    "2025-03-06": {
+      "commits": 0,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 0,
+      "deletions": 0,
+      "total": 0
+    },
+    "2025-03-07": {
+      "commits": 2,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 142,
+      "deletions": 33,
+      "total": 2
+    },
+    "2025-03-08": {
+      "commits": 2,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 182,
+      "deletions": 68,
+      "total": 2
+    },
+    "2025-03-09": {
+      "commits": 0,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 0,
+      "deletions": 0,
+      "total": 0
+    },
+    "2025-03-10": {
+      "commits": 3,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 274,
+      "deletions": 65,
+      "total": 3
+    },
+    "2025-03-11": {
+      "commits": 4,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 252,
+      "deletions": 91,
+      "total": 4
+    },
+    "2025-03-12": {
+      "commits": 1,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 78,
+      "deletions": 16,
+      "total": 1
+    },
+    "2025-03-13": {
+      "commits": 4,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 276,
+      "deletions": 135,
+      "total": 4
+    },
+    "2025-03-14": {
+      "commits": 3,
+      "pull_requests": 0,
+      "issues": 1,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 264,
+      "deletions": 69,
+      "total": 4
+    },
+    "2025-03-15": {
+      "commits": 0,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 0,
+      "deletions": 0,
+      "total": 0
+    },
+    "2025-03-16": {
+      "commits": 1,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 118,
+      "deletions": 31,
+      "total": 1
+    },
+    "2025-03-17": {
+      "commits": 3,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 1,
+      "additions": 347,
+      "deletions": 38,
+      "total": 4
+    },
+    "2025-03-18": {
+      "commits": 0,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 0,
+      "deletions": 0,
+      "total": 0
+    },
+    "2025-03-19": {
+      "commits": 1,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 122,
+      "deletions": 34,
+      "total": 1
+    },
+    "2025-03-20": {
+      "commits": 2,
+      "pull_requests": 1,
+      "issues": 1,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 139,
+      "deletions": 32,
+      "total": 4
+    },
+    "2025-03-21": {
+      "commits": 3,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 318,
+      "deletions": 71,
+      "total": 3
+    },
+    "2025-03-22": {
+      "commits": 0,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 0,
+      "deletions": 0,
+      "total": 0
+    },
+    "2025-03-23": {
+      "commits": 0,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 0,
+      "deletions": 0,
+      "total": 0
+    },
+    "2025-03-24": {
+      "commits": 0,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 0,
+      "deletions": 0,
+      "total": 0
+    },
+    "2025-03-25": {
+      "commits": 3,
+      "pull_requests": 1,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 167,
+      "deletions": 94,
+      "total": 4
+    },
+    "2025-03-26": {
+      "commits": 2,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 147,
+      "deletions": 32,
+      "total": 2
+    },
+    "2025-03-27": {
+      "commits": 3,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 257,
+      "deletions": 51,
+      "total": 3
+    },
+    "2025-03-28": {
+      "commits": 3,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 283,
+      "deletions": 86,
+      "total": 3
+    },
+    "2025-03-29": {
+      "commits": 0,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 0,
+      "deletions": 0,
+      "total": 0
+    },
+    "2025-03-30": {
+      "commits": 2,
+      "pull_requests": 0,
+      "issues": 1,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 218,
+      "deletions": 39,
+      "total": 3
+    },
+    "2025-03-31": {
+      "commits": 1,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 67,
+      "deletions": 27,
+      "total": 1
+    },
+    "2025-04-01": {
+      "commits": 4,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 337,
+      "deletions": 138,
+      "total": 4
+    },
+    "2025-04-02": {
+      "commits": 1,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 113,
+      "deletions": 29,
+      "total": 1
+    },
+    "2025-04-03": {
+      "commits": 0,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 0,
+      "deletions": 0,
+      "total": 0
+    },
+    "2025-04-04": {
+      "commits": 1,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 90,
+      "deletions": 13,
+      "total": 1
+    },
+    "2025-04-05": {
+      "commits": 2,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 118,
+      "deletions": 32,
+      "total": 2
+    },
+    "2025-04-06": {
+      "commits": 2,
+      "pull_requests": 1,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 1,
+      "additions": 103,
+      "deletions": 31,
+      "total": 4
+    },
+    "2025-04-07": {
+      "commits": 0,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 0,
+      "deletions": 0,
+      "total": 0
+    },
+    "2025-04-08": {
+      "commits": 0,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 0,
+      "deletions": 0,
+      "total": 0
+    },
+    "2025-04-09": {
+      "commits": 4,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 414,
+      "deletions": 133,
+      "total": 4
+    },
+    "2025-04-10": {
+      "commits": 0,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 0,
+      "deletions": 0,
+      "total": 0
+    },
+    "2025-04-11": {
+      "commits": 0,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 0,
+      "deletions": 0,
+      "total": 0
+    },
+    "2025-04-12": {
+      "commits": 0,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 0,
+      "deletions": 0,
+      "total": 0
+    },
+    "2025-04-13": {
+      "commits": 4,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 298,
+      "deletions": 51,
+      "total": 4
+    },
+    "2025-04-14": {
+      "commits": 0,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 0,
+      "deletions": 0,
+      "total": 0
+    },
+    "2025-04-15": {
+      "commits": 0,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 0,
+      "deletions": 0,
+      "total": 0
+    },
+    "2025-04-16": {
+      "commits": 2,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 215,
+      "deletions": 30,
+      "total": 2
+    },
+    "2025-04-17": {
+      "commits": 3,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 367,
+      "deletions": 71,
+      "total": 3
+    },
+    "2025-04-18": {
+      "commits": 4,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 497,
+      "deletions": 115,
+      "total": 4
+    },
+    "2025-04-19": {
+      "commits": 0,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 0,
+      "deletions": 0,
+      "total": 0
+    },
+    "2025-04-20": {
+      "commits": 3,
+      "pull_requests": 0,
+      "issues": 1,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 265,
+      "deletions": 89,
+      "total": 4
+    },
+    "2025-04-21": {
+      "commits": 1,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 121,
+      "deletions": 15,
+      "total": 1
+    },
+    "2025-04-22": {
+      "commits": 3,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 187,
+      "deletions": 99,
+      "total": 3
+    },
+    "2025-04-23": {
+      "commits": 1,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 67,
+      "deletions": 27,
+      "total": 1
+    },
+    "2025-04-24": {
+      "commits": 0,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 0,
+      "deletions": 0,
+      "total": 0
+    },
+    "2025-04-25": {
+      "commits": 3,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 347,
+      "deletions": 43,
+      "total": 3
+    },
+    "2025-04-26": {
+      "commits": 0,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 0,
+      "deletions": 0,
+      "total": 0
+    },
+    "2025-04-27": {
+      "commits": 3,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 206,
+      "deletions": 104,
+      "total": 3
+    },
+    "2025-04-28": {
+      "commits": 0,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 0,
+      "deletions": 0,
+      "total": 0
+    },
+    "2025-04-29": {
+      "commits": 0,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 0,
+      "deletions": 0,
+      "total": 0
+    },
+    "2025-04-30": {
+      "commits": 0,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 0,
+      "deletions": 0,
+      "total": 0
+    },
+    "2025-05-01": {
+      "commits": 2,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 141,
+      "deletions": 66,
+      "total": 2
+    },
+    "2025-05-02": {
+      "commits": 2,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 239,
+      "deletions": 66,
+      "total": 2
+    },
+    "2025-05-03": {
+      "commits": 0,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 0,
+      "deletions": 0,
+      "total": 0
+    },
+    "2025-05-04": {
+      "commits": 0,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 0,
+      "deletions": 0,
+      "total": 0
+    },
+    "2025-05-05": {
+      "commits": 4,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 395,
+      "deletions": 122,
+      "total": 4
+    },
+    "2025-05-06": {
+      "commits": 3,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 169,
+      "deletions": 63,
+      "total": 3
+    },
+    "2025-05-07": {
+      "commits": 2,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 158,
+      "deletions": 68,
+      "total": 2
+    },
+    "2025-05-08": {
+      "commits": 3,
+      "pull_requests": 0,
+      "issues": 1,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 173,
+      "deletions": 96,
+      "total": 4
+    },
+    "2025-05-09": {
+      "commits": 0,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 0,
+      "deletions": 0,
+      "total": 0
+    },
+    "2025-05-10": {
+      "commits": 0,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 0,
+      "deletions": 0,
+      "total": 0
+    },
+    "2025-05-11": {
+      "commits": 0,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 0,
+      "deletions": 0,
+      "total": 0
+    },
+    "2025-05-12": {
+      "commits": 4,
+      "pull_requests": 1,
+      "issues": 1,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 492,
+      "deletions": 138,
+      "total": 6
+    },
+    "2025-05-13": {
+      "commits": 0,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 0,
+      "deletions": 0,
+      "total": 0
+    },
+    "2025-05-14": {
+      "commits": 1,
+      "pull_requests": 1,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 97,
+      "deletions": 17,
+      "total": 2
+    },
+    "2025-05-15": {
+      "commits": 0,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 0,
+      "deletions": 0,
+      "total": 0
+    },
+    "2025-05-16": {
+      "commits": 3,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 155,
+      "deletions": 76,
+      "total": 3
+    },
+    "2025-05-17": {
+      "commits": 0,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 0,
+      "deletions": 0,
+      "total": 0
+    },
+    "2025-05-18": {
+      "commits": 0,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 0,
+      "deletions": 0,
+      "total": 0
+    },
+    "2025-05-19": {
+      "commits": 0,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 0,
+      "deletions": 0,
+      "total": 0
+    },
+    "2025-05-20": {
+      "commits": 0,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 0,
+      "deletions": 0,
+      "total": 0
+    },
+    "2025-05-21": {
+      "commits": 4,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 376,
+      "deletions": 92,
+      "total": 4
+    },
+    "2025-05-22": {
+      "commits": 0,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 0,
+      "deletions": 0,
+      "total": 0
+    },
+    "2025-05-23": {
+      "commits": 4,
+      "pull_requests": 0,
+      "issues": 1,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 253,
+      "deletions": 51,
+      "total": 5
+    },
+    "2025-05-24": {
+      "commits": 2,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 142,
+      "deletions": 33,
+      "total": 2
+    },
+    "2025-05-25": {
+      "commits": 0,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 0,
+      "deletions": 0,
+      "total": 0
+    },
+    "2025-05-26": {
+      "commits": 3,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 355,
+      "deletions": 89,
+      "total": 3
+    },
+    "2025-05-27": {
+      "commits": 4,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 416,
+      "deletions": 92,
+      "total": 4
+    },
+    "2025-05-28": {
+      "commits": 1,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 95,
+      "deletions": 20,
+      "total": 1
+    },
+    "2025-05-29": {
+      "commits": 1,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 62,
+      "deletions": 33,
+      "total": 1
+    },
+    "2025-05-30": {
+      "commits": 1,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 51,
+      "deletions": 11,
+      "total": 1
+    },
+    "2025-05-31": {
+      "commits": 1,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 98,
+      "deletions": 33,
+      "total": 1
+    },
+    "2025-06-01": {
+      "commits": 4,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 449,
+      "deletions": 125,
+      "total": 4
+    },
+    "2025-06-02": {
+      "commits": 0,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 0,
+      "deletions": 0,
+      "total": 0
+    },
+    "2025-06-03": {
+      "commits": 0,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 0,
+      "deletions": 0,
+      "total": 0
+    },
+    "2025-06-04": {
+      "commits": 4,
+      "pull_requests": 1,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 322,
+      "deletions": 135,
+      "total": 5
+    },
+    "2025-06-05": {
+      "commits": 0,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 0,
+      "deletions": 0,
+      "total": 0
+    },
+    "2025-06-06": {
+      "commits": 0,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 0,
+      "deletions": 0,
+      "total": 0
+    },
+    "2025-06-07": {
+      "commits": 2,
+      "pull_requests": 1,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 174,
+      "deletions": 59,
+      "total": 3
+    },
+    "2025-06-08": {
+      "commits": 0,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 0,
+      "deletions": 0,
+      "total": 0
+    },
+    "2025-06-09": {
+      "commits": 2,
+      "pull_requests": 0,
+      "issues": 1,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 115,
+      "deletions": 36,
+      "total": 3
+    },
+    "2025-06-10": {
+      "commits": 2,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 99,
+      "deletions": 20,
+      "total": 2
+    },
+    "2025-06-11": {
+      "commits": 1,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 51,
+      "deletions": 13,
+      "total": 1
+    },
+    "2025-06-12": {
+      "commits": 4,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 391,
+      "deletions": 121,
+      "total": 4
+    },
+    "2025-06-13": {
+      "commits": 1,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 96,
+      "deletions": 19,
+      "total": 1
+    },
+    "2025-06-14": {
+      "commits": 0,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 0,
+      "deletions": 0,
+      "total": 0
+    },
+    "2025-06-15": {
+      "commits": 3,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 237,
+      "deletions": 95,
+      "total": 3
+    },
+    "2025-06-16": {
+      "commits": 4,
+      "pull_requests": 1,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 247,
+      "deletions": 138,
+      "total": 5
+    },
+    "2025-06-17": {
+      "commits": 0,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 0,
+      "deletions": 0,
+      "total": 0
+    },
+    "2025-06-18": {
+      "commits": 0,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 0,
+      "deletions": 0,
+      "total": 0
+    },
+    "2025-06-19": {
+      "commits": 0,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 0,
+      "deletions": 0,
+      "total": 0
+    },
+    "2025-06-20": {
+      "commits": 4,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 235,
+      "deletions": 133,
+      "total": 4
+    },
+    "2025-06-21": {
+      "commits": 0,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 0,
+      "deletions": 0,
+      "total": 0
+    },
+    "2025-06-22": {
+      "commits": 0,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 0,
+      "deletions": 0,
+      "total": 0
+    },
+    "2025-06-23": {
+      "commits": 4,
+      "pull_requests": 1,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 289,
+      "deletions": 131,
+      "total": 5
+    },
+    "2025-06-24": {
+      "commits": 3,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 246,
+      "deletions": 103,
+      "total": 3
+    },
+    "2025-06-25": {
+      "commits": 2,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 243,
+      "deletions": 43,
+      "total": 2
+    },
+    "2025-06-26": {
+      "commits": 1,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 60,
+      "deletions": 22,
+      "total": 1
+    },
+    "2025-06-27": {
+      "commits": 3,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 304,
+      "deletions": 71,
+      "total": 3
+    },
+    "2025-06-28": {
+      "commits": 0,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 0,
+      "deletions": 0,
+      "total": 0
+    },
+    "2025-06-29": {
+      "commits": 4,
+      "pull_requests": 1,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 441,
+      "deletions": 49,
+      "total": 5
+    },
+    "2025-06-30": {
+      "commits": 3,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 358,
+      "deletions": 33,
+      "total": 3
+    },
+    "2025-07-01": {
+      "commits": 4,
+      "pull_requests": 1,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 383,
+      "deletions": 70,
+      "total": 5
+    },
+    "2025-07-02": {
+      "commits": 3,
+      "pull_requests": 1,
+      "issues": 1,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 367,
+      "deletions": 78,
+      "total": 5
+    },
+    "2025-07-03": {
+      "commits": 4,
+      "pull_requests": 0,
+      "issues": 1,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 226,
+      "deletions": 66,
+      "total": 5
+    },
+    "2025-07-04": {
+      "commits": 2,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 110,
+      "deletions": 67,
+      "total": 2
+    },
+    "2025-07-05": {
+      "commits": 1,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 111,
+      "deletions": 11,
+      "total": 1
+    },
+    "2025-07-06": {
+      "commits": 1,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 49,
+      "deletions": 34,
+      "total": 1
+    },
+    "2025-07-07": {
+      "commits": 4,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 483,
+      "deletions": 81,
+      "total": 4
+    },
+    "2025-07-08": {
+      "commits": 2,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 144,
+      "deletions": 32,
+      "total": 2
+    },
+    "2025-07-09": {
+      "commits": 3,
+      "pull_requests": 0,
+      "issues": 1,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 270,
+      "deletions": 38,
+      "total": 4
+    },
+    "2025-07-10": {
+      "commits": 2,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 92,
+      "deletions": 49,
+      "total": 2
+    },
+    "2025-07-11": {
+      "commits": 1,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 77,
+      "deletions": 13,
+      "total": 1
+    },
+    "2025-07-12": {
+      "commits": 4,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 373,
+      "deletions": 96,
+      "total": 4
+    },
+    "2025-07-13": {
+      "commits": 0,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 0,
+      "deletions": 0,
+      "total": 0
+    },
+    "2025-07-14": {
+      "commits": 3,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 230,
+      "deletions": 31,
+      "total": 3
+    },
+    "2025-07-15": {
+      "commits": 1,
+      "pull_requests": 0,
+      "issues": 1,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 93,
+      "deletions": 28,
+      "total": 2
+    },
+    "2025-07-16": {
+      "commits": 0,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 0,
+      "deletions": 0,
+      "total": 0
+    },
+    "2025-07-17": {
+      "commits": 2,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 90,
+      "deletions": 36,
+      "total": 2
+    },
+    "2025-07-18": {
+      "commits": 0,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 0,
+      "deletions": 0,
+      "total": 0
+    },
+    "2025-07-19": {
+      "commits": 0,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 0,
+      "deletions": 0,
+      "total": 0
+    },
+    "2025-07-20": {
+      "commits": 3,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 328,
+      "deletions": 30,
+      "total": 3
+    },
+    "2025-07-21": {
+      "commits": 4,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 220,
+      "deletions": 118,
+      "total": 4
+    },
+    "2025-07-22": {
+      "commits": 4,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 300,
+      "deletions": 72,
+      "total": 4
+    },
+    "2025-07-23": {
+      "commits": 0,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 0,
+      "deletions": 0,
+      "total": 0
+    },
+    "2025-07-24": {
+      "commits": 3,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 257,
+      "deletions": 58,
+      "total": 3
+    },
+    "2025-07-25": {
+      "commits": 0,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 0,
+      "deletions": 0,
+      "total": 0
+    },
+    "2025-07-26": {
+      "commits": 0,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 0,
+      "deletions": 0,
+      "total": 0
+    },
+    "2025-07-27": {
+      "commits": 0,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 0,
+      "deletions": 0,
+      "total": 0
+    },
+    "2025-07-28": {
+      "commits": 0,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 0,
+      "deletions": 0,
+      "total": 0
+    },
+    "2025-07-29": {
+      "commits": 4,
+      "pull_requests": 1,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 434,
+      "deletions": 67,
+      "total": 5
+    },
+    "2025-07-30": {
+      "commits": 0,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 0,
+      "deletions": 0,
+      "total": 0
+    },
+    "2025-07-31": {
+      "commits": 0,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 0,
+      "deletions": 0,
+      "total": 0
+    },
+    "2025-08-01": {
+      "commits": 1,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 104,
+      "deletions": 33,
+      "total": 1
+    },
+    "2025-08-02": {
+      "commits": 0,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 0,
+      "deletions": 0,
+      "total": 0
+    },
+    "2025-08-03": {
+      "commits": 0,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 0,
+      "deletions": 0,
+      "total": 0
+    },
+    "2025-08-04": {
+      "commits": 3,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 178,
+      "deletions": 56,
+      "total": 3
+    },
+    "2025-08-05": {
+      "commits": 0,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 0,
+      "deletions": 0,
+      "total": 0
+    },
+    "2025-08-06": {
+      "commits": 3,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 174,
+      "deletions": 56,
+      "total": 3
+    },
+    "2025-08-07": {
+      "commits": 4,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 206,
+      "deletions": 138,
+      "total": 4
+    },
+    "2025-08-08": {
+      "commits": 0,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 0,
+      "deletions": 0,
+      "total": 0
+    },
+    "2025-08-09": {
+      "commits": 0,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 0,
+      "deletions": 0,
+      "total": 0
+    },
+    "2025-08-10": {
+      "commits": 0,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 0,
+      "deletions": 0,
+      "total": 0
+    },
+    "2025-08-11": {
+      "commits": 0,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 0,
+      "deletions": 0,
+      "total": 0
+    },
+    "2025-08-12": {
+      "commits": 4,
+      "pull_requests": 1,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 318,
+      "deletions": 126,
+      "total": 5
+    },
+    "2025-08-13": {
+      "commits": 4,
+      "pull_requests": 0,
+      "issues": 1,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 362,
+      "deletions": 72,
+      "total": 5
+    },
+    "2025-08-14": {
+      "commits": 3,
+      "pull_requests": 0,
+      "issues": 1,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 316,
+      "deletions": 82,
+      "total": 4
+    },
+    "2025-08-15": {
+      "commits": 1,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 49,
+      "deletions": 16,
+      "total": 1
+    },
+    "2025-08-16": {
+      "commits": 2,
+      "pull_requests": 1,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 226,
+      "deletions": 24,
+      "total": 3
+    },
+    "2025-08-17": {
+      "commits": 2,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 199,
+      "deletions": 56,
+      "total": 2
+    },
+    "2025-08-18": {
+      "commits": 3,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 338,
+      "deletions": 51,
+      "total": 3
+    },
+    "2025-08-19": {
+      "commits": 2,
+      "pull_requests": 1,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 186,
+      "deletions": 43,
+      "total": 3
+    },
+    "2025-08-20": {
+      "commits": 0,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 0,
+      "deletions": 0,
+      "total": 0
+    },
+    "2025-08-21": {
+      "commits": 1,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 123,
+      "deletions": 18,
+      "total": 1
+    },
+    "2025-08-22": {
+      "commits": 1,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 115,
+      "deletions": 22,
+      "total": 1
+    },
+    "2025-08-23": {
+      "commits": 0,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 0,
+      "deletions": 0,
+      "total": 0
+    },
+    "2025-08-24": {
+      "commits": 1,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 99,
+      "deletions": 12,
+      "total": 1
+    },
+    "2025-08-25": {
+      "commits": 4,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 398,
+      "deletions": 126,
+      "total": 4
+    },
+    "2025-08-26": {
+      "commits": 4,
+      "pull_requests": 0,
+      "issues": 1,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 451,
+      "deletions": 40,
+      "total": 5
+    },
+    "2025-08-27": {
+      "commits": 3,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 274,
+      "deletions": 37,
+      "total": 3
+    },
+    "2025-08-28": {
+      "commits": 3,
+      "pull_requests": 0,
+      "issues": 1,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 273,
+      "deletions": 73,
+      "total": 4
+    },
+    "2025-08-29": {
+      "commits": 0,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 0,
+      "deletions": 0,
+      "total": 0
+    },
+    "2025-08-30": {
+      "commits": 2,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 137,
+      "deletions": 29,
+      "total": 2
+    },
+    "2025-08-31": {
+      "commits": 2,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 208,
+      "deletions": 51,
+      "total": 2
+    },
+    "2025-09-01": {
+      "commits": 2,
+      "pull_requests": 1,
+      "issues": 1,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 233,
+      "deletions": 52,
+      "total": 4
+    },
+    "2025-09-02": {
+      "commits": 0,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 0,
+      "deletions": 0,
+      "total": 0
+    },
+    "2025-09-03": {
+      "commits": 4,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 343,
+      "deletions": 50,
+      "total": 4
+    },
+    "2025-09-04": {
+      "commits": 3,
+      "pull_requests": 0,
+      "issues": 1,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 211,
+      "deletions": 84,
+      "total": 4
+    },
+    "2025-09-05": {
+      "commits": 2,
+      "pull_requests": 1,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 183,
+      "deletions": 68,
+      "total": 3
+    },
+    "2025-09-06": {
+      "commits": 0,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 0,
+      "deletions": 0,
+      "total": 0
+    },
+    "2025-09-07": {
+      "commits": 0,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 0,
+      "deletions": 0,
+      "total": 0
+    },
+    "2025-09-08": {
+      "commits": 0,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 0,
+      "deletions": 0,
+      "total": 0
+    },
+    "2025-09-09": {
+      "commits": 3,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 253,
+      "deletions": 72,
+      "total": 3
+    },
+    "2025-09-10": {
+      "commits": 3,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 1,
+      "additions": 285,
+      "deletions": 37,
+      "total": 4
+    },
+    "2025-09-11": {
+      "commits": 1,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 74,
+      "deletions": 14,
+      "total": 1
+    },
+    "2025-09-12": {
+      "commits": 2,
+      "pull_requests": 1,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 140,
+      "deletions": 62,
+      "total": 3
+    },
+    "2025-09-13": {
+      "commits": 0,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 0,
+      "deletions": 0,
+      "total": 0
+    },
+    "2025-09-14": {
+      "commits": 2,
+      "pull_requests": 0,
+      "issues": 1,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 106,
+      "deletions": 20,
+      "total": 3
+    },
+    "2025-09-15": {
+      "commits": 1,
+      "pull_requests": 1,
+      "issues": 1,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 73,
+      "deletions": 30,
+      "total": 3
+    },
+    "2025-09-16": {
+      "commits": 0,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 0,
+      "deletions": 0,
+      "total": 0
+    },
+    "2025-09-17": {
+      "commits": 4,
+      "pull_requests": 1,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 466,
+      "deletions": 41,
+      "total": 5
+    },
+    "2025-09-18": {
+      "commits": 2,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 157,
+      "deletions": 49,
+      "total": 2
+    },
+    "2025-09-19": {
+      "commits": 3,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 148,
+      "deletions": 91,
+      "total": 3
+    },
+    "2025-09-20": {
+      "commits": 0,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 0,
+      "deletions": 0,
+      "total": 0
+    },
+    "2025-09-21": {
+      "commits": 1,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 92,
+      "deletions": 17,
+      "total": 1
+    },
+    "2025-09-22": {
+      "commits": 0,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 0,
+      "deletions": 0,
+      "total": 0
+    },
+    "2025-09-23": {
+      "commits": 4,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 488,
+      "deletions": 134,
+      "total": 4
+    },
+    "2025-09-24": {
+      "commits": 0,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 0,
+      "deletions": 0,
+      "total": 0
+    },
+    "2025-09-25": {
+      "commits": 2,
+      "pull_requests": 0,
+      "issues": 1,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 92,
+      "deletions": 51,
+      "total": 3
+    },
+    "2025-09-26": {
+      "commits": 2,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 155,
+      "deletions": 21,
+      "total": 2
+    },
+    "2025-09-27": {
+      "commits": 0,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 0,
+      "deletions": 0,
+      "total": 0
+    },
+    "2025-09-28": {
+      "commits": 2,
+      "pull_requests": 1,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 218,
+      "deletions": 42,
+      "total": 3
+    },
+    "2025-09-29": {
+      "commits": 0,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 0,
+      "deletions": 0,
+      "total": 0
+    },
+    "2025-09-30": {
+      "commits": 3,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 286,
+      "deletions": 58,
+      "total": 3
+    },
+    "2025-10-01": {
+      "commits": 1,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 105,
+      "deletions": 32,
+      "total": 1
+    },
+    "2025-10-02": {
+      "commits": 1,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 88,
+      "deletions": 31,
+      "total": 1
+    },
+    "2025-10-03": {
+      "commits": 3,
+      "pull_requests": 1,
+      "issues": 1,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 147,
+      "deletions": 101,
+      "total": 5
+    },
+    "2025-10-04": {
+      "commits": 0,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 0,
+      "deletions": 0,
+      "total": 0
+    },
+    "2025-10-05": {
+      "commits": 2,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 154,
+      "deletions": 57,
+      "total": 2
+    },
+    "2025-10-06": {
+      "commits": 2,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 93,
+      "deletions": 44,
+      "total": 2
+    },
+    "2025-10-07": {
+      "commits": 0,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 0,
+      "deletions": 0,
+      "total": 0
+    },
+    "2025-10-08": {
+      "commits": 3,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 350,
+      "deletions": 63,
+      "total": 3
+    },
+    "2025-10-09": {
+      "commits": 2,
+      "pull_requests": 1,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 186,
+      "deletions": 41,
+      "total": 3
+    },
+    "2025-10-10": {
+      "commits": 1,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 47,
+      "deletions": 12,
+      "total": 1
+    },
+    "2025-10-11": {
+      "commits": 3,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 141,
+      "deletions": 95,
+      "total": 3
+    },
+    "2025-10-12": {
+      "commits": 4,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 205,
+      "deletions": 65,
+      "total": 4
+    },
+    "2025-10-13": {
+      "commits": 0,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 0,
+      "deletions": 0,
+      "total": 0
+    },
+    "2025-10-14": {
+      "commits": 2,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 177,
+      "deletions": 65,
+      "total": 2
+    },
+    "2025-10-15": {
+      "commits": 3,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 1,
+      "additions": 139,
+      "deletions": 96,
+      "total": 4
+    },
+    "2025-10-16": {
+      "commits": 0,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 0,
+      "deletions": 0,
+      "total": 0
+    },
+    "2025-10-17": {
+      "commits": 1,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 108,
+      "deletions": 30,
+      "total": 1
+    },
+    "2025-10-18": {
+      "commits": 0,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 0,
+      "deletions": 0,
+      "total": 0
+    },
+    "2025-10-19": {
+      "commits": 3,
+      "pull_requests": 1,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 141,
+      "deletions": 98,
+      "total": 4
+    },
+    "2025-10-20": {
+      "commits": 2,
+      "pull_requests": 1,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 223,
+      "deletions": 53,
+      "total": 3
+    },
+    "2025-10-21": {
+      "commits": 0,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 0,
+      "deletions": 0,
+      "total": 0
+    },
+    "2025-10-22": {
+      "commits": 0,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 0,
+      "deletions": 0,
+      "total": 0
+    },
+    "2025-10-23": {
+      "commits": 4,
+      "pull_requests": 1,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 446,
+      "deletions": 81,
+      "total": 5
+    },
+    "2025-10-24": {
+      "commits": 2,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 176,
+      "deletions": 34,
+      "total": 2
+    },
+    "2025-10-25": {
+      "commits": 0,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 0,
+      "deletions": 0,
+      "total": 0
+    },
+    "2025-10-26": {
+      "commits": 0,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 0,
+      "deletions": 0,
+      "total": 0
+    },
+    "2025-10-27": {
+      "commits": 0,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 0,
+      "deletions": 0,
+      "total": 0
+    },
+    "2025-10-28": {
+      "commits": 0,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 0,
+      "deletions": 0,
+      "total": 0
+    },
+    "2025-10-29": {
+      "commits": 0,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 0,
+      "deletions": 0,
+      "total": 0
+    },
+    "2025-10-30": {
+      "commits": 0,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 0,
+      "deletions": 0,
+      "total": 0
+    },
+    "2025-10-31": {
+      "commits": 3,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 339,
+      "deletions": 80,
+      "total": 3
+    },
+    "2025-11-01": {
+      "commits": 0,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 0,
+      "deletions": 0,
+      "total": 0
+    },
+    "2025-11-02": {
+      "commits": 0,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 0,
+      "deletions": 0,
+      "total": 0
+    },
+    "2025-11-03": {
+      "commits": 1,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 65,
+      "deletions": 14,
+      "total": 1
+    },
+    "2025-11-04": {
+      "commits": 2,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 189,
+      "deletions": 54,
+      "total": 2
+    },
+    "2025-11-05": {
+      "commits": 4,
+      "pull_requests": 1,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 424,
+      "deletions": 61,
+      "total": 5
+    },
+    "2025-11-06": {
+      "commits": 4,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 289,
+      "deletions": 111,
+      "total": 4
+    },
+    "2025-11-07": {
+      "commits": 0,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 0,
+      "deletions": 0,
+      "total": 0
+    },
+    "2025-11-08": {
+      "commits": 4,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 213,
+      "deletions": 49,
+      "total": 4
+    },
+    "2025-11-09": {
+      "commits": 1,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 58,
+      "deletions": 10,
+      "total": 1
+    },
+    "2025-11-10": {
+      "commits": 2,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 102,
+      "deletions": 51,
+      "total": 2
+    },
+    "2025-11-11": {
+      "commits": 1,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 97,
+      "deletions": 30,
+      "total": 1
+    },
+    "2025-11-12": {
+      "commits": 1,
+      "pull_requests": 1,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 62,
+      "deletions": 14,
+      "total": 2
+    },
+    "2025-11-13": {
+      "commits": 4,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 1,
+      "additions": 240,
+      "deletions": 75,
+      "total": 5
+    },
+    "2025-11-14": {
+      "commits": 3,
+      "pull_requests": 1,
+      "issues": 1,
+      "discussions": 0,
+      "releases": 1,
+      "additions": 195,
+      "deletions": 85,
+      "total": 6
+    },
+    "2025-11-15": {
+      "commits": 0,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 0,
+      "deletions": 0,
+      "total": 0
+    },
+    "2025-11-16": {
+      "commits": 1,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 60,
+      "deletions": 16,
+      "total": 1
+    },
+    "2025-11-17": {
+      "commits": 1,
+      "pull_requests": 0,
+      "issues": 1,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 61,
+      "deletions": 12,
+      "total": 2
+    },
+    "2025-11-18": {
+      "commits": 0,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 0,
+      "deletions": 0,
+      "total": 0
+    },
+    "2025-11-19": {
+      "commits": 0,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 0,
+      "deletions": 0,
+      "total": 0
+    },
+    "2025-11-20": {
+      "commits": 1,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 78,
+      "deletions": 25,
+      "total": 1
+    },
+    "2025-11-21": {
+      "commits": 0,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 0,
+      "deletions": 0,
+      "total": 0
+    },
+    "2025-11-22": {
+      "commits": 0,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 0,
+      "deletions": 0,
+      "total": 0
+    },
+    "2025-11-23": {
+      "commits": 0,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 0,
+      "deletions": 0,
+      "total": 0
+    },
+    "2025-11-24": {
+      "commits": 2,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 105,
+      "deletions": 36,
+      "total": 2
+    },
+    "2025-11-25": {
+      "commits": 0,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 0,
+      "deletions": 0,
+      "total": 0
+    },
+    "2025-11-26": {
+      "commits": 3,
+      "pull_requests": 1,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 202,
+      "deletions": 91,
+      "total": 4
+    },
+    "2025-11-27": {
+      "commits": 3,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 185,
+      "deletions": 57,
+      "total": 3
+    },
+    "2025-11-28": {
+      "commits": 1,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 59,
+      "deletions": 34,
+      "total": 1
+    },
+    "2025-11-29": {
+      "commits": 1,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 88,
+      "deletions": 30,
+      "total": 1
+    },
+    "2025-11-30": {
+      "commits": 0,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 0,
+      "deletions": 0,
+      "total": 0
+    },
+    "2025-12-01": {
+      "commits": 4,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 294,
+      "deletions": 104,
+      "total": 4
+    },
+    "2025-12-02": {
+      "commits": 3,
+      "pull_requests": 1,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 316,
+      "deletions": 30,
+      "total": 4
+    },
+    "2025-12-03": {
+      "commits": 2,
+      "pull_requests": 1,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 1,
+      "additions": 197,
+      "deletions": 41,
+      "total": 4
+    },
+    "2025-12-04": {
+      "commits": 0,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 0,
+      "deletions": 0,
+      "total": 0
+    },
+    "2025-12-05": {
+      "commits": 2,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 222,
+      "deletions": 63,
+      "total": 2
+    },
+    "2025-12-06": {
+      "commits": 2,
+      "pull_requests": 1,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 246,
+      "deletions": 43,
+      "total": 3
+    },
+    "2025-12-07": {
+      "commits": 0,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 0,
+      "deletions": 0,
+      "total": 0
+    },
+    "2025-12-08": {
+      "commits": 0,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 0,
+      "deletions": 0,
+      "total": 0
+    },
+    "2025-12-09": {
+      "commits": 0,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 0,
+      "deletions": 0,
+      "total": 0
+    },
+    "2025-12-10": {
+      "commits": 0,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 0,
+      "deletions": 0,
+      "total": 0
+    },
+    "2025-12-11": {
+      "commits": 0,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 0,
+      "deletions": 0,
+      "total": 0
+    },
+    "2025-12-12": {
+      "commits": 0,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 0,
+      "deletions": 0,
+      "total": 0
+    },
+    "2025-12-13": {
+      "commits": 2,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 211,
+      "deletions": 64,
+      "total": 2
+    },
+    "2025-12-14": {
+      "commits": 3,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 281,
+      "deletions": 90,
+      "total": 3
+    },
+    "2025-12-15": {
+      "commits": 0,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 0,
+      "deletions": 0,
+      "total": 0
+    },
+    "2025-12-16": {
+      "commits": 4,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 242,
+      "deletions": 72,
+      "total": 4
+    },
+    "2025-12-17": {
+      "commits": 4,
+      "pull_requests": 0,
+      "issues": 1,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 425,
+      "deletions": 120,
+      "total": 5
+    },
+    "2025-12-18": {
+      "commits": 0,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 0,
+      "deletions": 0,
+      "total": 0
+    },
+    "2025-12-19": {
+      "commits": 0,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 0,
+      "deletions": 0,
+      "total": 0
+    },
+    "2025-12-20": {
+      "commits": 0,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 0,
+      "deletions": 0,
+      "total": 0
+    },
+    "2025-12-21": {
+      "commits": 3,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 304,
+      "deletions": 48,
+      "total": 3
+    },
+    "2025-12-22": {
+      "commits": 3,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 219,
+      "deletions": 57,
+      "total": 3
+    },
+    "2025-12-23": {
+      "commits": 2,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 106,
+      "deletions": 61,
+      "total": 2
+    },
+    "2025-12-24": {
+      "commits": 1,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 95,
+      "deletions": 25,
+      "total": 1
+    },
+    "2025-12-25": {
+      "commits": 1,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 97,
+      "deletions": 25,
+      "total": 1
+    },
+    "2025-12-26": {
+      "commits": 1,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 63,
+      "deletions": 25,
+      "total": 1
+    },
+    "2025-12-27": {
+      "commits": 0,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 0,
+      "deletions": 0,
+      "total": 0
+    },
+    "2025-12-28": {
+      "commits": 3,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 328,
+      "deletions": 53,
+      "total": 3
+    },
+    "2025-12-29": {
+      "commits": 3,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 373,
+      "deletions": 62,
+      "total": 3
+    },
+    "2025-12-30": {
+      "commits": 2,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 170,
+      "deletions": 24,
+      "total": 2
+    },
+    "2025-12-31": {
+      "commits": 0,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 0,
+      "deletions": 0,
+      "total": 0
+    },
+    "2026-01-01": {
+      "commits": 1,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 57,
+      "deletions": 34,
+      "total": 1
+    },
+    "2026-01-02": {
+      "commits": 4,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 404,
+      "deletions": 93,
+      "total": 4
+    },
+    "2026-01-03": {
+      "commits": 5,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 537,
+      "deletions": 167,
+      "total": 5
+    },
+    "2026-01-04": {
+      "commits": 2,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 134,
+      "deletions": 25,
+      "total": 2
+    },
+    "2026-01-05": {
+      "commits": 3,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 230,
+      "deletions": 82,
+      "total": 3
+    },
+    "2026-01-06": {
+      "commits": 6,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 404,
+      "deletions": 136,
+      "total": 6
+    },
+    "2026-01-07": {
+      "commits": 3,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 205,
+      "deletions": 80,
+      "total": 3
+    },
+    "2026-01-08": {
+      "commits": 3,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 295,
+      "deletions": 60,
+      "total": 3
+    },
+    "2026-01-09": {
+      "commits": 0,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 0,
+      "deletions": 0,
+      "total": 0
+    },
+    "2026-01-10": {
+      "commits": 3,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 313,
+      "deletions": 59,
+      "total": 3
+    },
+    "2026-01-11": {
+      "commits": 5,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 422,
+      "deletions": 175,
+      "total": 5
+    },
+    "2026-01-12": {
+      "commits": 3,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 359,
+      "deletions": 104,
+      "total": 3
+    },
+    "2026-01-13": {
+      "commits": 1,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 102,
+      "deletions": 33,
+      "total": 1
+    },
+    "2026-01-14": {
+      "commits": 3,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 206,
+      "deletions": 62,
+      "total": 3
+    },
+    "2026-01-15": {
+      "commits": 7,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 654,
+      "deletions": 207,
+      "total": 7
+    },
+    "2026-01-16": {
+      "commits": 0,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 0,
+      "deletions": 0,
+      "total": 0
+    },
+    "2026-01-17": {
+      "commits": 0,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 0,
+      "deletions": 0,
+      "total": 0
+    },
+    "2026-01-18": {
+      "commits": 3,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 250,
+      "deletions": 65,
+      "total": 3
+    },
+    "2026-01-19": {
+      "commits": 8,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 918,
+      "deletions": 141,
+      "total": 8
+    },
+    "2026-01-20": {
+      "commits": 1,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 113,
+      "deletions": 13,
+      "total": 1
+    },
+    "2026-01-21": {
+      "commits": 2,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 143,
+      "deletions": 37,
+      "total": 2
+    },
+    "2026-01-22": {
+      "commits": 0,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 0,
+      "deletions": 0,
+      "total": 0
+    },
+    "2026-01-23": {
+      "commits": 0,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 0,
+      "deletions": 0,
+      "total": 0
+    },
+    "2026-01-24": {
+      "commits": 2,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 211,
+      "deletions": 67,
+      "total": 2
+    },
+    "2026-01-25": {
+      "commits": 1,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 62,
+      "deletions": 18,
+      "total": 1
+    },
+    "2026-01-26": {
+      "commits": 0,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 0,
+      "deletions": 0,
+      "total": 0
+    },
+    "2026-01-27": {
+      "commits": 0,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 0,
+      "deletions": 0,
+      "total": 0
+    },
+    "2026-01-28": {
+      "commits": 0,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 0,
+      "deletions": 0,
+      "total": 0
+    },
+    "2026-01-29": {
+      "commits": 0,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 0,
+      "deletions": 0,
+      "total": 0
+    },
+    "2026-01-30": {
+      "commits": 0,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 0,
+      "deletions": 0,
+      "total": 0
+    },
+    "2026-01-31": {
+      "commits": 0,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 0,
+      "deletions": 0,
+      "total": 0
+    },
+    "2026-02-01": {
+      "commits": 2,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 181,
+      "deletions": 62,
+      "total": 2
+    },
+    "2026-02-02": {
+      "commits": 0,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 0,
+      "deletions": 0,
+      "total": 0
+    },
+    "2026-02-03": {
+      "commits": 0,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 0,
+      "deletions": 0,
+      "total": 0
+    },
+    "2026-02-04": {
+      "commits": 1,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 64,
+      "deletions": 27,
+      "total": 1
+    },
+    "2026-02-05": {
+      "commits": 0,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 0,
+      "deletions": 0,
+      "total": 0
+    },
+    "2026-02-06": {
+      "commits": 5,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 520,
+      "deletions": 149,
+      "total": 5
+    },
+    "2026-02-07": {
+      "commits": 9,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 841,
+      "deletions": 173,
+      "total": 9
+    },
+    "2026-02-08": {
+      "commits": 4,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 341,
+      "deletions": 125,
+      "total": 4
+    },
+    "2026-02-09": {
+      "commits": 4,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 488,
+      "deletions": 118,
+      "total": 4
+    },
+    "2026-02-10": {
+      "commits": 9,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 929,
+      "deletions": 135,
+      "total": 9
+    },
+    "2026-02-11": {
+      "commits": 5,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 604,
+      "deletions": 149,
+      "total": 5
+    },
+    "2026-02-12": {
+      "commits": 12,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 2,
+      "additions": 830,
+      "deletions": 313,
+      "total": 14
+    },
+    "2026-02-13": {
+      "commits": 5,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 368,
+      "deletions": 136,
+      "total": 5
+    },
+    "2026-02-14": {
+      "commits": 6,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 747,
+      "deletions": 185,
+      "total": 6
+    },
+    "2026-02-15": {
+      "commits": 4,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 436,
+      "deletions": 112,
+      "total": 4
+    },
+    "2026-02-16": {
+      "commits": 14,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 1,
+      "additions": 1368,
+      "deletions": 201,
+      "total": 15
+    },
+    "2026-02-17": {
+      "commits": 2,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 240,
+      "deletions": 35,
+      "total": 2
+    },
+    "2026-02-18": {
+      "commits": 5,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 624,
+      "deletions": 93,
+      "total": 5
+    },
+    "2026-02-19": {
+      "commits": 11,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 648,
+      "deletions": 379,
+      "total": 11
+    },
+    "2026-02-20": {
+      "commits": 4,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 241,
+      "deletions": 96,
+      "total": 4
+    },
+    "2026-02-21": {
+      "commits": 6,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 2,
+      "additions": 421,
+      "deletions": 187,
+      "total": 8
+    },
+    "2026-02-22": {
+      "commits": 0,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 0,
+      "deletions": 0,
+      "total": 0
+    },
+    "2026-02-23": {
+      "commits": 7,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 844,
+      "deletions": 147,
+      "total": 7
+    },
+    "2026-02-24": {
+      "commits": 7,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 761,
+      "deletions": 229,
+      "total": 7
+    },
+    "2026-02-25": {
+      "commits": 3,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 324,
+      "deletions": 72,
+      "total": 3
+    },
+    "2026-02-26": {
+      "commits": 2,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 192,
+      "deletions": 64,
+      "total": 2
+    },
+    "2026-02-27": {
+      "commits": 3,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 236,
+      "deletions": 82,
+      "total": 3
+    },
+    "2026-02-28": {
+      "commits": 11,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 1,
+      "additions": 1342,
+      "deletions": 338,
+      "total": 12
+    },
+    "2026-03-01": {
+      "commits": 1,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 78,
+      "deletions": 26,
+      "total": 1
+    },
+    "2026-03-02": {
+      "commits": 0,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 0,
+      "deletions": 0,
+      "total": 0
+    },
+    "2026-03-03": {
+      "commits": 5,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 319,
+      "deletions": 81,
+      "total": 5
+    },
+    "2026-03-04": {
+      "commits": 8,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 523,
+      "deletions": 274,
+      "total": 8
+    },
+    "2026-03-05": {
+      "commits": 3,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 1,
+      "additions": 275,
+      "deletions": 38,
+      "total": 4
+    },
+    "2026-03-06": {
+      "commits": 9,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 1,
+      "additions": 784,
+      "deletions": 293,
+      "total": 10
+    },
+    "2026-03-07": {
+      "commits": 4,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 405,
+      "deletions": 72,
+      "total": 4
+    },
+    "2026-03-08": {
+      "commits": 0,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 0,
+      "deletions": 0,
+      "total": 0
+    },
+    "2026-03-09": {
+      "commits": 7,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 621,
+      "deletions": 164,
+      "total": 7
+    },
+    "2026-03-10": {
+      "commits": 3,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 305,
+      "deletions": 104,
+      "total": 3
+    },
+    "2026-03-11": {
+      "commits": 8,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 906,
+      "deletions": 125,
+      "total": 8
+    },
+    "2026-03-12": {
+      "commits": 8,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 2,
+      "additions": 741,
+      "deletions": 137,
+      "total": 10
+    },
+    "2026-03-13": {
+      "commits": 5,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 1,
+      "additions": 308,
+      "deletions": 156,
+      "total": 6
+    },
+    "2026-03-14": {
+      "commits": 0,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 0,
+      "deletions": 0,
+      "total": 0
+    },
+    "2026-03-15": {
+      "commits": 8,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 997,
+      "deletions": 281,
+      "total": 8
+    },
+    "2026-03-16": {
+      "commits": 19,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 2,
+      "additions": 1087,
+      "deletions": 520,
+      "total": 21
+    },
+    "2026-03-17": {
+      "commits": 6,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 1,
+      "additions": 357,
+      "deletions": 181,
+      "total": 7
+    },
+    "2026-03-18": {
+      "commits": 0,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 0,
+      "deletions": 0,
+      "total": 0
+    },
+    "2026-03-19": {
+      "commits": 1,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 88,
+      "deletions": 35,
+      "total": 1
+    },
+    "2026-03-20": {
+      "commits": 6,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 1,
+      "additions": 452,
+      "deletions": 74,
+      "total": 7
+    },
+    "2026-03-21": {
+      "commits": 0,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 0,
+      "deletions": 0,
+      "total": 0
+    },
+    "2026-03-22": {
+      "commits": 5,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 1,
+      "additions": 595,
+      "deletions": 75,
+      "total": 6
+    },
+    "2026-03-23": {
+      "commits": 1,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 98,
+      "deletions": 23,
+      "total": 1
+    },
+    "2026-03-24": {
+      "commits": 3,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 302,
+      "deletions": 91,
+      "total": 3
+    },
+    "2026-03-25": {
+      "commits": 0,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 0,
+      "deletions": 0,
+      "total": 0
+    },
+    "2026-03-26": {
+      "commits": 0,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 0,
+      "deletions": 0,
+      "total": 0
+    },
+    "2026-03-27": {
+      "commits": 0,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 0,
+      "deletions": 0,
+      "total": 0
+    },
+    "2026-03-28": {
+      "commits": 0,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 0,
+      "deletions": 0,
+      "total": 0
+    },
+    "2026-03-29": {
+      "commits": 0,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 0,
+      "deletions": 0,
+      "total": 0
+    },
+    "2026-03-30": {
+      "commits": 0,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 0,
+      "deletions": 0,
+      "total": 0
+    },
+    "2026-03-31": {
+      "commits": 0,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 0,
+      "deletions": 0,
+      "total": 0
+    },
+    "2026-04-01": {
+      "commits": 14,
+      "pull_requests": 3,
+      "issues": 5,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 1730,
+      "deletions": 270,
+      "total": 22
+    },
+    "2026-04-02": {
+      "commits": 11,
+      "pull_requests": 3,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 1190,
+      "deletions": 374,
+      "total": 14
+    },
+    "2026-04-03": {
+      "commits": 4,
+      "pull_requests": 1,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 346,
+      "deletions": 59,
+      "total": 5
+    },
+    "2026-04-04": {
+      "commits": 5,
+      "pull_requests": 1,
+      "issues": 1,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 481,
+      "deletions": 129,
+      "total": 7
+    },
+    "2026-04-05": {
+      "commits": 9,
+      "pull_requests": 2,
+      "issues": 1,
+      "discussions": 0,
+      "releases": 1,
+      "additions": 632,
+      "deletions": 224,
+      "total": 13
+    },
+    "2026-04-06": {
+      "commits": 1,
+      "pull_requests": 0,
+      "issues": 1,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 56,
+      "deletions": 24,
+      "total": 2
+    },
+    "2026-04-07": {
+      "commits": 0,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 0,
+      "deletions": 0,
+      "total": 0
+    },
+    "2026-04-08": {
+      "commits": 0,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 0,
+      "deletions": 0,
+      "total": 0
+    },
+    "2026-04-09": {
+      "commits": 0,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 0,
+      "deletions": 0,
+      "total": 0
+    },
+    "2026-04-10": {
+      "commits": 0,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 0,
+      "deletions": 0,
+      "total": 0
+    },
+    "2026-04-11": {
+      "commits": 0,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 0,
+      "deletions": 0,
+      "total": 0
+    },
+    "2026-04-12": {
+      "commits": 0,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 0,
+      "deletions": 0,
+      "total": 0
+    },
+    "2026-04-13": {
+      "commits": 0,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 0,
+      "deletions": 0,
+      "total": 0
+    },
+    "2026-04-14": {
+      "commits": 0,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 0,
+      "deletions": 0,
+      "total": 0
+    },
+    "2026-04-15": {
+      "commits": 0,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 0,
+      "deletions": 0,
+      "total": 0
+    },
+    "2026-04-16": {
+      "commits": 0,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 0,
+      "deletions": 0,
+      "total": 0
+    },
+    "2026-04-17": {
+      "commits": 0,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 0,
+      "deletions": 0,
+      "total": 0
+    },
+    "2026-04-18": {
+      "commits": 0,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 0,
+      "deletions": 0,
+      "total": 0
+    },
+    "2026-04-19": {
+      "commits": 1,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 60,
+      "deletions": 18,
+      "total": 1
+    },
+    "2026-04-20": {
+      "commits": 0,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 0,
+      "deletions": 0,
+      "total": 0
+    },
+    "2026-04-21": {
+      "commits": 0,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 0,
+      "deletions": 0,
+      "total": 0
+    },
+    "2026-04-22": {
+      "commits": 0,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 0,
+      "deletions": 0,
+      "total": 0
+    },
+    "2026-04-23": {
+      "commits": 0,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 0,
+      "deletions": 0,
+      "total": 0
+    },
+    "2026-04-24": {
+      "commits": 0,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 0,
+      "deletions": 0,
+      "total": 0
+    },
+    "2026-04-25": {
+      "commits": 0,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 0,
+      "deletions": 0,
+      "total": 0
+    },
+    "2026-04-26": {
+      "commits": 0,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 0,
+      "deletions": 0,
+      "total": 0
+    },
+    "2026-04-27": {
+      "commits": 0,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 0,
+      "deletions": 0,
+      "total": 0
+    },
+    "2026-04-28": {
+      "commits": 0,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 0,
+      "deletions": 0,
+      "total": 0
+    },
+    "2026-04-29": {
+      "commits": 0,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 0,
+      "deletions": 0,
+      "total": 0
+    },
+    "2026-04-30": {
+      "commits": 0,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 0,
+      "deletions": 0,
+      "total": 0
+    },
+    "2026-05-01": {
+      "commits": 0,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 0,
+      "deletions": 0,
+      "total": 0
+    },
+    "2026-05-02": {
+      "commits": 3,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 235,
+      "deletions": 88,
+      "total": 3
+    },
+    "2026-05-03": {
+      "commits": 6,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 619,
+      "deletions": 99,
+      "total": 6
+    },
+    "2026-05-04": {
+      "commits": 9,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 987,
+      "deletions": 271,
+      "total": 9
+    },
+    "2026-05-05": {
+      "commits": 0,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 0,
+      "deletions": 0,
+      "total": 0
+    },
+    "2026-05-06": {
+      "commits": 0,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 0,
+      "deletions": 0,
+      "total": 0
+    },
+    "2026-05-07": {
+      "commits": 0,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 0,
+      "deletions": 0,
+      "total": 0
+    },
+    "2026-05-08": {
+      "commits": 0,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 0,
+      "deletions": 0,
+      "total": 0
+    },
+    "2026-05-09": {
+      "commits": 0,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 0,
+      "deletions": 0,
+      "total": 0
+    },
+    "2026-05-10": {
+      "commits": 0,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 0,
+      "deletions": 0,
+      "total": 0
+    },
+    "2026-05-11": {
+      "commits": 0,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 0,
+      "deletions": 0,
+      "total": 0
+    },
+    "2026-05-12": {
+      "commits": 2,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 171,
+      "deletions": 61,
+      "total": 2
+    },
+    "2026-05-13": {
+      "commits": 11,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 1,
+      "additions": 1214,
+      "deletions": 278,
+      "total": 12
+    },
+    "2026-05-14": {
+      "commits": 0,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 0,
+      "deletions": 0,
+      "total": 0
+    },
+    "2026-05-15": {
+      "commits": 0,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 0,
+      "deletions": 0,
+      "total": 0
+    },
+    "2026-05-16": {
+      "commits": 4,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 228,
+      "deletions": 77,
+      "total": 4
+    },
+    "2026-05-17": {
+      "commits": 2,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 232,
+      "deletions": 25,
+      "total": 2
+    },
+    "2026-05-18": {
+      "commits": 0,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 0,
+      "deletions": 0,
+      "total": 0
+    },
+    "2026-05-19": {
+      "commits": 7,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 710,
+      "deletions": 237,
+      "total": 7
+    },
+    "2026-05-20": {
+      "commits": 0,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 0,
+      "deletions": 0,
+      "total": 0
+    },
+    "2026-05-21": {
+      "commits": 3,
+      "pull_requests": 1,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 198,
+      "deletions": 58,
+      "total": 4
+    },
+    "2026-05-22": {
+      "commits": 5,
+      "pull_requests": 2,
+      "issues": 1,
+      "discussions": 0,
+      "releases": 1,
+      "additions": 611,
+      "deletions": 165,
+      "total": 9
+    },
+    "2026-05-23": {
+      "commits": 0,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 0,
+      "deletions": 0,
+      "total": 0
+    },
+    "2026-05-24": {
+      "commits": 0,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 0,
+      "deletions": 0,
+      "total": 0
+    },
+    "2026-05-25": {
+      "commits": 0,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 0,
+      "deletions": 0,
+      "total": 0
+    },
+    "2026-05-26": {
+      "commits": 0,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 0,
+      "deletions": 0,
+      "total": 0
+    },
+    "2026-05-27": {
+      "commits": 0,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 0,
+      "deletions": 0,
+      "total": 0
+    },
+    "2026-05-28": {
+      "commits": 0,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 0,
+      "deletions": 0,
+      "total": 0
+    },
+    "2026-05-29": {
+      "commits": 0,
+      "pull_requests": 0,
+      "issues": 6,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 0,
+      "deletions": 0,
+      "total": 6
+    },
+    "2026-05-30": {
+      "commits": 4,
+      "pull_requests": 0,
+      "issues": 1,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 398,
+      "deletions": 102,
+      "total": 5
+    },
+    "2026-05-31": {
+      "commits": 4,
+      "pull_requests": 0,
+      "issues": 1,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 359,
+      "deletions": 55,
+      "total": 5
+    },
+    "2026-06-01": {
+      "commits": 2,
+      "pull_requests": 0,
+      "issues": 1,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 115,
+      "deletions": 51,
+      "total": 3
+    },
+    "2026-06-02": {
+      "commits": 5,
+      "pull_requests": 3,
+      "issues": 2,
+      "discussions": 0,
+      "releases": 1,
+      "additions": 291,
+      "deletions": 168,
+      "total": 11
+    },
+    "2026-06-03": {
+      "commits": 1,
+      "pull_requests": 7,
+      "issues": 10,
+      "discussions": 0,
+      "releases": 1,
+      "additions": 82,
+      "deletions": 35,
+      "total": 19
+    },
+    "2026-06-04": {
+      "commits": 0,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 0,
+      "deletions": 0,
+      "total": 0
+    },
+    "2026-06-05": {
+      "commits": 1,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 85,
+      "deletions": 23,
+      "total": 1
+    },
+    "2026-06-06": {
+      "commits": 1,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 70,
+      "deletions": 16,
+      "total": 1
+    },
+    "2026-06-07": {
+      "commits": 0,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 0,
+      "deletions": 0,
+      "total": 0
+    },
+    "2026-06-08": {
+      "commits": 0,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 0,
+      "deletions": 0,
+      "total": 0
+    },
+    "2026-06-09": {
+      "commits": 1,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 65,
+      "deletions": 18,
+      "total": 1
+    },
+    "2026-06-10": {
+      "commits": 3,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 270,
+      "deletions": 104,
+      "total": 3
+    },
+    "2026-06-11": {
+      "commits": 0,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 0,
+      "deletions": 0,
+      "total": 0
+    },
+    "2026-06-12": {
+      "commits": 0,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 0,
+      "deletions": 0,
+      "total": 0
+    },
+    "2026-06-13": {
+      "commits": 0,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 0,
+      "deletions": 0,
+      "total": 0
+    },
+    "2026-06-14": {
+      "commits": 5,
+      "pull_requests": 1,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 451,
+      "deletions": 162,
+      "total": 6
+    },
+    "2026-06-15": {
+      "commits": 0,
+      "pull_requests": 0,
+      "issues": 1,
+      "discussions": 0,
+      "releases": 1,
+      "additions": 0,
+      "deletions": 0,
+      "total": 2
+    },
+    "2026-06-16": {
+      "commits": 18,
+      "pull_requests": 1,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 1,
+      "additions": 1159,
+      "deletions": 373,
+      "total": 20
+    },
+    "2026-06-17": {
+      "commits": 0,
+      "pull_requests": 0,
+      "issues": 2,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 0,
+      "deletions": 0,
+      "total": 2
+    },
+    "2026-06-18": {
+      "commits": 11,
+      "pull_requests": 3,
+      "issues": 1,
+      "discussions": 0,
+      "releases": 3,
+      "additions": 1031,
+      "deletions": 199,
+      "total": 18
+    },
+    "2026-06-19": {
+      "commits": 2,
+      "pull_requests": 1,
+      "issues": 1,
+      "discussions": 0,
+      "releases": 1,
+      "additions": 140,
+      "deletions": 29,
+      "total": 5
+    },
+    "2026-06-20": {
+      "commits": 3,
+      "pull_requests": 1,
+      "issues": 1,
+      "discussions": 0,
+      "releases": 1,
+      "additions": 303,
+      "deletions": 75,
+      "total": 6
+    },
+    "2026-06-21": {
+      "commits": 0,
+      "pull_requests": 0,
+      "issues": 5,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 0,
+      "deletions": 0,
+      "total": 5
+    },
+    "2026-06-22": {
+      "commits": 0,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 0,
+      "deletions": 0,
+      "total": 0
+    },
+    "2026-06-23": {
+      "commits": 0,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 0,
+      "deletions": 0,
+      "total": 0
+    },
+    "2026-06-24": {
+      "commits": 0,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 0,
+      "deletions": 0,
+      "total": 0
+    },
+    "2026-06-25": {
+      "commits": 8,
+      "pull_requests": 2,
+      "issues": 1,
+      "discussions": 0,
+      "releases": 1,
+      "additions": 960,
+      "deletions": 255,
+      "total": 12
+    },
+    "2026-06-26": {
+      "commits": 1,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 104,
+      "deletions": 22,
+      "total": 1
+    },
+    "2026-06-27": {
+      "commits": 0,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 0,
+      "deletions": 0,
+      "total": 0
+    },
+    "2026-06-28": {
+      "commits": 2,
+      "pull_requests": 0,
+      "issues": 2,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 119,
+      "deletions": 31,
+      "total": 4
+    },
+    "2026-06-29": {
+      "commits": 9,
+      "pull_requests": 6,
+      "issues": 3,
+      "discussions": 0,
+      "releases": 1,
+      "additions": 1100,
+      "deletions": 308,
+      "total": 19
+    },
+    "2026-06-30": {
+      "commits": 7,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 525,
+      "deletions": 86,
+      "total": 7
+    },
+    "2026-07-01": {
+      "commits": 18,
+      "pull_requests": 2,
+      "issues": 1,
+      "discussions": 0,
+      "releases": 1,
+      "additions": 1854,
+      "deletions": 456,
+      "total": 22
+    },
+    "2026-07-02": {
+      "commits": 4,
+      "pull_requests": 0,
+      "issues": 2,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 495,
+      "deletions": 134,
+      "total": 6
+    },
+    "2026-07-03": {
+      "commits": 11,
+      "pull_requests": 4,
+      "issues": 3,
+      "discussions": 0,
+      "releases": 1,
+      "additions": 841,
+      "deletions": 210,
+      "total": 19
+    },
+    "2026-07-04": {
+      "commits": 5,
+      "pull_requests": 1,
+      "issues": 1,
+      "discussions": 0,
+      "releases": 1,
+      "additions": 572,
+      "deletions": 62,
+      "total": 8
+    },
+    "2026-07-05": {
+      "commits": 14,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 1095,
+      "deletions": 187,
+      "total": 14
+    },
+    "2026-07-06": {
+      "commits": 11,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 1,
+      "additions": 679,
+      "deletions": 281,
+      "total": 12
+    },
+    "2026-07-07": {
+      "commits": 23,
+      "pull_requests": 2,
+      "issues": 2,
+      "discussions": 0,
+      "releases": 3,
+      "additions": 2707,
+      "deletions": 819,
+      "total": 30
+    },
+    "2026-07-08": {
+      "commits": 2,
+      "pull_requests": 1,
+      "issues": 1,
+      "discussions": 0,
+      "releases": 1,
+      "additions": 157,
+      "deletions": 63,
+      "total": 5
+    },
+    "2026-07-09": {
+      "commits": 1,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 124,
+      "deletions": 15,
+      "total": 1
+    },
+    "2026-07-10": {
+      "commits": 10,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 1,
+      "additions": 657,
+      "deletions": 279,
+      "total": 11
+    },
+    "2026-07-11": {
+      "commits": 9,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 2,
+      "additions": 704,
+      "deletions": 199,
+      "total": 11
+    },
+    "2026-07-12": {
+      "commits": 6,
+      "pull_requests": 1,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 1,
+      "additions": 461,
+      "deletions": 127,
+      "total": 8
+    },
+    "2026-07-13": {
+      "commits": 5,
+      "pull_requests": 1,
+      "issues": 1,
+      "discussions": 0,
+      "releases": 1,
+      "additions": 610,
+      "deletions": 113,
+      "total": 8
+    },
+    "2026-07-14": {
+      "commits": 1,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 100,
+      "deletions": 17,
+      "total": 1
+    },
+    "2026-07-15": {
+      "commits": 23,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 2,
+      "additions": 1920,
+      "deletions": 621,
+      "total": 25
+    },
+    "2026-07-16": {
+      "commits": 3,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 1,
+      "additions": 299,
+      "deletions": 85,
+      "total": 4
+    },
+    "2026-07-17": {
+      "commits": 12,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 2,
+      "additions": 1188,
+      "deletions": 325,
+      "total": 14
+    },
+    "2026-07-18": {
+      "commits": 13,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 1,
+      "additions": 1263,
+      "deletions": 206,
+      "total": 14
+    },
+    "2026-07-19": {
+      "commits": 0,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 0,
+      "deletions": 0,
+      "total": 0
+    },
+    "2026-07-20": {
+      "commits": 0,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 0,
+      "deletions": 0,
+      "total": 0
+    },
+    "2026-07-21": {
+      "commits": 0,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 0,
+      "deletions": 0,
+      "total": 0
+    },
+    "2026-07-22": {
+      "commits": 0,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 0,
+      "deletions": 0,
+      "total": 0
+    },
+    "2026-07-23": {
+      "commits": 0,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 0,
+      "deletions": 0,
+      "total": 0
+    },
+    "2026-07-24": {
+      "commits": 0,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 0,
+      "deletions": 0,
+      "total": 0
+    },
+    "2026-07-25": {
+      "commits": 0,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 0,
+      "deletions": 0,
+      "total": 0
+    },
+    "2026-07-26": {
+      "commits": 0,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 0,
+      "deletions": 0,
+      "total": 0
+    },
+    "2026-07-27": {
+      "commits": 0,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 0,
+      "deletions": 0,
+      "total": 0
+    },
+    "2026-07-28": {
+      "commits": 0,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 0,
+      "deletions": 0,
+      "total": 0
+    },
+    "2026-07-29": {
+      "commits": 0,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 0,
+      "deletions": 0,
+      "total": 0
+    },
+    "2026-07-30": {
+      "commits": 0,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 0,
+      "deletions": 0,
+      "total": 0
+    },
+    "2026-07-31": {
+      "commits": 0,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 0,
+      "deletions": 0,
+      "total": 0
+    },
+    "2026-08-01": {
+      "commits": 1,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 92,
+      "deletions": 28,
+      "total": 1
+    },
+    "2026-08-02": {
+      "commits": 15,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 1451,
+      "deletions": 502,
+      "total": 15
+    },
+    "2026-08-03": {
+      "commits": 8,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 571,
+      "deletions": 169,
+      "total": 8
+    },
+    "2026-08-04": {
+      "commits": 12,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 1484,
+      "deletions": 370,
+      "total": 12
+    },
+    "2026-08-05": {
+      "commits": 0,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 0,
+      "deletions": 0,
+      "total": 0
+    },
+    "2026-08-06": {
+      "commits": 0,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 0,
+      "deletions": 0,
+      "total": 0
+    },
+    "2026-08-07": {
+      "commits": 1,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 117,
+      "deletions": 20,
+      "total": 1
+    },
+    "2026-08-08": {
+      "commits": 7,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 695,
+      "deletions": 184,
+      "total": 7
+    },
+    "2026-08-09": {
+      "commits": 16,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 1221,
+      "deletions": 307,
+      "total": 16
+    },
+    "2026-08-10": {
+      "commits": 3,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 341,
+      "deletions": 61,
+      "total": 3
+    },
+    "2026-08-11": {
+      "commits": 0,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 0,
+      "deletions": 0,
+      "total": 0
+    },
+    "2026-08-12": {
+      "commits": 0,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 0,
+      "deletions": 0,
+      "total": 0
+    },
+    "2026-08-13": {
+      "commits": 0,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 0,
+      "deletions": 0,
+      "total": 0
+    },
+    "2026-08-14": {
+      "commits": 0,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 0,
+      "deletions": 0,
+      "total": 0
+    },
+    "2026-08-15": {
+      "commits": 0,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 0,
+      "deletions": 0,
+      "total": 0
+    },
+    "2026-08-16": {
+      "commits": 8,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 516,
+      "deletions": 116,
+      "total": 8
+    },
+    "2026-08-17": {
+      "commits": 4,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 455,
+      "deletions": 107,
+      "total": 4
+    },
+    "2026-08-18": {
+      "commits": 6,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 656,
+      "deletions": 106,
+      "total": 6
+    },
+    "2026-08-19": {
+      "commits": 15,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 901,
+      "deletions": 287,
+      "total": 15
+    },
+    "2026-08-20": {
+      "commits": 8,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 956,
+      "deletions": 295,
+      "total": 8
+    },
+    "2026-08-21": {
+      "commits": 9,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 521,
+      "deletions": 183,
+      "total": 9
+    },
+    "2026-08-22": {
+      "commits": 11,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 1204,
+      "deletions": 259,
+      "total": 11
+    },
+    "2026-08-23": {
+      "commits": 10,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 1,
+      "additions": 1168,
+      "deletions": 329,
+      "total": 11
+    },
+    "2026-08-24": {
+      "commits": 1,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 122,
+      "deletions": 36,
+      "total": 1
+    },
+    "2026-08-25": {
+      "commits": 3,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 288,
+      "deletions": 108,
+      "total": 3
+    },
+    "2026-08-26": {
+      "commits": 5,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 295,
+      "deletions": 115,
+      "total": 5
+    },
+    "2026-08-27": {
+      "commits": 4,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 465,
+      "deletions": 99,
+      "total": 4
+    },
+    "2026-08-28": {
+      "commits": 30,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 3389,
+      "deletions": 450,
+      "total": 30
+    },
+    "2026-08-29": {
+      "commits": 20,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 2191,
+      "deletions": 317,
+      "total": 20
+    },
+    "2026-08-30": {
+      "commits": 45,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 2,
+      "additions": 2828,
+      "deletions": 833,
+      "total": 47
+    },
+    "2026-08-31": {
+      "commits": 23,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 3,
+      "additions": 2616,
+      "deletions": 430,
+      "total": 26
+    },
+    "2026-09-01": {
+      "commits": 0,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 0,
+      "deletions": 0,
+      "total": 0
+    },
+    "2026-09-02": {
+      "commits": 0,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 0,
+      "deletions": 0,
+      "total": 0
+    },
+    "2026-09-03": {
+      "commits": 0,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 0,
+      "deletions": 0,
+      "total": 0
+    },
+    "2026-09-04": {
+      "commits": 1,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 81,
+      "deletions": 19,
+      "total": 1
+    },
+    "2026-09-05": {
+      "commits": 10,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 554,
+      "deletions": 257,
+      "total": 10
+    },
+    "2026-09-06": {
+      "commits": 21,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 2554,
+      "deletions": 641,
+      "total": 21
+    },
+    "2026-09-07": {
+      "commits": 15,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 1027,
+      "deletions": 259,
+      "total": 15
+    },
+    "2026-09-08": {
+      "commits": 12,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 1407,
+      "deletions": 360,
+      "total": 12
+    },
+    "2026-09-09": {
+      "commits": 28,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 1,
+      "additions": 2520,
+      "deletions": 945,
+      "total": 29
+    },
+    "2026-09-10": {
+      "commits": 8,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 1,
+      "additions": 749,
+      "deletions": 141,
+      "total": 9
+    },
+    "2026-09-11": {
+      "commits": 1,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 61,
+      "deletions": 14,
+      "total": 1
+    },
+    "2026-09-12": {
+      "commits": 1,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 112,
+      "deletions": 36,
+      "total": 1
+    },
+    "2026-09-13": {
+      "commits": 1,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 110,
+      "deletions": 28,
+      "total": 1
+    },
+    "2026-09-14": {
+      "commits": 1,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 122,
+      "deletions": 12,
+      "total": 1
+    },
+    "2026-09-15": {
+      "commits": 1,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 71,
+      "deletions": 22,
+      "total": 1
+    },
+    "2026-09-16": {
+      "commits": 1,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 72,
+      "deletions": 34,
+      "total": 1
+    },
+    "2026-09-17": {
+      "commits": 1,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 112,
+      "deletions": 33,
+      "total": 1
+    },
+    "2026-09-18": {
+      "commits": 1,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 61,
+      "deletions": 25,
+      "total": 1
+    },
+    "2026-09-19": {
+      "commits": 2,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 144,
+      "deletions": 35,
+      "total": 2
+    },
+    "2026-09-20": {
+      "commits": 1,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 55,
+      "deletions": 33,
+      "total": 1
+    },
+    "2026-09-21": {
+      "commits": 3,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 314,
+      "deletions": 83,
+      "total": 3
+    },
+    "2026-09-22": {
+      "commits": 1,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 63,
+      "deletions": 36,
+      "total": 1
+    },
+    "2026-09-23": {
+      "commits": 1,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 113,
+      "deletions": 22,
+      "total": 1
+    },
+    "2026-09-24": {
+      "commits": 1,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 85,
+      "deletions": 13,
+      "total": 1
+    },
+    "2026-09-25": {
+      "commits": 1,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 69,
+      "deletions": 24,
+      "total": 1
+    },
+    "2026-09-26": {
+      "commits": 1,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 101,
+      "deletions": 34,
+      "total": 1
+    },
+    "2026-09-27": {
+      "commits": 1,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 96,
+      "deletions": 15,
+      "total": 1
+    },
+    "2026-09-28": {
+      "commits": 1,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 114,
+      "deletions": 15,
+      "total": 1
+    },
+    "2026-09-29": {
+      "commits": 1,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 112,
+      "deletions": 25,
+      "total": 1
+    },
+    "2026-09-30": {
+      "commits": 6,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 548,
+      "deletions": 100,
+      "total": 6
+    },
+    "2026-10-01": {
+      "commits": 31,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 1,
+      "additions": 2502,
+      "deletions": 519,
+      "total": 32
+    },
+    "2026-10-02": {
+      "commits": 5,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 496,
+      "deletions": 153,
+      "total": 5
+    },
+    "2026-10-03": {
+      "commits": 2,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 187,
+      "deletions": 52,
+      "total": 2
+    },
+    "2026-10-04": {
+      "commits": 6,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 371,
+      "deletions": 75,
+      "total": 6
+    },
+    "2026-10-05": {
+      "commits": 14,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 1195,
+      "deletions": 460,
+      "total": 14
+    },
+    "2026-10-06": {
+      "commits": 12,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 673,
+      "deletions": 330,
+      "total": 12
+    },
+    "2026-10-07": {
+      "commits": 9,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 730,
+      "deletions": 322,
+      "total": 9
+    },
+    "2026-10-08": {
+      "commits": 16,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 1505,
+      "deletions": 245,
+      "total": 16
+    },
+    "2026-10-09": {
+      "commits": 10,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 724,
+      "deletions": 284,
+      "total": 10
+    },
+    "2026-10-10": {
+      "commits": 1,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 92,
+      "deletions": 20,
+      "total": 1
+    },
+    "2026-10-11": {
+      "commits": 15,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 1183,
+      "deletions": 547,
+      "total": 15
+    },
+    "2026-10-12": {
+      "commits": 9,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 862,
+      "deletions": 112,
+      "total": 9
+    },
+    "2026-10-13": {
+      "commits": 20,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 1,
+      "additions": 2358,
+      "deletions": 468,
+      "total": 21
+    },
+    "2026-10-14": {
+      "commits": 1,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 63,
+      "deletions": 29,
+      "total": 1
+    },
+    "2026-10-15": {
+      "commits": 7,
+      "pull_requests": 0,
+      "issues": 6,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 558,
+      "deletions": 90,
+      "total": 13
+    },
+    "2026-10-16": {
+      "commits": 9,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 1,
+      "additions": 1008,
+      "deletions": 264,
+      "total": 10
+    },
+    "2026-10-17": {
+      "commits": 16,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 1,
+      "additions": 1117,
+      "deletions": 449,
+      "total": 17
+    },
+    "2026-10-18": {
+      "commits": 21,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 2467,
+      "deletions": 277,
+      "total": 21
+    },
+    "2026-10-19": {
+      "commits": 21,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 2050,
+      "deletions": 444,
+      "total": 21
+    },
+    "2026-10-20": {
+      "commits": 29,
+      "pull_requests": 0,
+      "issues": 1,
+      "discussions": 0,
+      "releases": 1,
+      "additions": 3557,
+      "deletions": 441,
+      "total": 31
+    },
+    "2026-10-21": {
+      "commits": 43,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 1,
+      "additions": 3970,
+      "deletions": 927,
+      "total": 44
+    },
+    "2026-10-22": {
+      "commits": 6,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 589,
+      "deletions": 193,
+      "total": 6
+    },
+    "2026-10-23": {
+      "commits": 9,
+      "pull_requests": 0,
+      "issues": 5,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 943,
+      "deletions": 218,
+      "total": 14
+    },
+    "2026-10-24": {
+      "commits": 10,
+      "pull_requests": 0,
+      "issues": 3,
+      "discussions": 0,
+      "releases": 1,
+      "additions": 976,
+      "deletions": 213,
+      "total": 14
+    },
+    "2026-10-25": {
+      "commits": 37,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 2479,
+      "deletions": 769,
+      "total": 37
+    },
+    "2026-10-26": {
+      "commits": 23,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 1,
+      "additions": 2524,
+      "deletions": 316,
+      "total": 24
+    },
+    "2026-10-27": {
+      "commits": 33,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 1,
+      "additions": 2862,
+      "deletions": 689,
+      "total": 34
+    },
+    "2026-10-28": {
+      "commits": 29,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 2823,
+      "deletions": 587,
+      "total": 29
+    },
+    "2026-10-29": {
+      "commits": 24,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 2175,
+      "deletions": 404,
+      "total": 24
+    },
+    "2026-10-30": {
+      "commits": 30,
+      "pull_requests": 0,
+      "issues": 1,
+      "discussions": 0,
+      "releases": 1,
+      "additions": 2489,
+      "deletions": 855,
+      "total": 32
+    },
+    "2026-10-31": {
+      "commits": 28,
+      "pull_requests": 0,
+      "issues": 1,
+      "discussions": 0,
+      "releases": 1,
+      "additions": 2034,
+      "deletions": 390,
+      "total": 30
+    },
+    "2026-11-01": {
+      "commits": 30,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 2126,
+      "deletions": 507,
+      "total": 30
+    },
+    "2026-11-02": {
+      "commits": 0,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 0,
+      "deletions": 0,
+      "total": 0
+    }
+  },
+  "projects": [
+    {
+      "name": "turbofox",
+      "nameWithOwner": "pid7-org/turbofox",
+      "desc": "A persistent and efficient embedded KV database",
+      "url": "https://github.com/pid7-org/turbofox",
+      "stars": 1,
+      "forks": 0,
+      "language": "Rust",
+      "languageColor": "#dea584",
+      "languages": [
+        {
+          "name": "Rust",
+          "color": "#dea584",
+          "bytes": 429554
+        },
+        {
+          "name": "Python",
+          "color": "#3572A5",
+          "bytes": 31763
+        },
+        {
+          "name": "Shell",
+          "color": "#89e051",
+          "bytes": 16756
+        },
+        {
+          "name": "HCL",
+          "color": "#844FBA",
+          "bytes": 3210
+        }
+      ],
+      "commits": 850,
+      "releases": 3,
+      "pullRequests": 1,
+      "issues": 1,
+      "contributions": 855
+    },
+    {
+      "name": "frozen-core",
+      "nameWithOwner": "pid7-org/frozen-core",
+      "desc": "Core utilities for frozen codebases.",
+      "url": "https://github.com/pid7-org/frozen-core",
+      "stars": 0,
+      "forks": 0,
+      "language": "Rust",
+      "languageColor": "#dea584",
+      "languages": [
+        {
+          "name": "Rust",
+          "color": "#dea584",
+          "bytes": 644493
+        },
+        {
+          "name": "Shell",
+          "color": "#89e051",
+          "bytes": 1516
+        }
+      ],
+      "commits": 541,
+      "releases": 39,
+      "pullRequests": 43,
+      "issues": 70,
+      "contributions": 693
+    },
+    {
+      "name": "ashwa",
+      "nameWithOwner": "pid7-org/ashwa",
+      "desc": "Hardware accelerated routines for single substring search.",
+      "url": "https://github.com/pid7-org/ashwa",
+      "stars": 20,
+      "forks": 0,
+      "language": "Rust",
+      "languageColor": "#dea584",
+      "languages": [
+        {
+          "name": "Rust",
+          "color": "#dea584",
+          "bytes": 269339
+        },
+        {
+          "name": "JavaScript",
+          "color": "#f1e05a",
+          "bytes": 122055
+        },
+        {
+          "name": "Python",
+          "color": "#3572A5",
+          "bytes": 56738
+        },
+        {
+          "name": "Shell",
+          "color": "#89e051",
+          "bytes": 48825
+        },
+        {
+          "name": "HCL",
+          "color": "#844FBA",
+          "bytes": 5580
+        },
+        {
+          "name": "C",
+          "color": "#555555",
+          "bytes": 1621
+        }
+      ],
+      "commits": 268,
+      "releases": 6,
+      "pullRequests": 0,
+      "issues": 0,
+      "contributions": 274
+    },
+    {
+      "name": "kosa",
+      "nameWithOwner": "pid7-org/kosa",
+      "desc": "A reliable page-based storage engine with fire-and-forget durability semantics",
+      "url": "https://github.com/pid7-org/kosa",
+      "stars": 1,
+      "forks": 0,
+      "language": "Rust",
+      "languageColor": "#dea584",
+      "languages": [
+        {
+          "name": "Rust",
+          "color": "#dea584",
+          "bytes": 59466
+        },
+        {
+          "name": "Nix",
+          "color": "#7e7eff",
+          "bytes": 493
+        }
+      ],
+      "commits": 129,
+      "releases": 3,
+      "pullRequests": 2,
+      "issues": 2,
+      "contributions": 136
+    },
+    {
+      "name": "rta",
+      "nameWithOwner": "pid7-org/rta",
+      "desc": "Ṛta (ऋत) is a minimal metadata store for durable system state",
+      "url": "https://github.com/pid7-org/rta",
+      "stars": 0,
+      "forks": 0,
+      "language": "Rust",
+      "languageColor": "#dea584",
+      "languages": [
+        {
+          "name": "Rust",
+          "color": "#dea584",
+          "bytes": 49183
+        },
+        {
+          "name": "Nix",
+          "color": "#7e7eff",
+          "bytes": 491
+        }
+      ],
+      "commits": 81,
+      "releases": 2,
+      "pullRequests": 2,
+      "issues": 1,
+      "contributions": 86
+    }
+  ]
+}

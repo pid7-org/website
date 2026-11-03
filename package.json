@@ -10,6 +10,7 @@
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
+    "github:sync": "node --experimental-strip-types scripts/github-sync.ts",
     "github:activity": "node --experimental-strip-types scripts/github-activity.ts",
     "github:languages": "node --experimental-strip-types scripts/github-languages.ts",
     "github:projects": "node --experimental-strip-types scripts/github-projects.ts",

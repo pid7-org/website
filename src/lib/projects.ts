@@ -1,4 +1,4 @@
-import projectsData from '../assets/gh-projects.json';
+import ghData from '../assets/gh-data.json';
 
 export interface ProjectLanguageStat {
   name: string;
@@ -72,8 +72,8 @@ const fallbackProjects: Project[] = [
 ];
 
 export const projects: Project[] =
-  projectsData && Array.isArray(projectsData.projects) && projectsData.projects.length > 0
-    ? (projectsData.projects as Project[])
+  ghData && Array.isArray(ghData.projects) && ghData.projects.length > 0
+    ? (ghData.projects as Project[])
     : fallbackProjects;
 
 export interface TeamMember {
