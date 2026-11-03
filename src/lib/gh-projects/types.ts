@@ -4,6 +4,12 @@ export interface ProjectLanguageStat {
   bytes: number;
 }
 
+export interface ProjectRelease {
+  tagName: string;
+  publishedAt: string | null;
+  url: string;
+}
+
 export interface ProjectData {
   name: string;
   nameWithOwner: string;
@@ -16,6 +22,8 @@ export interface ProjectData {
   languages: ProjectLanguageStat[];
   commits: number;
   releases: number;
+  latestRelease?: ProjectRelease | null;
+  bannerUrl?: string | null;
   pullRequests: number;
   issues: number;
   contributions: number;

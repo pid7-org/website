@@ -1,9 +1,8 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import GithubStatsSection from '../components/GithubStatsSection.astro';
-import GithubActivityGraph from '../components/GithubActivityGraph.astro';
+import ProjectsSection from '../components/ProjectsSection.astro';
 import { formatBlogDate, getAllBlogPosts } from '../lib/blog';
-import { projects, team } from '../lib/projects';
 
 const posts = await getAllBlogPosts();
 const recentPosts = posts.slice(0, 5);
@@ -47,71 +46,9 @@ const recentPosts = posts.slice(0, 5);
 		</section>
 	)}
 
+	<ProjectsSection />
+
 	<GithubStatsSection />
-
-	{/*
-	<section id="section-building">
-		<h2 class="mb-3 font-mono text-xs uppercase tracking-widest text-ctp-subtext0">
-			Building
-		</h2>
-		<ul class="text-sm space-y-2">
-			{projects.map((project) => (
-				<li class="group flex items-baseline justify-between gap-3 py-1">
-					<span>
-						<a href={project.url} target="_blank" rel="noreferrer" class="font-mono text-ctp-text font-medium transition-colors hover:text-[var(--color-accent)]">{project.name}</a>
-						<span class="text-ctp-subtext0"> — {project.desc}</span>
-					</span>
-					<a href={project.url} target="_blank" rel="noreferrer" class="shrink-0 text-ctp-subtext0 group-hover:text-[var(--color-accent)] transition-colors select-none" aria-label={`${project.name} github repository`}>
-						<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-3.5 h-3.5 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5">
-							<line x1="7" y1="17" x2="17" y2="7"></line>
-							<polyline points="7 7 17 7 17 17"></polyline>
-						</svg>
-					</a>
-				</li>
-			))}
-		</ul>
-	</section>
-
-	<div id="section-activity">
-		<GithubActivityGraph />
-	</div>
-
-	<section id="section-team">
-		<h2 class="mb-4 font-mono text-xs uppercase tracking-widest text-ctp-subtext0">
-			Team
-		</h2>
-		<div class="flex flex-col gap-6">
-			{team.map((member) => (
-				<div class="flex items-start gap-4 sm:gap-5">
-					<img
-						src={member.image}
-						alt={member.name}
-						class="w-10 h-10 sm:w-12 sm:h-12 object-cover shrink-0 border border-ctp-surface0/60"
-					/>
-					<div class="flex flex-col min-w-0 pt-0.5">
-						<h3 class="font-mono text-sm font-medium text-ctp-text">
-							{member.github ? (
-								<a
-									href={member.github}
-									target="_blank"
-									rel="noreferrer"
-									class="transition-colors hover:text-[var(--color-accent)]"
-								>
-									{member.name}
-								</a>
-							) : (
-								member.name
-							)}
-						</h3>
-						<p class="text-xs text-ctp-subtext0 mt-1 leading-relaxed">
-							{member.bio}
-						</p>
-					</div>
-				</div>
-			))}
-		</div>
-	</section>
-	*/}
 
 	<div class="h-[40vh]"></div>
 </Layout>

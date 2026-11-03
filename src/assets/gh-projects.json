@@ -35,6 +35,12 @@
       ],
       "commits": 852,
       "releases": 3,
+      "latestRelease": {
+        "tagName": "v0.0.201",
+        "publishedAt": "2026-10-27T17:14:20Z",
+        "url": "https://github.com/pid7-org/turbofox/releases/tag/v0.0.201"
+      },
+      "bannerUrl": "https://raw.githubusercontent.com/pid7-org/turbofox/master/assets/banner.png",
       "pullRequests": 1,
       "issues": 1,
       "contributions": 857
@@ -62,6 +68,11 @@
       ],
       "commits": 541,
       "releases": 39,
+      "latestRelease": {
+        "tagName": "v0.0.40",
+        "publishedAt": "2026-10-27T17:09:44Z",
+        "url": "https://github.com/pid7-org/frozen-core/releases/tag/v0.0.40"
+      },
       "pullRequests": 43,
       "issues": 70,
       "contributions": 693
@@ -109,6 +120,11 @@
       ],
       "commits": 268,
       "releases": 6,
+      "latestRelease": {
+        "tagName": "v1.0.1",
+        "publishedAt": "2026-03-01T12:00:00Z",
+        "url": "https://github.com/pid7-org/ashwa/releases/tag/v1.0.1"
+      },
       "pullRequests": 0,
       "issues": 0,
       "contributions": 274

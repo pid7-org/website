@@ -1,0 +1,211 @@
+---
+import { projects } from '../lib/projects';
+
+// Repositories qualifying with >= 200 (0xc8) commits
+const COMMIT_THRESHOLD = 0xc8;
+const highlighted = projects.filter((p) => (p.commits ?? 0) >= COMMIT_THRESHOLD);
+const [flagship, ...secondary] = highlighted;
+
+function formatReleaseDate(isoDate: string | null | undefined): string {
+  if (!isoDate) return '';
+  const d = new Date(isoDate);
+  if (isNaN(d.getTime())) return '';
+  return d.toLocaleDateString('en-US', {
+    month: 'short',
+    day: 'numeric',
+    year: 'numeric',
+  });
+}
+---
+
+{highlighted.length > 0 && (
+  <section id="section-projects" class="font-mono">
+    <div class="flex items-baseline justify-between mb-3">
+      <h2 class="font-mono text-xs uppercase tracking-widest text-ctp-subtext0">
+        Projects
+      </h2>
+      <span class="text-[11px] text-ctp-overlay0">
+        active repositories (≥ 200 commits)
+      </span>
+    </div>
+
+    <div class="space-y-3">
+      {flagship && (
+        <article
+          class="group border border-ctp-surface0/60 bg-ctp-surface0/15
+                 hover:border-[var(--color-accent)] transition-colors overflow-hidden"
+        >
+          {flagship.bannerUrl && (
+            <a
+              href={flagship.url}
+              target="_blank"
+              rel="noreferrer"
+              class="block overflow-hidden border-b border-ctp-surface0/40"
+              tabindex="-1"
+              aria-hidden="true"
+            >
+              <img
+                src={flagship.bannerUrl}
+                alt={`${flagship.name} preview banner`}
+                class="w-full aspect-[21/9] sm:aspect-[2.4/1] object-cover
+                       opacity-95 group-hover:opacity-100 transition-opacity"
+                loading="lazy"
+              />
+            </a>
+          )}
+
+          <div class="p-4 space-y-2.5">
+            <div class="flex items-center justify-between gap-3 flex-wrap">
+              <a
+                href={flagship.url}
+                target="_blank"
+                rel="noreferrer"
+                class="font-serif text-lg font-medium text-ctp-text
+                       group-hover:text-[var(--color-accent)] transition-colors
+                       inline-flex items-center gap-1.5"
+              >
+                <span>{flagship.name}</span>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="14"
+                  height="14"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="w-3.5 h-3.5 text-ctp-subtext0
+                         group-hover:text-[var(--color-accent)]
+                         group-hover:translate-x-0.5 group-hover:-translate-y-0.5
+                         transition-transform"
+                >
+                  <line x1="7" y1="17" x2="17" y2="7"></line>
+                  <polyline points="7 7 17 7 17 17"></polyline>
+                </svg>
+              </a>
+
+              {flagship.latestRelease && (
+                <a
+                  href={flagship.latestRelease.url}
+                  target="_blank"
+                  rel="noreferrer"
+                  class="text-xs px-2 py-0.5 border border-ctp-surface1
+                         bg-ctp-surface0/40 text-[var(--color-accent)]
+                         hover:bg-[var(--color-accent)] hover:text-ctp-base
+                         transition-colors shrink-0"
+                  title={`Published ${formatReleaseDate(flagship.latestRelease.publishedAt)}`}
+                >
+                  {flagship.latestRelease.tagName}
+                </a>
+              )}
+            </div>
+
+            <p class="text-xs text-ctp-subtext0 leading-relaxed">
+              {flagship.desc}
+            </p>
+
+            <div
+              class="pt-2 border-t border-ctp-surface0/30 flex items-center
+                     justify-between gap-3 text-xs text-ctp-subtext0 flex-wrap"
+            >
+              <div class="flex items-center gap-3">
+                <span class="inline-flex items-center gap-1.5">
+                  <span
+                    class="w-2 h-2 rounded-full shrink-0"
+                    style={`background-color: ${flagship.languageColor || '#dea584'};`}
+                  ></span>
+                  <span>{flagship.language}</span>
+                </span>
+                <span>{flagship.commits} commits</span>
+                {flagship.releases !== undefined && (
+                  <span>{flagship.releases} releases</span>
+                )}
+              </div>
+
+              {flagship.stars !== undefined && flagship.stars > 0 && (
+                <span class="text-ctp-subtext1">★ {flagship.stars}</span>
+              )}
+            </div>
+          </div>
+        </article>
+      )}
+
+      {secondary.length > 0 && (
+        <div class="border border-ctp-surface0/60 divide-y divide-ctp-surface0/40">
+          {secondary.map((project) => (
+            <article
+              class="group p-3 flex flex-col sm:flex-row sm:items-center
+                     justify-between gap-2.5 bg-ctp-surface0/10
+                     hover:bg-ctp-surface0/25 transition-colors"
+            >
+              <div class="min-w-0 flex-1 space-y-0.5">
+                <div class="flex items-center gap-2 flex-wrap">
+                  <a
+                    href={project.url}
+                    target="_blank"
+                    rel="noreferrer"
+                    class="font-serif text-sm font-medium text-ctp-text
+                           group-hover:text-[var(--color-accent)]
+                           transition-colors inline-flex items-center gap-1"
+                  >
+                    <span>{project.name}</span>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="12"
+                      height="12"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      class="w-3 h-3 text-ctp-subtext0
+                             group-hover:text-[var(--color-accent)]
+                             group-hover:translate-x-0.5 group-hover:-translate-y-0.5
+                             transition-transform"
+                    >
+                      <line x1="7" y1="17" x2="17" y2="7"></line>
+                      <polyline points="7 7 17 7 17 17"></polyline>
+                    </svg>
+                  </a>
+
+                  {project.latestRelease && (
+                    <a
+                      href={project.latestRelease.url}
+                      target="_blank"
+                      rel="noreferrer"
+                      class="text-[10px] px-1.5 py-0.2 border border-ctp-surface1
+                             text-ctp-subtext1 hover:text-[var(--color-accent)]
+                             transition-colors"
+                    >
+                      {project.latestRelease.tagName}
+                    </a>
+                  )}
+                </div>
+
+                <p class="text-xs text-ctp-subtext0 truncate">
+                  {project.desc}
+                </p>
+              </div>
+
+              <div
+                class="flex items-center gap-3 shrink-0 text-xs
+                       text-ctp-subtext0 self-end sm:self-auto"
+              >
+                <span class="inline-flex items-center gap-1.5">
+                  <span
+                    class="w-2 h-2 rounded-full shrink-0"
+                    style={`background-color: ${project.languageColor || '#dea584'};`}
+                  ></span>
+                  <span>{project.language}</span>
+                </span>
+                <span>{project.commits} commits</span>
+              </div>
+            </article>
+          ))}
+        </div>
+      )}
+    </div>
+  </section>
+)}

@@ -1,9 +1,15 @@
-import ghData from '../assets/gh-data.json';
+import ghProjects from '../assets/gh-projects.json';
 
 export interface ProjectLanguageStat {
   name: string;
   color: string | null;
   bytes: number;
+}
+
+export interface ProjectRelease {
+  tagName: string;
+  publishedAt: string | null;
+  url: string;
 }
 
 export interface Project {
@@ -18,6 +24,8 @@ export interface Project {
   languages?: ProjectLanguageStat[];
   commits?: number;
   releases?: number;
+  latestRelease?: ProjectRelease | null;
+  bannerUrl?: string | null;
   pullRequests?: number;
   issues?: number;
   contributions?: number;
@@ -72,8 +80,8 @@ const fallbackProjects: Project[] = [
 ];
 
 export const projects: Project[] =
-  ghData && Array.isArray(ghData.projects) && ghData.projects.length > 0
-    ? (ghData.projects as Project[])
+  ghProjects && Array.isArray(ghProjects.projects) && ghProjects.projects.length > 0
+    ? (ghProjects.projects as Project[])
     : fallbackProjects;
 
 export interface TeamMember {

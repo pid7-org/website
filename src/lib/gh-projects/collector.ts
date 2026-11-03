@@ -42,8 +42,13 @@ const GET_ORG_PROJECTS_QUERY = `
               }
             }
           }
-          releases {
+          releases(first: 1, orderBy: { field: CREATED_AT, direction: DESC }) {
             totalCount
+            nodes {
+              tagName
+              publishedAt
+              url
+            }
           }
           pullRequests {
             totalCount
@@ -93,6 +98,11 @@ interface RawRepositoryNode {
   } | null;
   releases?: {
     totalCount: number;
+    nodes?: Array<{
+      tagName: string;
+      publishedAt: string | null;
+      url: string;
+    }>;
   } | null;
   pullRequests?: {
     totalCount: number;
@@ -153,6 +163,14 @@ export async function collectOrgProjects(
 
     const commits = repo.defaultBranchRef?.target?.history?.totalCount || 0;
     const releases = repo.releases?.totalCount || 0;
+    const latestReleaseNode = repo.releases?.nodes?.[0];
+    const latestRelease = latestReleaseNode
+      ? {
+          tagName: latestReleaseNode.tagName,
+          publishedAt: latestReleaseNode.publishedAt,
+          url: latestReleaseNode.url,
+        }
+      : null;
     const pullRequests = repo.pullRequests?.totalCount || 0;
     const issues = repo.issues?.totalCount || 0;
     const contributions = commits + releases + pullRequests + issues;
@@ -175,6 +193,7 @@ export async function collectOrgProjects(
       languages,
       commits,
       releases,
+      latestRelease,
       pullRequests,
       issues,
       contributions,
