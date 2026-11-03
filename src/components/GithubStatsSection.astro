@@ -108,19 +108,21 @@ const xTicks = plotPoints.filter((_, idx) => idx % xTickStep === 0 || idx === pl
     <!-- Box 1: Engineering Cadence Ledger Table -->
     <div
       style="grid-area: cadence;"
-      class="border border-ctp-surface1/70 bg-ctp-surface0/30 hover:border-[var(--color-accent)] transition-colors duration-200 p-4 sm:p-5 flex flex-col justify-between"
+      class="border-l border-ctp-surface1 hover:border-[var(--color-accent)] transition-colors
+        duration-200 pl-3.5 sm:pl-4 py-1 flex flex-col justify-between"
     >
-      <div class="border-b border-ctp-surface1/50 bg-ctp-surface0/40 px-3.5 py-1.5 -mx-4 -mt-4 mb-3.5 sm:-mx-5 sm:-mt-5 sm:mb-4 flex items-center justify-between text-[11px] select-none">
-        <span class="text-ctp-subtext0 flex items-center gap-1.5">
-          <span class="text-[var(--color-accent)] font-bold">&gt;</span>
-          <span>cadence</span>
+      <div class="space-y-0.5 mb-3">
+        <div class="flex items-center justify-between">
+          <span class="text-xs font-semibold text-ctp-text uppercase tracking-wide">
+            Operations
+          </span>
+          <span class="text-[10px] text-ctp-subtext0/70 uppercase tracking-wider">
+            Since Jan 2025
+          </span>
+        </div>
+        <span class="text-[10px] text-ctp-subtext0 uppercase tracking-wider block">
+          Aggregate cadence
         </span>
-        <span class="text-ctp-subtext0/70 text-[10px]">SINCE JAN 2025</span>
-      </div>
-
-      <div class="space-y-1 mb-3">
-        <span class="text-xs font-semibold text-ctp-text uppercase tracking-wide block">Operations</span>
-        <span class="text-[10px] text-ctp-subtext0 uppercase tracking-wider block">Aggregate cadence</span>
       </div>
 
       <table class="w-full text-xs font-mono select-none">
@@ -160,19 +162,21 @@ const xTicks = plotPoints.filter((_, idx) => idx % xTickStep === 0 || idx === pl
     <!-- Box 2: Total Codebase Volume & LOC -->
     <div
       style="grid-area: loc;"
-      class="border border-ctp-surface1/70 bg-ctp-surface0/30 hover:border-[var(--color-accent)] transition-colors duration-200 p-4 sm:p-5 flex flex-col justify-between"
+      class="border-l border-ctp-surface1 hover:border-[var(--color-accent)] transition-colors
+        duration-200 pl-3.5 sm:pl-4 py-1 flex flex-col justify-between"
     >
-      <div class="border-b border-ctp-surface1/50 bg-ctp-surface0/40 px-3.5 py-1.5 -mx-4 -mt-4 mb-3.5 sm:-mx-5 sm:-mt-5 sm:mb-4 flex items-center justify-between text-[11px] select-none">
-        <span class="text-ctp-subtext0 flex items-center gap-1.5">
-          <span class="text-[var(--color-accent)] font-bold">&gt;</span>
-          <span>volume</span>
+      <div class="space-y-0.5 mb-2">
+        <div class="flex items-center justify-between">
+          <span class="text-xs font-semibold text-ctp-text uppercase tracking-wide">
+            Lines of Code
+          </span>
+          <span class="text-[10px] text-ctp-subtext0/70 uppercase tracking-wider">
+            Net Codebase
+          </span>
+        </div>
+        <span class="text-[10px] text-ctp-subtext0 uppercase tracking-wider block">
+          Net written since Jan 2025
         </span>
-        <span class="text-ctp-subtext0/70 text-[10px]">NET CODEBASE</span>
-      </div>
-
-      <div class="space-y-1 mb-2">
-        <span class="text-xs font-semibold text-ctp-text uppercase tracking-wide block">Lines of Code</span>
-        <span class="text-[10px] text-ctp-subtext0 uppercase tracking-wider block">Net written since Jan 2025</span>
       </div>
 
       <div class="flex items-baseline gap-1 my-2">
@@ -215,19 +219,21 @@ const xTicks = plotPoints.filter((_, idx) => idx % xTickStep === 0 || idx === pl
     <!-- Box 3: Repositories & Scope -->
     <div
       style="grid-area: scope;"
-      class="border border-ctp-surface1/70 bg-ctp-surface0/30 hover:border-[var(--color-accent)] transition-colors duration-200 p-4 sm:p-5 flex flex-col justify-between"
+      class="border-l border-ctp-surface1 hover:border-[var(--color-accent)] transition-colors
+        duration-200 pl-3.5 sm:pl-4 py-1 flex flex-col justify-between"
     >
-      <div class="border-b border-ctp-surface1/50 bg-ctp-surface0/40 px-3.5 py-1.5 -mx-4 -mt-4 mb-3.5 sm:-mx-5 sm:-mt-5 sm:mb-4 flex items-center justify-between text-[11px] select-none">
-        <span class="text-ctp-subtext0 flex items-center gap-1.5">
-          <span class="text-[var(--color-accent)] font-bold">&gt;</span>
-          <span>scope</span>
+      <div class="space-y-0.5">
+        <div class="flex items-center justify-between">
+          <span class="text-xs font-semibold text-ctp-text uppercase tracking-wide">
+            Ecosystem
+          </span>
+          <span class="text-[10px] text-ctp-subtext0/70 uppercase tracking-wider">
+            Open Source
+          </span>
+        </div>
+        <span class="text-[10px] text-ctp-subtext0 uppercase tracking-wider block">
+          Repositories on GitHub
         </span>
-        <span class="text-ctp-subtext0/70 text-[10px]">OPEN SOURCE</span>
-      </div>
-
-      <div class="space-y-1">
-        <span class="text-xs font-semibold text-ctp-text uppercase tracking-wide block">Ecosystem</span>
-        <span class="text-[10px] text-ctp-subtext0 uppercase tracking-wider block">Repositories on GitHub</span>
       </div>
 
       <div class="flex items-baseline gap-2 my-2">
@@ -246,21 +252,23 @@ const xTicks = plotPoints.filter((_, idx) => idx % xTickStep === 0 || idx === pl
     <!-- Box 4: Code Churn & Monthly Velocity (Tall Card spanning rows 1-3) -->
     <div
       style="grid-area: bench;"
-      class="border border-ctp-surface1/70 bg-ctp-surface0/30 hover:border-[var(--color-accent)] transition-colors duration-200 p-4 sm:p-5 flex flex-col justify-between"
+      class="border-l border-ctp-surface1 hover:border-[var(--color-accent)] transition-colors
+        duration-200 pl-3.5 sm:pl-4 py-1 flex flex-col justify-between"
     >
-      <div class="border-b border-ctp-surface1/50 bg-ctp-surface0/40 px-3.5 py-1.5 -mx-4 -mt-4 mb-3.5 sm:-mx-5 sm:-mt-5 sm:mb-4 flex items-center justify-between text-[11px] select-none">
-        <span class="text-ctp-subtext0 flex items-center gap-1.5">
-          <span class="text-[var(--color-accent)] font-bold">&gt;</span>
-          <span>churn &amp; velocity</span>
-        </span>
-        <span class="text-ctp-subtext0/70 text-[10px]">TOP CODEBASES</span>
-      </div>
-
       <!-- Top Section: Top 5 Repositories with Additions vs Deletions Stacked Churn Bars -->
       <div class="space-y-3 mb-6">
-        <div>
-          <span class="text-xs font-semibold text-ctp-text uppercase tracking-wide block">Repository Churn</span>
-          <span class="text-[10px] text-ctp-subtext0 uppercase tracking-wider block">Additions vs. Deletions (Top 5)</span>
+        <div class="flex items-center justify-between">
+          <div>
+            <span class="text-xs font-semibold text-ctp-text uppercase tracking-wide block">
+              Repository Churn
+            </span>
+            <span class="text-[10px] text-ctp-subtext0 uppercase tracking-wider block">
+              Additions vs. Deletions (Top 5)
+            </span>
+          </div>
+          <span class="text-[10px] text-ctp-subtext0/70 uppercase tracking-wider">
+            Top Codebases
+          </span>
         </div>
 
         <div class="space-y-2.5 pt-1">
@@ -360,21 +368,23 @@ const xTicks = plotPoints.filter((_, idx) => idx % xTickStep === 0 || idx === pl
     <!-- Box 5: Cumulative Commits Growth Coordinate Graph (Full Width) -->
     <div
       style="grid-area: growth;"
-      class="border border-ctp-surface1/70 bg-ctp-surface0/30 hover:border-[var(--color-accent)] transition-colors duration-200 p-4 sm:p-5 flex flex-col justify-between"
+      class="border-l border-ctp-surface1 hover:border-[var(--color-accent)] transition-colors
+        duration-200 pl-3.5 sm:pl-4 py-1 flex flex-col justify-between"
     >
-      <div class="border-b border-ctp-surface1/50 bg-ctp-surface0/40 px-3.5 py-1.5 -mx-4 -mt-4 mb-3.5 sm:-mx-5 sm:-mt-5 sm:mb-4 flex items-center justify-between text-[11px] select-none">
-        <span class="text-ctp-subtext0 flex items-center gap-1.5">
-          <span class="text-[var(--color-accent)] font-bold">&gt;</span>
-          <span>trajectory</span>
-        </span>
-        <span class="text-ctp-subtext0/70 text-[10px]">JAN 2025 → PRESENT</span>
-      </div>
-
       <!-- Graph Header (No Tabs) -->
       <div class="flex flex-col sm:flex-row sm:items-baseline justify-between gap-2 mb-4">
         <div>
-          <span class="text-[10px] text-ctp-subtext0 font-mono uppercase tracking-wider block">Figure 1 · Cumulative Velocity</span>
-          <h3 class="text-sm sm:text-base font-semibold text-ctp-text">Total Commits Growth Over Time</h3>
+          <div class="flex items-center gap-2">
+            <span class="text-[10px] text-ctp-subtext0 font-mono uppercase tracking-wider">
+              Figure 1 · Cumulative Velocity
+            </span>
+            <span class="text-[10px] text-ctp-subtext0/70 uppercase">
+              Jan 2025 → Present
+            </span>
+          </div>
+          <h3 class="text-sm sm:text-base font-semibold text-ctp-text">
+            Total Commits Growth Over Time
+          </h3>
         </div>
         <div class="flex items-center gap-4 text-xs font-mono select-none">
           <span class="text-ctp-subtext0">
@@ -522,7 +532,7 @@ const xTicks = plotPoints.filter((_, idx) => idx % xTickStep === 0 || idx === pl
       "scope"
       "bench"
       "growth";
-    gap: 0.75rem;
+    gap: 1.5rem;
   }
 
   @media (min-width: 768px) {
@@ -533,7 +543,7 @@ const xTicks = plotPoints.filter((_, idx) => idx % xTickStep === 0 || idx === pl
         "loc bench"
         "scope bench"
         "growth growth";
-      gap: 0.875rem;
+      gap: 1.75rem 2rem;
     }
   }
 </style>
