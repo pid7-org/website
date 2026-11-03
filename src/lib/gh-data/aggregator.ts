@@ -119,22 +119,22 @@ export function buildCumulativeCommits(
   const points: CumulativeCommitPoint[] = [];
   let runningCommits = 0;
   let intervalDelta = 0;
-  let daysInInterval = 0;
+  let lastMarkDate = new Date(`${sortedDates[0]}T00:00:00Z`);
 
   for (let i = 0; i < sortedDates.length; i++) {
     const d = sortedDates[i];
     const bucket = activity[d];
     runningCommits += bucket.commits;
     intervalDelta += bucket.commits;
-    daysInInterval++;
 
+    const curDate = new Date(`${d}T00:00:00Z`);
+    const daySpan = Math.round((curDate.getTime() - lastMarkDate.getTime()) / (24 * 60 * 60 * 1000));
     const isLast = i === sortedDates.length - 1;
-    const isIntervalMark = daysInInterval >= intervalDays;
+    const isIntervalMark = daySpan >= intervalDays;
 
     if (isIntervalMark || isLast) {
-      const dateObj = new Date(`${d}T00:00:00Z`);
-      const mIdx = dateObj.getUTCMonth();
-      const shortYear = dateObj.getUTCFullYear().toString().slice(2);
+      const mIdx = curDate.getUTCMonth();
+      const shortYear = curDate.getUTCFullYear().toString().slice(2);
       const label = `${MONTH_NAMES[mIdx]} '${shortYear}`;
 
       points.push({
@@ -144,7 +144,7 @@ export function buildCumulativeCommits(
         interval_delta: intervalDelta,
       });
 
-      daysInInterval = 0;
+      lastMarkDate = curDate;
       intervalDelta = 0;
     }
   }
