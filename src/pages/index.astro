@@ -1,5 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import GithubStatsSection from '../components/GithubStatsSection.astro';
 import GithubActivityGraph from '../components/GithubActivityGraph.astro';
 import { formatBlogDate, getAllBlogPosts } from '../lib/blog';
 import { projects, team } from '../lib/projects';
@@ -27,6 +28,8 @@ const posts = await getAllBlogPosts();
 			</div>
 		</div>
 	</section>
+
+	<GithubStatsSection />
 
 	{/*
 	<section id="section-building">

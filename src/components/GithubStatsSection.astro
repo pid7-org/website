@@ -1,0 +1,611 @@
+---
+import ghData from '../assets/gh-data.json';
+
+const cadence = ghData.cadence || {
+  total_commits: 0,
+  total_prs: 0,
+  total_releases: 0,
+  monthly_avg_commits: 0,
+  merge_rate_pct: 100,
+};
+
+const topRepos = ghData.top_repos || [];
+const monthlyLoc = ghData.monthly_loc || [];
+const cumulativePoints = ghData.cumulative_commits || [];
+const totalNetLoc = ghData.total_net_loc || 0;
+const reposCount = ghData.repos_count || 11;
+
+// 33-week equalizer matrix calculation for Box 2
+const sortedDates = Object.keys(ghData.activity || {}).sort();
+const recentDates = sortedDates.slice(-(33 * 7));
+const matrixWeeks: Array<{ total: number; level: number }> = [];
+
+for (let w = 0; w < 33; w++) {
+  const weekSlice = recentDates.slice(w * 7, (w + 1) * 7);
+  let total = 0;
+  for (const d of weekSlice) {
+    if (ghData.activity[d]) {
+      total += ghData.activity[d].commits;
+    }
+  }
+
+  let level = 0;
+  if (total >= 28) level = 8;
+  else if (total >= 22) level = 7;
+  else if (total >= 17) level = 6;
+  else if (total >= 12) level = 5;
+  else if (total >= 8) level = 4;
+  else if (total >= 5) level = 3;
+  else if (total >= 2) level = 2;
+  else if (total >= 1) level = 1;
+
+  matrixWeeks.push({ total, level });
+}
+
+// Max value for monthly LOC bar chart
+const maxMonthly = Math.max(...monthlyLoc.map((m) => m.additions), 1);
+
+// Coordinate calculations for full-width plotted curve
+const svgWidth = 760;
+const svgHeight = 220;
+const pad = { top: 25, right: 25, bottom: 35, left: 55 };
+const plotW = svgWidth - pad.left - pad.right;
+const plotH = svgHeight - pad.top - pad.bottom;
+
+const maxCommits = Math.max(...cumulativePoints.map((p) => p.cumulative), 1);
+
+// Y-axis tick milestones
+const yTicks = [
+  0,
+  Math.round(maxCommits * 0.25),
+  Math.round(maxCommits * 0.5),
+  Math.round(maxCommits * 0.75),
+  maxCommits,
+];
+
+const plotPoints = cumulativePoints.map((p, idx) => {
+  const x = pad.left + (idx / Math.max(1, cumulativePoints.length - 1)) * plotW;
+  const y = pad.top + plotH - (p.cumulative / maxCommits) * plotH;
+  return {
+    x: Number(x.toFixed(1)),
+    y: Number(y.toFixed(1)),
+    ...p,
+  };
+});
+
+const polylineStr = plotPoints.map((pt) => `${pt.x},${pt.y}`).join(' ');
+const baselineY = pad.top + plotH;
+const areaPathD = plotPoints.length > 0
+  ? `M ${plotPoints[0].x},${baselineY} ` +
+    plotPoints.map((pt) => `L ${pt.x},${pt.y}`).join(' ') +
+    ` L ${plotPoints[plotPoints.length - 1].x},${baselineY} Z`
+  : '';
+
+// X-axis display ticks (every ~8th point or key milestones)
+const xTickStep = Math.max(1, Math.floor(plotPoints.length / 6));
+const xTicks = plotPoints.filter((_, idx) => idx % xTickStep === 0 || idx === plotPoints.length - 1);
+---
+
+<section id="section-metrics" class="w-full my-10 font-mono">
+  <!-- Section Eyebrow & Lead -->
+  <div class="mb-5 flex flex-col gap-1.5">
+    <div class="flex items-center gap-2">
+      <span class="relative flex h-2 w-2">
+        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-[var(--color-accent)] opacity-75"></span>
+        <span class="relative inline-flex rounded-full h-2 w-2 bg-[var(--color-accent)]"></span>
+      </span>
+      <h2 class="text-xs uppercase tracking-widest text-ctp-subtext0 font-semibold select-none">
+        IN PRODUCTION // CODEBASE METRICS
+      </h2>
+    </div>
+    <p class="font-serif text-sm sm:text-base text-ctp-subtext1 leading-relaxed">
+      Continuous engineering throughput, code churn, and delivery velocity across the organization.
+    </p>
+  </div>
+
+  <!-- Bento Grid Container -->
+  <div class="proof-grid">
+    <!-- Box 1: Engineering Cadence Ledger Table -->
+    <div
+      style="grid-area: cadence;"
+      class="border border-ctp-surface1/70 bg-ctp-surface0/30 hover:border-[var(--color-accent)] transition-colors duration-200 p-4 sm:p-5 flex flex-col justify-between"
+    >
+      <div class="border-b border-ctp-surface1/50 bg-ctp-surface0/40 px-3.5 py-1.5 -mx-4 -mt-4 mb-3.5 sm:-mx-5 sm:-mt-5 sm:mb-4 flex items-center justify-between text-[11px] select-none">
+        <span class="text-ctp-subtext0 flex items-center gap-1.5">
+          <span class="text-[var(--color-accent)] font-bold">&gt;</span>
+          <span>cadence</span>
+        </span>
+        <span class="text-ctp-subtext0/70 text-[10px]">SINCE JAN 2025</span>
+      </div>
+
+      <div class="space-y-1 mb-3">
+        <span class="text-xs font-semibold text-ctp-text uppercase tracking-wide block">Operations</span>
+        <span class="text-[10px] text-ctp-subtext0 uppercase tracking-wider block">Aggregate cadence</span>
+      </div>
+
+      <table class="w-full text-xs font-mono select-none">
+        <thead>
+          <tr class="text-[10px] text-ctp-subtext0 uppercase border-b border-ctp-surface1/40">
+            <th class="text-left font-normal pb-1.5">Metric</th>
+            <th class="text-right font-normal pb-1.5">Total</th>
+            <th class="text-right font-normal pb-1.5">Cadence</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-ctp-surface1/30">
+          <tr>
+            <td class="py-2 text-ctp-subtext1">Commits</td>
+            <td class="py-2 text-right font-semibold text-ctp-text">
+              {cadence.total_commits.toLocaleString()}<i class="text-[10px] text-ctp-subtext0 font-normal not-italic ml-0.5">c</i>
+            </td>
+            <td class="py-2 text-right text-ctp-subtext0">~{cadence.monthly_avg_commits}/mo</td>
+          </tr>
+          <tr>
+            <td class="py-2 text-ctp-subtext1">Pull Requests</td>
+            <td class="py-2 text-right font-semibold text-ctp-text">
+              {cadence.total_prs.toLocaleString()}<i class="text-[10px] text-ctp-subtext0 font-normal not-italic ml-0.5">pr</i>
+            </td>
+            <td class="py-2 text-right text-ctp-subtext0">{cadence.merge_rate_pct}% merged</td>
+          </tr>
+          <tr>
+            <td class="py-2 text-ctp-subtext1">Releases</td>
+            <td class="py-2 text-right font-semibold text-ctp-text">
+              {cadence.total_releases.toLocaleString()}<i class="text-[10px] text-ctp-subtext0 font-normal not-italic ml-0.5">rel</i>
+            </td>
+            <td class="py-2 text-right text-ctp-subtext0">semver</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Box 2: Total Codebase Volume & LOC -->
+    <div
+      style="grid-area: loc;"
+      class="border border-ctp-surface1/70 bg-ctp-surface0/30 hover:border-[var(--color-accent)] transition-colors duration-200 p-4 sm:p-5 flex flex-col justify-between"
+    >
+      <div class="border-b border-ctp-surface1/50 bg-ctp-surface0/40 px-3.5 py-1.5 -mx-4 -mt-4 mb-3.5 sm:-mx-5 sm:-mt-5 sm:mb-4 flex items-center justify-between text-[11px] select-none">
+        <span class="text-ctp-subtext0 flex items-center gap-1.5">
+          <span class="text-[var(--color-accent)] font-bold">&gt;</span>
+          <span>volume</span>
+        </span>
+        <span class="text-ctp-subtext0/70 text-[10px]">NET CODEBASE</span>
+      </div>
+
+      <div class="space-y-1 mb-2">
+        <span class="text-xs font-semibold text-ctp-text uppercase tracking-wide block">Lines of Code</span>
+        <span class="text-[10px] text-ctp-subtext0 uppercase tracking-wider block">Net written since Jan 2025</span>
+      </div>
+
+      <div class="flex items-baseline gap-1 my-2">
+        <span class="text-3xl sm:text-4xl font-bold font-mono text-ctp-text tracking-tight">
+          +{Math.round(totalNetLoc / 1000)}k
+        </span>
+        <span class="text-xs text-[var(--color-accent)] font-mono font-medium">LOC</span>
+      </div>
+
+      <!-- 33-week equalizer matrix stream (Supermemory style) -->
+      <div class="mt-3 pt-2 border-t border-ctp-surface1/30">
+        <div class="flex items-center justify-between text-[10px] text-ctp-subtext0 uppercase mb-1.5">
+          <span>Weekly Density</span>
+          <span>Past 33 Weeks</span>
+        </div>
+        <svg class="w-full h-8 overflow-visible" viewBox="0 0 231 56" preserveAspectRatio="none" aria-hidden="true">
+          {matrixWeeks.map((wk, colIdx) => {
+            const x = colIdx * 7;
+            return Array.from({ length: 8 }).map((_, rowIdx) => {
+              const y = 49 - rowIdx * 7;
+              const isOn = rowIdx < wk.level;
+              const opacity = isOn ? (0.35 + (rowIdx / 7) * 0.65).toFixed(2) : '0.12';
+              return (
+                <rect
+                  x={x}
+                  y={y}
+                  width="5.5"
+                  height="5.5"
+                  rx="1"
+                  fill={isOn ? 'var(--color-accent)' : 'var(--color-ctp-surface1)'}
+                  opacity={opacity}
+                />
+              );
+            });
+          })}
+        </svg>
+      </div>
+    </div>
+
+    <!-- Box 3: Repositories & Scope -->
+    <div
+      style="grid-area: scope;"
+      class="border border-ctp-surface1/70 bg-ctp-surface0/30 hover:border-[var(--color-accent)] transition-colors duration-200 p-4 sm:p-5 flex flex-col justify-between"
+    >
+      <div class="border-b border-ctp-surface1/50 bg-ctp-surface0/40 px-3.5 py-1.5 -mx-4 -mt-4 mb-3.5 sm:-mx-5 sm:-mt-5 sm:mb-4 flex items-center justify-between text-[11px] select-none">
+        <span class="text-ctp-subtext0 flex items-center gap-1.5">
+          <span class="text-[var(--color-accent)] font-bold">&gt;</span>
+          <span>scope</span>
+        </span>
+        <span class="text-ctp-subtext0/70 text-[10px]">OPEN SOURCE</span>
+      </div>
+
+      <div class="space-y-1">
+        <span class="text-xs font-semibold text-ctp-text uppercase tracking-wide block">Ecosystem</span>
+        <span class="text-[10px] text-ctp-subtext0 uppercase tracking-wider block">Repositories on GitHub</span>
+      </div>
+
+      <div class="flex items-baseline gap-2 my-2">
+        <span class="text-3xl sm:text-4xl font-bold font-mono text-ctp-text tracking-tight">
+          {reposCount}
+        </span>
+        <span class="text-xs text-[var(--color-accent)] font-mono font-medium">public repos</span>
+      </div>
+
+      <div class="text-[11px] text-ctp-subtext0 flex items-center gap-2 pt-2 border-t border-ctp-surface1/30">
+        <span class="inline-block w-1.5 h-1.5 rounded-full bg-ctp-green"></span>
+        <span>100% Public · MIT / Apache</span>
+      </div>
+    </div>
+
+    <!-- Box 4: Code Churn & Monthly Velocity (Tall Card spanning rows 1-3) -->
+    <div
+      style="grid-area: bench;"
+      class="border border-ctp-surface1/70 bg-ctp-surface0/30 hover:border-[var(--color-accent)] transition-colors duration-200 p-4 sm:p-5 flex flex-col justify-between"
+    >
+      <div class="border-b border-ctp-surface1/50 bg-ctp-surface0/40 px-3.5 py-1.5 -mx-4 -mt-4 mb-3.5 sm:-mx-5 sm:-mt-5 sm:mb-4 flex items-center justify-between text-[11px] select-none">
+        <span class="text-ctp-subtext0 flex items-center gap-1.5">
+          <span class="text-[var(--color-accent)] font-bold">&gt;</span>
+          <span>churn &amp; velocity</span>
+        </span>
+        <span class="text-ctp-subtext0/70 text-[10px]">TOP CODEBASES</span>
+      </div>
+
+      <!-- Top Section: Top 5 Repositories with Additions vs Deletions Stacked Churn Bars -->
+      <div class="space-y-3 mb-6">
+        <div>
+          <span class="text-xs font-semibold text-ctp-text uppercase tracking-wide block">Repository Churn</span>
+          <span class="text-[10px] text-ctp-subtext0 uppercase tracking-wider block">Additions vs. Deletions (Top 5)</span>
+        </div>
+
+        <div class="space-y-2.5 pt-1">
+          {topRepos.map((repo) => {
+            const totalChurn = repo.additions + repo.deletions;
+            const addPct = totalChurn > 0 ? (repo.additions / totalChurn) * 100 : 80;
+            const delPct = 100 - addPct;
+
+            return (
+              <div class="space-y-1">
+                <div class="flex items-center justify-between text-xs select-none">
+                  <a
+                    href={repo.url}
+                    target="_blank"
+                    rel="noreferrer"
+                    class="font-medium text-ctp-text hover:text-[var(--color-accent)] transition-colors"
+                  >
+                    {repo.name}
+                  </a>
+                  <span class="text-[10px] text-ctp-subtext0 font-mono">
+                    {repo.commits} commits · <span class="text-ctp-green font-medium">+{Math.round(repo.net_loc / 1000)}k</span>
+                  </span>
+                </div>
+
+                <!-- Vertically segmented / stacked churn bar -->
+                <div class="h-2 w-full rounded-full overflow-hidden flex bg-ctp-surface1/40 gap-[1px]" title={`+${repo.additions.toLocaleString()} / -${repo.deletions.toLocaleString()}`}>
+                  <div
+                    style={`width: ${addPct.toFixed(1)}%;`}
+                    class="h-full bg-ctp-green transition-all"
+                  />
+                  <div
+                    style={`width: ${delPct.toFixed(1)}%;`}
+                    class="h-full bg-ctp-red/70 transition-all"
+                  />
+                </div>
+              </div>
+            );
+          })}
+        </div>
+
+        <div class="flex items-center gap-4 text-[10px] text-ctp-subtext0 select-none pt-1">
+          <span class="flex items-center gap-1.5">
+            <span class="w-2 h-2 rounded-full bg-ctp-green shrink-0"></span>
+            <span>Additions</span>
+          </span>
+          <span class="flex items-center gap-1.5">
+            <span class="w-2 h-2 rounded-full bg-ctp-red/70 shrink-0"></span>
+            <span>Deletions</span>
+          </span>
+        </div>
+      </div>
+
+      <!-- Divider -->
+      <div class="border-t border-ctp-surface1/50 my-2"></div>
+
+      <!-- Bottom Section: Monthly LOC Added Vertical Bar Graph -->
+      <div class="space-y-3 pt-2">
+        <div>
+          <span class="text-xs font-semibold text-ctp-text uppercase tracking-wide block">Monthly LOC Velocity</span>
+          <span class="text-[10px] text-ctp-subtext0 uppercase tracking-wider block">Lines of code added per month</span>
+        </div>
+
+        <div class="flex items-end justify-between gap-2 h-28 pt-4 pb-1 select-none">
+          {monthlyLoc.map((m, idx) => {
+            const heightPct = Math.max(12, Math.round((m.additions / maxMonthly) * 100));
+            const isCurrent = idx === monthlyLoc.length - 1;
+
+            return (
+              <div class="flex-1 flex flex-col items-center justify-end h-full group relative">
+                <!-- Numeric reading above bar -->
+                <span class="text-[10px] font-mono text-ctp-subtext0 group-hover:text-ctp-text transition-colors mb-1">
+                  {(m.additions / 1000).toFixed(0)}k
+                </span>
+
+                <!-- Bar -->
+                <div
+                  style={`height: ${heightPct}%;`}
+                  class={`w-full rounded-t transition-all duration-300 ${
+                    isCurrent
+                      ? 'bg-[var(--color-accent)] shadow-[0_0_10px_var(--color-accent)] opacity-100'
+                      : 'bg-ctp-surface2 group-hover:bg-[var(--color-accent)]/80 opacity-70 group-hover:opacity-100'
+                  }`}
+                  title={`${m.label}: +${m.additions.toLocaleString()} LOC`}
+                />
+
+                <!-- Month label -->
+                <span class={`text-[10px] font-mono mt-2 ${isCurrent ? 'text-[var(--color-accent)] font-bold' : 'text-ctp-subtext0'}`}>
+                  {m.label}
+                </span>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    </div>
+
+    <!-- Box 5: Cumulative Commits Growth Coordinate Graph (Full Width) -->
+    <div
+      style="grid-area: growth;"
+      class="border border-ctp-surface1/70 bg-ctp-surface0/30 hover:border-[var(--color-accent)] transition-colors duration-200 p-4 sm:p-5 flex flex-col justify-between"
+    >
+      <div class="border-b border-ctp-surface1/50 bg-ctp-surface0/40 px-3.5 py-1.5 -mx-4 -mt-4 mb-3.5 sm:-mx-5 sm:-mt-5 sm:mb-4 flex items-center justify-between text-[11px] select-none">
+        <span class="text-ctp-subtext0 flex items-center gap-1.5">
+          <span class="text-[var(--color-accent)] font-bold">&gt;</span>
+          <span>trajectory</span>
+        </span>
+        <span class="text-ctp-subtext0/70 text-[10px]">JAN 2025 → PRESENT</span>
+      </div>
+
+      <!-- Graph Header (No Tabs) -->
+      <div class="flex flex-col sm:flex-row sm:items-baseline justify-between gap-2 mb-4">
+        <div>
+          <span class="text-[10px] text-ctp-subtext0 font-mono uppercase tracking-wider block">Figure 1 · Cumulative Velocity</span>
+          <h3 class="text-sm sm:text-base font-semibold text-ctp-text">Total Commits Growth Over Time</h3>
+        </div>
+        <div class="flex items-center gap-4 text-xs font-mono select-none">
+          <span class="text-ctp-subtext0">
+            Total: <span class="text-ctp-text font-bold">{cadence.total_commits.toLocaleString()}</span>
+          </span>
+          <span class="text-ctp-subtext0">
+            Pace: <span class="text-[var(--color-accent)] font-bold">~{cadence.monthly_avg_commits}/mo</span>
+          </span>
+        </div>
+      </div>
+
+      <!-- Plotted SVG Coordinate Curve Container -->
+      <div class="relative w-full overflow-hidden" id="commits-chart-container">
+        <svg
+          class="w-full h-48 sm:h-56 overflow-visible cursor-crosshair select-none"
+          viewBox={`0 0 ${svgWidth} ${svgHeight}`}
+          preserveAspectRatio="none"
+          id="commits-curve-svg"
+        >
+          <defs>
+            <linearGradient id="curveGradient" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="var(--color-accent)" stop-opacity="0.28" />
+              <stop offset="100%" stop-color="var(--color-accent)" stop-opacity="0.0" />
+            </linearGradient>
+          </defs>
+
+          <!-- Y-axis horizontal grid lines and tick labels -->
+          {yTicks.map((val) => {
+            const y = pad.top + plotH - (val / maxCommits) * plotH;
+            return (
+              <g class="text-[10px] font-mono fill-ctp-subtext0/60 select-none">
+                <line
+                  x1={pad.left}
+                  y1={y}
+                  x2={svgWidth - pad.right}
+                  y2={y}
+                  stroke="currentColor"
+                  stroke-dasharray="3 3"
+                  class="text-ctp-surface1/60"
+                  stroke-width="1"
+                />
+                <text x={pad.left - 8} y={y + 3} text-anchor="end">
+                  {val >= 1000 ? `${(val / 1000).toFixed(1)}k` : val}
+                </text>
+              </g>
+            );
+          })}
+
+          <!-- X-axis baseline -->
+          <line
+            x1={pad.left}
+            y1={baselineY}
+            x2={svgWidth - pad.right}
+            y2={baselineY}
+            class="text-ctp-surface1"
+            stroke="currentColor"
+            stroke-width="1"
+          />
+
+          <!-- X-axis milestone ticks -->
+          {xTicks.map((pt) => (
+            <g class="text-[10px] font-mono fill-ctp-subtext0/70 select-none">
+              <line
+                x1={pt.x}
+                y1={baselineY}
+                x2={pt.x}
+                y2={baselineY + 4}
+                class="text-ctp-surface1"
+                stroke="currentColor"
+                stroke-width="1"
+              />
+              <text x={pt.x} y={baselineY + 16} text-anchor="middle">
+                {pt.label}
+              </text>
+            </g>
+          ))}
+
+          <!-- Plotted Area Fill -->
+          {areaPathD && (
+            <path d={areaPathD} fill="url(#curveGradient)" />
+          )}
+
+          <!-- Plotted Polyline Curve -->
+          {polylineStr && (
+            <polyline
+              points={polylineStr}
+              fill="none"
+              stroke="var(--color-accent)"
+              stroke-width="2.2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          )}
+
+          <!-- Interactive Guide Line (Hover) -->
+          <line
+            id="guide-line"
+            x1="0"
+            y1={pad.top}
+            x2="0"
+            y2={baselineY}
+            stroke="var(--color-accent)"
+            stroke-width="1.5"
+            stroke-dasharray="2 2"
+            class="opacity-0 transition-opacity duration-150 pointer-events-none"
+          />
+
+          <!-- Interactive Marker Dot -->
+          <circle
+            id="guide-dot"
+            cx="0"
+            cy="0"
+            r="4"
+            fill="var(--color-accent)"
+            stroke="var(--color-ctp-base)"
+            stroke-width="2"
+            class="opacity-0 transition-opacity duration-150 pointer-events-none"
+          />
+        </svg>
+
+        <!-- Floating Dynamic Tooltip -->
+        <div
+          id="curve-tooltip"
+          class="hidden absolute z-30 pointer-events-none bg-ctp-surface0/95 border border-[var(--color-accent)]/50 shadow-xl px-2.5 py-1.5 rounded text-xs font-mono backdrop-blur-md transition-all duration-75"
+        >
+          <div id="tooltip-date" class="text-[10px] text-ctp-subtext0 font-semibold mb-0.5"></div>
+          <div class="flex items-center gap-1.5 text-ctp-text">
+            <span class="w-1.5 h-1.5 rounded-full bg-[var(--color-accent)]"></span>
+            <span id="tooltip-val" class="font-bold"></span>
+          </div>
+          <div id="tooltip-delta" class="text-[10px] text-ctp-green font-medium"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .proof-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-areas:
+      "cadence"
+      "loc"
+      "scope"
+      "bench"
+      "growth";
+    gap: 0.75rem;
+  }
+
+  @media (min-width: 768px) {
+    .proof-grid {
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1.25fr);
+      grid-template-areas:
+        "cadence bench"
+        "loc bench"
+        "scope bench"
+        "growth growth";
+      gap: 0.875rem;
+    }
+  }
+</style>
+
+<script define:vars={{ plotPoints, pad, svgWidth }}>
+  function initCurveInteractivity() {
+    const container = document.getElementById('commits-chart-container');
+    const svg = document.getElementById('commits-curve-svg');
+    const guideLine = document.getElementById('guide-line');
+    const guideDot = document.getElementById('guide-dot');
+    const tooltip = document.getElementById('curve-tooltip');
+    const tDate = document.getElementById('tooltip-date');
+    const tVal = document.getElementById('tooltip-val');
+    const tDelta = document.getElementById('tooltip-delta');
+
+    if (!container || !svg || !guideLine || !guideDot || !tooltip) return;
+
+    svg.addEventListener('mousemove', (e) => {
+      const rect = svg.getBoundingClientRect();
+      const clientX = e.clientX - rect.left;
+      const scaleX = svgWidth / rect.width;
+      const svgX = clientX * scaleX;
+
+      // Find nearest point
+      let nearest = plotPoints[0];
+      let minDiff = Infinity;
+
+      for (const pt of plotPoints) {
+        const diff = Math.abs(pt.x - svgX);
+        if (diff < minDiff) {
+          minDiff = diff;
+          nearest = pt;
+        }
+      }
+
+      if (!nearest) return;
+
+      guideLine.setAttribute('x1', String(nearest.x));
+      guideLine.setAttribute('x2', String(nearest.x));
+      guideDot.setAttribute('cx', String(nearest.x));
+      guideDot.setAttribute('cy', String(nearest.y));
+
+      guideLine.classList.remove('opacity-0');
+      guideDot.classList.remove('opacity-0');
+
+      // Update tooltip content
+      tDate.textContent = nearest.date;
+      tVal.textContent = `${nearest.cumulative.toLocaleString()} commits`;
+      tDelta.textContent = `+${nearest.interval_delta} in 14-day window`;
+
+      tooltip.classList.remove('hidden');
+
+      // Position tooltip relative to container
+      const tooltipX = (nearest.x / svgWidth) * rect.width;
+      const tooltipY = (nearest.y / 220) * rect.height;
+
+      let leftPos = tooltipX + 12;
+      if (leftPos + 150 > rect.width) {
+        leftPos = tooltipX - 160;
+      }
+
+      tooltip.style.left = `${Math.max(4, leftPos)}px`;
+      tooltip.style.top = `${Math.max(4, tooltipY - 40)}px`;
+    });
+
+    svg.addEventListener('mouseleave', () => {
+      guideLine.classList.add('opacity-0');
+      guideDot.classList.add('opacity-0');
+      tooltip.classList.add('hidden');
+    });
+  }
+
+  initCurveInteractivity();
+  document.addEventListener('astro:after-swap', initCurveInteractivity);
+</script>
