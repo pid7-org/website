@@ -83,10 +83,10 @@ const isBlog = Astro.url.pathname.startsWith('/blog');
 
   <div
     id="eyeline-group"
-    class={`${isBlog ? 'flex' : 'hidden'} items-center justify-center gap-1 sm:gap-2 px-1.5 sm:px-2.5 py-1.5 whitespace-nowrap shrink-0`}
+    class={`${isBlog ? 'flex' : 'hidden'} items-center justify-center gap-1 sm:gap-2 px-1 sm:px-2.5 py-1.5 whitespace-nowrap shrink-0`}
   >
     <div class="flex items-center gap-1">
-      <span class="hidden min-[460px]:inline text-ctp-subtext0 font-medium">eyeline</span>
+      <span class="hidden min-[540px]:inline text-ctp-subtext0 font-medium">eyeline</span>
       <button
         id="eyeline-toggle"
         type="button"
@@ -110,7 +110,7 @@ const isBlog = Astro.url.pathname.startsWith('/blog');
     >
       <span class="text-ctp-subtext0">[o]</span>
       <span class="hidden sm:inline text-ctp-subtext0">opacity</span>
-      <span class="hidden min-[440px]:inline sm:hidden text-ctp-subtext0">op</span>
+      <span class="hidden min-[500px]:inline sm:hidden text-ctp-subtext0">op</span>
       <span id="eyeline-opacity-label" class="text-ctp-text font-medium w-[4ch] inline-block text-left">80%</span>
     </button>
 
@@ -125,7 +125,7 @@ const isBlog = Astro.url.pathname.startsWith('/blog');
     >
       <span class="text-ctp-subtext0">[p]</span>
       <span class="hidden sm:inline text-ctp-subtext0">position at</span>
-      <span class="hidden min-[440px]:inline sm:hidden text-ctp-subtext0">pos</span>
+      <span class="hidden min-[500px]:inline sm:hidden text-ctp-subtext0">pos</span>
       <span id="eyeline-pos-label" class="text-ctp-text font-medium w-[3ch] inline-block text-left">30%</span>
     </button>
   </div>
