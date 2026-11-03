@@ -132,13 +132,16 @@ const jsonLd = type === 'article' ? {
 		<meta name="generator" content={Astro.generator} />
 		<script is:inline>
 			(function() {
-				const theme = (() => {
-					if (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) {
-						return localStorage.getItem('theme');
-					}
-					return 'dark';
-				})();
-				if (theme === 'latte' || theme === 'light') {
+				const storedTheme = typeof localStorage !== 'undefined' ? localStorage.getItem('theme') : null;
+				const theme = storedTheme && ['device', 'dark', 'latte'].includes(storedTheme) ? storedTheme : 'device';
+				if (typeof localStorage !== 'undefined' && !storedTheme) {
+					localStorage.setItem('theme', 'device');
+				}
+				let effective = theme;
+				if (theme === 'device') {
+					effective = window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches ? 'latte' : 'dark';
+				}
+				if (effective === 'latte' || effective === 'light') {
 					document.documentElement.classList.remove('dark', 'macchiato');
 					document.documentElement.classList.add('latte');
 				} else {
@@ -146,7 +149,11 @@ const jsonLd = type === 'article' ? {
 					document.documentElement.classList.add('dark', 'macchiato');
 				}
 
-				const accent = (typeof localStorage !== 'undefined' && localStorage.getItem('accent')) || 'peach';
+				const storedAccent = typeof localStorage !== 'undefined' ? localStorage.getItem('accent') : null;
+				const accent = storedAccent || 'peach';
+				if (typeof localStorage !== 'undefined' && !storedAccent) {
+					localStorage.setItem('accent', 'peach');
+				}
 				document.documentElement.setAttribute('data-accent', accent);
 			})();
 		</script>

@@ -5,6 +5,7 @@ const isBlog = Astro.url.pathname.startsWith('/blog');
 <div
   id="status-bar"
   data-stuck="false"
+  data-blog={isBlog ? 'true' : 'false'}
   class="border border-ctp-surface1 bg-ctp-surface0/20 flex flex-nowrap items-stretch
     divide-x divide-ctp-surface1 text-xs font-mono select-none w-full overflow-hidden"
 >
@@ -25,8 +26,8 @@ const isBlog = Astro.url.pathname.startsWith('/blog');
   >
     <span
       id="ascii-idle-bar"
-      class="font-mono text-xs select-none tracking-wider sm:tracking-widest
-        whitespace-nowrap overflow-hidden inline-block"
+      class={`${isBlog ? 'hidden' : 'inline-block'} font-mono text-xs select-none tracking-wider
+        sm:tracking-widest whitespace-nowrap overflow-hidden`}
       aria-hidden="true"
     ><span class="text-ctp-surface2 opacity-30">···</span><span
       class="text-ctp-overlay0 opacity-45">~~</span><span
@@ -68,7 +69,7 @@ const isBlog = Astro.url.pathname.startsWith('/blog');
       class="w-1.5 h-1.5 rounded-full shrink-0 ring-1 ring-ctp-surface1 transition-colors"
     ></span>
     <span class="text-ctp-subtext0">[a]</span>
-    <span id="accent-label" class="text-ctp-text font-medium">peach</span>
+    <span id="accent-label" class="text-ctp-text font-medium w-[6ch] inline-block text-left">peach</span>
   </button>
 
   <button
@@ -78,31 +79,67 @@ const isBlog = Astro.url.pathname.startsWith('/blog');
       hover:text-ctp-text hover:bg-ctp-surface1/30 transition-colors cursor-pointer
       focus:outline-none whitespace-nowrap shrink-0"
     aria-label="Toggle Theme"
-    title="Toggle light/dark theme (or press 't')"
+    title="Toggle light/dark/device theme (or press 't')"
   >
     <span
       class="text-[11px] text-[var(--color-accent)] font-semibold leading-none select-none"
     >◐</span>
     <span class="text-ctp-subtext0">[t]</span>
-    <span id="theme-label" class="text-ctp-text font-medium">dark</span>
-  </button>
-
-  <button
-    id="eyeline-toggle"
-    type="button"
-    class={`${isBlog ? 'flex' : 'hidden'} items-center justify-center gap-1.5 px-2.5 sm:px-3 py-1.5
-      text-ctp-subtext1 hover:text-ctp-text hover:bg-ctp-surface1/30 transition-colors
-      cursor-pointer focus:outline-none whitespace-nowrap shrink-0`}
-    aria-label="Toggle Eyeline"
-    title="Toggle reading eyeline at 28% (or press 'e')"
-  >
-    <span class="text-ctp-subtext0">[e]</span>
-    <span id="eyeline-label" class="text-ctp-text font-medium">eyeline</span>
+    <span id="theme-label" class="text-ctp-text font-medium w-[6ch] inline-block text-left">device</span>
   </button>
 
   <div
-    class="flex items-center justify-center px-2.5 sm:px-3 py-1.5 text-ctp-subtext0
-      whitespace-nowrap shrink-0"
+    id="eyeline-group"
+    class={`${isBlog ? 'flex' : 'hidden'} items-center justify-center gap-1.5 sm:gap-2.5 px-2 sm:px-2.5 py-1.5 whitespace-nowrap shrink-0`}
+  >
+    <div class="flex items-center gap-1">
+      <span class="hidden min-[460px]:inline text-ctp-subtext0 font-medium">eyeline</span>
+      <button
+        id="eyeline-toggle"
+        type="button"
+        class="flex items-center gap-1 text-ctp-subtext1 hover:text-ctp-text transition-colors cursor-pointer focus:outline-none"
+        aria-label="Toggle Eyeline"
+        title="Toggle reading eyeline (or press 'e')"
+      >
+        <span class="text-ctp-subtext0">[e]</span>
+        <span id="eyeline-label" class="text-ctp-text font-medium w-[3ch] inline-block text-left">on</span>
+      </button>
+    </div>
+
+    <span class="text-ctp-surface2 select-none opacity-60">•</span>
+
+    <button
+      id="eyeline-opacity-toggle"
+      type="button"
+      class="flex items-center gap-1 text-ctp-subtext1 hover:text-ctp-text transition-colors cursor-pointer focus:outline-none"
+      aria-label="Cycle Eyeline Opacity"
+      title="Cycle eyeline opacity (or press 'o')"
+    >
+      <span class="text-ctp-subtext0">[o]</span>
+      <span class="hidden sm:inline text-ctp-subtext0">opacity</span>
+      <span class="sm:hidden text-ctp-subtext0">op</span>
+      <span id="eyeline-opacity-label" class="text-ctp-text font-medium w-[4ch] inline-block text-left">80%</span>
+    </button>
+
+    <span class="text-ctp-surface2 select-none opacity-60">•</span>
+
+    <button
+      id="eyeline-pos-toggle"
+      type="button"
+      class="flex items-center gap-1 text-ctp-subtext1 hover:text-ctp-text transition-colors cursor-pointer focus:outline-none"
+      aria-label="Cycle Eyeline Position"
+      title="Cycle eyeline position (or press 'p')"
+    >
+      <span class="text-ctp-subtext0">[p]</span>
+      <span class="hidden sm:inline text-ctp-subtext0">position at</span>
+      <span class="sm:hidden text-ctp-subtext0">pos</span>
+      <span id="eyeline-pos-label" class="text-ctp-text font-medium w-[3ch] inline-block text-left">30%</span>
+    </button>
+  </div>
+
+  <div
+    class={`${isBlog ? 'hidden' : 'flex'} items-center justify-center px-2.5 sm:px-3 py-1.5
+      text-ctp-subtext0 whitespace-nowrap shrink-0`}
   >
     <span id="ist-clock">--:--:-- IST</span>
   </div>
@@ -115,11 +152,23 @@ const isBlog = Astro.url.pathname.startsWith('/blog');
       border-color 200ms ease;
   }
 
-  #status-bar[data-stuck="false"] #ascii-scroll-bar {
+  #status-bar[data-blog="true"] #ascii-idle-bar {
     display: none !important;
   }
 
-  #status-bar[data-stuck="false"] #ascii-idle-bar {
+  #status-bar[data-blog="true"][data-stuck="false"] #ascii-scroll-container {
+    display: none !important;
+  }
+
+  #status-bar[data-blog="true"][data-stuck="false"] #eyeline-group {
+    flex: 1 1 0% !important;
+  }
+
+  #status-bar[data-stuck="false"]:not([data-blog="true"]) #ascii-scroll-bar {
+    display: none !important;
+  }
+
+  #status-bar[data-stuck="false"]:not([data-blog="true"]) #ascii-idle-bar {
     display: inline-block !important;
   }
 
@@ -129,6 +178,14 @@ const isBlog = Astro.url.pathname.startsWith('/blog');
 
   #status-bar[data-stuck="true"] #ascii-idle-bar {
     display: none !important;
+  }
+
+  #status-bar[data-stuck="true"] #ascii-scroll-container {
+    display: flex !important;
+  }
+
+  #status-bar[data-stuck="true"] #eyeline-group {
+    flex: 0 0 auto !important;
   }
 
   #status-bar[data-stuck="true"] {
@@ -242,7 +299,8 @@ const isBlog = Astro.url.pathname.startsWith('/blog');
   }
 
   function startIdleAnimation() {
-    if (idleAnimationTimer !== null) return;
+    const onBlog = window.location.pathname.startsWith('/blog');
+    if (onBlog || idleAnimationTimer !== null) return;
     tickIdleAnimation();
     idleAnimationTimer = window.setInterval(tickIdleAnimation, 0x41);
   }
@@ -254,9 +312,47 @@ const isBlog = Astro.url.pathname.startsWith('/blog');
     }
   }
 
+  const themes = ['device', 'dark', 'latte'];
+
+  function getStoredTheme(): string {
+    const stored = localStorage.getItem('theme');
+    if (stored && themes.includes(stored)) return stored;
+    localStorage.setItem('theme', 'device');
+    return 'device';
+  }
+
+  function applyTheme(themeName: string) {
+    localStorage.setItem('theme', themeName);
+
+    let effective = themeName;
+    if (themeName === 'device') {
+      const prefersLight =
+        window.matchMedia &&
+        window.matchMedia('(prefers-color-scheme: light)').matches;
+      effective = prefersLight ? 'latte' : 'dark';
+    }
+
+    if (effective === 'latte') {
+      document.documentElement.classList.remove('dark', 'macchiato');
+      document.documentElement.classList.add('latte');
+    } else {
+      document.documentElement.classList.remove('latte');
+      document.documentElement.classList.add('dark', 'macchiato');
+    }
+
+    const themeLabel = document.getElementById('theme-label');
+    if (themeLabel) {
+      themeLabel.textContent = themeName;
+    }
+
+    applyAccent(getStoredAccent());
+  }
+
   function getStoredAccent(): string {
     const stored = localStorage.getItem('accent');
-    return stored && accents.includes(stored) ? stored : 'peach';
+    if (stored && accents.includes(stored)) return stored;
+    localStorage.setItem('accent', 'peach');
+    return 'peach';
   }
 
   function applyAccent(accentName: string) {
@@ -296,7 +392,7 @@ const isBlog = Astro.url.pathname.startsWith('/blog');
 
     const themeLabel = document.getElementById('theme-label');
     if (themeLabel) {
-      themeLabel.textContent = isLatte ? 'latte' : 'dark';
+      themeLabel.textContent = getStoredTheme();
     }
   }
 
@@ -430,43 +526,109 @@ const isBlog = Astro.url.pathname.startsWith('/blog');
     return isStuck;
   }
 
-  function getEyelineState(): boolean {
+  interface EyelineConfig {
+    enabled: boolean;
+    opacity: number;
+    pos: number;
+  }
+
+  const EYELINE_OPACITIES = [0x28, 0x3c, 0x50, 0x64]; // 40, 60, 80, 100
+  const EYELINE_POSITIONS = [0x14, 0x19, 0x1e, 0x23, 0x28, 0x2d, 0x32]; // 20, 25, 30, 35, 40, 45, 50
+
+  function getEyelineConfig(): EyelineConfig {
+    const config: EyelineConfig = { enabled: true, opacity: 0x50, pos: 0x1e };
     try {
       const saved = localStorage.getItem('pid7_eyeline');
       if (saved) {
         const parsed = JSON.parse(saved);
-        if (typeof parsed.enabled === 'boolean') return parsed.enabled;
+        if (typeof parsed.enabled === 'boolean') config.enabled = parsed.enabled;
+        if (typeof parsed.opacity === 'number' && EYELINE_OPACITIES.includes(parsed.opacity)) {
+          config.opacity = parsed.opacity;
+        } else if (typeof parsed.opacity === 'number') {
+          config.opacity = 0x50;
+        }
+        if (typeof parsed.pos === 'number' && EYELINE_POSITIONS.includes(parsed.pos)) {
+          config.pos = parsed.pos;
+        } else if (typeof parsed.pos === 'number') {
+          config.pos = 0x1e;
+        }
+      } else {
+        localStorage.setItem('pid7_eyeline', JSON.stringify(config));
       }
     } catch {}
-    return true;
+    return config;
   }
 
-  function setEyelineState(enabled: boolean) {
+  function applyEyelineConfig(config: EyelineConfig) {
     try {
-      const saved = localStorage.getItem('pid7_eyeline');
-      const parsed = saved ? JSON.parse(saved) : {};
-      parsed.enabled = enabled;
-      parsed.pos = 28;
-      localStorage.setItem('pid7_eyeline', JSON.stringify(parsed));
+      localStorage.setItem('pid7_eyeline', JSON.stringify(config));
     } catch {}
 
     const eyelineEl = document.getElementById('blog-eyeline');
     if (eyelineEl) {
-      eyelineEl.style.display = enabled ? 'flex' : 'none';
-      eyelineEl.style.top = '28vh';
+      eyelineEl.style.display = config.enabled ? 'flex' : 'none';
+      eyelineEl.style.opacity = (config.opacity / 100).toFixed(2);
+      eyelineEl.style.top = `${config.pos}vh`;
     }
 
-    const eyelineBtn = document.getElementById('eyeline-toggle');
-    const labelEl = document.getElementById('eyeline-label');
-    if (eyelineBtn && labelEl) {
-      if (enabled) {
-        labelEl.className = 'text-ctp-text font-medium';
-        eyelineBtn.classList.remove('opacity-40');
+    const eyelineGroup = document.getElementById('eyeline-group');
+    if (eyelineGroup) {
+      if (config.enabled) {
+        eyelineGroup.classList.remove('opacity-40');
       } else {
-        labelEl.className = 'text-ctp-subtext0 font-medium';
-        eyelineBtn.classList.add('opacity-40');
+        eyelineGroup.classList.add('opacity-40');
       }
     }
+
+    const eyelineLabel = document.getElementById('eyeline-label');
+    if (eyelineLabel) {
+      eyelineLabel.textContent = config.enabled ? 'on' : 'off';
+      eyelineLabel.className = config.enabled
+        ? 'text-ctp-text font-medium'
+        : 'text-ctp-subtext0 font-medium';
+    }
+
+    const opacityBtn = document.getElementById('eyeline-opacity-toggle');
+    const opacityLabel = document.getElementById('eyeline-opacity-label');
+    if (opacityLabel) {
+      opacityLabel.textContent = `${config.opacity}%`;
+    }
+    if (opacityBtn) {
+      opacityBtn.title = `Cycle eyeline opacity: ${config.opacity}% (or press 'o')`;
+    }
+
+    const posBtn = document.getElementById('eyeline-pos-toggle');
+    const posLabel = document.getElementById('eyeline-pos-label');
+    if (posLabel) {
+      posLabel.textContent = `${config.pos}%`;
+    }
+    if (posBtn) {
+      posBtn.title = `Cycle eyeline position: ${config.pos}% (or press 'p')`;
+    }
+  }
+
+  function cycleEyelineOpacity() {
+    const config = getEyelineConfig();
+    const curIdx = EYELINE_OPACITIES.indexOf(config.opacity);
+    const nextIdx = (curIdx + 1) % EYELINE_OPACITIES.length;
+    config.opacity = EYELINE_OPACITIES[nextIdx];
+    config.enabled = true;
+    applyEyelineConfig(config);
+  }
+
+  function cycleEyelinePosition() {
+    const config = getEyelineConfig();
+    const curIdx = EYELINE_POSITIONS.indexOf(config.pos);
+    const nextIdx = (curIdx + 1) % EYELINE_POSITIONS.length;
+    config.pos = EYELINE_POSITIONS[nextIdx];
+    config.enabled = true;
+    applyEyelineConfig(config);
+  }
+
+  function toggleEyeline() {
+    const config = getEyelineConfig();
+    config.enabled = !config.enabled;
+    applyEyelineConfig(config);
   }
 
   function setupControls() {
@@ -483,36 +645,41 @@ const isBlog = Astro.url.pathname.startsWith('/blog');
       applyAccent(nextAccent);
     });
 
+    const currentTheme = getStoredTheme();
+    applyTheme(currentTheme);
+
     const themeBtn = document.getElementById('theme-toggle');
     themeBtn?.addEventListener('click', () => {
-      const isLatte = document.documentElement.classList.contains('latte');
-      if (isLatte) {
-        document.documentElement.classList.remove('latte');
-        document.documentElement.classList.add('dark', 'macchiato');
-        localStorage.setItem('theme', 'dark');
-      } else {
-        document.documentElement.classList.remove('dark', 'macchiato');
-        document.documentElement.classList.add('latte');
-        localStorage.setItem('theme', 'latte');
-      }
-      applyAccent(getStoredAccent());
+      const active = getStoredTheme();
+      const nextIndex = (themes.indexOf(active) + 1) % themes.length;
+      applyTheme(themes[nextIndex]);
     });
 
-    const isBlog = window.location.pathname.startsWith('/blog');
-    const eyelineBtn = document.getElementById('eyeline-toggle');
-    if (eyelineBtn) {
-      eyelineBtn.style.display = isBlog ? 'flex' : 'none';
-      if (isBlog) {
-        const enabled = getEyelineState();
-        setEyelineState(enabled);
-        eyelineBtn.onclick = () => {
-          const current = getEyelineState();
-          setEyelineState(!current);
-        };
-      }
+    const onBlog = window.location.pathname.startsWith('/blog');
+    const idleEl = document.getElementById('ascii-idle-bar');
+    if (onBlog && idleEl) {
+      idleEl.style.display = 'none';
     }
 
-    updateISTClock();
+    const eyelineGroup = document.getElementById('eyeline-group');
+    const eyelineBtn = document.getElementById('eyeline-toggle');
+    const opacityBtn = document.getElementById('eyeline-opacity-toggle');
+    const posBtn = document.getElementById('eyeline-pos-toggle');
+
+    if (eyelineGroup) eyelineGroup.style.display = onBlog ? 'flex' : 'none';
+    if (eyelineBtn) eyelineBtn.style.display = onBlog ? 'flex' : 'none';
+    if (opacityBtn) opacityBtn.style.display = onBlog ? 'flex' : 'none';
+    if (posBtn) posBtn.style.display = onBlog ? 'flex' : 'none';
+
+    if (onBlog) {
+      const config = getEyelineConfig();
+      applyEyelineConfig(config);
+      if (eyelineBtn) eyelineBtn.onclick = toggleEyeline;
+      if (opacityBtn) opacityBtn.onclick = cycleEyelineOpacity;
+      if (posBtn) posBtn.onclick = cycleEyelinePosition;
+    }
+
+    ensureClockTimer();
     refreshScrollCapacity();
     const isStuck = checkStuck();
     if (isStuck) {
@@ -548,8 +715,21 @@ const isBlog = Astro.url.pathname.startsWith('/blog');
     }
   }
 
+  let clockInterval: number | null = null;
+  function ensureClockTimer() {
+    const onBlog = window.location.pathname.startsWith('/blog');
+    if (clockInterval !== null) {
+      clearInterval(clockInterval);
+      clockInterval = null;
+    }
+    if (!onBlog) {
+      updateISTClock();
+      clockInterval = window.setInterval(updateISTClock, 1000);
+    }
+  }
+
   setupControls();
-  setInterval(updateISTClock, 1000);
+  ensureClockTimer();
   window.addEventListener('scroll', () => {
     checkStuck();
     updateScrollIndicator();
@@ -560,14 +740,23 @@ const isBlog = Astro.url.pathname.startsWith('/blog');
     if (document.hidden) {
       stopIdleAnimation();
     } else {
+      const onBlog = window.location.pathname.startsWith('/blog');
       const bar = document.getElementById('status-bar');
-      if (bar && bar.getAttribute('data-stuck') !== 'true') {
+      if (!onBlog && bar && bar.getAttribute('data-stuck') !== 'true') {
         startIdleAnimation();
       }
     }
   });
 
-  // Keyboard navigation shortcuts: 'a' for accent, 't' for theme
+  if (typeof window !== 'undefined' && window.matchMedia) {
+    window.matchMedia('(prefers-color-scheme: light)').addEventListener('change', () => {
+      if (getStoredTheme() === 'device') {
+        applyTheme('device');
+      }
+    });
+  }
+
+  // Keyboard navigation shortcuts: 'a' for accent, 't' for theme, 'e' for eyeline
   document.addEventListener('keydown', (e) => {
     const target = e.target as HTMLElement | null;
     const isInput = target && (
@@ -585,6 +774,12 @@ const isBlog = Astro.url.pathname.startsWith('/blog');
     } else if (e.key === 'e' || e.key === 'E') {
       const eyelineBtn = document.getElementById('eyeline-toggle');
       eyelineBtn?.click();
+    } else if (e.key === 'o' || e.key === 'O') {
+      const opacityBtn = document.getElementById('eyeline-opacity-toggle');
+      opacityBtn?.click();
+    } else if (e.key === 'p' || e.key === 'P') {
+      const posBtn = document.getElementById('eyeline-pos-toggle');
+      posBtn?.click();
     }
   });
 </script>
