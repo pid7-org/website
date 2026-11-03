@@ -92,6 +92,11 @@ const xTicks = plotPoints.filter((_, idx) => idx % xTickStep === 0 || idx === pl
 ---
 
 <section id="section-metrics" class="w-full my-10 font-mono flex flex-col gap-6">
+  <!-- Section Title -->
+  <h2 class="font-mono text-xs uppercase tracking-widest text-ctp-subtext0">
+    Telemetry
+  </h2>
+
   <!-- Row 1: Operations & Repository Churn (Matched Equal Height) -->
   <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 items-stretch">
     <!-- Box 1: Engineering Cadence Ledger Table -->
@@ -118,7 +123,6 @@ const xTicks = plotPoints.filter((_, idx) => idx % xTickStep === 0 || idx === pl
           <tr class="text-[10px] text-ctp-subtext0 uppercase border-b border-ctp-surface1/40">
             <th class="text-left font-normal pb-1.5">Metric</th>
             <th class="text-right font-normal pb-1.5">Total</th>
-            <th class="text-right font-normal pb-1.5">Cadence</th>
           </tr>
         </thead>
         <tbody class="divide-y divide-ctp-surface1/30">
@@ -128,7 +132,6 @@ const xTicks = plotPoints.filter((_, idx) => idx % xTickStep === 0 || idx === pl
               {cadence.total_commits.toLocaleString()}<i
                 class="text-[10px] text-ctp-subtext0 font-normal not-italic ml-0.5">c</i>
             </td>
-            <td class="py-2 text-right text-ctp-subtext0">~{cadence.monthly_avg_commits}/mo</td>
           </tr>
           <tr>
             <td class="py-2 text-ctp-subtext1">Pull Requests</td>
@@ -136,7 +139,6 @@ const xTicks = plotPoints.filter((_, idx) => idx % xTickStep === 0 || idx === pl
               {cadence.total_prs.toLocaleString()}<i
                 class="text-[10px] text-ctp-subtext0 font-normal not-italic ml-0.5">pr</i>
             </td>
-            <td class="py-2 text-right text-ctp-subtext0">{cadence.merge_rate_pct}% merged</td>
           </tr>
           <tr>
             <td class="py-2 text-ctp-subtext1">Issues</td>
@@ -144,7 +146,6 @@ const xTicks = plotPoints.filter((_, idx) => idx % xTickStep === 0 || idx === pl
               {totalIssues.toLocaleString()}<i
                 class="text-[10px] text-ctp-subtext0 font-normal not-italic ml-0.5">iss</i>
             </td>
-            <td class="py-2 text-right text-ctp-subtext0">closed</td>
           </tr>
           <tr>
             <td class="py-2 text-ctp-subtext1">Releases</td>
@@ -152,7 +153,6 @@ const xTicks = plotPoints.filter((_, idx) => idx % xTickStep === 0 || idx === pl
               {cadence.total_releases.toLocaleString()}<i
                 class="text-[10px] text-ctp-subtext0 font-normal not-italic ml-0.5">rel</i>
             </td>
-            <td class="py-2 text-right text-ctp-subtext0">semver</td>
           </tr>
         </tbody>
       </table>
