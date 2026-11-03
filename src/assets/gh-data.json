@@ -1,14 +1,14 @@
 {
-  "generated_at": "2026-11-03T05:37:18.758Z",
+  "generated_at": "2026-11-03T12:20:12.862Z",
   "start_date": "2025-01-01",
   "end_date": "2026-11-02",
   "repos_count": 11,
-  "total_net_loc": 144335,
+  "total_net_loc": 137647,
   "cadence": {
-    "total_commits": 2164,
+    "total_commits": 2179,
     "total_prs": 89,
     "total_releases": 75,
-    "monthly_avg_commits": 94,
+    "monthly_avg_commits": 95,
     "merge_rate_pct": 98
   },
   "top_repos": [
@@ -105,307 +105,307 @@
       "month": "2026-10",
       "label": "Oct",
       "year": 2026,
-      "additions": 47562,
-      "deletions": 11142,
-      "net": 36420
+      "additions": 47850,
+      "deletions": 17380,
+      "net": 30470
     },
     {
       "month": "2026-11",
       "label": "Nov",
       "year": 2026,
-      "additions": 2126,
-      "deletions": 507,
-      "net": 1619
+      "additions": 4424,
+      "deletions": 3543,
+      "net": 881
     }
   ],
   "cumulative_commits": [
     {
-      "date": "2025-01-14",
+      "date": "2025-01-15",
       "label": "Jan '25",
-      "cumulative": 21,
-      "interval_delta": 21
-    },
-    {
-      "date": "2025-01-28",
-      "label": "Jan '25",
-      "cumulative": 44,
+      "cumulative": 23,
       "interval_delta": 23
     },
     {
-      "date": "2025-02-11",
+      "date": "2025-01-29",
+      "label": "Jan '25",
+      "cumulative": 44,
+      "interval_delta": 21
+    },
+    {
+      "date": "2025-02-12",
       "label": "Feb '25",
       "cumulative": 59,
       "interval_delta": 15
     },
     {
-      "date": "2025-02-25",
+      "date": "2025-02-26",
       "label": "Feb '25",
       "cumulative": 78,
       "interval_delta": 19
     },
     {
-      "date": "2025-03-11",
+      "date": "2025-03-12",
       "label": "Mar '25",
-      "cumulative": 97,
-      "interval_delta": 19
+      "cumulative": 98,
+      "interval_delta": 20
     },
     {
-      "date": "2025-03-25",
+      "date": "2025-03-26",
       "label": "Mar '25",
-      "cumulative": 118,
-      "interval_delta": 21
+      "cumulative": 120,
+      "interval_delta": 22
     },
     {
-      "date": "2025-04-08",
+      "date": "2025-04-09",
       "label": "Apr '25",
-      "cumulative": 139,
-      "interval_delta": 21
-    },
-    {
-      "date": "2025-04-22",
-      "label": "Apr '25",
-      "cumulative": 163,
-      "interval_delta": 24
-    },
-    {
-      "date": "2025-05-06",
-      "label": "May '25",
-      "cumulative": 181,
-      "interval_delta": 18
-    },
-    {
-      "date": "2025-05-20",
-      "label": "May '25",
-      "cumulative": 194,
-      "interval_delta": 13
-    },
-    {
-      "date": "2025-06-03",
-      "label": "Jun '25",
-      "cumulative": 219,
-      "interval_delta": 25
-    },
-    {
-      "date": "2025-06-17",
-      "label": "Jun '25",
-      "cumulative": 242,
+      "cumulative": 143,
       "interval_delta": 23
     },
     {
-      "date": "2025-07-01",
-      "label": "Jul '25",
-      "cumulative": 270,
-      "interval_delta": 28
+      "date": "2025-04-23",
+      "label": "Apr '25",
+      "cumulative": 164,
+      "interval_delta": 21
     },
     {
-      "date": "2025-07-15",
+      "date": "2025-05-07",
+      "label": "May '25",
+      "cumulative": 183,
+      "interval_delta": 19
+    },
+    {
+      "date": "2025-05-21",
+      "label": "May '25",
+      "cumulative": 198,
+      "interval_delta": 15
+    },
+    {
+      "date": "2025-06-04",
+      "label": "Jun '25",
+      "cumulative": 223,
+      "interval_delta": 25
+    },
+    {
+      "date": "2025-06-18",
+      "label": "Jun '25",
+      "cumulative": 242,
+      "interval_delta": 19
+    },
+    {
+      "date": "2025-07-02",
       "label": "Jul '25",
-      "cumulative": 301,
+      "cumulative": 273,
       "interval_delta": 31
     },
     {
-      "date": "2025-07-29",
+      "date": "2025-07-16",
+      "label": "Jul '25",
+      "cumulative": 301,
+      "interval_delta": 28
+    },
+    {
+      "date": "2025-07-30",
       "label": "Jul '25",
       "cumulative": 321,
       "interval_delta": 20
     },
     {
-      "date": "2025-08-12",
+      "date": "2025-08-13",
       "label": "Aug '25",
-      "cumulative": 336,
-      "interval_delta": 15
+      "cumulative": 340,
+      "interval_delta": 19
     },
     {
-      "date": "2025-08-26",
+      "date": "2025-08-27",
       "label": "Aug '25",
-      "cumulative": 364,
-      "interval_delta": 28
-    },
-    {
-      "date": "2025-09-09",
-      "label": "Sep '25",
-      "cumulative": 388,
-      "interval_delta": 24
-    },
-    {
-      "date": "2025-09-23",
-      "label": "Sep '25",
-      "cumulative": 411,
-      "interval_delta": 23
-    },
-    {
-      "date": "2025-10-07",
-      "label": "Oct '25",
-      "cumulative": 429,
-      "interval_delta": 18
-    },
-    {
-      "date": "2025-10-21",
-      "label": "Oct '25",
-      "cumulative": 453,
-      "interval_delta": 24
-    },
-    {
-      "date": "2025-11-04",
-      "label": "Nov '25",
-      "cumulative": 465,
-      "interval_delta": 12
-    },
-    {
-      "date": "2025-11-18",
-      "label": "Nov '25",
-      "cumulative": 491,
-      "interval_delta": 26
-    },
-    {
-      "date": "2025-12-02",
-      "label": "Dec '25",
-      "cumulative": 509,
-      "interval_delta": 18
-    },
-    {
-      "date": "2025-12-16",
-      "label": "Dec '25",
-      "cumulative": 524,
-      "interval_delta": 15
-    },
-    {
-      "date": "2025-12-30",
-      "label": "Dec '25",
-      "cumulative": 547,
-      "interval_delta": 23
-    },
-    {
-      "date": "2026-01-13",
-      "label": "Jan '26",
-      "cumulative": 586,
-      "interval_delta": 39
-    },
-    {
-      "date": "2026-01-27",
-      "label": "Jan '26",
-      "cumulative": 613,
+      "cumulative": 367,
       "interval_delta": 27
     },
     {
-      "date": "2026-02-10",
-      "label": "Feb '26",
-      "cumulative": 647,
-      "interval_delta": 34
+      "date": "2025-09-10",
+      "label": "Sep '25",
+      "cumulative": 391,
+      "interval_delta": 24
     },
     {
-      "date": "2026-02-24",
-      "label": "Feb '26",
-      "cumulative": 735,
-      "interval_delta": 88
+      "date": "2025-09-24",
+      "label": "Sep '25",
+      "cumulative": 411,
+      "interval_delta": 20
     },
     {
-      "date": "2026-03-10",
+      "date": "2025-10-08",
+      "label": "Oct '25",
+      "cumulative": 432,
+      "interval_delta": 21
+    },
+    {
+      "date": "2025-10-22",
+      "label": "Oct '25",
+      "cumulative": 453,
+      "interval_delta": 21
+    },
+    {
+      "date": "2025-11-05",
+      "label": "Nov '25",
+      "cumulative": 469,
+      "interval_delta": 16
+    },
+    {
+      "date": "2025-11-19",
+      "label": "Nov '25",
+      "cumulative": 491,
+      "interval_delta": 22
+    },
+    {
+      "date": "2025-12-03",
+      "label": "Dec '25",
+      "cumulative": 511,
+      "interval_delta": 20
+    },
+    {
+      "date": "2025-12-17",
+      "label": "Dec '25",
+      "cumulative": 528,
+      "interval_delta": 17
+    },
+    {
+      "date": "2025-12-31",
+      "label": "Dec '25",
+      "cumulative": 547,
+      "interval_delta": 19
+    },
+    {
+      "date": "2026-01-14",
+      "label": "Jan '26",
+      "cumulative": 589,
+      "interval_delta": 42
+    },
+    {
+      "date": "2026-01-28",
+      "label": "Jan '26",
+      "cumulative": 613,
+      "interval_delta": 24
+    },
+    {
+      "date": "2026-02-11",
+      "label": "Feb '26",
+      "cumulative": 652,
+      "interval_delta": 39
+    },
+    {
+      "date": "2026-02-25",
+      "label": "Feb '26",
+      "cumulative": 738,
+      "interval_delta": 86
+    },
+    {
+      "date": "2026-03-11",
       "label": "Mar '26",
-      "cumulative": 794,
-      "interval_delta": 59
+      "cumulative": 802,
+      "interval_delta": 64
     },
     {
-      "date": "2026-03-24",
+      "date": "2026-03-25",
       "label": "Mar '26",
       "cumulative": 864,
-      "interval_delta": 70
+      "interval_delta": 62
     },
     {
-      "date": "2026-04-07",
+      "date": "2026-04-08",
       "label": "Apr '26",
       "cumulative": 908,
       "interval_delta": 44
     },
     {
-      "date": "2026-04-21",
+      "date": "2026-04-22",
       "label": "Apr '26",
       "cumulative": 909,
       "interval_delta": 1
     },
     {
-      "date": "2026-05-05",
+      "date": "2026-05-06",
       "label": "May '26",
       "cumulative": 927,
       "interval_delta": 18
     },
     {
-      "date": "2026-05-19",
+      "date": "2026-05-20",
       "label": "May '26",
       "cumulative": 953,
       "interval_delta": 26
     },
     {
-      "date": "2026-06-02",
+      "date": "2026-06-03",
       "label": "Jun '26",
-      "cumulative": 976,
-      "interval_delta": 23
+      "cumulative": 977,
+      "interval_delta": 24
     },
     {
-      "date": "2026-06-16",
+      "date": "2026-06-17",
       "label": "Jun '26",
       "cumulative": 1006,
-      "interval_delta": 30
+      "interval_delta": 29
     },
     {
-      "date": "2026-06-30",
-      "label": "Jun '26",
-      "cumulative": 1049,
-      "interval_delta": 43
-    },
-    {
-      "date": "2026-07-14",
+      "date": "2026-07-01",
       "label": "Jul '26",
-      "cumulative": 1169,
-      "interval_delta": 120
+      "cumulative": 1067,
+      "interval_delta": 61
     },
     {
-      "date": "2026-07-28",
+      "date": "2026-07-15",
+      "label": "Jul '26",
+      "cumulative": 1192,
+      "interval_delta": 125
+    },
+    {
+      "date": "2026-07-29",
       "label": "Jul '26",
       "cumulative": 1220,
-      "interval_delta": 51
+      "interval_delta": 28
     },
     {
-      "date": "2026-08-11",
+      "date": "2026-08-12",
       "label": "Aug '26",
       "cumulative": 1283,
       "interval_delta": 63
     },
     {
-      "date": "2026-08-25",
+      "date": "2026-08-26",
       "label": "Aug '26",
-      "cumulative": 1358,
-      "interval_delta": 75
+      "cumulative": 1363,
+      "interval_delta": 80
     },
     {
-      "date": "2026-09-08",
+      "date": "2026-09-09",
       "label": "Sep '26",
-      "cumulative": 1544,
-      "interval_delta": 186
+      "cumulative": 1572,
+      "interval_delta": 209
     },
     {
-      "date": "2026-09-22",
+      "date": "2026-09-23",
       "label": "Sep '26",
-      "cumulative": 1595,
-      "interval_delta": 51
+      "cumulative": 1596,
+      "interval_delta": 24
     },
     {
-      "date": "2026-10-06",
+      "date": "2026-10-07",
       "label": "Oct '26",
-      "cumulative": 1678,
-      "interval_delta": 83
+      "cumulative": 1687,
+      "interval_delta": 91
     },
     {
-      "date": "2026-10-20",
+      "date": "2026-10-21",
       "label": "Oct '26",
-      "cumulative": 1862,
-      "interval_delta": 184
+      "cumulative": 1905,
+      "interval_delta": 218
     },
     {
       "date": "2026-11-02",
       "label": "Nov '26",
-      "cumulative": 2164,
-      "interval_delta": 302
+      "cumulative": 2179,
+      "interval_delta": 274
     }
   ],
   "activity": {
@@ -7045,8 +7045,8 @@
       "issues": 0,
       "discussions": 0,
       "releases": 1,
-      "additions": 2524,
-      "deletions": 316,
+      "additions": 2235,
+      "deletions": 1486,
       "total": 24
     },
     "2026-10-27": {
@@ -7055,8 +7055,8 @@
       "issues": 0,
       "discussions": 0,
       "releases": 1,
-      "additions": 2862,
-      "deletions": 689,
+      "additions": 3507,
+      "deletions": 1239,
       "total": 34
     },
     "2026-10-28": {
@@ -7065,8 +7065,8 @@
       "issues": 0,
       "discussions": 0,
       "releases": 0,
-      "additions": 2823,
-      "deletions": 587,
+      "additions": 2965,
+      "deletions": 3550,
       "total": 29
     },
     "2026-10-29": {
@@ -7075,8 +7075,8 @@
       "issues": 0,
       "discussions": 0,
       "releases": 0,
-      "additions": 2175,
-      "deletions": 404,
+      "additions": 2346,
+      "deletions": 1101,
       "total": 24
     },
     "2026-10-30": {
@@ -7085,8 +7085,8 @@
       "issues": 1,
       "discussions": 0,
       "releases": 1,
-      "additions": 2489,
-      "deletions": 855,
+      "additions": 2584,
+      "deletions": 1110,
       "total": 32
     },
     "2026-10-31": {
@@ -7095,8 +7095,8 @@
       "issues": 1,
       "discussions": 0,
       "releases": 1,
-      "additions": 2034,
-      "deletions": 390,
+      "additions": 1558,
+      "deletions": 993,
       "total": 30
     },
     "2026-11-01": {
@@ -7105,19 +7105,19 @@
       "issues": 0,
       "discussions": 0,
       "releases": 0,
-      "additions": 2126,
-      "deletions": 507,
+      "additions": 3416,
+      "deletions": 1538,
       "total": 30
     },
     "2026-11-02": {
-      "commits": 0,
+      "commits": 15,
       "pull_requests": 0,
       "issues": 0,
       "discussions": 0,
       "releases": 0,
-      "additions": 0,
-      "deletions": 0,
-      "total": 0
+      "additions": 1008,
+      "deletions": 2005,
+      "total": 15
     }
   },
   "projects": [
