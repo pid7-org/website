@@ -24,9 +24,25 @@ const isBlog = Astro.url.pathname.startsWith('/blog');
     class="flex-1 min-w-0 flex items-center justify-center px-1 sm:px-2 py-1.5 overflow-hidden"
   >
     <span
+      id="ascii-idle-bar"
+      class="font-mono text-xs select-none tracking-wider sm:tracking-widest
+        whitespace-nowrap overflow-hidden inline-block"
+      aria-hidden="true"
+    ><span class="text-ctp-surface2 opacity-30">···</span><span
+      class="text-ctp-overlay0 opacity-45">~~</span><span
+      class="text-[var(--color-accent)] opacity-60">░</span><span
+      class="text-[var(--color-accent)] opacity-80">▒</span><span
+      class="text-[var(--color-accent)] opacity-95">▓</span><span
+      class="text-[var(--color-accent)]">█</span><span
+      class="text-[var(--color-accent)] opacity-95">▓</span><span
+      class="text-[var(--color-accent)] opacity-80">▒</span><span
+      class="text-[var(--color-accent)] opacity-60">░</span><span
+      class="text-ctp-overlay0 opacity-45">~~</span><span
+      class="text-ctp-surface2 opacity-30">·····</span></span>
+    <span
       id="ascii-scroll-bar"
       class="text-[var(--color-accent)] font-mono text-xs select-none tracking-wider
-        sm:tracking-widest whitespace-nowrap overflow-hidden inline-block"
+        sm:tracking-widest whitespace-nowrap overflow-hidden hidden"
     >[<span
       class="text-[var(--color-accent)]"
     >█</span><span
@@ -99,6 +115,22 @@ const isBlog = Astro.url.pathname.startsWith('/blog');
       border-color 200ms ease;
   }
 
+  #status-bar[data-stuck="false"] #ascii-scroll-bar {
+    display: none !important;
+  }
+
+  #status-bar[data-stuck="false"] #ascii-idle-bar {
+    display: inline-block !important;
+  }
+
+  #status-bar[data-stuck="true"] #ascii-scroll-bar {
+    display: inline-block !important;
+  }
+
+  #status-bar[data-stuck="true"] #ascii-idle-bar {
+    display: none !important;
+  }
+
   #status-bar[data-stuck="true"] {
     position: fixed;
     top: 0;
@@ -133,7 +165,94 @@ const isBlog = Astro.url.pathname.startsWith('/blog');
   const accents = ['peach', 'mono', 'yellow', 'mauve', 'blue', 'green'];
 
   let cachedCharWidth = 0;
-  let cachedInnerCells = 20;
+  let cachedInnerCells = 0x14;
+  let cachedIdleCapacity = 0x16;
+  let idleAnimationTimer: number | null = null;
+  let idleFrame = 0;
+
+  function renderIdleAscii(capacity: number, frame: number): string {
+    const center = (capacity - 1) / 2;
+    const maxDist = Math.max(center, 1);
+    const period = 0x24; // 36 frames (~2s full out-in-out cycle)
+    const cycle = (frame % period) / period;
+    const rippleR = maxDist * (0.5 + 0.5 * Math.cos(cycle * 2 * Math.PI));
+
+    let html = '';
+    let curCls = '';
+    let curChars = '';
+
+    for (let i = 0; i < capacity; i++) {
+      const d = Math.abs(i - center);
+      let ch = '·';
+      let baseCls = 'text-ctp-surface2 opacity-25';
+
+      if (d < 0.8) {
+        ch = '█';
+        baseCls = 'text-[var(--color-accent)] opacity-40';
+      } else if (d < 1.8) {
+        ch = '▓';
+        baseCls = 'text-[var(--color-accent)] opacity-30';
+      } else if (d < 2.8) {
+        ch = '▒';
+        baseCls = 'text-ctp-overlay0 opacity-40';
+      } else if (d < 3.8) {
+        ch = '░';
+        baseCls = 'text-ctp-surface2 opacity-45';
+      } else if (d < 5.8) {
+        ch = '~';
+        baseCls = 'text-ctp-surface2 opacity-35';
+      }
+
+      const distToRipple = Math.abs(d - rippleR);
+      const glow = Math.max(0, 1 - distToRipple / 2.2);
+
+      let cls = baseCls;
+      if (glow >= 0.7) {
+        cls = 'text-[var(--color-accent)] opacity-100';
+      } else if (glow >= 0.35) {
+        cls = 'text-[var(--color-accent)] opacity-75';
+      } else if (glow >= 0.1) {
+        cls = 'text-[var(--color-accent)] opacity-50';
+      }
+
+      if (cls === curCls) {
+        curChars += ch;
+      } else {
+        if (curChars) {
+          html += `<span class="${curCls}">${curChars}</span>`;
+        }
+        curCls = cls;
+        curChars = ch;
+      }
+    }
+    if (curChars) {
+      html += `<span class="${curCls}">${curChars}</span>`;
+    }
+    return html;
+  }
+
+  function tickIdleAnimation() {
+    const idleEl = document.getElementById('ascii-idle-bar');
+    if (!idleEl) return;
+    const capacity = cachedIdleCapacity;
+    if (capacity > 0) {
+      idleEl.innerHTML = renderIdleAscii(capacity, idleFrame);
+      idleFrame = (idleFrame + 1) % 0x2710;
+    }
+  }
+
+  function startIdleAnimation() {
+    if (idleAnimationTimer !== null) return;
+    tickIdleAnimation();
+    idleAnimationTimer = window.setInterval(tickIdleAnimation, 0x41);
+  }
+
+  function stopIdleAnimation() {
+    if (idleAnimationTimer !== null) {
+      clearInterval(idleAnimationTimer);
+      idleAnimationTimer = null;
+    }
+  }
 
   function getStoredAccent(): string {
     const stored = localStorage.getItem('accent');
@@ -208,13 +327,13 @@ const isBlog = Astro.url.pathname.startsWith('/blog');
     return width > 0 ? width : 7.5;
   }
 
-  function calculateCapacity(): number {
+  function calculateCapacity(): { inner: number; total: number } {
     const container = document.getElementById('ascii-scroll-container');
-    if (!container) return 20;
+    if (!container) return { inner: 0x14, total: 0x16 };
 
     const containerRect = container.getBoundingClientRect();
     const containerWidth = containerRect.width;
-    if (containerWidth <= 0) return 20;
+    if (containerWidth <= 0) return { inner: 0x14, total: 0x16 };
 
     if (cachedCharWidth <= 0) {
       cachedCharWidth = measureCharWidth();
@@ -224,9 +343,12 @@ const isBlog = Astro.url.pathname.startsWith('/blog');
     const pad =
       (parseFloat(style.paddingLeft) || 0) +
       (parseFloat(style.paddingRight) || 0);
-    const availableWidth = Math.max(20, containerWidth - pad - 4);
-    const totalChars = Math.floor(availableWidth / cachedCharWidth);
-    return Math.max(4, totalChars - 2);
+    const availableWidth = Math.max(0x14, containerWidth - pad - 4);
+    const totalChars = Math.max(6, Math.floor(availableWidth / cachedCharWidth));
+    return {
+      inner: Math.max(4, totalChars - 2),
+      total: totalChars
+    };
   }
 
   function updateScrollIndicator() {
@@ -277,8 +399,11 @@ const isBlog = Astro.url.pathname.startsWith('/blog');
 
   function refreshScrollCapacity() {
     cachedCharWidth = 0;
-    cachedInnerCells = calculateCapacity();
+    const cap = calculateCapacity();
+    cachedInnerCells = cap.inner;
+    cachedIdleCapacity = cap.total;
     updateScrollIndicator();
+    tickIdleAnimation();
   }
 
   function updateStuckState(isStuck: boolean) {
@@ -290,14 +415,19 @@ const isBlog = Astro.url.pathname.startsWith('/blog');
       bar.setAttribute('data-stuck', isStuck ? 'true' : 'false');
       wrap?.setAttribute('data-stuck', isStuck ? 'true' : 'false');
       refreshScrollCapacity();
+      if (isStuck) {
+        stopIdleAnimation();
+      } else {
+        startIdleAnimation();
+      }
     }
   }
 
-  function checkStuck() {
+  function checkStuck(): boolean {
     const sentinel = document.getElementById('status-bar-sentinel');
-    if (!sentinel) return;
-    const isStuck = sentinel.getBoundingClientRect().top <= 0;
+    const isStuck = sentinel ? sentinel.getBoundingClientRect().top <= 0 : false;
     updateStuckState(isStuck);
+    return isStuck;
   }
 
   function getEyelineState(): boolean {
@@ -340,6 +470,8 @@ const isBlog = Astro.url.pathname.startsWith('/blog');
   }
 
   function setupControls() {
+    stopIdleAnimation();
+
     const currentAccent = getStoredAccent();
     applyAccent(currentAccent);
 
@@ -382,7 +514,12 @@ const isBlog = Astro.url.pathname.startsWith('/blog');
 
     updateISTClock();
     refreshScrollCapacity();
-    checkStuck();
+    const isStuck = checkStuck();
+    if (isStuck) {
+      stopIdleAnimation();
+    } else {
+      startIdleAnimation();
+    }
 
     const sentinel = document.getElementById('status-bar-sentinel');
     if (sentinel && 'IntersectionObserver' in window) {
@@ -414,11 +551,21 @@ const isBlog = Astro.url.pathname.startsWith('/blog');
   setupControls();
   setInterval(updateISTClock, 1000);
   window.addEventListener('scroll', () => {
-    updateScrollIndicator();
     checkStuck();
+    updateScrollIndicator();
   }, { passive: true });
   window.addEventListener('resize', refreshScrollCapacity);
   document.addEventListener('astro:after-swap', setupControls);
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden) {
+      stopIdleAnimation();
+    } else {
+      const bar = document.getElementById('status-bar');
+      if (bar && bar.getAttribute('data-stuck') !== 'true') {
+        startIdleAnimation();
+      }
+    }
+  });
 
   // Keyboard navigation shortcuts: 'a' for accent, 't' for theme
   document.addEventListener('keydown', (e) => {

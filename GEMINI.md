@@ -6,6 +6,14 @@
 
 ## 1. Core Workflow Commands
 
+Node and npm are managed via fnm at `~/.local/share/fnm/node-versions/v24.18.0/installation/bin`;
+commands requiring node/npm in the workspace environment should prepend this path to `PATH`
+with `BypassSandbox: true`:
+
+```bash
+export PATH="/home/adii/.local/share/fnm/node-versions/v24.18.0/installation/bin:$PATH"
+```
+
 - `npm run dev` — Launch local development server
 - `npm run build` — Build static site to `dist/`
 - `npm test` — Run Vitest unit test suite
