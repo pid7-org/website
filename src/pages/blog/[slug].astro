@@ -102,11 +102,11 @@ const pageDescription = post.frontmatter.description || fallbackExcerpt || 'engi
 		</script>
 
 		<header class="space-y-2.5 sm:space-y-3">
-			<h1 class="font-serif italic text-2xl sm:text-4xl font-semibold tracking-tight text-ctp-text leading-tight break-words">
+			<h1 class="font-serif text-2xl sm:text-4xl font-semibold tracking-tight text-ctp-text leading-tight break-words">
 				{post.frontmatter.title}
 			</h1>
 
-			<div class="flex flex-wrap items-center gap-x-2 gap-y-1 font-mono italic text-xs text-ctp-subtext0">
+			<div class="flex flex-wrap items-center gap-x-2 gap-y-1 font-mono text-xs text-ctp-subtext0">
 				<span>{formatBlogDate(post.frontmatter.created)}</span>
 				<span class="text-ctp-surface1">•</span>
 				<span>{post.readTimeMinutes} min read</span>
@@ -119,10 +119,10 @@ const pageDescription = post.frontmatter.description || fallbackExcerpt || 'engi
 			<div set:html={post.html} />
 		</article>
 
-		<div class="mt-6 sm:mt-8 flex flex-wrap items-center justify-between gap-3 sm:gap-4 font-mono italic text-xs text-ctp-subtext0 border-t border-ctp-surface0/40 pt-4">
+		<div class="mt-6 sm:mt-8 flex flex-wrap items-center justify-between gap-3 sm:gap-4 font-mono text-xs text-ctp-subtext0 border-t border-ctp-surface0/40 pt-4">
 			<div class="flex flex-wrap items-center gap-2">
 				{post.frontmatter.tags.map((tag) => (
-					<span class="text-ctp-subtext1">
+					<span class="text-[10px] sm:text-xs px-2 py-0.5 border border-ctp-surface1 bg-ctp-surface0/40 text-ctp-subtext1">
 						#{tag}
 					</span>
 				))}
@@ -135,18 +135,18 @@ const pageDescription = post.frontmatter.description || fallbackExcerpt || 'engi
 		</div>
 
 		{post.glossary.length > 0 && (
-			<section id="section-glossary" class="mt-8 sm:mt-12 space-y-4 sm:space-y-6">
-				<h2 id="glossary" class="font-serif italic text-lg sm:text-xl font-semibold text-[var(--color-accent)]">
-					#glossary
+			<section id="section-glossary" class="font-mono mt-8 sm:mt-12">
+				<h2 id="glossary" class="mb-3 font-mono text-xs uppercase tracking-widest text-ctp-subtext0">
+					Glossary
 				</h2>
 
-				<div class="space-y-3.5 sm:space-y-4">
+				<div class="space-y-3">
 					{post.glossary.map((item) => (
-						<div class="space-y-1 min-w-0">
-							<div class="font-mono text-xs sm:text-sm font-semibold text-[var(--color-accent)]">
+						<div class="border-l border-ctp-surface1 hover:border-[var(--color-accent)] transition-colors duration-200 pl-3.5 sm:pl-4 py-1 space-y-1 min-w-0">
+							<div class="font-mono text-xs sm:text-sm font-semibold text-ctp-text">
 								{item.term}
 							</div>
-							<div class="font-mono text-xs sm:text-sm text-ctp-text leading-relaxed break-words" set:html={item.definitionHtml} />
+							<div class="font-mono text-xs sm:text-sm text-ctp-subtext0 leading-relaxed break-words" set:html={item.definitionHtml} />
 						</div>
 					))}
 				</div>
@@ -154,19 +154,19 @@ const pageDescription = post.frontmatter.description || fallbackExcerpt || 'engi
 		)}
 
 		{post.references.length > 0 && (
-			<section class="mt-8 sm:mt-12 space-y-4 sm:space-y-6">
-				<h2 id="references" class="font-serif italic text-lg sm:text-xl font-semibold text-[var(--color-accent)]">
-					#references
+			<section id="section-references" class="font-mono mt-8 sm:mt-12">
+				<h2 id="references" class="mb-3 font-mono text-xs uppercase tracking-widest text-ctp-subtext0">
+					References
 				</h2>
 
-				<ol class="space-y-3.5 sm:space-y-4">
+				<ol class="space-y-3">
 					{post.references.map((ref) => (
-						<li id={`fn-${ref.id}`} class="flex items-start gap-2.5 sm:gap-3 font-mono text-xs sm:text-sm">
-							<span class="font-mono text-xs font-bold text-[var(--color-accent)] shrink-0 mt-0.5">
+						<li id={`fn-${ref.id}`} class="border-l border-ctp-surface1 hover:border-[var(--color-accent)] transition-colors duration-200 pl-3.5 sm:pl-4 py-1 flex items-start gap-2.5 sm:gap-3 text-xs sm:text-sm">
+							<span class="font-mono text-xs font-semibold text-[var(--color-accent)] shrink-0 mt-0.5">
 								[{ref.label}]
 							</span>
 							<div class="space-y-2 flex-1 min-w-0">
-								<div class="leading-relaxed text-ctp-text break-words" set:html={ref.contentHtml} />
+								<div class="leading-relaxed text-ctp-subtext0 break-words" set:html={ref.contentHtml} />
 							</div>
 							<a
 								href={`#fnref-${ref.id}`}
