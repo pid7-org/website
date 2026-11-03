@@ -6,6 +6,7 @@ import { formatBlogDate, getAllBlogPosts } from '../lib/blog';
 import { projects, team } from '../lib/projects';
 
 const posts = await getAllBlogPosts();
+const recentPosts = posts.slice(0, 5);
 ---
 
 <Layout>
@@ -22,6 +23,29 @@ const posts = await getAllBlogPosts();
 			</footer>
 		</blockquote>
 	</section>
+
+	{recentPosts.length > 0 && (
+		<section id="section-blogs">
+			<h2 class="mb-3 font-mono text-xs uppercase tracking-widest text-ctp-subtext0">
+				Blogs
+			</h2>
+			<ul class="text-sm space-y-1">
+				{recentPosts.map((post) => (
+					<li class="group flex items-baseline justify-between gap-4 py-2 border-b border-ctp-surface0/40 last:border-0">
+						<a
+							href={`/blog/${post.frontmatter.slug}`}
+							class="font-serif text-base text-ctp-text font-medium transition-colors hover:text-[var(--color-accent)] leading-snug"
+						>
+							{post.frontmatter.title}
+						</a>
+						<span class="shrink-0 font-mono text-xs text-ctp-subtext0 select-none">
+							{formatBlogDate(post.frontmatter.created)}
+						</span>
+					</li>
+				))}
+			</ul>
+		</section>
+	)}
 
 	<GithubStatsSection />
 
@@ -47,29 +71,6 @@ const posts = await getAllBlogPosts();
 			))}
 		</ul>
 	</section>
-
-	{posts.length > 0 && (
-		<section id="section-writing">
-			<h2 class="mb-3 font-mono text-xs uppercase tracking-widest text-ctp-subtext0">
-				Writing
-			</h2>
-			<ul class="text-sm space-y-1">
-				{posts.map((post) => (
-					<li class="group flex items-baseline justify-between gap-4 py-2 border-b border-ctp-surface0/40 last:border-0">
-						<a
-							href={`/blog/${post.frontmatter.slug}`}
-							class="font-serif text-base text-ctp-text font-medium transition-colors hover:text-[var(--color-accent)] leading-snug"
-						>
-							{post.frontmatter.title}
-						</a>
-						<span class="shrink-0 font-mono text-xs text-ctp-subtext0 select-none">
-							{formatBlogDate(post.frontmatter.created)}
-						</span>
-					</li>
-				))}
-			</ul>
-		</section>
-	)}
 
 	<div id="section-activity">
 		<GithubActivityGraph />
