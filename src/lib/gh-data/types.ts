@@ -61,6 +61,13 @@ export interface GHProjectItem {
   contributions: number;
 }
 
+export interface GHDataLanguageStat {
+  name: string;
+  color: string | null;
+  bytes: number;
+  percentage: number;
+}
+
 export interface GHDataOutput {
   generated_at: string;
   start_date: string; // e.g. "2025-01-01"
@@ -73,4 +80,5 @@ export interface GHDataOutput {
   cumulative_commits: CumulativeCommitPoint[];
   activity: Record<string, DailyActivity>;
   projects: GHProjectItem[];
+  languages: GHDataLanguageStat[];
 }

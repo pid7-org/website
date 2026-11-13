@@ -1,4 +1,4 @@
-import ghProjects from '../assets/gh-projects.json';
+import ghProjects from '../assets/gh-data.json';
 
 export interface ProjectLanguageStat {
   name: string;

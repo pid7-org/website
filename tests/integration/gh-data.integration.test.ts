@@ -87,4 +87,21 @@ describe('Integration: GitHub Data Artifact Integrity', () => {
     const last = data.cumulative_commits[data.cumulative_commits.length - 1];
     expect(last.cumulative).toBe(data.cadence.total_commits);
   });
+
+  it('verifies languages and projects data distribution in unified artifact', () => {
+    expect(Array.isArray(data.languages)).toBe(true);
+    expect(data.languages.length).toBeGreaterThan(0);
+    for (const lang of data.languages) {
+      expect(lang.name).toBeTruthy();
+      expect(typeof lang.bytes).toBe('number');
+      expect(typeof lang.percentage).toBe('number');
+    }
+
+    expect(Array.isArray(data.projects)).toBe(true);
+    expect(data.projects.length).toBeGreaterThan(0);
+    for (const proj of data.projects) {
+      expect(proj.name).toBeTruthy();
+      expect(proj.url).toMatch(/^https:\/\/github\.com\//);
+    }
+  });
 });

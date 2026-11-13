@@ -161,6 +161,7 @@ export function aggregateGHData(params: {
   startDateStr: string;
   endDateStr: string;
   generatedAtISO?: string;
+  languages?: import('./types.ts').GHDataLanguageStat[];
 }): GHDataOutput {
   const {
     commits,
@@ -171,6 +172,7 @@ export function aggregateGHData(params: {
     startDateStr,
     endDateStr,
     generatedAtISO,
+    languages = [],
   } = params;
 
   const activity: Record<string, DailyActivity> = {};
@@ -334,6 +336,7 @@ export function aggregateGHData(params: {
     cumulative_commits,
     activity,
     projects,
+    languages,
   };
 }
 

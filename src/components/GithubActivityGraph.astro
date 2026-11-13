@@ -1,18 +1,18 @@
 ---
-import activityData from '../assets/gh-activity.json';
+import activityData from '../assets/gh-data.json';
 import GithubLanguages from './GithubLanguages.astro';
 
 interface Bucket {
   commits: number;
   pull_requests: number;
-  reviews: number;
+  reviews?: number;
   issues: number;
-  discussions: number;
+  discussions?: number;
   releases: number;
   total: number;
 }
 
-const year = activityData.year || 2026;
+const year = activityData.end_date ? parseInt(activityData.end_date.slice(0, 4), 10) : 2026;
 const activityMap = (activityData.activity || {}) as Record<string, Bucket>;
 
 let totalCommits = 0;

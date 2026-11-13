@@ -16,6 +16,7 @@ import {
   collectRepoReleases,
   getRepositories,
 } from '../src/lib/gh-data/collector.ts';
+import { collectOrgLanguages } from '../src/lib/gh-languages/collector.ts';
 import type { GHDataOutput } from '../src/lib/gh-data/types.ts';
 
 const BASE_START_DATE = '2025-01-01';
@@ -130,6 +131,17 @@ async function main() {
       startDateStr: BASE_START_DATE,
       endDateStr,
     });
+  }
+
+  try {
+    console.log(`[GitHub Sync] Collecting language distribution for '${org}'...`);
+    const langOutput = await collectOrgLanguages(org);
+    finalData.languages = langOutput.languages;
+  } catch (err) {
+    console.warn(`[GitHub Sync] Non-fatal language collection warning:`, err);
+    if (!finalData.languages) {
+      finalData.languages = [];
+    }
   }
 
   mkdirSync(path.dirname(outputPath), { recursive: true });
