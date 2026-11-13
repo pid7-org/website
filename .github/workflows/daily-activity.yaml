@@ -19,23 +19,20 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Setup pnpm
-        uses: pnpm/action-setup@v6
-
       - name: Setup Node.js
         uses: actions/setup-node@v7
         with:
           node-version: '24'
-          cache: 'pnpm'
+          cache: 'npm'
 
       - name: Install dependencies
-        run: pnpm install --frozen-lockfile
+        run: npm ci
 
       - name: Synchronize GitHub Dataset
         env:
           GH_TOKEN: ${{ secrets.GH_TOKEN || secrets.GITHUB_TOKEN }}
           GITHUB_ORG: ${{ vars.GITHUB_ORG || 'pid7-org' }}
-        run: pnpm run github:sync -- --incremental --days 7
+        run: npm run github:sync -- --incremental --days 7
 
       - name: Commit and push updated dataset
         run: |
