@@ -1,14 +1,14 @@
 {
-  "generated_at": "2026-11-07T22:12:13.000Z",
+  "generated_at": "2026-11-13T10:47:30.973Z",
   "start_date": "2025-01-01",
-  "end_date": "2026-11-06",
-  "repos_count": 11,
-  "total_net_loc": 144640,
+  "end_date": "2026-11-13",
+  "repos_count": 5,
+  "total_net_loc": 153193,
   "cadence": {
-    "total_commits": 2225,
+    "total_commits": 2297,
     "total_prs": 89,
-    "total_releases": 77,
-    "monthly_avg_commits": 97,
+    "total_releases": 82,
+    "monthly_avg_commits": 100,
     "merge_rate_pct": 98
   },
   "top_repos": [
@@ -16,10 +16,10 @@
       "name": "turbofox",
       "nameWithOwner": "pid7-org/turbofox",
       "url": "https://github.com/pid7-org/turbofox",
-      "commits": 850,
-      "additions": 58420,
-      "deletions": 12150,
-      "net_loc": 46270,
+      "commits": 899,
+      "additions": 66384,
+      "deletions": 16302,
+      "net_loc": 50082,
       "primaryLanguage": "Rust",
       "primaryColor": "#dea584"
     },
@@ -27,10 +27,10 @@
       "name": "frozen-core",
       "nameWithOwner": "pid7-org/frozen-core",
       "url": "https://github.com/pid7-org/frozen-core",
-      "commits": 541,
-      "additions": 82140,
-      "deletions": 21300,
-      "net_loc": 60840,
+      "commits": 554,
+      "additions": 83571,
+      "deletions": 21672,
+      "net_loc": 61899,
       "primaryLanguage": "Rust",
       "primaryColor": "#dea584"
     },
@@ -38,10 +38,21 @@
       "name": "ashwa",
       "nameWithOwner": "pid7-org/ashwa",
       "url": "https://github.com/pid7-org/ashwa",
-      "commits": 163,
-      "additions": 24500,
+      "commits": 269,
+      "additions": 24511,
       "deletions": 5120,
-      "net_loc": 19380,
+      "net_loc": 19391,
+      "primaryLanguage": "Rust",
+      "primaryColor": "#dea584"
+    },
+    {
+      "name": "kosa",
+      "nameWithOwner": "pid7-org/kosa",
+      "url": "https://github.com/pid7-org/kosa",
+      "commits": 129,
+      "additions": 0,
+      "deletions": 0,
+      "net_loc": 0,
       "primaryLanguage": "Rust",
       "primaryColor": "#dea584"
     },
@@ -49,23 +60,12 @@
       "name": "website",
       "nameWithOwner": "pid7-org/website",
       "url": "https://github.com/pid7-org/website",
-      "commits": 112,
-      "additions": 15400,
-      "deletions": 3200,
-      "net_loc": 12200,
-      "primaryLanguage": "Astro",
-      "primaryColor": "#ff5a03"
-    },
-    {
-      "name": "sher",
-      "nameWithOwner": "pid7-org/sher",
-      "url": "https://github.com/pid7-org/sher",
-      "commits": 48,
-      "additions": 7850,
-      "deletions": 1420,
-      "net_loc": 6430,
-      "primaryLanguage": "Rust",
-      "primaryColor": "#dea584"
+      "commits": 119,
+      "additions": 22172,
+      "deletions": 6308,
+      "net_loc": 15864,
+      "primaryLanguage": "TypeScript",
+      "primaryColor": "#3178c6"
     }
   ],
   "monthly_loc": [
@@ -113,9 +113,9 @@
       "month": "2026-11",
       "label": "Nov",
       "year": 2026,
-      "additions": 19477,
-      "deletions": 11603,
-      "net": 7874
+      "additions": 35663,
+      "deletions": 19236,
+      "net": 16427
     }
   ],
   "cumulative_commits": [
@@ -408,10 +408,10 @@
       "interval_delta": 318
     },
     {
-      "date": "2026-11-06",
+      "date": "2026-11-13",
       "label": "Nov '26",
-      "cumulative": 2225,
-      "interval_delta": 2
+      "cumulative": 2297,
+      "interval_delta": 74
     }
   ],
   "activity": {
@@ -7164,173 +7164,148 @@
       "additions": 302,
       "deletions": 186,
       "total": 2
+    },
+    "2026-11-07": {
+      "commits": 25,
+      "pull_requests": 0,
+      "issues": 1,
+      "discussions": 0,
+      "releases": 1,
+      "additions": 1838,
+      "deletions": 1390,
+      "total": 27
+    },
+    "2026-11-08": {
+      "commits": 13,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 1,
+      "additions": 4745,
+      "deletions": 2052,
+      "total": 14
+    },
+    "2026-11-09": {
+      "commits": 19,
+      "pull_requests": 0,
+      "issues": 4,
+      "discussions": 0,
+      "releases": 3,
+      "additions": 2021,
+      "deletions": 506,
+      "total": 26
+    },
+    "2026-11-10": {
+      "commits": 5,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 723,
+      "deletions": 512,
+      "total": 5
+    },
+    "2026-11-11": {
+      "commits": 0,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 0,
+      "deletions": 0,
+      "total": 0
+    },
+    "2026-11-12": {
+      "commits": 1,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 322,
+      "deletions": 0,
+      "total": 1
+    },
+    "2026-11-13": {
+      "commits": 9,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 0,
+      "additions": 6537,
+      "deletions": 3173,
+      "total": 9
     }
   },
   "projects": [
     {
       "name": "turbofox",
       "nameWithOwner": "pid7-org/turbofox",
-      "desc": "A persistent and efficient embedded KV database",
       "url": "https://github.com/pid7-org/turbofox",
-      "stars": 1,
+      "stars": 3,
       "forks": 0,
       "language": "Rust",
       "languageColor": "#dea584",
-      "languages": [
-        {
-          "name": "Rust",
-          "color": "#dea584",
-          "bytes": 429554
-        },
-        {
-          "name": "Python",
-          "color": "#3572A5",
-          "bytes": 31763
-        },
-        {
-          "name": "Shell",
-          "color": "#89e051",
-          "bytes": 16756
-        },
-        {
-          "name": "HCL",
-          "color": "#844FBA",
-          "bytes": 3210
-        }
-      ],
-      "commits": 850,
-      "releases": 3,
+      "commits": 899,
+      "releases": 4,
       "pullRequests": 1,
-      "issues": 1,
-      "contributions": 855
+      "issues": 4,
+      "contributions": 899
     },
     {
       "name": "frozen-core",
       "nameWithOwner": "pid7-org/frozen-core",
-      "desc": "Core utilities for frozen codebases.",
       "url": "https://github.com/pid7-org/frozen-core",
       "stars": 0,
       "forks": 0,
       "language": "Rust",
       "languageColor": "#dea584",
-      "languages": [
-        {
-          "name": "Rust",
-          "color": "#dea584",
-          "bytes": 644493
-        },
-        {
-          "name": "Shell",
-          "color": "#89e051",
-          "bytes": 1516
-        }
-      ],
-      "commits": 541,
-      "releases": 39,
+      "commits": 554,
+      "releases": 43,
       "pullRequests": 43,
-      "issues": 70,
-      "contributions": 693
+      "issues": 72,
+      "contributions": 554
     },
     {
-      "name": "ashwa",
-      "nameWithOwner": "pid7-org/ashwa",
-      "desc": "Hardware accelerated routines for single substring search.",
-      "url": "https://github.com/pid7-org/ashwa",
-      "stars": 20,
-      "forks": 0,
-      "language": "Rust",
-      "languageColor": "#dea584",
-      "languages": [
-        {
-          "name": "Rust",
-          "color": "#dea584",
-          "bytes": 269339
-        },
-        {
-          "name": "JavaScript",
-          "color": "#f1e05a",
-          "bytes": 122055
-        },
-        {
-          "name": "Python",
-          "color": "#3572A5",
-          "bytes": 56738
-        },
-        {
-          "name": "Shell",
-          "color": "#89e051",
-          "bytes": 48825
-        },
-        {
-          "name": "HCL",
-          "color": "#844FBA",
-          "bytes": 5580
-        },
-        {
-          "name": "C",
-          "color": "#555555",
-          "bytes": 1621
-        }
-      ],
-      "commits": 268,
-      "releases": 6,
-      "pullRequests": 0,
-      "issues": 0,
-      "contributions": 274
-    },
-    {
-      "name": "kosa",
-      "nameWithOwner": "pid7-org/kosa",
-      "desc": "A reliable page-based storage engine with fire-and-forget durability semantics",
-      "url": "https://github.com/pid7-org/kosa",
-      "stars": 1,
-      "forks": 0,
-      "language": "Rust",
-      "languageColor": "#dea584",
-      "languages": [
-        {
-          "name": "Rust",
-          "color": "#dea584",
-          "bytes": 59466
-        },
-        {
-          "name": "Nix",
-          "color": "#7e7eff",
-          "bytes": 493
-        }
-      ],
-      "commits": 129,
-      "releases": 3,
-      "pullRequests": 2,
-      "issues": 2,
-      "contributions": 136
-    },
-    {
-      "name": "rta",
-      "nameWithOwner": "pid7-org/rta",
-      "desc": "Ṛta (ऋत) is a minimal metadata store for durable system state",
-      "url": "https://github.com/pid7-org/rta",
+      "name": "turbo_crc",
+      "nameWithOwner": "pid7-org/turbo_crc",
+      "url": "https://github.com/pid7-org/turbo_crc",
       "stars": 0,
       "forks": 0,
       "language": "Rust",
       "languageColor": "#dea584",
-      "languages": [
-        {
-          "name": "Rust",
-          "color": "#dea584",
-          "bytes": 49183
-        },
-        {
-          "name": "Nix",
-          "color": "#7e7eff",
-          "bytes": 491
-        }
-      ],
-      "commits": 81,
-      "releases": 2,
-      "pullRequests": 2,
-      "issues": 1,
-      "contributions": 86
+      "commits": 3,
+      "releases": 0,
+      "pullRequests": 0,
+      "issues": 0,
+      "contributions": 3
+    },
+    {
+      "name": "ashwa",
+      "nameWithOwner": "pid7-org/ashwa",
+      "url": "https://github.com/pid7-org/ashwa",
+      "stars": 22,
+      "forks": 0,
+      "language": "Rust",
+      "languageColor": "#dea584",
+      "commits": 269,
+      "releases": 6,
+      "pullRequests": 0,
+      "issues": 0,
+      "contributions": 269
+    },
+    {
+      "name": "website",
+      "nameWithOwner": "pid7-org/website",
+      "url": "https://github.com/pid7-org/website",
+      "stars": 0,
+      "forks": 0,
+      "language": "TypeScript",
+      "languageColor": "#3178c6",
+      "commits": 119,
+      "releases": 0,
+      "pullRequests": 0,
+      "issues": 0,
+      "contributions": 119
     }
   ]
 }
