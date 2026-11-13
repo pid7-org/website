@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { parseFrontmatter, parseMarkdownBlog } from 'mdparser';
+import { parseFrontmatter, parseMarkdownBlog } from '../src/lib/parser/index.ts';
 
 const DUMMY_MARKDOWN_POST = `---
 slug: dummy-unit-test-post
@@ -47,7 +47,7 @@ $$
 [^1]: Footnote details for reference 1.
 `;
 
-describe('Markdown Parser Unit Tests (mdparser dependency)', () => {
+describe('Markdown Parser Unit Tests', () => {
   it('correctly parses frontmatter properties including tags', () => {
     const { frontmatter } = parseFrontmatter(DUMMY_MARKDOWN_POST);
     expect(frontmatter.slug).toBe('dummy-unit-test-post');

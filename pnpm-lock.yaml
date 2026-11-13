@@ -200,9 +200,6 @@ importers:
       katex:
         specifier: ^0.18.6
         version: 0.18.10
-      mdparser:
-        specifier: github:adityamotale/adityamotale#master&path:mdparser
-        version: https://codeload.github.com/adityamotale/adityamotale/tar.gz/9f8e88f0f9694d99282b2a5bfb5e814cb63bc75a#path:mdparser
       shiki:
         specifier: ^4.4.3
         version: 4.6.0
@@ -1312,10 +1309,6 @@ packages:
 
   mdn-data@2.27.1:
     resolution: {integrity: sha512-9Yubnt3e8A0OKwxYSXyhLymGW4sCufcLG6VdiDdUGVkPhpqLxlvP5vl1983gQjJl3tqbrM731mjaZaP68AgosQ==}
-
-  mdparser@https://codeload.github.com/adityamotale/adityamotale/tar.gz/9f8e88f0f9694d99282b2a5bfb5e814cb63bc75a#path:mdparser:
-    resolution: {gitHosted: true, integrity: sha512-n4/tBLMRUv9DI0swW3ZSpIyweuT4W7/Vseafwr7IYwKT6df1mInQLtu5tPfaOdzwh5VbiJVULMNeht3QEuWobw==, path: mdparser, tarball: https://codeload.github.com/adityamotale/adityamotale/tar.gz/9f8e88f0f9694d99282b2a5bfb5e814cb63bc75a}
-    version: 0.3.8
 
   micromark-util-character@2.1.1:
     resolution: {integrity: sha512-wv8tdUTJ3thSFFFJKtpYKOYiGP2+v96Hvk4Tu8KpCAsTMs6yi+nVmGh1syvSCsaxz45J6Jbw+9DD6g97+NV67Q==}
@@ -2739,11 +2732,6 @@ snapshots:
   mdn-data@2.0.28: {}
 
   mdn-data@2.27.1: {}
-
-  mdparser@https://codeload.github.com/adityamotale/adityamotale/tar.gz/9f8e88f0f9694d99282b2a5bfb5e814cb63bc75a#path:mdparser:
-    dependencies:
-      katex: 0.18.10
-      shiki: 4.6.0
 
   micromark-util-character@2.1.1:
     dependencies:

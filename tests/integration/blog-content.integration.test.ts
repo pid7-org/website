@@ -1,7 +1,7 @@
 import fs from 'node:fs/promises';
 import path from 'node:path';
 import { describe, expect, it } from 'vitest';
-import { parseMarkdownBlog } from 'mdparser';
+import { parseMarkdownBlog } from '../../src/lib/parser/index.ts';
 
 describe('Integration: Production Blog Articles Content Validation', () => {
   const contentDir = path.resolve(process.cwd(), 'src/content/blog');

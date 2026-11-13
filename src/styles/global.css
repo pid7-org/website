@@ -4,7 +4,7 @@
 @import "katex/dist/katex.min.css";
 
 @import "tailwindcss";
-@source "../../node_modules/mdparser";
+@source "../lib/parser";
 @plugin "@tailwindcss/typography";
 @import "@catppuccin/palette/css/catppuccin.css";
 @import "@catppuccin/tailwindcss/macchiato.css";

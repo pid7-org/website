@@ -1,7 +1,7 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import { formatBlogDate, getAllBlogPosts, getBlogPostById } from '../../lib/blog';
-import type { ParsedBlogPost } from 'mdparser';
+import type { ParsedBlogPost } from '../../lib/parser/types.ts';
 
 export async function getStaticPaths() {
   const posts = await getAllBlogPosts();

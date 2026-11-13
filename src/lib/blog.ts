@@ -1,7 +1,7 @@
 import fs from 'node:fs/promises';
 import path from 'node:path';
-import { parseMarkdownBlog, validateBlogPost } from 'mdparser';
-import type { ParsedBlogPost } from 'mdparser';
+import { parseMarkdownBlog, validateBlogPost } from './parser/index.ts';
+import type { ParsedBlogPost } from './parser/types.ts';
 
 const BLOG_DIR = path.resolve(process.cwd(), 'src/content/blog');
 
