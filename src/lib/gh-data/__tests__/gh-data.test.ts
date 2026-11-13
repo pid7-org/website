@@ -238,4 +238,119 @@ describe('GH Data Aggregator', () => {
     expect(merged.activity['2025-01-06'].commits).toBe(1);
     expect(merged.total_net_loc).toBe((100 - 20) + (40 - 10) + (80 - 15));
   });
+
+  it('deduplicates commit OIDs and PR IDs within incremental refresh window', () => {
+    const initial = aggregateGHData({
+      commits: [{ oid: 'c1', date: '2025-01-01', repo: 'turbofox', additions: 10, deletions: 2 }],
+      prs: [],
+      releases: [],
+      issues: [],
+      reposMeta: [{
+        name: 'turbofox',
+        nameWithOwner: 'pid7-org/turbofox',
+        desc: 'Embedded KV',
+        url: 'https://github.com/pid7-org/turbofox',
+        stars: 1,
+        forks: 0,
+        language: 'Rust',
+        languageColor: '#dea584',
+      }],
+      startDateStr: '2025-01-01',
+      endDateStr: '2025-01-02',
+    });
+
+    const merged = mergeGHData(
+      initial,
+      [
+        { oid: 'c2', date: '2025-01-02', repo: 'turbofox', additions: 50, deletions: 10 },
+        { oid: 'c2', date: '2025-01-02', repo: 'turbofox', additions: 50, deletions: 10 },
+      ],
+      [
+        { id: 'pr1', date: '2025-01-02', repo: 'turbofox', merged: true },
+        { id: 'pr1', date: '2025-01-02', repo: 'turbofox', merged: true },
+      ],
+      [],
+      [],
+      '2025-01-02',
+      '2025-01-02'
+    );
+
+    expect(merged.cadence.total_commits).toBe(2);
+    expect(merged.cadence.total_prs).toBe(1);
+    expect(merged.activity['2025-01-02'].commits).toBe(1);
+    expect(merged.activity['2025-01-02'].pull_requests).toBe(1);
+    expect(merged.cadence.merge_rate_pct).toBe(100);
+  });
+
+  it('synchronizes reposMeta, top_repos, and projects during incremental merge', () => {
+    const initial = aggregateGHData({
+      commits: [{ oid: 'c1', date: '2025-01-01', repo: 'turbofox', additions: 100, deletions: 20 }],
+      prs: [],
+      releases: [],
+      issues: [],
+      reposMeta: [{
+        name: 'turbofox',
+        nameWithOwner: 'pid7-org/turbofox',
+        desc: 'Old desc',
+        url: 'https://github.com/pid7-org/turbofox',
+        stars: 1,
+        forks: 0,
+        language: 'Rust',
+        languageColor: '#dea584',
+      }],
+      startDateStr: '2025-01-01',
+      endDateStr: '2025-01-02',
+    });
+
+    const updatedReposMeta = [
+      {
+        name: 'turbofox',
+        nameWithOwner: 'pid7-org/turbofox',
+        desc: 'Updated description',
+        url: 'https://github.com/pid7-org/turbofox',
+        stars: 42,
+        forks: 7,
+        language: 'Rust',
+        languageColor: '#dea584',
+      },
+      {
+        name: 'ashwa',
+        nameWithOwner: 'pid7-org/ashwa',
+        desc: 'New repository',
+        url: 'https://github.com/pid7-org/ashwa',
+        stars: 10,
+        forks: 2,
+        language: 'Rust',
+        languageColor: '#dea584',
+      },
+    ];
+
+    const merged = mergeGHData(
+      initial,
+      [
+        { oid: 'c2', date: '2025-01-02', repo: 'ashwa', additions: 200, deletions: 10 },
+      ],
+      [],
+      [],
+      [],
+      '2025-01-02',
+      '2025-01-02',
+      updatedReposMeta
+    );
+
+    expect(merged.repos_count).toBe(2);
+    expect(merged.projects).toHaveLength(2);
+
+    const turbofox = merged.projects.find((p) => p.name === 'turbofox');
+    expect(turbofox?.desc).toBe('Updated description');
+    expect(turbofox?.stars).toBe(42);
+    expect(turbofox?.forks).toBe(7);
+
+    const ashwa = merged.projects.find((p) => p.name === 'ashwa');
+    expect(ashwa?.desc).toBe('New repository');
+    expect(ashwa?.stars).toBe(10);
+    expect(ashwa?.commits).toBe(1);
+
+    expect(merged.top_repos.some((r) => r.name === 'ashwa')).toBe(true);
+  });
 });

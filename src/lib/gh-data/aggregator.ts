@@ -344,18 +344,59 @@ export function mergeGHData(
   recentReleases: RawRelease[],
   recentIssues: RawIssue[],
   windowStart: string,
-  windowEnd: string
+  windowEnd: string,
+  reposMeta?: RawRepoMeta[]
 ): GHDataOutput {
+  // Deduplicate incoming window items
+  const uniqueCommits = new Map<string, RawCommit>();
+  for (const c of recentCommits) {
+    if (!uniqueCommits.has(c.oid)) {
+      uniqueCommits.set(c.oid, c);
+    }
+  }
+
+  const uniquePRs = new Map<string, RawPR>();
+  for (const p of recentPRs) {
+    if (!uniquePRs.has(p.id)) {
+      uniquePRs.set(p.id, p);
+    }
+  }
+
+  const uniqueReleases = new Map<string, RawRelease>();
+  for (const r of recentReleases) {
+    if (!uniqueReleases.has(r.id)) {
+      uniqueReleases.set(r.id, r);
+    }
+  }
+
+  const uniqueIssues = new Map<string, RawIssue>();
+  for (const iss of recentIssues) {
+    if (!uniqueIssues.has(iss.id)) {
+      uniqueIssues.set(iss.id, iss);
+    }
+  }
+
   const activity = { ...existing.activity };
   const dateList = generateDateRange(windowStart, windowEnd);
 
+  let oldWinCommits = 0;
+  let oldWinAdditions = 0;
+  let oldWinDeletions = 0;
+  let oldWinPRs = 0;
+
   // Clear existing data within the refresh window to prevent duplicates
   for (const d of dateList) {
+    if (activity[d]) {
+      oldWinCommits += activity[d].commits;
+      oldWinAdditions += activity[d].additions;
+      oldWinDeletions += activity[d].deletions;
+      oldWinPRs += activity[d].pull_requests;
+    }
     activity[d] = createZeroBucket();
   }
 
-  // Overlay recent commits
-  for (const c of recentCommits) {
+  // Overlay recent deduplicated commits
+  for (const c of uniqueCommits.values()) {
     if (activity[c.date]) {
       activity[c.date].commits++;
       activity[c.date].additions += c.additions;
@@ -364,24 +405,24 @@ export function mergeGHData(
     }
   }
 
-  // Overlay PRs
-  for (const p of recentPRs) {
+  // Overlay unique PRs
+  for (const p of uniquePRs.values()) {
     if (activity[p.date]) {
       activity[p.date].pull_requests++;
       activity[p.date].total++;
     }
   }
 
-  // Overlay Releases
-  for (const r of recentReleases) {
+  // Overlay unique Releases
+  for (const r of uniqueReleases.values()) {
     if (activity[r.date]) {
       activity[r.date].releases++;
       activity[r.date].total++;
     }
   }
 
-  // Overlay Issues
-  for (const iss of recentIssues) {
+  // Overlay unique Issues
+  for (const iss of uniqueIssues.values()) {
     if (activity[iss.date]) {
       activity[iss.date].issues++;
       activity[iss.date].total++;
@@ -403,6 +444,178 @@ export function mergeGHData(
     totalDeletions += b.deletions;
   }
 
+  // Dynamic merge rate recalculation
+  let windowMergedPRs = 0;
+  for (const p of uniquePRs.values()) {
+    if (p.merged) windowMergedPRs++;
+  }
+  const prevTotalPRs = existing.cadence?.total_prs || 0;
+  const prevMergeRate = existing.cadence?.merge_rate_pct ?? 100;
+  const prevMergedPRs = Math.round((prevMergeRate / 100) * prevTotalPRs);
+  const oldWinMergedEstimated = Math.round((prevMergeRate / 100) * oldWinPRs);
+  const totalMergedPRs = Math.max(
+    0,
+    Math.min(totalPRs, prevMergedPRs - oldWinMergedEstimated + windowMergedPRs)
+  );
+  const mergeRatePct = totalPRs > 0 ? Math.round((totalMergedPRs / totalPRs) * 100) : 100;
+
+  // Window stats per repository
+  const repoWinStats = new Map<
+    string,
+    { commits: number; additions: number; deletions: number; prs: number; releases: number; issues: number }
+  >();
+  for (const c of uniqueCommits.values()) {
+    const s = repoWinStats.get(c.repo) || {
+      commits: 0,
+      additions: 0,
+      deletions: 0,
+      prs: 0,
+      releases: 0,
+      issues: 0,
+    };
+    s.commits++;
+    s.additions += c.additions;
+    s.deletions += c.deletions;
+    repoWinStats.set(c.repo, s);
+  }
+  for (const p of uniquePRs.values()) {
+    const s = repoWinStats.get(p.repo) || {
+      commits: 0,
+      additions: 0,
+      deletions: 0,
+      prs: 0,
+      releases: 0,
+      issues: 0,
+    };
+    s.prs++;
+    repoWinStats.set(p.repo, s);
+  }
+  for (const r of uniqueReleases.values()) {
+    const s = repoWinStats.get(r.repo) || {
+      commits: 0,
+      additions: 0,
+      deletions: 0,
+      prs: 0,
+      releases: 0,
+      issues: 0,
+    };
+    s.releases++;
+    repoWinStats.set(r.repo, s);
+  }
+  for (const iss of uniqueIssues.values()) {
+    const s = repoWinStats.get(iss.repo) || {
+      commits: 0,
+      additions: 0,
+      deletions: 0,
+      prs: 0,
+      releases: 0,
+      issues: 0,
+    };
+    s.issues++;
+    repoWinStats.set(iss.repo, s);
+  }
+
+  let newWinCommits = 0;
+  let newWinAdditions = 0;
+  let newWinDeletions = 0;
+  for (const s of repoWinStats.values()) {
+    newWinCommits += s.commits;
+    newWinAdditions += s.additions;
+    newWinDeletions += s.deletions;
+  }
+
+  const deltaCommits = newWinCommits - oldWinCommits;
+  const deltaAdditions = newWinAdditions - oldWinAdditions;
+  const deltaDeletions = newWinDeletions - oldWinDeletions;
+
+  const repoStats = new Map<string, { commits: number; additions: number; deletions: number }>();
+  for (const p of existing.projects || []) {
+    repoStats.set(p.name, { commits: p.commits, additions: 0, deletions: 0 });
+  }
+  for (const t of existing.top_repos || []) {
+    const curr = repoStats.get(t.name) || { commits: t.commits, additions: 0, deletions: 0 };
+    curr.additions = Math.max(curr.additions, t.additions);
+    curr.deletions = Math.max(curr.deletions, t.deletions);
+    repoStats.set(t.name, curr);
+  }
+
+  for (const [repoName, win] of repoWinStats.entries()) {
+    const curr = repoStats.get(repoName) || { commits: 0, additions: 0, deletions: 0 };
+    const repoDeltaCommits =
+      newWinCommits > 0 ? Math.round(deltaCommits * (win.commits / newWinCommits)) : 0;
+    const repoDeltaAdditions =
+      newWinAdditions > 0 ? Math.round(deltaAdditions * (win.additions / newWinAdditions)) : 0;
+    const repoDeltaDeletions =
+      newWinDeletions > 0 ? Math.round(deltaDeletions * (win.deletions / newWinDeletions)) : 0;
+
+    curr.commits = Math.max(0, curr.commits + repoDeltaCommits);
+    curr.additions = Math.max(0, curr.additions + repoDeltaAdditions);
+    curr.deletions = Math.max(0, curr.deletions + repoDeltaDeletions);
+    repoStats.set(repoName, curr);
+  }
+
+  const metaSource: RawRepoMeta[] =
+    reposMeta && reposMeta.length > 0
+      ? reposMeta
+      : (existing.projects || []).map((p) => ({
+          name: p.name,
+          nameWithOwner: p.nameWithOwner,
+          desc: p.desc,
+          url: p.url,
+          stars: p.stars,
+          forks: p.forks,
+          language: p.language,
+          languageColor: p.languageColor,
+        }));
+
+  const metaMap = new Map<string, RawRepoMeta>(metaSource.map((m) => [m.name, m]));
+
+  for (const m of metaSource) {
+    if (!repoStats.has(m.name)) {
+      repoStats.set(m.name, { commits: 0, additions: 0, deletions: 0 });
+    }
+  }
+
+  const topRepos: RepoChurnStat[] = Array.from(repoStats.entries())
+    .map(([name, stat]) => {
+      const meta = metaMap.get(name);
+      return {
+        name,
+        nameWithOwner: meta?.nameWithOwner || `pid7-org/${name}`,
+        url: meta?.url || `https://github.com/pid7-org/${name}`,
+        commits: stat.commits,
+        additions: stat.additions,
+        deletions: stat.deletions,
+        net_loc: stat.additions - stat.deletions,
+        primaryLanguage: meta?.language || 'Rust',
+        primaryColor: meta?.languageColor || '#dea584',
+      };
+    })
+    .sort((a, b) => b.commits - a.commits || b.additions - a.additions)
+    .slice(0, 5);
+
+  const existingProjMap = new Map((existing.projects || []).map((p) => [p.name, p]));
+  const projects: GHProjectItem[] = metaSource.map((m) => {
+    const s = repoStats.get(m.name) || { commits: 0, additions: 0, deletions: 0 };
+    const ex = existingProjMap.get(m.name);
+    const win = repoWinStats.get(m.name);
+    return {
+      name: m.name,
+      nameWithOwner: m.nameWithOwner,
+      desc: m.desc,
+      url: m.url,
+      stars: m.stars,
+      forks: m.forks,
+      language: m.language,
+      languageColor: m.languageColor,
+      commits: s.commits,
+      releases: Math.max(ex?.releases || 0, (ex?.releases || 0) + (win?.releases || 0)),
+      pullRequests: Math.max(ex?.pullRequests || 0, (ex?.pullRequests || 0) + (win?.prs || 0)),
+      issues: Math.max(ex?.issues || 0, (ex?.issues || 0) + (win?.issues || 0)),
+      contributions: s.commits,
+    };
+  });
+
   const sDate = new Date(`${existing.start_date}T00:00:00Z`);
   const eDate = new Date(`${windowEnd}T00:00:00Z`);
   const elapsedMonths = Math.max(
@@ -417,7 +630,7 @@ export function mergeGHData(
     total_prs: totalPRs,
     total_releases: totalReleases,
     monthly_avg_commits: Math.round(totalCommits / elapsedMonths),
-    merge_rate_pct: existing.cadence.merge_rate_pct || 98,
+    merge_rate_pct: mergeRatePct,
   };
 
   const monthly_loc = buildMonthlyLoc(activity, 6);
@@ -427,10 +640,13 @@ export function mergeGHData(
     ...existing,
     generated_at: new Date().toISOString(),
     end_date: windowEnd,
+    repos_count: metaSource.length,
     total_net_loc: totalAdditions - totalDeletions,
     cadence,
+    top_repos: topRepos,
     monthly_loc,
     cumulative_commits,
     activity,
+    projects,
   };
 }

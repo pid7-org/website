@@ -41,8 +41,7 @@ async function main() {
   const isIncremental = isIncrementalRequested && !isFullRequested && fileExists;
 
   const now = new Date();
-  const yesterday = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate() - 1));
-  const endDateStr = yesterday.toISOString().slice(0, 10);
+  const endDateStr = now.toISOString().slice(0, 10);
 
   console.log(`[GitHub Sync] Starting unified GitHub sync for organization '${org}'...`);
   console.log(`[GitHub Sync] Mode: ${isIncremental ? `Incremental (past ${daysWindow} days)` : `Full backfill (${BASE_START_DATE} → ${endDateStr})`}`);
@@ -56,7 +55,7 @@ async function main() {
     const rawExisting = readFileSync(outputPath, 'utf-8');
     const existingData = JSON.parse(rawExisting) as GHDataOutput;
 
-    const windowStartDate = new Date(yesterday.getTime() - daysWindow * 24 * 60 * 60 * 1000);
+    const windowStartDate = new Date(now.getTime() - daysWindow * 24 * 60 * 60 * 1000);
     let windowStartDateStr = windowStartDate.toISOString().slice(0, 10);
     if (windowStartDateStr < BASE_START_DATE) {
       windowStartDateStr = BASE_START_DATE;
@@ -93,7 +92,8 @@ async function main() {
       allReleases,
       allIssues,
       windowStartDateStr,
-      endDateStr
+      endDateStr,
+      repos
     );
   } else {
     const sinceISO = `${BASE_START_DATE}T00:00:00Z`;
