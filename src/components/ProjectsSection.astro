@@ -18,27 +18,7 @@ function compareProjectsByRelease(a: Project, b: Project): number {
   return (b.contributions ?? b.commits ?? 0) - (a.contributions ?? a.commits ?? 0);
 }
 
-// Top section: repositories with banner asset present, sorted by newest release
-const bannerProjects = projects
-  .filter((p) => Boolean(p.bannerUrl))
-  .sort(compareProjectsByRelease);
-
-// Bottom section: repositories without banner, sorted by newest release, capped at 2
-const bottomProjects = projects
-  .filter((p) => !p.bannerUrl)
-  .sort(compareProjectsByRelease)
-  .slice(0, 2);
-
-function formatReleaseDate(isoDate: string | null | undefined): string {
-  if (!isoDate) return '';
-  const d = new Date(isoDate);
-  if (isNaN(d.getTime())) return '';
-  return d.toLocaleDateString('en-US', {
-    month: 'short',
-    day: 'numeric',
-    year: 'numeric',
-  });
-}
+const allProjects = [...projects].sort(compareProjectsByRelease);
 
 function getTopLanguages(project: Project): ProjectLanguageStat[] {
   if (Array.isArray(project.languages) && project.languages.length > 0) {
@@ -51,181 +31,77 @@ function getTopLanguages(project: Project): ProjectLanguageStat[] {
 }
 ---
 
-{(bannerProjects.length > 0 || bottomProjects.length > 0) && (
+{allProjects.length > 0 && (
   <section id="section-projects" class="font-mono">
-    <h2 class="mb-3 font-mono text-xs uppercase tracking-widest text-ctp-subtext0">
-      Projects
-    </h2>
+    <div class="mb-3 flex items-center gap-1.5 text-xs select-none">
+      <span class="text-[var(--color-accent)] font-semibold">~</span>
+      <span class="text-ctp-overlay1">$</span>
+      <span class="text-ctp-subtext0 tracking-wide">ls -l projects/</span>
+    </div>
 
-    <div class="space-y-3">
-      {bannerProjects.map((flagship) => (
-        <a
-          href={flagship.url}
-          target="_blank"
-          rel="noreferrer"
-          class="group block border border-ctp-surface0/60 bg-ctp-surface0/15
-                 hover:border-[var(--color-accent)] transition-colors overflow-hidden"
-        >
-          {flagship.bannerUrl && (
-            <div class="block overflow-hidden border-b border-ctp-surface0/40">
-              <img
-                src={flagship.bannerUrl}
-                alt={`${flagship.name} preview banner`}
-                class="w-full aspect-[21/9] sm:aspect-[2.4/1] object-cover
-                       opacity-95 group-hover:opacity-100 transition-opacity"
-                loading="lazy"
-              />
-            </div>
-          )}
-
-          <div class="p-4 space-y-2.5">
-            <div class="flex items-center justify-between gap-3 flex-wrap">
-              <span
-                class="font-serif text-lg font-medium text-ctp-text
-                       group-hover:text-[var(--color-accent)] transition-colors
-                       inline-flex items-center gap-1.5"
-              >
-                <span>{flagship.name}</span>
+    <ul class="text-sm space-y-2">
+      {allProjects.map((project) => (
+        <li class="group py-2.5 border-b border-ctp-surface0/40 last:border-0">
+          <a
+            href={project.url}
+            target="_blank"
+            rel="noreferrer"
+            class="block space-y-1"
+          >
+            <div class="flex items-baseline justify-between gap-3 flex-wrap">
+              <span class="flex items-baseline gap-2 min-w-0 font-serif text-base text-ctp-text font-medium transition-colors group-hover:text-[var(--color-accent)] leading-snug">
+                <span class="inline-flex font-mono text-xs select-none shrink-0 tracking-[-0.2em] group-hover:tracking-normal transition-all duration-200 text-ctp-subtext0/60 group-hover:text-[var(--color-accent)]">
+                  <span>&rsaquo;</span>
+                  <span class="inline-block max-w-0 opacity-0 overflow-hidden group-hover:max-w-[2ch] group-hover:opacity-100 transition-all duration-200 ease-out">&rsaquo;&rsaquo;</span>
+                </span>
+                <span>{project.name}</span>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  width="14"
-                  height="14"
+                  width="12"
+                  height="12"
                   viewBox="0 0 24 24"
                   fill="none"
                   stroke="currentColor"
                   stroke-width="2"
                   stroke-linecap="round"
                   stroke-linejoin="round"
-                  class="w-3.5 h-3.5 text-ctp-subtext0
-                         group-hover:text-[var(--color-accent)]
+                  class="w-3 h-3 text-ctp-subtext0 group-hover:text-[var(--color-accent)]
                          group-hover:translate-x-0.5 group-hover:-translate-y-0.5
-                         transition-transform"
+                         transition-transform shrink-0"
                 >
                   <line x1="7" y1="17" x2="17" y2="7"></line>
                   <polyline points="7 7 17 7 17 17"></polyline>
                 </svg>
               </span>
 
-              {flagship.latestRelease && (
-                <span
-                  class="text-xs px-2 py-0.5 border border-ctp-surface1
-                         bg-ctp-surface0/40 text-[var(--color-accent)]
-                         group-hover:border-[var(--color-accent)]
-                         transition-colors shrink-0"
-                  title={`Published ${formatReleaseDate(flagship.latestRelease.publishedAt)}`}
-                >
-                  {flagship.latestRelease.tagName}
-                </span>
-              )}
-            </div>
-
-            <p class="text-xs text-ctp-subtext0 leading-relaxed">
-              {flagship.desc}
-            </p>
-
-            <div
-              class="pt-2 border-t border-ctp-surface0/30 flex items-center
-                     justify-between gap-3 text-xs text-ctp-subtext0 flex-wrap"
-            >
-              <div class="flex items-center gap-3 flex-wrap">
-                {getTopLanguages(flagship).map((lang) => (
-                  <span class="inline-flex items-center gap-1.5">
-                    <span
-                      class="w-2 h-2 rounded-full shrink-0"
-                      style={`background-color: ${lang.color || 'var(--color-accent)'};`}
-                    ></span>
-                    <span>{lang.name}</span>
-                  </span>
+              <div class="flex items-center gap-2 font-mono text-xs text-ctp-subtext0 select-none shrink-0">
+                {getTopLanguages(project).map((lang) => (
+                  <span class="text-ctp-subtext1">[{lang.name.toLowerCase()}]</span>
                 ))}
-                <span>{flagship.commits} commits</span>
-                {flagship.releases !== undefined && (
-                  <span>{flagship.releases} releases</span>
+                {project.latestRelease && (
+                  <span class="text-[var(--color-accent)]">[{project.latestRelease.tagName}]</span>
                 )}
               </div>
+            </div>
 
-              {flagship.stars !== undefined && flagship.stars > 0 && (
-                <span class="text-ctp-subtext1">★ {flagship.stars}</span>
+            {project.desc && (
+              <p class="pl-4 font-mono text-xs text-ctp-subtext0 leading-relaxed">
+                {project.desc}
+              </p>
+            )}
+
+            <div class="pl-4 pt-0.5 flex items-center gap-3 font-mono text-[11px] text-ctp-subtext0/70 select-none">
+              <span>{project.commits} commits</span>
+              {project.releases !== undefined && (
+                <span>&bull; {project.releases} releases</span>
+              )}
+              {project.stars !== undefined && project.stars > 0 && (
+                <span>&bull; ★ {project.stars}</span>
               )}
             </div>
-          </div>
-        </a>
+          </a>
+        </li>
       ))}
-
-      {bottomProjects.length > 0 && (
-        <div class="border border-ctp-surface0/60 divide-y divide-ctp-surface0/40">
-          {bottomProjects.map((project) => (
-            <a
-              href={project.url}
-              target="_blank"
-              rel="noreferrer"
-              class="group block p-3 bg-ctp-surface0/10
-                     hover:bg-ctp-surface0/25 transition-colors"
-            >
-              <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2.5">
-                <div class="min-w-0 flex-1 space-y-0.5">
-                  <div class="flex items-center gap-2 flex-wrap">
-                    <span
-                      class="font-serif text-sm font-medium text-ctp-text
-                             group-hover:text-[var(--color-accent)]
-                             transition-colors inline-flex items-center gap-1"
-                    >
-                      <span>{project.name}</span>
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="12"
-                        height="12"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        stroke-width="2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        class="w-3 h-3 text-ctp-subtext0
-                               group-hover:text-[var(--color-accent)]
-                               group-hover:translate-x-0.5 group-hover:-translate-y-0.5
-                               transition-transform"
-                      >
-                        <line x1="7" y1="17" x2="17" y2="7"></line>
-                        <polyline points="7 7 17 7 17 17"></polyline>
-                      </svg>
-                    </span>
-
-                    {project.latestRelease && (
-                      <span
-                        class="text-[10px] px-1.5 py-0.2 border border-ctp-surface1
-                               text-ctp-subtext1 group-hover:text-[var(--color-accent)]
-                               transition-colors"
-                      >
-                        {project.latestRelease.tagName}
-                      </span>
-                    )}
-                  </div>
-
-                  <p class="text-xs text-ctp-subtext0 truncate">
-                    {project.desc}
-                  </p>
-                </div>
-
-                <div
-                  class="flex items-center gap-3 shrink-0 text-xs
-                         text-ctp-subtext0 self-end sm:self-auto flex-wrap"
-                >
-                  {getTopLanguages(project).map((lang) => (
-                    <span class="inline-flex items-center gap-1.5">
-                      <span
-                        class="w-2 h-2 rounded-full shrink-0"
-                        style={`background-color: ${lang.color || 'var(--color-accent)'};`}
-                      ></span>
-                      <span>{lang.name}</span>
-                    </span>
-                  ))}
-                  <span>{project.commits} commits</span>
-                </div>
-              </div>
-            </a>
-          ))}
-        </div>
-      )}
-    </div>
+    </ul>
   </section>
 )}

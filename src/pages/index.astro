@@ -9,39 +9,48 @@ const recentPosts = posts.slice(0, 5);
 ---
 
 <Layout>
-	<section id="section-quote" class="font-mono text-xs sm:text-sm text-ctp-subtext0 space-y-0.5">
-		<div class="text-ctp-subtext0/60 leading-none">/*</div>
-		<div class="flex items-start gap-2">
-			<span class="text-ctp-subtext0/60 select-none shrink-0">*</span>
-			<span class="text-ctp-text">&ldquo;You don't have to know how the car is made to drive it,</span>
+	<section id="section-quote" class="font-mono">
+		<div class="mb-3 flex items-center gap-1.5 text-xs select-none">
+			<span class="text-[var(--color-accent)] font-semibold">~</span>
+			<span class="text-ctp-overlay1">$</span>
+			<span class="text-ctp-subtext0 tracking-wide">cat quote.txt</span>
 		</div>
-		<div class="flex items-start gap-2">
-			<span class="text-ctp-subtext0/60 select-none shrink-0">*</span>
-			<span class="text-ctp-text">&nbsp;but to drive it fast, you have to know how the engine works.&rdquo;</span>
+		<div class="space-y-1">
+			<p class="flex items-baseline gap-2 font-serif text-base text-ctp-text leading-relaxed">
+				<span class="font-mono text-xs text-ctp-subtext0/60 select-none shrink-0">
+					&rsaquo;
+				</span>
+				<span>
+					&ldquo;You don't have to know how the car is made to drive it, but to drive it fast, you have to know how the engine works.&rdquo;
+				</span>
+			</p>
+			<p class="pl-4 font-mono text-xs text-ctp-subtext0">
+				&mdash; Jackie Stewart
+			</p>
 		</div>
-		<div class="flex items-start gap-2">
-			<span class="text-ctp-subtext0/60 select-none shrink-0">*</span>
-		</div>
-		<div class="flex items-start gap-2">
-			<span class="text-ctp-subtext0/60 select-none shrink-0">*</span>
-			<span class="text-ctp-subtext0">&mdash; Jackie Stewart</span>
-		</div>
-		<div class="text-ctp-subtext0/60 leading-none">*/</div>
 	</section>
 
 	{recentPosts.length > 0 && (
-		<section id="section-blogs">
-			<h2 class="mb-3 font-mono text-xs uppercase tracking-widest text-ctp-subtext0">
-				Blogs
-			</h2>
+		<section id="section-blogs" class="font-mono">
+			<div class="mb-3 flex items-center gap-1.5 text-xs select-none">
+				<span class="text-[var(--color-accent)] font-semibold">~</span>
+				<span class="text-ctp-overlay1">$</span>
+				<span class="text-ctp-subtext0 tracking-wide">ls -l posts/</span>
+			</div>
 			<ul class="text-sm space-y-1">
 				{recentPosts.map((post) => (
-					<li class="group flex items-baseline justify-between gap-4 py-2 border-b border-ctp-surface0/40 last:border-0">
+					<li class="group flex items-baseline justify-between gap-3 py-2 border-b border-ctp-surface0/40 last:border-0">
 						<a
 							href={`/blog/${post.frontmatter.slug}`}
-							class="font-serif text-base text-ctp-text font-medium transition-colors hover:text-[var(--color-accent)] leading-snug"
+							class="flex items-baseline gap-2 min-w-0 font-serif text-base text-ctp-text font-medium transition-colors hover:text-[var(--color-accent)] leading-snug"
 						>
-							{post.frontmatter.title}
+							<span class="inline-flex font-mono text-xs select-none shrink-0 tracking-[-0.2em] group-hover:tracking-normal transition-all duration-200 text-ctp-subtext0/60 group-hover:text-[var(--color-accent)]">
+								<span>&rsaquo;</span>
+								<span class="inline-block max-w-0 opacity-0 overflow-hidden group-hover:max-w-[2ch] group-hover:opacity-100 transition-all duration-200 ease-out">&rsaquo;&rsaquo;</span>
+							</span>
+							<span class="truncate sm:whitespace-normal">
+								{post.frontmatter.title}
+							</span>
 						</a>
 						<span class="shrink-0 font-mono text-xs text-ctp-subtext0 select-none">
 							{formatBlogDate(post.frontmatter.created)}
