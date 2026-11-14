@@ -117,15 +117,11 @@ const jsonLd = type === 'article' ? {
 		<script is:inline>
 			(function() {
 				const storedTheme = typeof localStorage !== 'undefined' ? localStorage.getItem('theme') : null;
-				const theme = storedTheme && ['device', 'dark', 'latte'].includes(storedTheme) ? storedTheme : 'device';
-				if (typeof localStorage !== 'undefined' && !storedTheme) {
-					localStorage.setItem('theme', 'device');
+				const theme = storedTheme && ['dark', 'latte'].includes(storedTheme) ? storedTheme : 'dark';
+				if (typeof localStorage !== 'undefined' && (!storedTheme || storedTheme === 'device')) {
+					localStorage.setItem('theme', theme);
 				}
-				let effective = theme;
-				if (theme === 'device') {
-					effective = window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches ? 'latte' : 'dark';
-				}
-				if (effective === 'latte' || effective === 'light') {
+				if (theme === 'latte') {
 					document.documentElement.classList.remove('dark', 'macchiato');
 					document.documentElement.classList.add('latte');
 				} else {
@@ -145,7 +141,7 @@ const jsonLd = type === 'article' ? {
 	<body class="text-ctp-text min-h-screen transition-colors duration-200 antialiased flex flex-col justify-between">
 		<div class="w-full max-w-screen-md mx-auto px-4 sm:px-6 py-8 sm:py-14 min-h-screen flex flex-col justify-between">
 			<Header />
-			<main class="flex-1 space-y-8 sm:space-y-10 my-8 sm:my-10">
+			<main class="flex-1 space-y-8 sm:space-y-10 mt-4 sm:mt-6 mb-8 sm:mb-10">
 				<slot />
 			</main>
 			<Footer />

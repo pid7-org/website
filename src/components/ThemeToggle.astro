@@ -67,7 +67,7 @@
       class="group inline-flex items-center gap-1 text-ctp-subtext1 hover:text-[var(--color-accent)]
         transition-colors cursor-pointer focus:outline-none whitespace-nowrap"
       aria-label="Toggle Theme"
-      title="Toggle light/dark/device theme (or press 't')"
+      title="Toggle dark/latte theme (or press 't')"
     >
       <span class="text-ctp-overlay0 group-hover:text-ctp-subtext0 transition-colors">[t]</span>
       <span
@@ -76,7 +76,7 @@
       <span
         id="theme-label"
         class="text-ctp-text group-hover:text-[var(--color-accent)] font-medium transition-colors"
-      >device</span>
+      >dark</span>
     </button>
   </div>
 </div>
@@ -224,25 +224,18 @@
     }
   }
 
-  const themes = ['device', 'dark', 'latte'];
+  const themes = ['dark', 'latte'];
 
   function getStoredTheme(): string {
     const stored = localStorage.getItem('theme');
     if (stored && themes.includes(stored)) return stored;
-    localStorage.setItem('theme', 'device');
-    return 'device';
+    localStorage.setItem('theme', 'dark');
+    return 'dark';
   }
 
   function applyTheme(themeName: string) {
-    localStorage.setItem('theme', themeName);
-
-    let effective = themeName;
-    if (themeName === 'device') {
-      const prefersLight =
-        window.matchMedia &&
-        window.matchMedia('(prefers-color-scheme: light)').matches;
-      effective = prefersLight ? 'latte' : 'dark';
-    }
+    const effective = themeName === 'latte' ? 'latte' : 'dark';
+    localStorage.setItem('theme', effective);
 
     if (effective === 'latte') {
       document.documentElement.classList.remove('dark', 'macchiato');
@@ -254,7 +247,7 @@
 
     const themeLabel = document.getElementById('theme-label');
     if (themeLabel) {
-      themeLabel.textContent = themeName;
+      themeLabel.textContent = effective;
     }
 
     applyAccent(getStoredAccent());
@@ -468,14 +461,6 @@
       startIdleAnimation();
     }
   });
-
-  if (typeof window !== 'undefined' && window.matchMedia) {
-    window.matchMedia('(prefers-color-scheme: light)').addEventListener('change', () => {
-      if (getStoredTheme() === 'device') {
-        applyTheme('device');
-      }
-    });
-  }
 
   // Keyboard navigation shortcuts: 'a' for accent, 't' for theme
   document.addEventListener('keydown', (e) => {
