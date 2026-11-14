@@ -42,18 +42,18 @@ function getTopLanguages(project: Project): ProjectLanguageStat[] {
       <span class="text-ctp-subtext0 tracking-wide">ls -l projects/</span>
     </div>
 
-    <div class="space-y-4">
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
       {allProjects.map((project) => (
-        <article class="group rounded border border-ctp-surface0/60 bg-ctp-mantle/40 transition-colors duration-200 hover:border-[var(--color-accent)]/60">
+        <article class="group rounded border border-ctp-surface0/60 bg-ctp-mantle/40 transition-colors duration-200 hover:border-[var(--color-accent)]/60 overflow-hidden flex flex-col justify-between">
           <a
             href={project.url}
             target="_blank"
             rel="noreferrer"
-            class="block focus:outline-none"
+            class="flex flex-col h-full focus:outline-none"
           >
-            <!-- TUI Header / Title Bar -->
-            <div class="flex items-center justify-between gap-3 px-3.5 py-2 border-b border-ctp-surface0/60 bg-ctp-surface0/20 text-xs">
-              <span class="flex items-center gap-2 min-w-0 font-serif text-sm sm:text-base text-ctp-text font-medium transition-colors group-hover:text-[var(--color-accent)]">
+            <!-- Title Bar -->
+            <div class="flex items-center justify-between gap-2 px-3 py-2 border-b border-ctp-surface0/60 bg-ctp-surface0/20 text-xs">
+              <span class="flex items-center gap-1.5 min-w-0 font-serif text-sm text-ctp-text font-medium transition-colors group-hover:text-[var(--color-accent)]">
                 <span class="inline-flex font-mono text-xs select-none shrink-0 tracking-[-0.2em] group-hover:tracking-normal transition-all duration-200 text-ctp-subtext0/60 group-hover:text-[var(--color-accent)]">
                   <span>&rsaquo;</span>
                   <span class="inline-block max-w-0 opacity-0 overflow-hidden group-hover:max-w-[2ch] group-hover:opacity-100 transition-all duration-200 ease-out">&rsaquo;&rsaquo;</span>
@@ -61,8 +61,8 @@ function getTopLanguages(project: Project): ProjectLanguageStat[] {
                 <span class="truncate">{project.name}</span>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  width="11"
-                  height="11"
+                  width="10"
+                  height="10"
                   viewBox="0 0 24 24"
                   fill="none"
                   stroke="currentColor"
@@ -76,44 +76,42 @@ function getTopLanguages(project: Project): ProjectLanguageStat[] {
                 </svg>
               </span>
 
-              <div class="flex items-center gap-1.5 font-mono text-[11px] text-ctp-subtext0 shrink-0 select-none">
+              <div class="flex items-center gap-1 font-mono text-[10px] text-ctp-subtext0 shrink-0 select-none">
                 {getTopLanguages(project).map((lang) => (
                   <span class="text-ctp-subtext1">[{lang.name.toLowerCase()}]</span>
                 ))}
-                {project.latestRelease && (
-                  <span class="text-ctp-subtext1">[{project.latestRelease.tagName}]</span>
-                )}
               </div>
             </div>
 
-            <!-- Card Body: Banner + Metadata -->
-            <div class="p-3 sm:p-3.5 flex flex-col sm:flex-row gap-3.5 items-start">
-              {project.bannerUrl && (
-                <div class="w-full sm:w-44 aspect-[16/9] sm:shrink-0 overflow-hidden rounded border border-ctp-surface0/70 bg-ctp-crust">
-                  <img
-                    src={project.bannerUrl}
-                    alt=""
-                    loading="lazy"
-                    decoding="async"
-                    class="h-full w-full object-cover object-center opacity-85 transition-opacity duration-300 group-hover:opacity-100"
-                  />
-                </div>
-              )}
+            <!-- Crisp 3:1 Banner -->
+            {project.bannerUrl && (
+              <div class="relative w-full aspect-[3/1] overflow-hidden border-b border-ctp-surface0/60 bg-ctp-crust">
+                <img
+                  src={project.bannerUrl}
+                  alt={`${project.name} banner`}
+                  loading="lazy"
+                  decoding="async"
+                  class="h-full w-full object-cover object-center opacity-90 transition-all duration-300 group-hover:opacity-100 group-hover:scale-[1.01]"
+                />
+              </div>
+            )}
 
-              <div class="flex-1 min-w-0 flex flex-col justify-between self-stretch space-y-2.5">
-                <p class="font-mono text-xs text-ctp-subtext0 leading-relaxed line-clamp-3">
-                  {project.desc}
-                </p>
+            <!-- Card Body: Description & Telemetry -->
+            <div class="p-3 flex flex-col justify-between flex-1 space-y-3">
+              <p class="font-mono text-xs text-ctp-subtext0 leading-relaxed line-clamp-3">
+                {project.desc}
+              </p>
 
-                <div class="flex items-center gap-3 font-mono text-[11px] text-ctp-subtext0/70 select-none pt-1">
+              <div class="flex items-center justify-between font-mono text-[11px] text-ctp-subtext0/70 select-none pt-1 border-t border-ctp-surface0/30">
+                <div class="flex items-center gap-2">
                   <span>{project.commits} commits</span>
-                  {project.releases !== undefined && (
-                    <span>&bull; {project.releases} releases</span>
-                  )}
                   {project.stars !== undefined && project.stars > 0 && (
                     <span>&bull; ★ {project.stars}</span>
                   )}
                 </div>
+                {project.latestRelease && (
+                  <span class="text-ctp-subtext1">{project.latestRelease.tagName}</span>
+                )}
               </div>
             </div>
           </a>
