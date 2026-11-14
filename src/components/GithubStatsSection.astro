@@ -36,8 +36,8 @@ const plotH = svgHeight - pad.top - pad.bottom;
 const maxCommits = Math.max(...cumulativePoints.map((p) => p.cumulative), 1);
 
 const yTicks = [
-  0,
-  Math.round(maxCommits * 0.5),
+  Math.round(maxCommits * 0.1),
+  Math.round(maxCommits * 0.55),
   maxCommits,
 ];
 
@@ -51,13 +51,30 @@ const polylineStr = plotPoints.map((pt) => `${pt.x},${pt.y}`).join(' ');
 const baselineY = pad.top + plotH;
 const areaPathD = generateSvgAreaPath(plotPoints, baselineY);
 
+function formatDayMonth(dateStr: string): string {
+  const parts = dateStr.split('-');
+  if (parts.length === 3) {
+    return `${parts[2]}-${parts[1]}`;
+  }
+  return dateStr;
+}
+
 const xTickStep = Math.max(1, Math.floor(plotPoints.length / 5));
-const xTicks = plotPoints.filter((_, idx) => idx % xTickStep === 0 || idx === plotPoints.length - 1);
+const rawTicks = plotPoints.filter((_, idx) => idx % xTickStep === 0 || idx === plotPoints.length - 1);
+const xTicks = rawTicks.filter((pt, idx, arr) => {
+  if (idx < arr.length - 1) {
+    const nextPt = arr[idx + 1];
+    if (Math.abs(nextPt.x - pt.x) < 40) {
+      return false;
+    }
+  }
+  return true;
+});
 ---
 
 <section id="section-telemetry" class="w-full font-mono">
   <!-- Command Header -->
-  <div class="mb-4 flex items-center gap-1.5 text-xs select-none">
+  <div class="mb-4 flex items-center gap-1.5 text-xs">
     <span class="text-[var(--color-accent)] font-semibold">~</span>
     <span class="text-ctp-overlay1">$</span>
     <span class="text-ctp-subtext0 tracking-wide">cat telemetry.log</span>
@@ -65,7 +82,7 @@ const xTicks = plotPoints.filter((_, idx) => idx % xTickStep === 0 || idx === pl
 
   <div class="space-y-6">
     <!-- 1. Top Cadence Ribbon -->
-    <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 text-xs select-none border-b border-ctp-surface0/40 pb-4">
+    <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 text-xs border-b border-ctp-surface0/40 pb-4">
     <div class="space-y-0.5">
       <span class="text-ctp-subtext0 text-[11px] block">Commits</span>
       <span class="text-base sm:text-lg font-bold text-ctp-text font-serif">
@@ -145,7 +162,7 @@ const xTicks = plotPoints.filter((_, idx) => idx % xTickStep === 0 || idx === pl
         {xTicks.map((pt) => (
           <g class="text-[10px] font-mono fill-ctp-subtext0/60 select-none">
             <text x={pt.x} y={baselineY + 14} text-anchor="middle">
-              {pt.date.slice(5)}
+              {formatDayMonth(pt.date)}
             </text>
           </g>
         ))}
