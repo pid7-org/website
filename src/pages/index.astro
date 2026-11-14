@@ -9,18 +9,24 @@ const recentPosts = posts.slice(0, 5);
 ---
 
 <Layout>
-	<section id="section-quote" class="font-mono">
-		<blockquote
-			class="pl-3.5 sm:pl-4 border-l border-ctp-surface1 hover:border-[var(--color-accent)]
-				transition-colors py-0.5 space-y-1.5"
-		>
-			<p class="text-sm sm:text-base text-ctp-text leading-relaxed">
-				&ldquo;You don't have to know how the car is made to drive it, but to drive it fast, you have to know how the engine works.&rdquo;
-			</p>
-			<footer class="text-xs text-ctp-subtext0">
-				&mdash; Jackie Stewart
-			</footer>
-		</blockquote>
+	<section id="section-quote" class="font-mono text-xs sm:text-sm text-ctp-subtext0 space-y-0.5">
+		<div class="text-ctp-subtext0/60 leading-none">/*</div>
+		<div class="flex items-start gap-2">
+			<span class="text-ctp-subtext0/60 select-none shrink-0">*</span>
+			<span class="text-ctp-text">&ldquo;You don't have to know how the car is made to drive it,</span>
+		</div>
+		<div class="flex items-start gap-2">
+			<span class="text-ctp-subtext0/60 select-none shrink-0">*</span>
+			<span class="text-ctp-text">&nbsp;but to drive it fast, you have to know how the engine works.&rdquo;</span>
+		</div>
+		<div class="flex items-start gap-2">
+			<span class="text-ctp-subtext0/60 select-none shrink-0">*</span>
+		</div>
+		<div class="flex items-start gap-2">
+			<span class="text-ctp-subtext0/60 select-none shrink-0">*</span>
+			<span class="text-ctp-subtext0">&mdash; Jackie Stewart</span>
+		</div>
+		<div class="text-ctp-subtext0/60 leading-none">*/</div>
 	</section>
 
 	{recentPosts.length > 0 && (
