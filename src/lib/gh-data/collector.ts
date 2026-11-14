@@ -139,6 +139,7 @@ export interface RepoInfo {
   name: string;
   nameWithOwner: string;
   description: string;
+  desc?: string;
   url: string;
   defaultBranch?: string;
   stars: number;
@@ -200,6 +201,7 @@ export async function getRepositories(org: string): Promise<RepoInfo[]> {
           name: node.name,
           nameWithOwner: node.nameWithOwner,
           description: node.description || '',
+          desc: node.description || '',
           url: node.url,
           defaultBranch: node.defaultBranchRef?.name,
           stars: node.stargazerCount || 0,

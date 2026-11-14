@@ -286,8 +286,26 @@ export function aggregateGHData(params: {
     .slice(0, 5);
 
   // Projects list
+  const repoReleases = new Map<string, number>();
+  for (const r of uniqueReleases.values()) {
+    repoReleases.set(r.repo, (repoReleases.get(r.repo) || 0) + 1);
+  }
+
+  const repoPRs = new Map<string, number>();
+  for (const p of uniquePRs.values()) {
+    repoPRs.set(p.repo, (repoPRs.get(p.repo) || 0) + 1);
+  }
+
+  const repoIssues = new Map<string, number>();
+  for (const iss of uniqueIssues.values()) {
+    repoIssues.set(iss.repo, (repoIssues.get(iss.repo) || 0) + 1);
+  }
+
   const projects: GHProjectItem[] = reposMeta.map((m) => {
     const s = repoStats.get(m.name) || { commits: 0, additions: 0, deletions: 0 };
+    const releasesCount = repoReleases.get(m.name) || 0;
+    const prsCount = repoPRs.get(m.name) || 0;
+    const issuesCount = repoIssues.get(m.name) || 0;
     return {
       name: m.name,
       nameWithOwner: m.nameWithOwner,
@@ -298,12 +316,12 @@ export function aggregateGHData(params: {
       language: m.language,
       languageColor: m.languageColor,
       commits: s.commits,
-      releases: 0,
+      releases: releasesCount,
       latestRelease: m.latestRelease || null,
       bannerUrl: m.bannerUrl || null,
-      pullRequests: 0,
-      issues: 0,
-      contributions: s.commits,
+      pullRequests: prsCount,
+      issues: issuesCount,
+      contributions: s.commits + releasesCount + prsCount + issuesCount,
     };
   });
 
@@ -610,6 +628,9 @@ export function mergeGHData(
     const s = repoStats.get(m.name) || { commits: 0, additions: 0, deletions: 0 };
     const ex = existingProjMap.get(m.name);
     const win = repoWinStats.get(m.name);
+    const rels = Math.max(ex?.releases || 0, (ex?.releases || 0) + (win?.releases || 0));
+    const prs = Math.max(ex?.pullRequests || 0, (ex?.pullRequests || 0) + (win?.prs || 0));
+    const issues = Math.max(ex?.issues || 0, (ex?.issues || 0) + (win?.issues || 0));
     return {
       name: m.name,
       nameWithOwner: m.nameWithOwner,
@@ -620,12 +641,12 @@ export function mergeGHData(
       language: m.language,
       languageColor: m.languageColor,
       commits: s.commits,
-      releases: Math.max(ex?.releases || 0, (ex?.releases || 0) + (win?.releases || 0)),
+      releases: rels,
       latestRelease: m.latestRelease !== undefined ? m.latestRelease : (ex?.latestRelease || null),
       bannerUrl: m.bannerUrl !== undefined ? m.bannerUrl : (ex?.bannerUrl || null),
-      pullRequests: Math.max(ex?.pullRequests || 0, (ex?.pullRequests || 0) + (win?.prs || 0)),
-      issues: Math.max(ex?.issues || 0, (ex?.issues || 0) + (win?.issues || 0)),
-      contributions: s.commits,
+      pullRequests: prs,
+      issues: issues,
+      contributions: s.commits + rels + prs + issues,
     };
   });
 

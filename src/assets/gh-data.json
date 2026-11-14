@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-14T11:50:59.167Z",
+  "generated_at": "2026-11-14T12:05:51.626Z",
   "start_date": "2024-09-01",
   "end_date": "2026-11-14",
   "repos_count": 5,
@@ -8524,73 +8524,77 @@
     {
       "name": "turbofox",
       "nameWithOwner": "pid7-org/turbofox",
+      "desc": "An embedded, memory-mapped key-value engine providing lock-free concurrency & explicit sync barriers",
       "url": "https://github.com/pid7-org/turbofox",
       "stars": 3,
       "forks": 0,
       "language": "Rust",
       "languageColor": "#dea584",
       "commits": 907,
-      "releases": 0,
+      "releases": 6,
       "latestRelease": {
         "tagName": "v0.0.302",
         "publishedAt": "2026-11-14T10:52:42Z",
         "url": "https://github.com/pid7-org/turbofox/releases/tag/v0.0.302"
       },
       "bannerUrl": "https://raw.githubusercontent.com/pid7-org/turbofox/master/assets/banner.jpg",
-      "pullRequests": 0,
-      "issues": 0,
-      "contributions": 907
+      "pullRequests": 1,
+      "issues": 4,
+      "contributions": 918
     },
     {
       "name": "frozen-core",
       "nameWithOwner": "pid7-org/frozen-core",
+      "desc": "Core utilities for frozen codebases.",
       "url": "https://github.com/pid7-org/frozen-core",
       "stars": 0,
       "forks": 0,
       "language": "Rust",
       "languageColor": "#dea584",
       "commits": 554,
-      "releases": 0,
+      "releases": 43,
       "latestRelease": {
         "tagName": "v0.0.44",
         "publishedAt": "2026-11-09T17:38:06Z",
         "url": "https://github.com/pid7-org/frozen-core/releases/tag/v0.0.44"
       },
       "bannerUrl": null,
-      "pullRequests": 0,
-      "issues": 0,
-      "contributions": 554
+      "pullRequests": 43,
+      "issues": 72,
+      "contributions": 712
     },
     {
       "name": "turbo_crc",
       "nameWithOwner": "pid7-org/turbo_crc",
+      "desc": "Hardware accelerated implementation of CRC32C for computing 32-bit cyclic redundency check (CRC)",
       "url": "https://github.com/pid7-org/turbo_crc",
       "stars": 0,
       "forks": 0,
       "language": "Rust",
       "languageColor": "#dea584",
       "commits": 36,
-      "releases": 0,
+      "releases": 5,
       "latestRelease": {
         "tagName": "v0.0.4",
         "publishedAt": "2026-07-13T18:42:57Z",
         "url": "https://github.com/pid7-org/turbo_crc/releases/tag/v0.0.4"
       },
       "bannerUrl": "https://raw.githubusercontent.com/pid7-org/turbo_crc/master/assets/banner.jpg",
-      "pullRequests": 0,
-      "issues": 0,
-      "contributions": 36
+      "pullRequests": 2,
+      "issues": 1,
+      "contributions": 44
     },
     {
       "name": "ashwa",
       "nameWithOwner": "pid7-org/ashwa",
+      "desc": "Hardware accelerated routines for single substring search.",
       "url": "https://github.com/pid7-org/ashwa",
       "stars": 22,
       "forks": 0,
       "language": "Rust",
       "languageColor": "#dea584",
       "commits": 270,
-      "releases": 0,
+      "releases": 6,
       "latestRelease": {
         "tagName": "v1.0.1",
         "publishedAt": "2026-08-31T14:55:31Z",
@@ -8599,18 +8603,19 @@
       "bannerUrl": "https://raw.githubusercontent.com/pid7-org/ashwa/master/assets/banner.jpg",
       "pullRequests": 0,
       "issues": 0,
-      "contributions": 270
+      "contributions": 276
     },
     {
       "name": "website",
       "nameWithOwner": "pid7-org/website",
+      "desc": "Website and blog for pid7",
       "url": "https://github.com/pid7-org/website",
       "stars": 0,
       "forks": 0,
       "language": "TypeScript",
       "languageColor": "#3178c6",
       "commits": 227,
-      "releases": 0,
+      "releases": 3,
       "latestRelease": {
         "tagName": "v2.0.0",
         "publishedAt": "2026-11-03T19:42:05Z",
@@ -8619,7 +8624,7 @@
       "bannerUrl": null,
       "pullRequests": 0,
       "issues": 0,
-      "contributions": 227
+      "contributions": 230
     }
   ],
   "languages": [
