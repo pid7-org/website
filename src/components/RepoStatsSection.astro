@@ -21,7 +21,7 @@ function generateAsciiBar(commits: number): { filled: string; empty: string } {
 
 {topRepos.length > 0 && (
   <section id="section-repo-stats" class="font-mono">
-    <div class="mb-4 flex items-center gap-1.5 text-xs select-none">
+    <div class="mb-4 flex items-center gap-1.5 text-xs">
       <span class="text-[var(--color-accent)] font-semibold">~</span>
       <span class="text-ctp-overlay1">$</span>
       <span class="text-ctp-subtext0 tracking-wide">git stats --top-repos</span>
@@ -29,7 +29,7 @@ function generateAsciiBar(commits: number): { filled: string; empty: string } {
 
     <div class="space-y-1 overflow-x-auto">
       <!-- Table Header -->
-      <div class="flex items-center justify-between text-[10px] text-ctp-subtext0/70 uppercase tracking-wider py-1 border-b border-ctp-surface0/30 select-none min-w-[380px]">
+      <div class="flex items-center justify-between text-[10px] text-ctp-subtext0/70 uppercase tracking-wider py-1 border-b border-ctp-surface0/30 min-w-[380px]">
         <span class="w-[30%]">Repository</span>
         <span class="w-[12%]">Lang</span>
         <span class="w-[34%] text-center">Activity</span>
@@ -56,11 +56,11 @@ function generateAsciiBar(commits: number): { filled: string; empty: string } {
                 </a>
               </div>
 
-              <span class="w-[12%] text-[10px] text-ctp-subtext0 select-none">
+              <span class="w-[12%] text-[10px] text-ctp-subtext0">
                 {repo.primaryLanguage.toLowerCase()}
               </span>
 
-              <div class="w-[34%] flex items-center justify-center gap-2 select-none font-mono text-[11px]">
+              <div class="w-[34%] flex items-center justify-center gap-2 font-mono text-[11px]">
                 <div class="inline-flex tracking-tight">
                   <span class="text-[var(--color-accent)]">{filled}</span>
                   <span class="text-ctp-surface1/40">{empty}</span>
@@ -70,11 +70,11 @@ function generateAsciiBar(commits: number): { filled: string; empty: string } {
                 </span>
               </div>
 
-              <span class="w-[12%] text-right text-ctp-text font-medium select-none">
+              <span class="w-[12%] text-right text-ctp-text font-medium">
                 {repo.commits}
               </span>
 
-              <span class="w-[12%] text-right text-ctp-subtext0 select-none">
+              <span class="w-[12%] text-right text-ctp-subtext0">
                 +{Math.round(repo.net_loc / 1000)}k
               </span>
             </div>
