@@ -4,86 +4,89 @@
 <div
   id="status-bar"
   data-stuck="false"
-  class="border border-ctp-surface1 bg-ctp-surface0/20 flex flex-nowrap items-stretch
-    divide-x divide-ctp-surface1 text-xs font-mono select-none w-full max-w-full overflow-hidden"
+  class="flex flex-nowrap items-center justify-between gap-x-3 text-xs font-mono select-none w-full max-w-full text-ctp-subtext0 py-1"
 >
-  <div
-    id="version-container"
-    class="hidden min-[640px]:flex items-center justify-center gap-1.5 px-3 py-1.5
-      text-ctp-text font-medium whitespace-nowrap shrink-0"
-  >
-    <span
-      class="w-1.5 h-1.5 rounded-full bg-[var(--color-accent)] inline-block animate-pulse
-        shrink-0 transition-colors duration-300"
-    ></span>
-    <span>v2.0.0</span>
-  </div>
+  <div class="flex items-center gap-2 shrink-0">
+    <div
+      id="version-container"
+      class="inline-flex items-center gap-1.5 text-ctp-text font-medium whitespace-nowrap"
+    >
+      <span
+        class="w-1.5 h-1.5 rounded-full bg-[var(--color-accent)] inline-block animate-pulse
+          shrink-0 transition-colors duration-300"
+      ></span>
+      <span>v2.0.0</span>
+    </div>
 
-  <div
-    id="ist-clock-container"
-    class="hidden min-[500px]:flex items-center justify-center px-2 sm:px-3 py-1.5
-      text-ctp-subtext0 whitespace-nowrap shrink-0"
-  >
-    <span id="ist-clock">--:--:-- IST</span>
+    <div
+      id="ist-clock-container"
+      class="hidden min-[520px]:inline-flex items-center text-ctp-subtext0 whitespace-nowrap"
+    >
+      <span class="text-ctp-overlay0 select-none mr-2">·</span>
+      <span id="ist-clock">--:--:-- IST</span>
+    </div>
   </div>
 
   <div
     id="ascii-scroll-container"
-    class="flex-1 min-w-0 flex items-center justify-center px-1 sm:px-2 py-1.5 overflow-hidden"
+    class="hidden md:flex flex-1 min-w-0 items-center justify-center px-2 overflow-hidden"
   >
     <span
       id="ascii-idle-bar"
       class="inline-flex items-center font-mono text-xs select-none tracking-wider
-        sm:tracking-widest whitespace-nowrap overflow-hidden leading-none"
+        whitespace-nowrap overflow-hidden leading-none opacity-60"
       aria-hidden="true"
     ></span>
   </div>
 
-  <button
-    id="accent-toggle"
-    type="button"
-    class="flex items-center justify-center gap-1 sm:gap-1.5 px-2 sm:px-3 py-1.5 text-ctp-subtext1
-      hover:text-ctp-text hover:bg-ctp-surface1/30 transition-colors cursor-pointer
-      focus:outline-none whitespace-nowrap shrink-0"
-    aria-label="Cycle Accent Color"
-    title="Cycle accent color (or press 'a')"
-  >
-    <span
-      id="accent-indicator"
-      class="w-1.5 h-1.5 rounded-full shrink-0 ring-1 ring-ctp-surface1 transition-colors"
-    ></span>
-    <span class="text-ctp-subtext0">[a]</span>
-    <span
-      id="accent-label"
-      class="hidden min-[500px]:inline-block text-ctp-text font-medium w-[6ch] text-left"
-    >peach</span>
-  </button>
+  <div class="flex items-center gap-2 sm:gap-3 shrink-0">
+    <button
+      id="accent-toggle"
+      type="button"
+      class="group inline-flex items-center gap-1 text-ctp-subtext1 hover:text-[var(--color-accent)]
+        transition-colors cursor-pointer focus:outline-none whitespace-nowrap"
+      aria-label="Cycle Accent Color"
+      title="Cycle accent color (or press 'a')"
+    >
+      <span class="text-ctp-overlay0 group-hover:text-ctp-subtext0 transition-colors">[a]</span>
+      <span
+        id="accent-indicator"
+        class="w-1.5 h-1.5 rounded-full shrink-0 ring-1 ring-ctp-surface1 transition-colors"
+      ></span>
+      <span
+        id="accent-label"
+        class="text-ctp-text group-hover:text-[var(--color-accent)] font-medium transition-colors"
+      >peach</span>
+    </button>
 
-  <button
-    id="theme-toggle"
-    type="button"
-    class="flex items-center justify-center gap-1 sm:gap-1.5 px-2 sm:px-3 py-1.5 text-ctp-subtext1
-      hover:text-ctp-text hover:bg-ctp-surface1/30 transition-colors cursor-pointer
-      focus:outline-none whitespace-nowrap shrink-0"
-    aria-label="Toggle Theme"
-    title="Toggle light/dark/device theme (or press 't')"
-  >
-    <span
-      class="text-[11px] text-[var(--color-accent)] font-semibold leading-none select-none"
-    >◐</span>
-    <span class="text-ctp-subtext0">[t]</span>
-    <span
-      id="theme-label"
-      class="hidden min-[500px]:inline-block text-ctp-text font-medium w-[6ch] text-left"
-    >device</span>
-  </button>
+    <span class="text-ctp-overlay0 select-none">·</span>
+
+    <button
+      id="theme-toggle"
+      type="button"
+      class="group inline-flex items-center gap-1 text-ctp-subtext1 hover:text-[var(--color-accent)]
+        transition-colors cursor-pointer focus:outline-none whitespace-nowrap"
+      aria-label="Toggle Theme"
+      title="Toggle light/dark/device theme (or press 't')"
+    >
+      <span class="text-ctp-overlay0 group-hover:text-ctp-subtext0 transition-colors">[t]</span>
+      <span
+        class="text-[11px] text-[var(--color-accent)] font-semibold leading-none select-none"
+      >◐</span>
+      <span
+        id="theme-label"
+        class="text-ctp-text group-hover:text-[var(--color-accent)] font-medium transition-colors"
+      >device</span>
+    </button>
+  </div>
 </div>
 
 <style>
   #status-bar {
     transition:
       background-color 200ms ease,
-      border-color 200ms ease;
+      border-color 200ms ease,
+      padding 200ms ease;
   }
 
   #status-bar[data-stuck="true"] {
@@ -94,13 +97,15 @@
     width: 100%;
     max-width: 100vw;
     z-index: 50;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
     border-top: none;
     border-left: none;
     border-right: none;
-    border-bottom: 1px solid var(--color-ctp-surface1);
-    background-color: color-mix(in srgb, var(--color-ctp-base) 94%, transparent);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--color-ctp-surface0);
+    background-color: color-mix(in srgb, var(--color-ctp-base) 92%, transparent);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
     box-shadow: none;
     animation: statusBarSlideDown 150ms cubic-bezier(0.16, 1, 0.3, 1);
   }
