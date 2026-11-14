@@ -9,7 +9,7 @@ describe('Integration: GitHub Data Artifact Integrity', () => {
   const data = JSON.parse(raw) as GHDataOutput;
 
   it('contains all required top-level schema fields and valid dates', () => {
-    expect(data.start_date).toBe('2025-01-01');
+    expect(data.start_date).toBe('2024-09-01');
     expect(typeof data.generated_at).toBe('string');
     expect(new Date(data.generated_at).getTime()).not.toBeNaN();
     expect(typeof data.end_date).toBe('string');

@@ -19,7 +19,7 @@ import {
 import { collectOrgLanguages } from '../src/lib/gh-languages/collector.ts';
 import type { GHDataOutput } from '../src/lib/gh-data/types.ts';
 
-const BASE_START_DATE = '2025-01-01';
+const BASE_START_DATE = '2024-09-01';
 
 async function main() {
   const { org } = validateEnv();
