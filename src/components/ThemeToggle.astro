@@ -33,20 +33,10 @@
   >
     <span
       id="ascii-idle-bar"
-      class="inline-block font-mono text-xs select-none tracking-wider
-        sm:tracking-widest whitespace-nowrap overflow-hidden"
+      class="inline-flex items-center font-mono text-xs select-none tracking-wider
+        sm:tracking-widest whitespace-nowrap overflow-hidden leading-none"
       aria-hidden="true"
-    ><span class="text-ctp-surface2 opacity-30">···</span><span
-      class="text-ctp-overlay0 opacity-45">~~</span><span
-      class="text-[var(--color-accent)] opacity-60">░</span><span
-      class="text-[var(--color-accent)] opacity-80">▒</span><span
-      class="text-[var(--color-accent)] opacity-95">▓</span><span
-      class="text-[var(--color-accent)]">█</span><span
-      class="text-[var(--color-accent)] opacity-95">▓</span><span
-      class="text-[var(--color-accent)] opacity-80">▒</span><span
-      class="text-[var(--color-accent)] opacity-60">░</span><span
-      class="text-ctp-overlay0 opacity-45">~~</span><span
-      class="text-ctp-surface2 opacity-30">·····</span></span>
+    ></span>
   </div>
 
   <button
@@ -151,33 +141,35 @@
       let ch = '·';
       let baseCls = 'text-ctp-surface2 opacity-25';
 
+      // Neutral resting state for all characters; muted surface/overlay colors when wave is away
       if (d < 0.8) {
-        ch = '█';
-        baseCls = 'text-[var(--color-accent)] opacity-40';
+        ch = '▓';
+        baseCls = 'text-ctp-overlay1 opacity-45';
       } else if (d < 1.8) {
         ch = '▓';
-        baseCls = 'text-[var(--color-accent)] opacity-30';
+        baseCls = 'text-ctp-overlay0 opacity-40';
       } else if (d < 2.8) {
         ch = '▒';
-        baseCls = 'text-ctp-overlay0 opacity-40';
+        baseCls = 'text-ctp-surface2 opacity-35';
       } else if (d < 3.8) {
         ch = '░';
-        baseCls = 'text-ctp-surface2 opacity-45';
+        baseCls = 'text-ctp-surface2 opacity-30';
       } else if (d < 5.8) {
         ch = '~';
-        baseCls = 'text-ctp-surface2 opacity-35';
+        baseCls = 'text-ctp-surface1 opacity-30';
       }
 
       const distToRipple = Math.abs(d - rippleR);
       const glow = Math.max(0, 1 - distToRipple / 2.2);
 
+      // Only activate vibrant accent coloring when the traveling ripple is actively over the segment
       let cls = baseCls;
       if (glow >= 0.7) {
-        cls = 'text-[var(--color-accent)] opacity-100';
-      } else if (glow >= 0.35) {
+        cls = 'text-[var(--color-accent)] opacity-100 font-medium';
+      } else if (glow >= 0.4) {
         cls = 'text-[var(--color-accent)] opacity-75';
-      } else if (glow >= 0.1) {
-        cls = 'text-[var(--color-accent)] opacity-50';
+      } else if (glow >= 0.15) {
+        cls = 'text-[var(--color-accent)] opacity-40';
       }
 
       if (cls === curCls) {
