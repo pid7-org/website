@@ -49,9 +49,45 @@ const pageDescription = post.frontmatter.description || fallbackExcerpt || 'engi
 				transition-[top,opacity] duration-150"
 			style="opacity: 0.80;"
 		>
-			<span class="font-mono text-[9px] uppercase tracking-widest text-[var(--color-accent)]">
-				eyeline
-			</span>
+			<div
+				id="eyeline-badge"
+				class="pointer-events-auto flex items-center gap-1.5 px-2 py-0.5 text-[10px] font-mono
+					bg-ctp-base text-ctp-subtext0 transition-opacity duration-150 -translate-y-1/2"
+			>
+				<span class="text-[9px] uppercase tracking-wider text-[var(--color-accent)] font-semibold">
+					eyeline
+				</span>
+				<span class="text-ctp-surface2 opacity-60">•</span>
+				<button
+					id="eyeline-toggle"
+					type="button"
+					class="flex items-center gap-0.5 hover:text-ctp-text transition-colors cursor-pointer focus:outline-none"
+					title="Toggle eyeline (or press 'e')"
+				>
+					<span class="text-ctp-subtext0">[e]</span>
+					<span id="eyeline-label" class="text-ctp-text font-medium w-[3ch] inline-block text-left">on</span>
+				</button>
+				<span class="text-ctp-surface2 opacity-60">•</span>
+				<button
+					id="eyeline-opacity-toggle"
+					type="button"
+					class="flex items-center gap-0.5 hover:text-ctp-text transition-colors cursor-pointer focus:outline-none"
+					title="Cycle eyeline opacity (or press 'o')"
+				>
+					<span class="text-ctp-subtext0">[o]</span>
+					<span id="eyeline-opacity-label" class="text-ctp-text font-medium w-[4ch] inline-block text-left">80%</span>
+				</button>
+				<span class="text-ctp-surface2 opacity-60">•</span>
+				<button
+					id="eyeline-pos-toggle"
+					type="button"
+					class="flex items-center gap-0.5 hover:text-ctp-text transition-colors cursor-pointer focus:outline-none"
+					title="Cycle eyeline position (or press 'p')"
+				>
+					<span class="text-ctp-subtext0">[p]</span>
+					<span id="eyeline-pos-label" class="text-ctp-text font-medium w-[3ch] inline-block text-left">30%</span>
+				</button>
+			</div>
 		</div>
 
 		<script is:inline>
@@ -59,62 +95,144 @@ const pageDescription = post.frontmatter.description || fallbackExcerpt || 'engi
 				const el = document.getElementById('blog-eyeline');
 				if (!el) return;
 
+				const OPACITIES = [40, 60, 80, 100];
+				const POSITIONS = [20, 25, 30, 35, 40, 45, 50];
+
 				let config = { enabled: true, opacity: 80, pos: 30 };
 				try {
 					const saved = localStorage.getItem('pid7_eyeline');
 					if (saved) {
 						const parsed = JSON.parse(saved);
 						if (typeof parsed.enabled === 'boolean') config.enabled = parsed.enabled;
-						if (typeof parsed.opacity === 'number') config.opacity = parsed.opacity;
-						if (typeof parsed.pos === 'number') config.pos = parsed.pos;
+						if (typeof parsed.opacity === 'number' && OPACITIES.includes(parsed.opacity)) {
+							config.opacity = parsed.opacity;
+						}
+						if (typeof parsed.pos === 'number' && POSITIONS.includes(parsed.pos)) {
+							config.pos = parsed.pos;
+						}
 					} else {
 						localStorage.setItem('pid7_eyeline', JSON.stringify(config));
 					}
 				} catch {}
 
 				function applyConfig(cfg) {
-					if (window.innerWidth >= 640 && typeof cfg.enabled === 'boolean') {
-						el.style.display = cfg.enabled ? 'flex' : 'none';
-					} else if (window.innerWidth < 640) {
-						el.style.display = '';
+					try {
+						localStorage.setItem('pid7_eyeline', JSON.stringify(cfg));
+					} catch {}
+
+					if (window.innerWidth < 640) {
+						el.style.display = 'none';
+						return;
 					}
-					if (typeof cfg.opacity === 'number') {
+					el.style.display = 'flex';
+
+					if (cfg.enabled) {
+						el.style.borderBottomStyle = 'dashed';
 						el.style.opacity = (cfg.opacity / 100).toFixed(2);
+					} else {
+						el.style.borderBottomStyle = 'none';
+						el.style.opacity = '1';
 					}
+
 					if (typeof cfg.pos === 'number') {
 						el.style.top = `${cfg.pos}vh`;
 					}
-					document.querySelectorAll('.eyeline-group-sync').forEach(function (group) {
+
+					const badge = document.getElementById('eyeline-badge');
+					if (badge) {
 						if (cfg.enabled) {
-							group.classList.remove('opacity-40');
+							badge.className = 'pointer-events-auto flex items-center gap-1.5 px-2 py-0.5 text-[10px] font-mono bg-ctp-base text-ctp-subtext0 transition-opacity duration-150 -translate-y-1/2';
 						} else {
-							group.classList.add('opacity-40');
+							badge.className = 'pointer-events-auto flex items-center gap-1.5 px-2 py-0.5 text-[10px] font-mono bg-ctp-base text-ctp-subtext0 opacity-40 hover:opacity-90 transition-opacity duration-150 -translate-y-1/2';
 						}
-					});
-					document.querySelectorAll('.eyeline-label-sync').forEach(function (label) {
+					}
+
+					const label = document.getElementById('eyeline-label');
+					if (label) {
 						label.textContent = cfg.enabled ? 'on' : 'off';
 						label.className = cfg.enabled
-							? 'eyeline-label-sync text-ctp-text font-medium w-[3ch] inline-block text-left'
-							: 'eyeline-label-sync text-ctp-subtext0 font-medium w-[3ch] inline-block text-left';
-					});
-					document.querySelectorAll('.eyeline-opacity-label-sync').forEach(function (label) {
-						label.textContent = cfg.opacity + '%';
-					});
-					document.querySelectorAll('.eyeline-pos-label-sync').forEach(function (label) {
-						label.textContent = cfg.pos + '%';
-					});
+							? 'text-ctp-text font-medium w-[3ch] inline-block text-left'
+							: 'text-ctp-subtext0 font-medium w-[3ch] inline-block text-left';
+					}
+
+					const opLabel = document.getElementById('eyeline-opacity-label');
+					if (opLabel) {
+						opLabel.textContent = `${cfg.opacity}%`;
+					}
+					const opBtn = document.getElementById('eyeline-opacity-toggle');
+					if (opBtn) {
+						opBtn.title = `Cycle eyeline opacity: ${cfg.opacity}% (or press 'o')`;
+					}
+
+					const posLabel = document.getElementById('eyeline-pos-label');
+					if (posLabel) {
+						posLabel.textContent = `${cfg.pos}%`;
+					}
+					const posBtn = document.getElementById('eyeline-pos-toggle');
+					if (posBtn) {
+						posBtn.title = `Cycle eyeline position: ${cfg.pos}% (or press 'p')`;
+					}
+				}
+
+				function toggleEyeline() {
+					config.enabled = !config.enabled;
+					applyConfig(config);
+				}
+
+				function cycleOpacity() {
+					const idx = OPACITIES.indexOf(config.opacity);
+					const next = (idx + 1) % OPACITIES.length;
+					config.opacity = OPACITIES[next];
+					config.enabled = true;
+					applyConfig(config);
+				}
+
+				function cyclePosition() {
+					const idx = POSITIONS.indexOf(config.pos);
+					const next = (idx + 1) % POSITIONS.length;
+					config.pos = POSITIONS[next];
+					config.enabled = true;
+					applyConfig(config);
+				}
+
+				function bindControls() {
+					const btnToggle = document.getElementById('eyeline-toggle');
+					if (btnToggle) btnToggle.onclick = toggleEyeline;
+					const btnOp = document.getElementById('eyeline-opacity-toggle');
+					if (btnOp) btnOp.onclick = cycleOpacity;
+					const btnPos = document.getElementById('eyeline-pos-toggle');
+					if (btnPos) btnPos.onclick = cyclePosition;
 				}
 
 				applyConfig(config);
+				bindControls();
+
+				window.addEventListener('resize', function () {
+					applyConfig(config);
+				});
+
+				document.addEventListener('keydown', function (e) {
+					const target = e.target;
+					const isInput = target && (
+						target.tagName === 'INPUT' ||
+						target.tagName === 'TEXTAREA' ||
+						target.isContentEditable
+					);
+					if (isInput) return;
+					if (e.key === 'e' || e.key === 'E') {
+						toggleEyeline();
+					} else if (e.key === 'o' || e.key === 'O') {
+						cycleOpacity();
+					} else if (e.key === 'p' || e.key === 'P') {
+						cyclePosition();
+					}
+				});
 
 				window.__eyeline = {
 					getConfig: () => ({ ...config }),
 					setConfig: (newCfg) => {
 						config = { ...config, ...newCfg };
 						applyConfig(config);
-						try {
-							localStorage.setItem('pid7_eyeline', JSON.stringify(config));
-						} catch {}
 						return { ...config };
 					}
 				};
@@ -126,56 +244,12 @@ const pageDescription = post.frontmatter.description || fallbackExcerpt || 'engi
 				{post.frontmatter.title}
 			</h1>
 
-			<div class="flex flex-wrap items-center justify-between gap-x-3 gap-y-2 font-mono text-xs text-ctp-subtext0">
-				<div class="flex flex-wrap items-center gap-x-2 gap-y-1">
-					<span>{formatBlogDate(post.frontmatter.created)}</span>
-					<span class="text-ctp-surface1">•</span>
-					<span>{post.readTimeMinutes} min read</span>
-					<span class="text-ctp-surface1">•</span>
-					<span>{post.wordCount} words</span>
-				</div>
-
-				<div
-					class="eyeline-group-sync flex items-center gap-1 sm:gap-1.5 border border-ctp-surface1
-						bg-ctp-surface0/20 px-2 py-0.5 select-none"
-				>
-					<span class="text-ctp-subtext0">eyeline</span>
-					<button
-						type="button"
-						class="eyeline-toggle-btn flex items-center gap-1 text-ctp-subtext1 hover:text-ctp-text transition-colors cursor-pointer focus:outline-none"
-						aria-label="Toggle Eyeline"
-						title="Toggle reading eyeline (or press 'e')"
-					>
-						<span class="text-ctp-subtext0">[e]</span>
-						<span class="eyeline-label-sync text-ctp-text font-medium w-[3ch] inline-block text-left">on</span>
-					</button>
-
-					<span class="text-ctp-surface2 select-none opacity-60">•</span>
-
-					<button
-						type="button"
-						class="eyeline-opacity-btn flex items-center gap-1 text-ctp-subtext1 hover:text-ctp-text transition-colors cursor-pointer focus:outline-none"
-						aria-label="Cycle Eyeline Opacity"
-						title="Cycle eyeline opacity (or press 'o')"
-					>
-						<span class="text-ctp-subtext0">[o]</span>
-						<span class="hidden sm:inline text-ctp-subtext0">op</span>
-						<span class="eyeline-opacity-label-sync text-ctp-text font-medium w-[4ch] inline-block text-left">80%</span>
-					</button>
-
-					<span class="text-ctp-surface2 select-none opacity-60">•</span>
-
-					<button
-						type="button"
-						class="eyeline-pos-btn flex items-center gap-1 text-ctp-subtext1 hover:text-ctp-text transition-colors cursor-pointer focus:outline-none"
-						aria-label="Cycle Eyeline Position"
-						title="Cycle eyeline position (or press 'p')"
-					>
-						<span class="text-ctp-subtext0">[p]</span>
-						<span class="hidden sm:inline text-ctp-subtext0">pos</span>
-						<span class="eyeline-pos-label-sync text-ctp-text font-medium w-[3ch] inline-block text-left">30%</span>
-					</button>
-				</div>
+			<div class="flex flex-wrap items-center gap-x-2 gap-y-1 font-mono text-xs text-ctp-subtext0">
+				<span>{formatBlogDate(post.frontmatter.created)}</span>
+				<span class="text-ctp-surface1">•</span>
+				<span>{post.readTimeMinutes} min read</span>
+				<span class="text-ctp-surface1">•</span>
+				<span>{post.wordCount} words</span>
 			</div>
 		</header>
 

@@ -1,11 +1,9 @@
 ---
-const isBlog = Astro.url.pathname.startsWith('/blog');
 ---
 
 <div
   id="status-bar"
   data-stuck="false"
-  data-blog={isBlog ? 'true' : 'false'}
   class="border border-ctp-surface1 bg-ctp-surface0/20 flex flex-nowrap items-stretch
     divide-x divide-ctp-surface1 text-xs font-mono select-none w-full max-w-full overflow-hidden"
 >
@@ -49,55 +47,6 @@ const isBlog = Astro.url.pathname.startsWith('/blog');
       class="text-[var(--color-accent)] opacity-60">░</span><span
       class="text-ctp-overlay0 opacity-45">~~</span><span
       class="text-ctp-surface2 opacity-30">·····</span></span>
-  </div>
-
-  <div
-    id="eyeline-group"
-    class="eyeline-group-sync hidden items-center justify-center gap-1 sm:gap-2 px-1.5 sm:px-2.5 py-1.5 whitespace-nowrap shrink-0"
-  >
-    <div class="flex items-center gap-1">
-      <span class="hidden min-[560px]:inline text-ctp-subtext0 font-medium">eyeline</span>
-      <button
-        id="eyeline-toggle"
-        type="button"
-        class="eyeline-toggle-btn flex items-center gap-1 text-ctp-subtext1 hover:text-ctp-text transition-colors cursor-pointer focus:outline-none"
-        aria-label="Toggle Eyeline"
-        title="Toggle reading eyeline (or press 'e')"
-      >
-        <span class="text-ctp-subtext0">[e]</span>
-        <span id="eyeline-label" class="eyeline-label-sync text-ctp-text font-medium w-[3ch] inline-block text-left">on</span>
-      </button>
-    </div>
-
-    <span class="text-ctp-surface2 select-none opacity-60">•</span>
-
-    <button
-      id="eyeline-opacity-toggle"
-      type="button"
-      class="eyeline-opacity-btn flex items-center gap-1 text-ctp-subtext1 hover:text-ctp-text transition-colors cursor-pointer focus:outline-none"
-      aria-label="Cycle Eyeline Opacity"
-      title="Cycle eyeline opacity (or press 'o')"
-    >
-      <span class="text-ctp-subtext0">[o]</span>
-      <span class="hidden sm:inline text-ctp-subtext0">opacity</span>
-      <span class="hidden min-[440px]:inline sm:hidden text-ctp-subtext0">op</span>
-      <span id="eyeline-opacity-label" class="eyeline-opacity-label-sync text-ctp-text font-medium w-[4ch] inline-block text-left">80%</span>
-    </button>
-
-    <span class="text-ctp-surface2 select-none opacity-60">•</span>
-
-    <button
-      id="eyeline-pos-toggle"
-      type="button"
-      class="eyeline-pos-btn flex items-center gap-1 text-ctp-subtext1 hover:text-ctp-text transition-colors cursor-pointer focus:outline-none"
-      aria-label="Cycle Eyeline Position"
-      title="Cycle eyeline position (or press 'p')"
-    >
-      <span class="text-ctp-subtext0">[p]</span>
-      <span class="hidden sm:inline text-ctp-subtext0">position at</span>
-      <span class="hidden min-[440px]:inline sm:hidden text-ctp-subtext0">pos</span>
-      <span id="eyeline-pos-label" class="eyeline-pos-label-sync text-ctp-text font-medium w-[3ch] inline-block text-left">30%</span>
-    </button>
   </div>
 
   <button
@@ -145,14 +94,6 @@ const isBlog = Astro.url.pathname.startsWith('/blog');
     transition:
       background-color 200ms ease,
       border-color 200ms ease;
-  }
-
-  #status-bar #eyeline-group {
-    display: none;
-  }
-
-  #status-bar[data-blog="true"][data-stuck="true"] #eyeline-group {
-    display: flex;
   }
 
   #status-bar[data-stuck="true"] {
@@ -448,111 +389,6 @@ const isBlog = Astro.url.pathname.startsWith('/blog');
     return isStuck;
   }
 
-  interface EyelineConfig {
-    enabled: boolean;
-    opacity: number;
-    pos: number;
-  }
-
-  const EYELINE_OPACITIES = [0x28, 0x3c, 0x50, 0x64]; // 40, 60, 80, 100
-  const EYELINE_POSITIONS = [0x14, 0x19, 0x1e, 0x23, 0x28, 0x2d, 0x32]; // 20, 25, 30, 35, 40, 45, 50
-
-  function getEyelineConfig(): EyelineConfig {
-    const config: EyelineConfig = { enabled: true, opacity: 0x50, pos: 0x1e };
-    try {
-      const saved = localStorage.getItem('pid7_eyeline');
-      if (saved) {
-        const parsed = JSON.parse(saved);
-        if (typeof parsed.enabled === 'boolean') config.enabled = parsed.enabled;
-        if (typeof parsed.opacity === 'number' && EYELINE_OPACITIES.includes(parsed.opacity)) {
-          config.opacity = parsed.opacity;
-        } else if (typeof parsed.opacity === 'number') {
-          config.opacity = 0x50;
-        }
-        if (typeof parsed.pos === 'number' && EYELINE_POSITIONS.includes(parsed.pos)) {
-          config.pos = parsed.pos;
-        } else if (typeof parsed.pos === 'number') {
-          config.pos = 0x1e;
-        }
-      } else {
-        localStorage.setItem('pid7_eyeline', JSON.stringify(config));
-      }
-    } catch {}
-    return config;
-  }
-
-  function applyEyelineConfig(config: EyelineConfig) {
-    try {
-      localStorage.setItem('pid7_eyeline', JSON.stringify(config));
-    } catch {}
-
-    const eyelineEl = document.getElementById('blog-eyeline');
-    if (eyelineEl) {
-      if (window.innerWidth >= 640) {
-        eyelineEl.style.display = config.enabled ? 'flex' : 'none';
-      } else {
-        eyelineEl.style.display = '';
-      }
-      eyelineEl.style.opacity = (config.opacity / 100).toFixed(2);
-      eyelineEl.style.top = `${config.pos}vh`;
-    }
-
-    document.querySelectorAll('.eyeline-group-sync').forEach((group) => {
-      if (config.enabled) {
-        group.classList.remove('opacity-40');
-      } else {
-        group.classList.add('opacity-40');
-      }
-    });
-
-    document.querySelectorAll('.eyeline-label-sync').forEach((label) => {
-      label.textContent = config.enabled ? 'on' : 'off';
-      label.className = config.enabled
-        ? 'eyeline-label-sync text-ctp-text font-medium w-[3ch] inline-block text-left'
-        : 'eyeline-label-sync text-ctp-subtext0 font-medium w-[3ch] inline-block text-left';
-    });
-
-    document.querySelectorAll('.eyeline-opacity-label-sync').forEach((label) => {
-      label.textContent = `${config.opacity}%`;
-    });
-
-    document.querySelectorAll('.eyeline-opacity-btn').forEach((btn) => {
-      (btn as HTMLElement).title = `Cycle eyeline opacity: ${config.opacity}% (or press 'o')`;
-    });
-
-    document.querySelectorAll('.eyeline-pos-label-sync').forEach((label) => {
-      label.textContent = `${config.pos}%`;
-    });
-
-    document.querySelectorAll('.eyeline-pos-btn').forEach((btn) => {
-      (btn as HTMLElement).title = `Cycle eyeline position: ${config.pos}% (or press 'p')`;
-    });
-  }
-
-  function cycleEyelineOpacity() {
-    const config = getEyelineConfig();
-    const curIdx = EYELINE_OPACITIES.indexOf(config.opacity);
-    const nextIdx = (curIdx + 1) % EYELINE_OPACITIES.length;
-    config.opacity = EYELINE_OPACITIES[nextIdx];
-    config.enabled = true;
-    applyEyelineConfig(config);
-  }
-
-  function cycleEyelinePosition() {
-    const config = getEyelineConfig();
-    const curIdx = EYELINE_POSITIONS.indexOf(config.pos);
-    const nextIdx = (curIdx + 1) % EYELINE_POSITIONS.length;
-    config.pos = EYELINE_POSITIONS[nextIdx];
-    config.enabled = true;
-    applyEyelineConfig(config);
-  }
-
-  function toggleEyeline() {
-    const config = getEyelineConfig();
-    config.enabled = !config.enabled;
-    applyEyelineConfig(config);
-  }
-
   function setupControls() {
     stopIdleAnimation();
 
@@ -576,22 +412,6 @@ const isBlog = Astro.url.pathname.startsWith('/blog');
       const nextIndex = (themes.indexOf(active) + 1) % themes.length;
       applyTheme(themes[nextIndex]);
     });
-
-    const onBlog = window.location.pathname.startsWith('/blog');
-
-    if (onBlog) {
-      const config = getEyelineConfig();
-      applyEyelineConfig(config);
-      document.querySelectorAll('.eyeline-toggle-btn').forEach((btn) => {
-        (btn as HTMLElement).onclick = toggleEyeline;
-      });
-      document.querySelectorAll('.eyeline-opacity-btn').forEach((btn) => {
-        (btn as HTMLElement).onclick = cycleEyelineOpacity;
-      });
-      document.querySelectorAll('.eyeline-pos-btn').forEach((btn) => {
-        (btn as HTMLElement).onclick = cycleEyelinePosition;
-      });
-    }
 
     ensureClockTimer();
     refreshScrollCapacity();
@@ -660,7 +480,7 @@ const isBlog = Astro.url.pathname.startsWith('/blog');
     });
   }
 
-  // Keyboard navigation shortcuts: 'a' for accent, 't' for theme, 'e', 'o', 'p' for eyeline
+  // Keyboard navigation shortcuts: 'a' for accent, 't' for theme
   document.addEventListener('keydown', (e) => {
     const target = e.target as HTMLElement | null;
     const isInput = target && (
@@ -675,14 +495,6 @@ const isBlog = Astro.url.pathname.startsWith('/blog');
     } else if (e.key === 't' || e.key === 'T') {
       const themeBtn = document.getElementById('theme-toggle');
       themeBtn?.click();
-    } else if (window.location.pathname.startsWith('/blog')) {
-      if (e.key === 'e' || e.key === 'E') {
-        toggleEyeline();
-      } else if (e.key === 'o' || e.key === 'O') {
-        cycleEyelineOpacity();
-      } else if (e.key === 'p' || e.key === 'P') {
-        cycleEyelinePosition();
-      }
     }
   });
 </script>
