@@ -1,14 +1,14 @@
 {
-  "generated_at": "2026-11-13T10:47:30.973Z",
+  "generated_at": "2026-11-14T11:12:37.371Z",
   "start_date": "2025-01-01",
-  "end_date": "2026-11-13",
+  "end_date": "2026-11-14",
   "repos_count": 5,
-  "total_net_loc": 153193,
+  "total_net_loc": 149950,
   "cadence": {
-    "total_commits": 2297,
+    "total_commits": 2319,
     "total_prs": 89,
-    "total_releases": 82,
-    "monthly_avg_commits": 100,
+    "total_releases": 83,
+    "monthly_avg_commits": 101,
     "merge_rate_pct": 98
   },
   "top_repos": [
@@ -16,10 +16,10 @@
       "name": "turbofox",
       "nameWithOwner": "pid7-org/turbofox",
       "url": "https://github.com/pid7-org/turbofox",
-      "commits": 899,
-      "additions": 66384,
-      "deletions": 16302,
-      "net_loc": 50082,
+      "commits": 911,
+      "additions": 67094,
+      "deletions": 17891,
+      "net_loc": 49203,
       "primaryLanguage": "Rust",
       "primaryColor": "#dea584"
     },
@@ -27,10 +27,10 @@
       "name": "frozen-core",
       "nameWithOwner": "pid7-org/frozen-core",
       "url": "https://github.com/pid7-org/frozen-core",
-      "commits": 554,
-      "additions": 83571,
-      "deletions": 21672,
-      "net_loc": 61899,
+      "commits": 557,
+      "additions": 83701,
+      "deletions": 21820,
+      "net_loc": 61881,
       "primaryLanguage": "Rust",
       "primaryColor": "#dea584"
     },
@@ -39,9 +39,9 @@
       "nameWithOwner": "pid7-org/ashwa",
       "url": "https://github.com/pid7-org/ashwa",
       "commits": 269,
-      "additions": 24511,
+      "additions": 24512,
       "deletions": 5120,
-      "net_loc": 19391,
+      "net_loc": 19392,
       "primaryLanguage": "Rust",
       "primaryColor": "#dea584"
     },
@@ -60,10 +60,10 @@
       "name": "website",
       "nameWithOwner": "pid7-org/website",
       "url": "https://github.com/pid7-org/website",
-      "commits": 119,
-      "additions": 22172,
-      "deletions": 6308,
-      "net_loc": 15864,
+      "commits": 125,
+      "additions": 22921,
+      "deletions": 9405,
+      "net_loc": 13516,
       "primaryLanguage": "TypeScript",
       "primaryColor": "#3178c6"
     }
@@ -113,9 +113,9 @@
       "month": "2026-11",
       "label": "Nov",
       "year": 2026,
-      "additions": 35663,
-      "deletions": 19236,
-      "net": 16427
+      "additions": 37254,
+      "deletions": 24070,
+      "net": 13184
     }
   ],
   "cumulative_commits": [
@@ -408,10 +408,10 @@
       "interval_delta": 318
     },
     {
-      "date": "2026-11-13",
+      "date": "2026-11-14",
       "label": "Nov '26",
-      "cumulative": 2297,
-      "interval_delta": 74
+      "cumulative": 2319,
+      "interval_delta": 96
     }
   ],
   "activity": {
@@ -7226,14 +7226,24 @@
       "total": 1
     },
     "2026-11-13": {
-      "commits": 9,
+      "commits": 11,
       "pull_requests": 0,
       "issues": 0,
       "discussions": 0,
       "releases": 0,
-      "additions": 6537,
-      "deletions": 3173,
-      "total": 9
+      "additions": 6792,
+      "deletions": 6366,
+      "total": 11
+    },
+    "2026-11-14": {
+      "commits": 20,
+      "pull_requests": 0,
+      "issues": 0,
+      "discussions": 0,
+      "releases": 1,
+      "additions": 1336,
+      "deletions": 1641,
+      "total": 21
     }
   },
   "projects": [
@@ -7245,17 +7255,17 @@
       "forks": 0,
       "language": "Rust",
       "languageColor": "#dea584",
-      "commits": 899,
-      "releases": 4,
-      "pullRequests": 1,
-      "issues": 4,
-      "contributions": 899,
-      "bannerUrl": "https://raw.githubusercontent.com/pid7-org/turbofox/master/assets/banner.jpg",
+      "commits": 911,
+      "releases": 6,
       "latestRelease": {
-        "tagName": "v0.0.301",
-        "publishedAt": "2026-11-08T18:07:46Z",
-        "url": "https://github.com/pid7-org/turbofox/releases/tag/v0.0.301"
-      }
+        "tagName": "v0.0.302",
+        "publishedAt": "2026-11-14T10:52:42Z",
+        "url": "https://github.com/pid7-org/turbofox/releases/tag/v0.0.302"
+      },
+      "bannerUrl": "https://raw.githubusercontent.com/pid7-org/turbofox/master/assets/banner.jpg",
+      "pullRequests": 1,
+      "issues": 7,
+      "contributions": 911
     },
     {
       "name": "frozen-core",
@@ -7265,17 +7275,17 @@
       "forks": 0,
       "language": "Rust",
       "languageColor": "#dea584",
-      "commits": 554,
-      "releases": 43,
-      "pullRequests": 43,
-      "issues": 72,
-      "contributions": 554,
-      "bannerUrl": null,
+      "commits": 557,
+      "releases": 47,
       "latestRelease": {
         "tagName": "v0.0.44",
         "publishedAt": "2026-11-09T17:38:06Z",
         "url": "https://github.com/pid7-org/frozen-core/releases/tag/v0.0.44"
-      }
+      },
+      "bannerUrl": null,
+      "pullRequests": 43,
+      "issues": 74,
+      "contributions": 557
     },
     {
       "name": "turbo_crc",
@@ -7285,17 +7295,17 @@
       "forks": 0,
       "language": "Rust",
       "languageColor": "#dea584",
-      "commits": 3,
+      "commits": 4,
       "releases": 0,
-      "pullRequests": 0,
-      "issues": 0,
-      "contributions": 3,
-      "bannerUrl": "https://raw.githubusercontent.com/pid7-org/turbo_crc/master/assets/banner.jpg",
       "latestRelease": {
         "tagName": "v0.0.4",
         "publishedAt": "2026-07-13T18:42:57Z",
         "url": "https://github.com/pid7-org/turbo_crc/releases/tag/v0.0.4"
-      }
+      },
+      "bannerUrl": "https://raw.githubusercontent.com/pid7-org/turbo_crc/master/assets/banner.jpg",
+      "pullRequests": 0,
+      "issues": 0,
+      "contributions": 4
     },
     {
       "name": "ashwa",
@@ -7307,15 +7317,15 @@
       "languageColor": "#dea584",
       "commits": 269,
       "releases": 6,
-      "pullRequests": 0,
-      "issues": 0,
-      "contributions": 269,
-      "bannerUrl": "https://raw.githubusercontent.com/pid7-org/ashwa/master/assets/banner.jpg",
       "latestRelease": {
         "tagName": "v1.0.1",
         "publishedAt": "2026-08-31T14:55:31Z",
         "url": "https://github.com/pid7-org/ashwa/releases/tag/v1.0.1"
-      }
+      },
+      "bannerUrl": "https://raw.githubusercontent.com/pid7-org/ashwa/master/assets/banner.jpg",
+      "pullRequests": 0,
+      "issues": 0,
+      "contributions": 269
     },
     {
       "name": "website",
@@ -7325,79 +7335,79 @@
       "forks": 0,
       "language": "TypeScript",
       "languageColor": "#3178c6",
-      "commits": 119,
+      "commits": 125,
       "releases": 0,
-      "pullRequests": 0,
-      "issues": 0,
-      "contributions": 119,
-      "bannerUrl": null,
       "latestRelease": {
         "tagName": "v2.0.0",
         "publishedAt": "2026-11-03T19:42:05Z",
         "url": "https://github.com/pid7-org/website/releases/tag/v2.0.0"
-      }
+      },
+      "bannerUrl": null,
+      "pullRequests": 0,
+      "issues": 0,
+      "contributions": 125
     }
   ],
   "languages": [
     {
       "name": "Rust",
       "color": "#dea584",
-      "bytes": 1551619,
-      "percentage": 77.13
+      "bytes": 1614475,
+      "percentage": 72.48
+    },
+    {
+      "name": "TypeScript",
+      "color": "#3178c6",
+      "bytes": 178981,
+      "percentage": 8.04
+    },
+    {
+      "name": "Python",
+      "color": "#3572A5",
+      "bytes": 150292,
+      "percentage": 6.75
     },
     {
       "name": "JavaScript",
       "color": "#f1e05a",
       "bytes": 122263,
-      "percentage": 6.08
-    },
-    {
-      "name": "TypeScript",
-      "color": "#3178c6",
-      "bytes": 113340,
-      "percentage": 5.63
-    },
-    {
-      "name": "Python",
-      "color": "#3572A5",
-      "bytes": 88501,
-      "percentage": 4.4
+      "percentage": 5.49
     },
     {
       "name": "Shell",
       "color": "#89e051",
-      "bytes": 67281,
-      "percentage": 3.34
+      "bytes": 70926,
+      "percentage": 3.18
     },
     {
       "name": "Astro",
       "color": "#ff5a03",
-      "bytes": 50579,
-      "percentage": 2.51
+      "bytes": 69812,
+      "percentage": 3.13
     },
     {
       "name": "HCL",
       "color": "#844FBA",
-      "bytes": 8790,
-      "percentage": 0.44
+      "bytes": 8688,
+      "percentage": 0.39
     },
     {
       "name": "CSS",
       "color": "#663399",
-      "bytes": 4965,
-      "percentage": 0.25
+      "bytes": 8337,
+      "percentage": 0.37
     },
     {
       "name": "Nix",
       "color": "#7e7eff",
-      "bytes": 2761,
-      "percentage": 0.14
+      "bytes": 1970,
+      "percentage": 0.09
     },
     {
       "name": "C",
       "color": "#555555",
       "bytes": 1621,
-      "percentage": 0.08
+      "percentage": 0.07
     }
   ]
 }
