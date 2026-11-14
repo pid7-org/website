@@ -84,6 +84,25 @@ const pageDescription = post.frontmatter.description || fallbackExcerpt || 'engi
 					if (typeof cfg.pos === 'number') {
 						el.style.top = `${cfg.pos}vh`;
 					}
+					document.querySelectorAll('.eyeline-group-sync').forEach(function (group) {
+						if (cfg.enabled) {
+							group.classList.remove('opacity-40');
+						} else {
+							group.classList.add('opacity-40');
+						}
+					});
+					document.querySelectorAll('.eyeline-label-sync').forEach(function (label) {
+						label.textContent = cfg.enabled ? 'on' : 'off';
+						label.className = cfg.enabled
+							? 'eyeline-label-sync text-ctp-text font-medium w-[3ch] inline-block text-left'
+							: 'eyeline-label-sync text-ctp-subtext0 font-medium w-[3ch] inline-block text-left';
+					});
+					document.querySelectorAll('.eyeline-opacity-label-sync').forEach(function (label) {
+						label.textContent = cfg.opacity + '%';
+					});
+					document.querySelectorAll('.eyeline-pos-label-sync').forEach(function (label) {
+						label.textContent = cfg.pos + '%';
+					});
 				}
 
 				applyConfig(config);
@@ -107,12 +126,56 @@ const pageDescription = post.frontmatter.description || fallbackExcerpt || 'engi
 				{post.frontmatter.title}
 			</h1>
 
-			<div class="flex flex-wrap items-center gap-x-2 gap-y-1 font-mono text-xs text-ctp-subtext0">
-				<span>{formatBlogDate(post.frontmatter.created)}</span>
-				<span class="text-ctp-surface1">•</span>
-				<span>{post.readTimeMinutes} min read</span>
-				<span class="text-ctp-surface1">•</span>
-				<span>{post.wordCount} words</span>
+			<div class="flex flex-wrap items-center justify-between gap-x-3 gap-y-2 font-mono text-xs text-ctp-subtext0">
+				<div class="flex flex-wrap items-center gap-x-2 gap-y-1">
+					<span>{formatBlogDate(post.frontmatter.created)}</span>
+					<span class="text-ctp-surface1">•</span>
+					<span>{post.readTimeMinutes} min read</span>
+					<span class="text-ctp-surface1">•</span>
+					<span>{post.wordCount} words</span>
+				</div>
+
+				<div
+					class="eyeline-group-sync flex items-center gap-1 sm:gap-1.5 border border-ctp-surface1
+						bg-ctp-surface0/20 px-2 py-0.5 select-none"
+				>
+					<span class="text-ctp-subtext0">eyeline</span>
+					<button
+						type="button"
+						class="eyeline-toggle-btn flex items-center gap-1 text-ctp-subtext1 hover:text-ctp-text transition-colors cursor-pointer focus:outline-none"
+						aria-label="Toggle Eyeline"
+						title="Toggle reading eyeline (or press 'e')"
+					>
+						<span class="text-ctp-subtext0">[e]</span>
+						<span class="eyeline-label-sync text-ctp-text font-medium w-[3ch] inline-block text-left">on</span>
+					</button>
+
+					<span class="text-ctp-surface2 select-none opacity-60">•</span>
+
+					<button
+						type="button"
+						class="eyeline-opacity-btn flex items-center gap-1 text-ctp-subtext1 hover:text-ctp-text transition-colors cursor-pointer focus:outline-none"
+						aria-label="Cycle Eyeline Opacity"
+						title="Cycle eyeline opacity (or press 'o')"
+					>
+						<span class="text-ctp-subtext0">[o]</span>
+						<span class="hidden sm:inline text-ctp-subtext0">op</span>
+						<span class="eyeline-opacity-label-sync text-ctp-text font-medium w-[4ch] inline-block text-left">80%</span>
+					</button>
+
+					<span class="text-ctp-surface2 select-none opacity-60">•</span>
+
+					<button
+						type="button"
+						class="eyeline-pos-btn flex items-center gap-1 text-ctp-subtext1 hover:text-ctp-text transition-colors cursor-pointer focus:outline-none"
+						aria-label="Cycle Eyeline Position"
+						title="Cycle eyeline position (or press 'p')"
+					>
+						<span class="text-ctp-subtext0">[p]</span>
+						<span class="hidden sm:inline text-ctp-subtext0">pos</span>
+						<span class="eyeline-pos-label-sync text-ctp-text font-medium w-[3ch] inline-block text-left">30%</span>
+					</button>
+				</div>
 			</div>
 		</header>
 
