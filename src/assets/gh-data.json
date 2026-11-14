@@ -1,11 +1,11 @@
 {
-  "generated_at": "2026-11-14T12:05:51.626Z",
+  "generated_at": "2026-11-14T22:40:12.218Z",
   "start_date": "2024-09-01",
   "end_date": "2026-11-14",
   "repos_count": 5,
-  "total_net_loc": 92011,
+  "total_net_loc": 93656,
   "cadence": {
-    "total_commits": 1994,
+    "total_commits": 2006,
     "total_prs": 46,
     "total_releases": 63,
     "monthly_avg_commits": 74,
@@ -16,10 +16,10 @@
       "name": "turbofox",
       "nameWithOwner": "pid7-org/turbofox",
       "url": "https://github.com/pid7-org/turbofox",
-      "commits": 907,
-      "additions": 114690,
-      "deletions": 94648,
-      "net_loc": 20042,
+      "commits": 913,
+      "additions": 116187,
+      "deletions": 95312,
+      "net_loc": 20875,
       "primaryLanguage": "Rust",
       "primaryColor": "#dea584"
     },
@@ -27,10 +27,10 @@
       "name": "frozen-core",
       "nameWithOwner": "pid7-org/frozen-core",
       "url": "https://github.com/pid7-org/frozen-core",
-      "commits": 554,
-      "additions": 72934,
-      "deletions": 44600,
-      "net_loc": 28334,
+      "commits": 555,
+      "additions": 73203,
+      "deletions": 44661,
+      "net_loc": 28542,
       "primaryLanguage": "Rust",
       "primaryColor": "#dea584"
     },
@@ -39,9 +39,9 @@
       "nameWithOwner": "pid7-org/ashwa",
       "url": "https://github.com/pid7-org/ashwa",
       "commits": 270,
-      "additions": 29964,
+      "additions": 29966,
       "deletions": 9019,
-      "net_loc": 20945,
+      "net_loc": 20947,
       "primaryLanguage": "Rust",
       "primaryColor": "#dea584"
     },
@@ -49,10 +49,10 @@
       "name": "website",
       "nameWithOwner": "pid7-org/website",
       "url": "https://github.com/pid7-org/website",
-      "commits": 227,
-      "additions": 42218,
-      "deletions": 20993,
-      "net_loc": 21225,
+      "commits": 231,
+      "additions": 44490,
+      "deletions": 22664,
+      "net_loc": 21826,
       "primaryLanguage": "TypeScript",
       "primaryColor": "#3178c6"
     },
@@ -61,9 +61,9 @@
       "nameWithOwner": "pid7-org/turbo_crc",
       "url": "https://github.com/pid7-org/turbo_crc",
       "commits": 36,
-      "additions": 1881,
+      "additions": 1882,
       "deletions": 416,
-      "net_loc": 1465,
+      "net_loc": 1466,
       "primaryLanguage": "Rust",
       "primaryColor": "#dea584"
     }
@@ -113,9 +113,9 @@
       "month": "2026-11",
       "label": "Nov",
       "year": 2026,
-      "additions": 37351,
-      "deletions": 24157,
-      "net": 13194
+      "additions": 41393,
+      "deletions": 26554,
+      "net": 14839
     }
   ],
   "cumulative_commits": [
@@ -464,8 +464,8 @@
     {
       "date": "2026-11-14",
       "label": "Nov '26",
-      "cumulative": 1994,
-      "interval_delta": 57
+      "cumulative": 2006,
+      "interval_delta": 69
     }
   ],
   "activity": {
@@ -8510,14 +8510,14 @@
       "total": 11
     },
     "2026-11-14": {
-      "commits": 21,
+      "commits": 33,
       "pull_requests": 0,
       "issues": 0,
       "discussions": 0,
       "releases": 1,
-      "additions": 1433,
-      "deletions": 1728,
-      "total": 22
+      "additions": 5475,
+      "deletions": 4125,
+      "total": 34
     }
   },
   "projects": [
@@ -8530,8 +8530,8 @@
       "forks": 0,
       "language": "Rust",
       "languageColor": "#dea584",
-      "commits": 907,
-      "releases": 6,
+      "commits": 913,
+      "releases": 8,
       "latestRelease": {
         "tagName": "v0.0.302",
         "publishedAt": "2026-11-14T10:52:42Z",
@@ -8539,8 +8539,8 @@
       },
       "bannerUrl": "https://raw.githubusercontent.com/pid7-org/turbofox/master/assets/banner.jpg",
       "pullRequests": 1,
-      "issues": 4,
-      "contributions": 918
+      "issues": 7,
+      "contributions": 929
     },
     {
       "name": "frozen-core",
@@ -8551,8 +8551,8 @@
       "forks": 0,
       "language": "Rust",
       "languageColor": "#dea584",
-      "commits": 554,
-      "releases": 43,
+      "commits": 555,
+      "releases": 47,
       "latestRelease": {
         "tagName": "v0.0.44",
         "publishedAt": "2026-11-09T17:38:06Z",
@@ -8560,8 +8560,8 @@
       },
       "bannerUrl": null,
       "pullRequests": 43,
-      "issues": 72,
-      "contributions": 712
+      "issues": 74,
+      "contributions": 719
     },
     {
       "name": "turbo_crc",
@@ -8614,7 +8614,7 @@
       "forks": 0,
       "language": "TypeScript",
       "languageColor": "#3178c6",
-      "commits": 227,
+      "commits": 231,
       "releases": 3,
       "latestRelease": {
         "tagName": "v2.0.0",
@@ -8624,7 +8624,7 @@
       "bannerUrl": null,
       "pullRequests": 0,
       "issues": 0,
-      "contributions": 230
+      "contributions": 234
     }
   ],
   "languages": [
@@ -8632,37 +8632,37 @@
       "name": "Rust",
       "color": "#dea584",
       "bytes": 1614475,
-      "percentage": 72.39
+      "percentage": 72.13
     },
     {
       "name": "TypeScript",
       "color": "#3178c6",
-      "bytes": 178981,
-      "percentage": 8.02
+      "bytes": 182525,
+      "percentage": 8.15
     },
     {
       "name": "Python",
       "color": "#3572A5",
-      "bytes": 153222,
-      "percentage": 6.87
+      "bytes": 158239,
+      "percentage": 7.07
     },
     {
       "name": "JavaScript",
       "color": "#f1e05a",
       "bytes": 122263,
-      "percentage": 5.48
+      "percentage": 5.46
     },
     {
       "name": "Shell",
       "color": "#89e051",
       "bytes": 70926,
-      "percentage": 3.18
+      "percentage": 3.17
     },
     {
       "name": "Astro",
       "color": "#ff5a03",
-      "bytes": 69812,
-      "percentage": 3.13
+      "bytes": 69330,
+      "percentage": 3.1
     },
     {
       "name": "HCL",
