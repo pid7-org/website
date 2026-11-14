@@ -44,6 +44,12 @@ export interface RawRepoMeta {
   forks: number;
   language: string;
   languageColor: string;
+  latestRelease?: {
+    tagName: string;
+    publishedAt: string | null;
+    url: string;
+  } | null;
+  bannerUrl?: string | null;
 }
 
 export function generateDateRange(startDateStr: string, endDateStr: string): string[] {
@@ -293,6 +299,8 @@ export function aggregateGHData(params: {
       languageColor: m.languageColor,
       commits: s.commits,
       releases: 0,
+      latestRelease: m.latestRelease || null,
+      bannerUrl: m.bannerUrl || null,
       pullRequests: 0,
       issues: 0,
       contributions: s.commits,
@@ -613,6 +621,8 @@ export function mergeGHData(
       languageColor: m.languageColor,
       commits: s.commits,
       releases: Math.max(ex?.releases || 0, (ex?.releases || 0) + (win?.releases || 0)),
+      latestRelease: m.latestRelease !== undefined ? m.latestRelease : (ex?.latestRelease || null),
+      bannerUrl: m.bannerUrl !== undefined ? m.bannerUrl : (ex?.bannerUrl || null),
       pullRequests: Math.max(ex?.pullRequests || 0, (ex?.pullRequests || 0) + (win?.prs || 0)),
       issues: Math.max(ex?.issues || 0, (ex?.issues || 0) + (win?.issues || 0)),
       contributions: s.commits,

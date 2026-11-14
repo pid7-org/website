@@ -26,6 +26,16 @@ const GET_ORG_REPOS_QUERY = `
           defaultBranchRef {
             name
           }
+          banner: object(expression: "HEAD:assets/banner.png") {
+            oid
+          }
+          releases(first: 1, orderBy: { field: CREATED_AT, direction: DESC }) {
+            nodes {
+              tagName
+              publishedAt
+              url
+            }
+          }
         }
         pageInfo {
           hasNextPage
@@ -135,6 +145,12 @@ export interface RepoInfo {
   forks: number;
   language: string;
   languageColor: string;
+  latestRelease?: {
+    tagName: string;
+    publishedAt: string | null;
+    url: string;
+  } | null;
+  bannerUrl?: string | null;
 }
 
 export async function getRepositories(org: string): Promise<RepoInfo[]> {
@@ -157,6 +173,14 @@ export async function getRepositories(org: string): Promise<RepoInfo[]> {
             forkCount: number;
             primaryLanguage?: { name: string; color: string } | null;
             defaultBranchRef?: { name: string } | null;
+            banner?: { oid: string } | null;
+            releases?: {
+              nodes?: Array<{
+                tagName: string;
+                publishedAt: string | null;
+                url: string;
+              }>;
+            } | null;
           }>;
           pageInfo: { hasNextPage: boolean; endCursor: string | null };
         };
@@ -166,6 +190,12 @@ export async function getRepositories(org: string): Promise<RepoInfo[]> {
     const nodes = data?.organization?.repositories?.nodes || [];
     for (const node of nodes) {
       if (!node.isArchived) {
+        const latestRel = node.releases?.nodes?.[0];
+        const defaultBranch = node.defaultBranchRef?.name || 'HEAD';
+        const bannerUrl = node.banner?.oid
+          ? `https://raw.githubusercontent.com/${node.nameWithOwner}/${defaultBranch}/assets/banner.png`
+          : null;
+
         repos.push({
           name: node.name,
           nameWithOwner: node.nameWithOwner,
@@ -176,6 +206,14 @@ export async function getRepositories(org: string): Promise<RepoInfo[]> {
           forks: node.forkCount || 0,
           language: node.primaryLanguage?.name || 'Rust',
           languageColor: node.primaryLanguage?.color || '#dea584',
+          latestRelease: latestRel
+            ? {
+                tagName: latestRel.tagName,
+                publishedAt: latestRel.publishedAt,
+                url: latestRel.url,
+              }
+            : null,
+          bannerUrl,
         });
       }
     }

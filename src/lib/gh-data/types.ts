@@ -45,6 +45,12 @@ export interface CumulativeCommitPoint {
   interval_delta: number;
 }
 
+export interface GHProjectRelease {
+  tagName: string;
+  publishedAt: string | null;
+  url: string;
+}
+
 export interface GHProjectItem {
   name: string;
   nameWithOwner: string;
@@ -56,6 +62,8 @@ export interface GHProjectItem {
   languageColor: string;
   commits: number;
   releases: number;
+  latestRelease?: GHProjectRelease | null;
+  bannerUrl?: string | null;
   pullRequests: number;
   issues: number;
   contributions: number;
