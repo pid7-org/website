@@ -18,7 +18,7 @@ function compareProjectsByRelease(a: Project, b: Project): number {
   return (b.contributions ?? b.commits ?? 0) - (a.contributions ?? a.commits ?? 0);
 }
 
-// Show only projects that have banner.png present and have a release, ordered newest first
+// Show only projects that have banner.jpg present and have a release, ordered newest first
 const allProjects = projects
   .filter((p) => Boolean(p.bannerUrl) && Boolean(p.latestRelease?.publishedAt))
   .sort(compareProjectsByRelease);

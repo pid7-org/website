@@ -26,7 +26,7 @@ const GET_ORG_REPOS_QUERY = `
           defaultBranchRef {
             name
           }
-          banner: object(expression: "HEAD:assets/banner.png") {
+          banner: object(expression: "HEAD:assets/banner.jpg") {
             oid
           }
           releases(first: 1, orderBy: { field: CREATED_AT, direction: DESC }) {
@@ -193,7 +193,7 @@ export async function getRepositories(org: string): Promise<RepoInfo[]> {
         const latestRel = node.releases?.nodes?.[0];
         const defaultBranch = node.defaultBranchRef?.name || 'HEAD';
         const bannerUrl = node.banner?.oid
-          ? `https://raw.githubusercontent.com/${node.nameWithOwner}/${defaultBranch}/assets/banner.png`
+          ? `https://raw.githubusercontent.com/${node.nameWithOwner}/${defaultBranch}/assets/banner.jpg`
           : null;
 
         repos.push({
