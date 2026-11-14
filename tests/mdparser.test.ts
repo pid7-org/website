@@ -116,4 +116,45 @@ describe('Markdown Parser Unit Tests', () => {
     expect(parsed.html).toContain(`data-code="${expectedRawAsm}"`);
     expect(decodeURIComponent(expectedRawAsm)).toBe('movzx al, byte [rdi]');
   });
+
+  it('renders raw expression fallback gracefully when KaTeX encounters invalid syntax', async () => {
+    const invalidMathPost = `---
+slug: invalid-math
+title: Invalid Math
+---
+$$ \\invalidMacro{xyz} $$
+`;
+    const parsed = await parseMarkdownBlog(invalidMathPost);
+    expect(parsed.html).toBeTruthy();
+    expect(parsed.html).toContain('katex-display');
+    expect(parsed.html).toContain('\\invalidMacro');
+  });
+
+  it('handles unmatched or missing metadata sections without throwing', async () => {
+    const minimalPost = `---
+slug: minimal
+title: Minimal
+---
+Simple paragraph text.
+`;
+    const parsed = await parseMarkdownBlog(minimalPost);
+    expect(parsed.frontmatter.title).toBe('Minimal');
+    expect(parsed.glossary).toEqual([]);
+    expect(parsed.references).toEqual([]);
+    expect(parsed.html).toContain('Simple paragraph text.</p>');
+  });
+
+  it('auto-generates slug and sanitized heading IDs on headers', async () => {
+    const headerPost = `---
+slug: header-test
+title: Header Test
+---
+## Memory Bandwidth & Latency
+
+### Cache Line Invalidation!
+`;
+    const parsed = await parseMarkdownBlog(headerPost);
+    expect(parsed.html).toContain('id="memory-bandwidth-latency"');
+    expect(parsed.html).toContain('id="cache-line-invalidation"');
+  });
 });

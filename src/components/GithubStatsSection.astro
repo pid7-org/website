@@ -1,5 +1,10 @@
 ---
 import ghData from '../assets/gh-data.json';
+import {
+  generateAsciiBar as createAsciiBar,
+  projectCumulativeCurve,
+  generateSvgAreaPath,
+} from '../lib/chart/projection.ts';
 
 const cadence = ghData.cadence || {
   total_commits: 0,
@@ -18,12 +23,7 @@ const maxRepoCommits = Math.max(...topRepos.map((r) => r.commits), 1);
 const BAR_SLOTS = 14;
 
 function generateAsciiBar(commits: number): { filled: string; empty: string } {
-  const filledCount = Math.max(1, Math.round((commits / maxRepoCommits) * BAR_SLOTS));
-  const emptyCount = Math.max(0, BAR_SLOTS - filledCount);
-  return {
-    filled: '█'.repeat(filledCount),
-    empty: '░'.repeat(emptyCount),
-  };
+  return createAsciiBar(commits, maxRepoCommits, BAR_SLOTS);
 }
 
 // Plotted SVG curve calculations
@@ -41,23 +41,15 @@ const yTicks = [
   maxCommits,
 ];
 
-const plotPoints = cumulativePoints.map((p, idx) => {
-  const x = pad.left + (idx / Math.max(1, cumulativePoints.length - 1)) * plotW;
-  const y = pad.top + plotH - (p.cumulative / maxCommits) * plotH;
-  return {
-    x: Number(x.toFixed(1)),
-    y: Number(y.toFixed(1)),
-    ...p,
-  };
-});
+const plotPoints = projectCumulativeCurve(
+  cumulativePoints,
+  { width: svgWidth, height: svgHeight },
+  pad
+);
 
 const polylineStr = plotPoints.map((pt) => `${pt.x},${pt.y}`).join(' ');
 const baselineY = pad.top + plotH;
-const areaPathD = plotPoints.length > 0
-  ? `M ${plotPoints[0].x},${baselineY} ` +
-    plotPoints.map((pt) => `L ${pt.x},${pt.y}`).join(' ') +
-    ` L ${plotPoints[plotPoints.length - 1].x},${baselineY} Z`
-  : '';
+const areaPathD = generateSvgAreaPath(plotPoints, baselineY);
 
 const xTickStep = Math.max(1, Math.floor(plotPoints.length / 5));
 const xTicks = plotPoints.filter((_, idx) => idx % xTickStep === 0 || idx === plotPoints.length - 1);

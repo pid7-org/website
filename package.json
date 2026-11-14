@@ -14,6 +14,7 @@
     "github:activity": "node --experimental-strip-types scripts/github-activity.ts",
     "github:languages": "node --experimental-strip-types scripts/github-languages.ts",
     "github:projects": "node --experimental-strip-types scripts/github-projects.ts",
+    "audit:content": "node --experimental-strip-types scripts/audit-blog-content.ts",
     "test": "vitest run"
   },
   "dependencies": {

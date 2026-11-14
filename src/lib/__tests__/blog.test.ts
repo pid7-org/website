@@ -1,7 +1,39 @@
-import { describe, expect, it } from 'vitest';
-import { formatBlogDate, getAllBlogPosts, getBlogPostById, getBlogPostBySlug } from '../blog';
+import fs from 'node:fs/promises';
+import { afterEach, describe, expect, it, vi } from 'vitest';
+import { formatBlogDate, getAllBlogPosts, getBlogPostById, getBlogPostBySlug } from '../blog.ts';
+
+const MOCK_FILES: Record<string, string> = {
+  '/mock/src/content/blog/older-post.md': `---
+slug: older-post
+title: Older Post
+created: 01-01-2025
+tags: Testing
+---
+Content older
+`,
+  '/mock/src/content/blog/newer-post.md': `---
+slug: newer-post
+title: Newer Post
+created: 15-06-2025
+tags: Testing
+---
+Content newer
+`,
+  '/mock/src/content/blog/iso-date-post.md': `---
+slug: iso-post
+title: ISO Date Post
+created: 2025-12-01
+tags: Architecture
+---
+Content iso
+`,
+};
 
 describe('Blog Content Library', () => {
+  afterEach(() => {
+    vi.restoreAllMocks();
+  });
+
   it('formats DD-MM-YYYY dates correctly', () => {
     expect(formatBlogDate('01-09-2026')).toBe('Sep 1, 2026');
     expect(formatBlogDate('15-01-2025')).toBe('Jan 15, 2025');
@@ -19,34 +51,52 @@ describe('Blog Content Library', () => {
     expect(formatBlogDate('99-99-9999')).toBe('99-99-9999');
   });
 
-  it('loads real blog posts and sorts them chronologically in descending order', async () => {
-    const posts = await getAllBlogPosts();
-    expect(posts.length).toBeGreaterThan(0);
+  it('loads mock blog posts and sorts them chronologically in descending order', async () => {
+    vi.spyOn(fs, 'readdir').mockResolvedValue(
+      ['older-post.md', 'newer-post.md', 'iso-date-post.md', 'draft.txt'] as any
+    );
+    vi.spyOn(fs, 'readFile').mockImplementation(async (filePath) => {
+      const match = Object.keys(MOCK_FILES).find((k) => (filePath as string).endsWith(k.split('/').pop()!));
+      if (match) return MOCK_FILES[match];
+      throw new Error(`File not found: ${filePath}`);
+    });
 
-    for (let i = 0; i < posts.length - 1; i++) {
-      const parseDate = (dStr: string) => {
-        const parts = dStr.split(/[-/]/);
-        if (parts.length === 3 && parts[2].length === 4) {
-          return new Date(Number(parts[2]), Number(parts[1]) - 1, Number(parts[0])).getTime();
-        }
-        return new Date(dStr).getTime();
-      };
-      const curTime = parseDate(posts[i].frontmatter.created);
-      const nextTime = parseDate(posts[i + 1].frontmatter.created);
-      expect(curTime).toBeGreaterThanOrEqual(nextTime);
-    }
+    const posts = await getAllBlogPosts();
+    expect(posts).toHaveLength(3);
+
+    // Descending order: Dec 1, 2025 -> Jun 15, 2025 -> Jan 1, 2025
+    expect(posts[0].frontmatter.slug).toBe('iso-post');
+    expect(posts[1].frontmatter.slug).toBe('newer-post');
+    expect(posts[2].frontmatter.slug).toBe('older-post');
   });
 
   it('finds blog post by slug with case-insensitive tolerance', async () => {
-    const posts = await getAllBlogPosts();
-    const targetSlug = posts[0].frontmatter.slug;
+    vi.spyOn(fs, 'readdir').mockResolvedValue(['older-post.md', 'newer-post.md'] as any);
+    vi.spyOn(fs, 'readFile').mockImplementation(async (filePath) => {
+      const match = Object.keys(MOCK_FILES).find((k) => (filePath as string).endsWith(k.split('/').pop()!));
+      if (match) return MOCK_FILES[match];
+      throw new Error(`File not found: ${filePath}`);
+    });
 
-    const foundExact = await getBlogPostBySlug(targetSlug);
+    const foundExact = await getBlogPostBySlug('newer-post');
     expect(foundExact).toBeDefined();
-    expect(foundExact?.frontmatter.slug).toBe(targetSlug);
+    expect(foundExact?.frontmatter.slug).toBe('newer-post');
 
-    const foundUpper = await getBlogPostBySlug(targetSlug.toUpperCase());
+    const foundUpper = await getBlogPostBySlug('NEWER-POST');
     expect(foundUpper).toBeDefined();
-    expect(foundUpper?.frontmatter.slug).toBe(targetSlug);
+    expect(foundUpper?.frontmatter.slug).toBe('newer-post');
+
+    const notFound = await getBlogPostBySlug('non-existent');
+    expect(notFound).toBeUndefined();
+  });
+
+  it('handles filesystem read failure gracefully by returning empty array', async () => {
+    vi.spyOn(fs, 'readdir').mockRejectedValue(new Error('EACCES: permission denied'));
+
+    const posts = await getAllBlogPosts();
+    expect(posts).toEqual([]);
+
+    const post = await getBlogPostById('any-slug');
+    expect(post).toBeUndefined();
   });
 });
