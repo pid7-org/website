@@ -13,8 +13,8 @@ function generateAsciiBar(commits: number): { filled: string; empty: string } {
   const filledCount = Math.max(1, Math.round((commits / maxRepoCommits) * BAR_SLOTS));
   const emptyCount = Math.max(0, BAR_SLOTS - filledCount);
   return {
-    filled: '█'.repeat(filledCount),
-    empty: '░'.repeat(emptyCount),
+    filled: '■'.repeat(filledCount),
+    empty: '■'.repeat(emptyCount),
   };
 }
 ---
@@ -60,13 +60,11 @@ function generateAsciiBar(commits: number): { filled: string; empty: string } {
                 {repo.primaryLanguage.toLowerCase()}
               </span>
 
-              <div class="w-[34%] flex items-center justify-center gap-1.5 select-none font-mono text-[11px]">
-                <span class="tracking-tight text-ctp-subtext0/70 group-hover:text-[var(--color-accent)] transition-colors">
-                  {filled}
-                </span>
-                <span class="tracking-tight text-ctp-surface1/60">
-                  {empty}
-                </span>
+              <div class="w-[34%] flex items-center justify-center gap-2 select-none font-mono text-[11px]">
+                <div class="inline-flex tracking-tight">
+                  <span class="text-[var(--color-accent)]">{filled}</span>
+                  <span class="text-ctp-surface1/40">{empty}</span>
+                </div>
                 <span class="text-[10px] text-ctp-subtext0 w-[3ch] text-right">
                   {ratioPct}%
                 </span>
