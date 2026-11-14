@@ -1,10 +1,4 @@
 ---
-const buildDate = new Intl.DateTimeFormat('en-GB', {
-  timeZone: 'Asia/Kolkata',
-  day: '2-digit',
-  month: 'short',
-  year: 'numeric'
-}).format(new Date());
 ---
 
 <footer class="font-mono text-xs select-none">
@@ -16,7 +10,7 @@ const buildDate = new Intl.DateTimeFormat('en-GB', {
 		class="border border-ctp-surface1 bg-ctp-surface0/20 flex flex-nowrap items-stretch
 			divide-x divide-ctp-surface1 text-xs w-full max-w-full overflow-hidden h-[34px]"
 	>
-		<!-- Left: Brand / System info -->
+		<!-- Left: Brand + version badge -->
 		<a
 			href="/"
 			class="flex items-center gap-1.5 px-3 sm:px-4 py-1.5 font-semibold text-[var(--color-accent)]
@@ -25,56 +19,27 @@ const buildDate = new Intl.DateTimeFormat('en-GB', {
 		>
 			<span class="w-1.5 h-1.5 rounded-full bg-[var(--color-accent)] inline-block"></span>
 			<span>pid7</span>
+			<span class="hidden min-[480px]:inline text-ctp-subtext0/70 font-normal">v2.0</span>
 		</a>
 
-		<!-- Build date (hidden on very compact screens < 450px) -->
+		<!-- Center: Radar / Telemetry Scanner Sweep Animation -->
 		<div
-			class="hidden min-[450px]:flex items-center px-3 py-1.5 text-ctp-subtext0 gap-1.5
-				whitespace-nowrap shrink-0"
+			id="footer-scanner-container"
+			class="flex-1 min-w-0 flex items-center justify-center px-1 sm:px-2 py-1.5 overflow-hidden"
 		>
-			<span class="text-ctp-subtext0/70">built:</span>
-			<span class="text-ctp-subtext1">{buildDate}</span>
-		</div>
-
-		<!-- Middle: Technical Feeds & Metadata -->
-		<div
-			class="flex-1 min-w-0 flex items-center justify-center gap-2 sm:gap-4 px-2 sm:px-3
-				py-1.5 text-ctp-subtext0 overflow-hidden whitespace-nowrap"
-		>
-			<a
-				href="https://github.com/pid7-org"
-				target="_blank"
-				rel="noreferrer"
-				class="hover:text-[var(--color-accent)] transition-colors truncate"
-				title="GitHub organization"
-			>
-				github
-			</a>
-			<span class="text-ctp-surface2 select-none">/</span>
-			<a
-				href="/rss.xml"
-				target="_blank"
-				class="hover:text-[var(--color-accent)] transition-colors"
-				title="RSS Feed"
-			>
-				rss
-			</a>
-			<span class="text-ctp-surface2 select-none">/</span>
-			<a
-				href="/sitemap.xml"
-				target="_blank"
-				class="hover:text-[var(--color-accent)] transition-colors"
-				title="Sitemap"
-			>
-				sitemap
-			</a>
+			<span
+				id="footer-scanner-bar"
+				class="inline-flex items-center font-mono text-xs select-none tracking-wider
+					whitespace-nowrap overflow-hidden leading-none"
+				aria-hidden="true"
+			></span>
 		</div>
 
 		<!-- Right: Back to top action with shortcut [b] -->
 		<button
 			id="footer-back-to-top"
 			type="button"
-			class="flex items-center justify-center gap-1 sm:gap-1.5 px-3 py-1.5 text-ctp-subtext1
+			class="flex items-center justify-center gap-1 sm:gap-1.5 px-2.5 sm:px-3 py-1.5 text-ctp-subtext1
 				hover:text-ctp-text hover:bg-ctp-surface1/30 transition-colors cursor-pointer
 				focus:outline-none whitespace-nowrap shrink-0"
 			aria-label="Scroll back to top"
@@ -88,6 +53,151 @@ const buildDate = new Intl.DateTimeFormat('en-GB', {
 </footer>
 
 <script>
+	let scannerTimer: number | null = null;
+	let scannerFrame = 0;
+	let cachedCapacity = 0x14;
+	let cachedCharWidth = 0;
+
+	function measureCharWidth(): number {
+		const span = document.createElement('span');
+		span.style.fontFamily = 'var(--font-mono), monospace';
+		span.style.fontSize = '12px';
+		span.style.visibility = 'hidden';
+		span.style.position = 'absolute';
+		span.style.whiteSpace = 'pre';
+		span.textContent = '═';
+		document.body.appendChild(span);
+		const width = span.getBoundingClientRect().width;
+		document.body.removeChild(span);
+		return width > 0 ? width : 7.5;
+	}
+
+	function calculateCapacity(): number {
+		const container = document.getElementById('footer-scanner-container');
+		if (!container) return 0x14;
+
+		const containerRect = container.getBoundingClientRect();
+		const containerWidth = containerRect.width;
+		if (containerWidth <= 0) return 0;
+
+		if (cachedCharWidth <= 0) {
+			cachedCharWidth = measureCharWidth();
+		}
+
+		const style = window.getComputedStyle(container);
+		const pad =
+			(parseFloat(style.paddingLeft) || 0) +
+			(parseFloat(style.paddingRight) || 0);
+		const availableWidth = Math.max(0, containerWidth - pad - 4);
+		const totalChars = Math.floor(availableWidth / cachedCharWidth);
+		return Math.max(0, totalChars);
+	}
+
+	function renderRadarScanner(capacity: number, frame: number): string {
+		if (capacity < 4) return '';
+
+		const maxPos = capacity - 1;
+		const period = 0x30; // 48 frames ping-pong sweep
+		const cycle = (frame % period) / period;
+		// Smooth ping-pong beam position between 0 and maxPos
+		const sweepPos = maxPos * (0.5 - 0.5 * Math.cos(cycle * 2 * Math.PI));
+
+		let html = '';
+		let curCls = '';
+		let curChars = '';
+
+		for (let i = 0; i < capacity; i++) {
+			const dist = Math.abs(i - sweepPos);
+			let ch = '·';
+			let cls = 'text-ctp-surface2 opacity-25';
+
+			if (dist < 0.6) {
+				ch = '█';
+				cls = 'text-[var(--color-accent)] opacity-100 font-semibold';
+			} else if (dist < 1.4) {
+				ch = '━';
+				cls = 'text-[var(--color-accent)] opacity-85 font-medium';
+			} else if (dist < 2.4) {
+				ch = '═';
+				cls = 'text-[var(--color-accent)] opacity-50';
+			} else if (dist < 3.6) {
+				ch = '─';
+				cls = 'text-ctp-subtext0 opacity-35';
+			} else if (dist < 4.8) {
+				ch = '·';
+				cls = 'text-ctp-surface2 opacity-35';
+			}
+
+			if (cls === curCls) {
+				curChars += ch;
+			} else {
+				if (curChars) {
+					html += `<span class="${curCls}">${curChars}</span>`;
+				}
+				curCls = cls;
+				curChars = ch;
+			}
+		}
+
+		if (curChars) {
+			html += `<span class="${curCls}">${curChars}</span>`;
+		}
+		return html;
+	}
+
+	function tickScanner() {
+		const el = document.getElementById('footer-scanner-bar');
+		if (!el) return;
+		if (cachedCapacity >= 4) {
+			el.innerHTML = renderRadarScanner(cachedCapacity, scannerFrame);
+			el.style.display = 'inline-block';
+			scannerFrame = (scannerFrame + 1) % 0x2710;
+		} else {
+			el.innerHTML = '';
+			el.style.display = 'none';
+		}
+	}
+
+	function startScanner() {
+		if (scannerTimer !== null) return;
+		tickScanner();
+		scannerTimer = window.setInterval(tickScanner, 0x41);
+	}
+
+	function stopScanner() {
+		if (scannerTimer !== null) {
+			clearInterval(scannerTimer);
+			scannerTimer = null;
+		}
+	}
+
+	function refreshScannerCapacity() {
+		cachedCharWidth = 0;
+		cachedCapacity = calculateCapacity();
+		tickScanner();
+	}
+
+	function initFooter() {
+		stopScanner();
+		refreshScannerCapacity();
+		startScanner();
+
+		const container = document.getElementById('footer-scanner-container');
+		if (container && 'ResizeObserver' in window) {
+			const ro = new ResizeObserver(() => {
+				refreshScannerCapacity();
+			});
+			ro.observe(container);
+		}
+
+		if ('fonts' in document) {
+			document.fonts.ready.then(() => {
+				refreshScannerCapacity();
+			});
+		}
+	}
+
+	// Back to top click and shortcut
 	const backToTopBtn = document.getElementById('footer-back-to-top');
 	if (backToTopBtn) {
 		backToTopBtn.addEventListener('click', () => {
@@ -106,6 +216,17 @@ const buildDate = new Intl.DateTimeFormat('en-GB', {
 
 		if (e.key === 'b' || e.key === 'B') {
 			window.scrollTo({ top: 0, behavior: 'smooth' });
+		}
+	});
+
+	initFooter();
+	window.addEventListener('resize', refreshScannerCapacity);
+	document.addEventListener('astro:after-swap', initFooter);
+	document.addEventListener('visibilitychange', () => {
+		if (document.hidden) {
+			stopScanner();
+		} else {
+			startScanner();
 		}
 	});
 </script>
