@@ -44,7 +44,7 @@ function getTopLanguages(project: Project): ProjectLanguageStat[] {
 
     <div class="space-y-4">
       {allProjects.map((project) => (
-        <article class="group relative overflow-hidden rounded-lg border border-ctp-surface0/60 bg-ctp-mantle/50 min-h-[140px] sm:min-h-[155px] transition-all duration-300 hover:border-[var(--color-accent)]/60 hover:bg-ctp-surface0/20">
+        <article class="group relative overflow-hidden rounded-xl border border-ctp-surface0/60 bg-ctp-mantle/50 min-h-[230px] sm:min-h-[250px] flex flex-col justify-end transition-all duration-300 hover:border-[var(--color-accent)]/60">
           {project.bannerUrl && (
             <div class="pointer-events-none absolute inset-0 overflow-hidden">
               <img
@@ -52,10 +52,9 @@ function getTopLanguages(project: Project): ProjectLanguageStat[] {
                 alt=""
                 loading="lazy"
                 decoding="async"
-                class="h-full w-full object-cover object-center opacity-35 transition-all duration-500 group-hover:scale-105 group-hover:opacity-75"
+                class="h-full w-full object-cover object-center opacity-90 transition-all duration-700 ease-out group-hover:scale-105 group-hover:opacity-100"
               />
-              <div class="absolute inset-0 bg-gradient-to-t from-ctp-base/95 via-ctp-base/60 to-ctp-base/20"></div>
-              <div class="absolute inset-0 bg-gradient-to-r from-ctp-base/90 via-ctp-base/40 to-transparent"></div>
+              <div class="absolute inset-0 bg-gradient-to-t from-ctp-base/80 via-transparent to-transparent"></div>
             </div>
           )}
 
@@ -63,7 +62,7 @@ function getTopLanguages(project: Project): ProjectLanguageStat[] {
             href={project.url}
             target="_blank"
             rel="noreferrer"
-            class="relative z-10 flex flex-col justify-between h-full min-h-[140px] sm:min-h-[155px] p-4 sm:p-5 space-y-3"
+            class="relative z-10 flex flex-col justify-between p-4 sm:p-5 space-y-3 bg-ctp-base/65 backdrop-blur-xl backdrop-saturate-150 border-t border-ctp-surface1/30 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.06)] transition-all duration-300 group-hover:bg-ctp-base/75 group-hover:border-[var(--color-accent)]/30"
           >
             <div class="space-y-2">
               <div class="flex items-baseline justify-between gap-3 flex-wrap">
@@ -92,12 +91,12 @@ function getTopLanguages(project: Project): ProjectLanguageStat[] {
                   </svg>
                 </span>
 
-                <div class="flex items-center gap-2 font-mono text-xs text-ctp-subtext0 select-none shrink-0">
+                <div class="flex items-center gap-2 font-mono text-xs text-ctp-subtext0 select-none shrink-0 italic">
                   {getTopLanguages(project).map((lang) => (
                     <span class="text-ctp-subtext1">[{lang.name.toLowerCase()}]</span>
                   ))}
                   {project.latestRelease && (
-                    <span class="text-[var(--color-accent)] font-semibold">[{project.latestRelease.tagName}]</span>
+                    <span class="text-ctp-subtext1">[{project.latestRelease.tagName}]</span>
                   )}
                 </div>
               </div>
