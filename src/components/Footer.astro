@@ -1,232 +1,69 @@
 ---
 ---
 
-<footer class="font-mono text-xs select-none">
-	<p class="text-ctp-subtext0/60 text-xs font-mono text-center mb-10 sm:mb-14 tracking-wide">
+<footer class="font-mono text-xs select-none space-y-4">
+	<p class="text-ctp-subtext0/60 text-xs font-mono text-center tracking-wide">
 		[padded at the bottom to maintain a consistent reading eyeline]
 	</p>
 
-	<div
-		class="border border-ctp-surface1 bg-ctp-surface0/20 flex flex-nowrap items-stretch
-			divide-x divide-ctp-surface1 text-xs w-full max-w-full overflow-hidden h-[34px]"
-	>
-		<!-- Left: Brand + version badge -->
-		<a
-			href="/"
-			class="flex items-center gap-1.5 px-3 sm:px-4 py-1.5 font-semibold text-[var(--color-accent)]
-				hover:opacity-85 transition-opacity shrink-0"
-			title="pid7 home"
-		>
-			<span class="w-1.5 h-1.5 rounded-full bg-[var(--color-accent)] inline-block"></span>
-			<span>pid7</span>
-			<span class="hidden min-[480px]:inline text-ctp-subtext0/70 font-normal">v2.0</span>
-		</a>
-
-		<!-- Center: Radar / Telemetry Scanner Sweep Animation -->
-		<div
-			id="footer-scanner-container"
-			class="flex-1 min-w-0 flex items-center justify-center px-1 sm:px-2 py-1.5 overflow-hidden"
-		>
-			<span
-				id="footer-scanner-bar"
-				class="inline-flex items-center font-mono text-xs select-none tracking-wider
-					whitespace-nowrap overflow-hidden leading-none"
-				aria-hidden="true"
-			></span>
-		</div>
-
-		<!-- Right: Back to top action with shortcut [b] -->
-		<button
-			id="footer-back-to-top"
-			type="button"
-			class="flex items-center justify-center gap-1 sm:gap-1.5 px-2.5 sm:px-3 py-1.5 text-ctp-subtext1
-				hover:text-ctp-text hover:bg-ctp-surface1/30 transition-colors cursor-pointer
-				focus:outline-none whitespace-nowrap shrink-0"
-			aria-label="Scroll back to top"
-			title="Scroll back to top (or press 'b')"
-		>
-			<span class="text-ctp-subtext0">[b]</span>
-			<span class="hidden min-[400px]:inline">top</span>
-			<span class="text-[var(--color-accent)] font-semibold">↑</span>
-		</button>
+	<div class="text-center overflow-x-auto whitespace-nowrap text-xs text-ctp-subtext0 py-2">
+		<span class="text-ctp-overlay0">&#123;</span>
+		<span class="mx-1">
+			<span class="text-[var(--color-accent)]">"system"</span><span class="text-ctp-overlay0">:</span>
+			<span class="text-ctp-text">"pid7"</span><span class="text-ctp-overlay0">,</span>
+		</span>
+		<span class="mx-1">
+			<span class="text-[var(--color-accent)]">"version"</span><span class="text-ctp-overlay0">:</span>
+			<span class="text-ctp-text">"v2.0.0"</span><span class="text-ctp-overlay0">,</span>
+		</span>
+		<span class="mx-1">
+			<span class="text-[var(--color-accent)]">"clock"</span><span class="text-ctp-overlay0">:</span>
+			<span id="footer-clock" class="text-ctp-text">"--:--:--"</span><span class="text-ctp-overlay0">,</span>
+		</span>
+		<span class="mx-1">
+			<span class="text-[var(--color-accent)]">"locale"</span><span class="text-ctp-overlay0">:</span>
+			<span class="text-ctp-text">"Asia/Kolkata"</span>
+		</span>
+		<span class="text-ctp-overlay0">&#125;</span>
 	</div>
 </footer>
 
 <script>
-	let scannerTimer: number | null = null;
-	let scannerFrame = 0;
-	let cachedCapacity = 0x14;
-	let cachedCharWidth = 0;
+	let clockInterval: number | null = null;
 
-	function measureCharWidth(): number {
-		const span = document.createElement('span');
-		span.style.fontFamily = 'var(--font-mono), monospace';
-		span.style.fontSize = '12px';
-		span.style.visibility = 'hidden';
-		span.style.position = 'absolute';
-		span.style.whiteSpace = 'pre';
-		span.textContent = '═';
-		document.body.appendChild(span);
-		const width = span.getBoundingClientRect().width;
-		document.body.removeChild(span);
-		return width > 0 ? width : 7.5;
-	}
-
-	function calculateCapacity(): number {
-		const container = document.getElementById('footer-scanner-container');
-		if (!container) return 0x14;
-
-		const containerRect = container.getBoundingClientRect();
-		const containerWidth = containerRect.width;
-		if (containerWidth <= 0) return 0;
-
-		if (cachedCharWidth <= 0) {
-			cachedCharWidth = measureCharWidth();
-		}
-
-		const style = window.getComputedStyle(container);
-		const pad =
-			(parseFloat(style.paddingLeft) || 0) +
-			(parseFloat(style.paddingRight) || 0);
-		const availableWidth = Math.max(0, containerWidth - pad - 4);
-		const totalChars = Math.floor(availableWidth / cachedCharWidth);
-		return Math.max(0, totalChars);
-	}
-
-	function renderRadarScanner(capacity: number, frame: number): string {
-		if (capacity < 4) return '';
-
-		const maxPos = capacity - 1;
-		const period = 0x30; // 48 frames ping-pong sweep
-		const cycle = (frame % period) / period;
-		// Smooth ping-pong beam position between 0 and maxPos
-		const sweepPos = maxPos * (0.5 - 0.5 * Math.cos(cycle * 2 * Math.PI));
-
-		let html = '';
-		let curCls = '';
-		let curChars = '';
-
-		for (let i = 0; i < capacity; i++) {
-			const dist = Math.abs(i - sweepPos);
-			let ch = '·';
-			let cls = 'text-ctp-surface2 opacity-25';
-
-			if (dist < 0.6) {
-				ch = '█';
-				cls = 'text-[var(--color-accent)] opacity-100 font-semibold';
-			} else if (dist < 1.4) {
-				ch = '━';
-				cls = 'text-[var(--color-accent)] opacity-85 font-medium';
-			} else if (dist < 2.4) {
-				ch = '═';
-				cls = 'text-[var(--color-accent)] opacity-50';
-			} else if (dist < 3.6) {
-				ch = '─';
-				cls = 'text-ctp-subtext0 opacity-35';
-			} else if (dist < 4.8) {
-				ch = '·';
-				cls = 'text-ctp-surface2 opacity-35';
-			}
-
-			if (cls === curCls) {
-				curChars += ch;
-			} else {
-				if (curChars) {
-					html += `<span class="${curCls}">${curChars}</span>`;
-				}
-				curCls = cls;
-				curChars = ch;
-			}
-		}
-
-		if (curChars) {
-			html += `<span class="${curCls}">${curChars}</span>`;
-		}
-		return html;
-	}
-
-	function tickScanner() {
-		const el = document.getElementById('footer-scanner-bar');
-		if (!el) return;
-		if (cachedCapacity >= 4) {
-			el.innerHTML = renderRadarScanner(cachedCapacity, scannerFrame);
-			el.style.display = 'inline-block';
-			scannerFrame = (scannerFrame + 1) % 0x2710;
-		} else {
-			el.innerHTML = '';
-			el.style.display = 'none';
-		}
-	}
-
-	function startScanner() {
-		if (scannerTimer !== null) return;
-		tickScanner();
-		scannerTimer = window.setInterval(tickScanner, 0x41);
-	}
-
-	function stopScanner() {
-		if (scannerTimer !== null) {
-			clearInterval(scannerTimer);
-			scannerTimer = null;
-		}
-	}
-
-	function refreshScannerCapacity() {
-		cachedCharWidth = 0;
-		cachedCapacity = calculateCapacity();
-		tickScanner();
-	}
-
-	function initFooter() {
-		stopScanner();
-		refreshScannerCapacity();
-		startScanner();
-
-		const container = document.getElementById('footer-scanner-container');
-		if (container && 'ResizeObserver' in window) {
-			const ro = new ResizeObserver(() => {
-				refreshScannerCapacity();
-			});
-			ro.observe(container);
-		}
-
-		if ('fonts' in document) {
-			document.fonts.ready.then(() => {
-				refreshScannerCapacity();
-			});
-		}
-	}
-
-	// Back to top click and shortcut
-	const backToTopBtn = document.getElementById('footer-back-to-top');
-	if (backToTopBtn) {
-		backToTopBtn.addEventListener('click', () => {
-			window.scrollTo({ top: 0, behavior: 'smooth' });
+	function updateFooterClock() {
+		const clockEl = document.getElementById('footer-clock');
+		if (!clockEl) return;
+		const now = new Date();
+		const formatter = new Intl.DateTimeFormat('en-GB', {
+			timeZone: 'Asia/Kolkata',
+			hour: '2-digit',
+			minute: '2-digit',
+			second: '2-digit',
+			hour12: false,
 		});
+		clockEl.textContent = `"${formatter.format(now)} IST"`;
 	}
 
-	document.addEventListener('keydown', (e) => {
-		const target = e.target as HTMLElement | null;
-		const isInput = target && (
-			target.tagName === 'INPUT' ||
-			target.tagName === 'TEXTAREA' ||
-			target.isContentEditable
-		);
-		if (isInput) return;
-
-		if (e.key === 'b' || e.key === 'B') {
-			window.scrollTo({ top: 0, behavior: 'smooth' });
+	function startClock() {
+		if (clockInterval !== null) {
+			clearInterval(clockInterval);
+			clockInterval = null;
 		}
-	});
+		updateFooterClock();
+		clockInterval = window.setInterval(updateFooterClock, 1000);
+	}
 
-	initFooter();
-	window.addEventListener('resize', refreshScannerCapacity);
-	document.addEventListener('astro:after-swap', initFooter);
+	startClock();
+	document.addEventListener('astro:after-swap', startClock);
 	document.addEventListener('visibilitychange', () => {
 		if (document.hidden) {
-			stopScanner();
+			if (clockInterval !== null) {
+				clearInterval(clockInterval);
+				clockInterval = null;
+			}
 		} else {
-			startScanner();
+			startClock();
 		}
 	});
 </script>
