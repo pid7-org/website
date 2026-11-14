@@ -14,76 +14,87 @@ const buildDate = new Intl.DateTimeFormat('en-GB', {
 
 	<div
 		class="border border-ctp-surface1 bg-ctp-surface0/20 flex flex-nowrap items-stretch
-			justify-between text-xs divide-x divide-ctp-surface1 w-full max-w-full overflow-hidden"
+			divide-x divide-ctp-surface1 text-xs w-full max-w-full overflow-hidden h-[34px]"
 	>
-		<!-- Left: Brand, Version and Last Built -->
-		<div class="flex items-center flex-1 sm:flex-initial">
-			<a
-				href="/"
-				class="flex-1 sm:flex-initial justify-center sm:justify-start px-4 sm:px-4 py-2 font-semibold text-[var(--color-accent)]
-					hover:opacity-85 transition-opacity flex items-center gap-1.5 shrink-0"
-				title="Home (key: '1')"
-			>
-				<span class="w-1.5 h-1.5 rounded-full bg-[var(--color-accent)] inline-block"></span>
-				<span>pid7</span>
-			</a>
-			<div
-				class="flex px-3 py-2 text-ctp-subtext1 items-center
-					gap-1.5 whitespace-nowrap border-l border-ctp-surface1 shrink-0"
-			>
-				<span class="text-ctp-subtext0/70">v2.0.0</span>
-			</div>
-			<div
-				class="flex px-3 sm:px-4 py-2 text-ctp-subtext0 items-center
-					gap-1.5 whitespace-nowrap border-l border-ctp-surface1 shrink-0"
-			>
-				<span class="text-ctp-subtext0/70">last built:</span>
-				<span class="text-ctp-subtext1">{buildDate}</span>
-			</div>
+		<!-- Left: Brand / System info -->
+		<a
+			href="/"
+			class="flex items-center gap-1.5 px-3 sm:px-4 py-1.5 font-semibold text-[var(--color-accent)]
+				hover:opacity-85 transition-opacity shrink-0"
+			title="pid7 home"
+		>
+			<span class="w-1.5 h-1.5 rounded-full bg-[var(--color-accent)] inline-block"></span>
+			<span>pid7</span>
+		</a>
+
+		<!-- Build date (hidden on very compact screens < 450px) -->
+		<div
+			class="hidden min-[450px]:flex items-center px-3 py-1.5 text-ctp-subtext0 gap-1.5
+				whitespace-nowrap shrink-0"
+		>
+			<span class="text-ctp-subtext0/70">built:</span>
+			<span class="text-ctp-subtext1">{buildDate}</span>
 		</div>
 
-		<!-- Right: Links (hidden on < sm, visible on >= sm) -->
+		<!-- Middle: Technical Feeds & Metadata -->
 		<div
-			class="hidden sm:flex flex-1 items-center justify-around px-3 sm:px-6 py-2
-				text-ctp-subtext1 shrink-0 overflow-x-auto"
+			class="flex-1 min-w-0 flex items-center justify-center gap-2 sm:gap-4 px-2 sm:px-3
+				py-1.5 text-ctp-subtext0 overflow-hidden whitespace-nowrap"
 		>
-			<a
-				href="/"
-				class="hover:text-[var(--color-accent)] transition-colors whitespace-nowrap"
-				title="Go home (key: '1')"
-			>
-				<span class="text-ctp-subtext0">[1]</span> home
-			</a>
 			<a
 				href="https://github.com/pid7-org"
 				target="_blank"
 				rel="noreferrer"
-				class="hover:text-[var(--color-accent)] transition-colors whitespace-nowrap"
-				title="GitHub (key: '2')"
+				class="hover:text-[var(--color-accent)] transition-colors truncate"
+				title="GitHub organization"
 			>
-				<span class="text-ctp-subtext0">[2]</span> github
+				github
 			</a>
+			<span class="text-ctp-surface2 select-none">/</span>
 			<a
 				href="/rss.xml"
 				target="_blank"
-				class="hover:text-[var(--color-accent)] transition-colors whitespace-nowrap"
-				title="RSS feed (key: '3')"
+				class="hover:text-[var(--color-accent)] transition-colors"
+				title="RSS Feed"
 			>
-				<span class="text-ctp-subtext0">[3]</span> rss
+				rss
 			</a>
+			<span class="text-ctp-surface2 select-none">/</span>
 			<a
 				href="/sitemap.xml"
 				target="_blank"
-				class="hover:text-[var(--color-accent)] transition-colors whitespace-nowrap"
-				title="Sitemap (key: '4')"
+				class="hover:text-[var(--color-accent)] transition-colors"
+				title="Sitemap"
 			>
-				<span class="text-ctp-subtext0">[4]</span> sitemap
+				sitemap
 			</a>
 		</div>
+
+		<!-- Right: Back to top action with shortcut [b] -->
+		<button
+			id="footer-back-to-top"
+			type="button"
+			class="flex items-center justify-center gap-1 sm:gap-1.5 px-3 py-1.5 text-ctp-subtext1
+				hover:text-ctp-text hover:bg-ctp-surface1/30 transition-colors cursor-pointer
+				focus:outline-none whitespace-nowrap shrink-0"
+			aria-label="Scroll back to top"
+			title="Scroll back to top (or press 'b')"
+		>
+			<span class="text-ctp-subtext0">[b]</span>
+			<span class="hidden min-[400px]:inline">top</span>
+			<span class="text-[var(--color-accent)] font-semibold">↑</span>
+		</button>
 	</div>
 </footer>
 
 <script>
+	const backToTopBtn = document.getElementById('footer-back-to-top');
+	if (backToTopBtn) {
+		backToTopBtn.addEventListener('click', () => {
+			window.scrollTo({ top: 0, behavior: 'smooth' });
+		});
+	}
+
 	document.addEventListener('keydown', (e) => {
 		const target = e.target as HTMLElement | null;
 		const isInput = target && (
@@ -92,14 +103,9 @@ const buildDate = new Intl.DateTimeFormat('en-GB', {
 			target.isContentEditable
 		);
 		if (isInput) return;
-		if (e.key === '1') {
-			window.location.href = '/';
-		} else if (e.key === '2') {
-			window.open('https://github.com/pid7-org', '_blank');
-		} else if (e.key === '3') {
-			window.open('/rss.xml', '_blank');
-		} else if (e.key === '4') {
-			window.open('/sitemap.xml', '_blank');
+
+		if (e.key === 'b' || e.key === 'B') {
+			window.scrollTo({ top: 0, behavior: 'smooth' });
 		}
 	});
 </script>
