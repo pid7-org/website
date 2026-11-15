@@ -419,4 +419,29 @@ Content 2`);
     const errors = validateAllBlogPosts([post1, post2]);
     expect(errors.some((e) => e.message.includes("Duplicate slug 'duplicate-slug'"))).toBe(true);
   });
+
+  it('correctly parses <fig> block and excludes its diagram content from word count', async () => {
+    const postWithFig = `---
+slug: fig-post
+title: Fig Post
+created: 15-11-2026
+tags: rust
+---
+Paragraph before diagram.
+
+<fig>
+\`\`\`
+Slot 0 -> Slot 1 -> Slot 2
+\`\`\`
+@desc Diagram of slot transitions across stages
+</fig>
+
+Paragraph after diagram.
+`;
+    const parsed = await parseMarkdownBlog(postWithFig);
+    expect(parsed.html).toContain('custom-code-block-fig');
+    expect(parsed.html).toContain('Diagram of slot transitions across stages');
+    expect(parsed.html).toContain('>fig</span>');
+    expect(parsed.wordCount).toBe(6);
+  });
 });

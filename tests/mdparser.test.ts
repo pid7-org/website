@@ -84,6 +84,25 @@ Content`;
     expect(parsed.html).toContain('AVX-512 loading snippet');
   });
 
+  it('renders custom figure blocks <fig> with @desc captions', async () => {
+    const figMarkdownPost = `---
+slug: fig-test
+title: Fig Test
+---
+<fig>
+\`\`\`
+[Slot 0] ---> [Slot 1]
+\`\`\`
+@desc Diagram showing slots
+</fig>
+`;
+    const parsed = await parseMarkdownBlog(figMarkdownPost);
+    expect(parsed.html).toContain('custom-code-block-fig');
+    expect(parsed.html).toContain('Diagram showing slots');
+    expect(parsed.html).toContain('>fig</span>');
+    expect(parsed.html).not.toContain('@desc');
+  });
+
   it('transforms {@anim (id) desc} placeholders into animation containers', async () => {
     const parsed = await parseMarkdownBlog(DUMMY_MARKDOWN_POST);
     expect(parsed.html).toContain('data-anim-id="001"');

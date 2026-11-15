@@ -29,6 +29,7 @@ export {
 const FRONTMATTER_REGEX = /^---\r?\n([\s\S]*?)\r?\n---/;
 const ANGLE_BLOCK_REGEX = /^<>\s*\r?\n([\s\S]*?)\r?\n^<\/>\s*$/gm;
 const TILDE_BLOCK_REGEX = /^~\s*\r?\n([\s\S]*?)\r?\n^~\s*$/gm;
+const FIG_BLOCK_REGEX = /^<fig>\s*\r?\n([\s\S]*?)\r?\n^<\/fig>\s*$/gm;
 const CODE_FENCE_REGEX = /^```([a-zA-Z0-9_-]*)\r?\n([\s\S]*?)\r?\n```$/m;
 const ANIM_TAG_REGEX =
   /(?:\{@anim\s+\(([^)]+)\)\s*([^}]*)\}|\{ANIM([A-Za-z0-9_-]+):\s*([^}]+)\})/g;
@@ -419,7 +420,7 @@ export async function processCustomBlocks(content: string): Promise<string> {
   const replaceBlock = async (
     match: string,
     inner: string,
-    style: "angle" | "tilde",
+    style: "angle" | "tilde" | "fig",
   ) => {
     let desc = "";
     const lines = inner.split(/\r?\n/);
@@ -466,7 +467,7 @@ export async function processCustomBlocks(content: string): Promise<string> {
       .join("");
 
     const rawLang = (lang || "").trim().toLowerCase();
-    const displayLang = rawLang || "code";
+    const displayLang = style === "fig" ? (rawLang || "fig") : (rawLang || "code");
 
     const descText = desc ? parseSimpleMarkdownInline(desc) : "";
 
@@ -516,6 +517,12 @@ export async function processCustomBlocks(content: string): Promise<string> {
   const tildeMatches = Array.from(result.matchAll(TILDE_BLOCK_REGEX));
   for (const match of tildeMatches) {
     const replacement = await replaceBlock(match[0], match[1], "tilde");
+    result = result.replace(match[0], replacement);
+  }
+
+  const figMatches = Array.from(result.matchAll(FIG_BLOCK_REGEX));
+  for (const match of figMatches) {
+    const replacement = await replaceBlock(match[0], match[1], "fig");
     result = result.replace(match[0], replacement);
   }
 
@@ -741,6 +748,7 @@ export async function parseMarkdownBlog(
   }
 
   const proseTextOnly = bodyMarkdown
+    .replace(/^<fig>\s*[\s\S]*?^<\/fig>\s*$/gm, "")
     .replace(/^<>\s*[\s\S]*?^<\/>\s*$/gm, "")
     .replace(/^~\s*[\s\S]*?^~\s*$/gm, "")
     .replace(/```[\s\S]*?```/g, "")
