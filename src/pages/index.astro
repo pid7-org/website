@@ -3,6 +3,7 @@ import Layout from '../layouts/Layout.astro';
 import GithubStatsSection from '../components/GithubStatsSection.astro';
 import ProjectsSection from '../components/ProjectsSection.astro';
 import RepoStatsSection from '../components/RepoStatsSection.astro';
+import TeamSection from '../components/TeamSection.astro';
 import { formatBlogDate, getAllBlogPosts } from '../lib/blog';
 
 const posts = await getAllBlogPosts();
@@ -67,6 +68,8 @@ const recentPosts = posts.slice(0, 5);
 	<GithubStatsSection />
 
 	<RepoStatsSection />
+
+	<TeamSection />
 
 	<div class="h-[40vh]"></div>
 </Layout>

@@ -1,0 +1,99 @@
+---
+import { team } from '../lib/projects';
+---
+
+{team.length > 0 && (
+  <section id="section-team" class="font-mono">
+    <div class="mb-4 flex items-center gap-1.5 text-xs">
+      <span class="text-[var(--color-accent)] font-semibold">~</span>
+      <span class="text-ctp-overlay1">$</span>
+      <span class="text-ctp-subtext0 tracking-wide">cat team.txt</span>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+      {team.map((member) => {
+        const targetUrl = member.url ?? member.github;
+        const CardTag = targetUrl ? 'a' : 'div';
+        const cardProps = targetUrl
+          ? {
+              href: targetUrl,
+              target: '_blank',
+              rel: 'noreferrer',
+              'aria-label': `${member.name} website`,
+            }
+          : {};
+
+        return (
+          <article
+            class="group rounded border border-ctp-surface0/60 bg-ctp-mantle/40 transition-colors duration-200 hover:border-[var(--color-accent)]/60 overflow-hidden flex flex-col justify-between"
+          >
+            <CardTag
+              {...cardProps}
+              class={`flex flex-col h-full focus:outline-none ${targetUrl ? 'cursor-pointer' : ''}`}
+            >
+              <!-- Top Section: Flush Left 1:1 Image + Bio -->
+              <div class="flex items-stretch flex-1">
+                {member.image && (
+                  <div
+                    class="relative w-20 shrink-0 overflow-hidden border-r border-ctp-surface0/60 bg-ctp-crust"
+                  >
+                    <img
+                      src={member.image}
+                      alt={member.name}
+                      loading="lazy"
+                      decoding="async"
+                      class="w-full h-full object-cover object-center opacity-90 group-hover:opacity-100 group-hover:scale-[1.03] transition-all duration-300"
+                    />
+                  </div>
+                )}
+                <div class="p-3 flex flex-col justify-center min-w-0 flex-1">
+                  <p class="font-mono text-xs text-ctp-subtext0 leading-relaxed">
+                    {member.bio}
+                  </p>
+                </div>
+              </div>
+
+              <!-- Bottom Bar: Name, Link, and Role in text-[11px] font-mono -->
+              <div
+                class="px-3 py-2 flex items-center justify-between font-mono text-[11px] border-t border-ctp-surface0/60 bg-ctp-surface0/20"
+              >
+                <div class="flex items-center gap-1.5 min-w-0 font-medium text-ctp-text group-hover:text-[var(--color-accent)] transition-colors">
+                  <span
+                    class="inline-flex text-[11px] select-none shrink-0 tracking-[-0.2em] group-hover:tracking-normal transition-all duration-200 text-ctp-subtext0/60 group-hover:text-[var(--color-accent)]"
+                  >
+                    <span>&rsaquo;</span>
+                    <span
+                      class="inline-block max-w-0 opacity-0 overflow-hidden group-hover:max-w-[2ch] group-hover:opacity-100 transition-all duration-200 ease-out"
+                    >&rsaquo;&rsaquo;</span>
+                  </span>
+                  <span class="truncate">{member.name}</span>
+                  {targetUrl && (
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      class="w-3 h-3 text-ctp-subtext0 group-hover:text-[var(--color-accent)] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform shrink-0"
+                    >
+                      <path d="M7 17L17 7"></path>
+                      <path d="M7 7h10v10"></path>
+                    </svg>
+                  )}
+                </div>
+
+                {member.role && (
+                  <span class="text-[10px] text-ctp-subtext1 shrink-0">
+                    [{member.role}]
+                  </span>
+                )}
+              </div>
+            </CardTag>
+          </article>
+        );
+      })}
+    </div>
+  </section>
+)}
