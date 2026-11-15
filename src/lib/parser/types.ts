@@ -5,6 +5,7 @@ export interface BlogFrontmatter {
   lastUpdated: string;
   tags: string[];
   description?: string;
+  project?: string;
 }
 
 export interface GlossaryItem {

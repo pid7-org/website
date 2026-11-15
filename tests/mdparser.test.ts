@@ -58,6 +58,19 @@ describe('Markdown Parser Unit Tests', () => {
     expect(frontmatter.tags).toEqual(['Rust', 'SIMD', 'substring-search']);
   });
 
+  it('correctly parses optional project field in frontmatter', () => {
+    const postWithProject = `---
+slug: post-with-project
+title: Post with Project
+created: 01-09-2026
+tags: rust
+project: Ashwa
+---
+Content`;
+    const { frontmatter } = parseFrontmatter(postWithProject);
+    expect(frontmatter.project).toBe('ashwa');
+  });
+
   it('renders custom angle code blocks <> with captions', async () => {
     const parsed = await parseMarkdownBlog(DUMMY_MARKDOWN_POST);
     expect(parsed.html).toContain('custom-code-block-angle');

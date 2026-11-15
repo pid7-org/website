@@ -1,6 +1,8 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import ProjectCard from '../../components/ProjectCard.astro';
 import { formatBlogDate, getAllBlogPosts, getBlogPostById } from '../../lib/blog';
+import { projects } from '../../lib/projects';
 import type { ParsedBlogPost } from '../../lib/parser/types.ts';
 
 export async function getStaticPaths() {
@@ -32,6 +34,10 @@ const fallbackExcerpt = cleanContent.length > 160
   : cleanContent;
 
 const pageDescription = post.frontmatter.description || fallbackExcerpt || 'engineering ideas into reality';
+
+const linkedProject = post.frontmatter.project
+  ? projects.find((p) => p.name.toLowerCase() === post.frontmatter.project?.toLowerCase())
+  : undefined;
 ---
 
 <Layout
@@ -252,6 +258,12 @@ const pageDescription = post.frontmatter.description || fallbackExcerpt || 'engi
 				<span>{post.wordCount} words</span>
 			</div>
 		</header>
+
+		{linkedProject && (
+			<div class="w-full">
+				<ProjectCard project={linkedProject} />
+			</div>
+		)}
 
 		<article id="section-article" class="prose max-w-none font-mono leading-relaxed text-ctp-text space-y-5 sm:space-y-6 min-w-0">
 			<div set:html={post.html} />

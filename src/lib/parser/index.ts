@@ -82,6 +82,9 @@ export function parseFrontmatter(markdown: string): {
     ...(fields["description"]
       ? { description: fields["description"].trim() }
       : {}),
+    ...(fields["project"]
+      ? { project: fields["project"].trim().toLowerCase() }
+      : {}),
   };
 
   return { frontmatter, content };

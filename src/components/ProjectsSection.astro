@@ -1,5 +1,6 @@
 ---
-import { projects, type Project, type ProjectLanguageStat } from '../lib/projects';
+import { projects, type Project } from '../lib/projects';
+import ProjectCard from './ProjectCard.astro';
 
 function getReleaseTimestamp(p: Project): number {
   if (p.latestRelease?.publishedAt) {
@@ -22,16 +23,6 @@ function compareProjectsByRelease(a: Project, b: Project): number {
 const allProjects = projects
   .filter((p) => Boolean(p.bannerUrl) && Boolean(p.latestRelease?.publishedAt))
   .sort(compareProjectsByRelease);
-
-function getTopLanguages(project: Project): ProjectLanguageStat[] {
-  if (Array.isArray(project.languages) && project.languages.length > 0) {
-    return project.languages.slice(0, 2);
-  }
-  if (project.language) {
-    return [{ name: project.language, color: project.languageColor ?? null, bytes: 0 }];
-  }
-  return [];
-}
 ---
 
 {allProjects.length > 0 && (
@@ -44,76 +35,7 @@ function getTopLanguages(project: Project): ProjectLanguageStat[] {
 
     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
       {allProjects.map((project) => (
-        <article class="group rounded border border-ctp-surface0/60 bg-ctp-mantle/40 transition-colors duration-200 hover:border-[var(--color-accent)]/60 overflow-hidden flex flex-col justify-between">
-          <a
-            href={project.url}
-            target="_blank"
-            rel="noreferrer"
-            class="flex flex-col h-full focus:outline-none"
-          >
-            <!-- Title Bar -->
-            <div class="flex items-center justify-between gap-2 px-3 py-2 border-b border-ctp-surface0/60 bg-ctp-surface0/20 text-xs">
-              <span class="flex items-center gap-1.5 min-w-0 font-serif text-sm text-ctp-text font-medium transition-colors group-hover:text-[var(--color-accent)]">
-                <span class="inline-flex font-mono text-xs select-none shrink-0 tracking-[-0.2em] group-hover:tracking-normal transition-all duration-200 text-ctp-subtext0/60 group-hover:text-[var(--color-accent)]">
-                  <span>&rsaquo;</span>
-                  <span class="inline-block max-w-0 opacity-0 overflow-hidden group-hover:max-w-[2ch] group-hover:opacity-100 transition-all duration-200 ease-out">&rsaquo;&rsaquo;</span>
-                </span>
-                <span class="truncate">{project.name}</span>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  class="w-[1em] h-[1em] text-ctp-subtext0 group-hover:text-[var(--color-accent)] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform shrink-0"
-                >
-                  <path d="M7 17L17 7"></path>
-                  <path d="M7 7h10v10"></path>
-                </svg>
-              </span>
-
-              <div class="flex items-center gap-1 font-mono text-[10px] text-ctp-subtext0 shrink-0">
-                {getTopLanguages(project).map((lang) => (
-                  <span class="text-ctp-subtext1">[{lang.name.toLowerCase()}]</span>
-                ))}
-              </div>
-            </div>
-
-            <!-- Crisp 3:1 Banner -->
-            {project.bannerUrl && (
-              <div class="relative w-full aspect-[3/1] overflow-hidden border-b border-ctp-surface0/60 bg-ctp-crust">
-                <img
-                  src={project.bannerUrl}
-                  alt={`${project.name} banner`}
-                  loading="lazy"
-                  decoding="async"
-                  class="h-full w-full object-cover object-center opacity-90 transition-all duration-300 group-hover:opacity-100 group-hover:scale-[1.01]"
-                />
-              </div>
-            )}
-
-            <!-- Card Body: Description & Telemetry -->
-            <div class="p-3 flex flex-col justify-between flex-1 space-y-3">
-              <p class="font-mono text-xs text-ctp-subtext0 leading-relaxed line-clamp-3">
-                {project.desc}
-              </p>
-
-              <div class="flex items-center justify-between font-mono text-[11px] text-ctp-subtext0/70 pt-1 border-t border-ctp-surface0/30">
-                <div class="flex items-center gap-2">
-                  <span>{project.commits} commits</span>
-                  {project.stars !== undefined && project.stars > 0 && (
-                    <span>&bull; ★ {project.stars}</span>
-                  )}
-                </div>
-                {project.latestRelease && (
-                  <span class="text-ctp-subtext1">{project.latestRelease.tagName}</span>
-                )}
-              </div>
-            </div>
-          </a>
-        </article>
+        <ProjectCard project={project} />
       ))}
     </div>
   </section>
