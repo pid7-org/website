@@ -348,12 +348,14 @@ html.latte .shiki span {
   }
 }
 
-.custom-fig-block .fig-march-h {
+.custom-fig-block .fig-march-h,
+.custom-fig-block .fig-march-v {
   display: inline;
   color: var(--color-accent);
 }
 
-.custom-fig-block .fig-march-h .m-frame {
+.custom-fig-block .fig-march-h .m-frame,
+.custom-fig-block .fig-march-v .m-frame {
   white-space: pre;
 }
 

@@ -422,26 +422,229 @@ function cycleH(str: string, offset: number): string {
     .map((ch, i) => {
       if (ch === "+") return "+";
       const pattern = ["-", "-", " "];
-      return pattern[(i - offset + 99) % pattern.length];
+      return pattern[(i - offset + 0x63) % pattern.length];
     })
     .join("");
 }
 
+function cycleHLeft(str: string, offset: number): string {
+  const chars = str.split("");
+  return chars
+    .map((ch, i) => {
+      if (ch === "+") return "+";
+      const pattern = ["-", "-", " "];
+      return pattern[(i + offset) % pattern.length];
+    })
+    .join("");
+}
+
+function renderMarchingSpan(
+  shaft: string,
+  dir: "right" | "left" = "right",
+  baseOffset = 0,
+): string {
+  const fn = dir === "left" ? cycleHLeft : cycleH;
+  const f0 = fn(shaft, (0 + baseOffset) % 3);
+  const f1 = fn(shaft, (1 + baseOffset) % 3);
+  const f2 = fn(shaft, (2 + baseOffset) % 3);
+  return `<span class="fig-march-h"><span class="m-frame m-f0">${f0}</span>` +
+    `<span class="m-frame m-f1">${f1}</span><span class="m-frame m-f2">${f2}</span></span>`;
+}
+
+function renderVerticalMarchingSpan(row: number): string {
+  const glyphs = ["·", "|", "|"];
+  const f0 = glyphs[(0 - row + 0x63) % 3];
+  const f1 = glyphs[(1 - row + 0x63) % 3];
+  const f2 = glyphs[(2 - row + 0x63) % 3];
+  return `<span class="fig-march-v"><span class="m-frame m-f0">${f0}</span>` +
+    `<span class="m-frame m-f1">${f1}</span><span class="m-frame m-f2">${f2}</span></span>`;
+}
+
+interface FigReplacement {
+  start: number;
+  end: number;
+  html: string;
+}
+
+interface AngledBar {
+  r: number;
+  c1: number;
+  c2: number;
+  dir: "right" | "left";
+  text: string;
+}
+
+interface GridCoord {
+  r: number;
+  c: number;
+}
+
 export function animateFigTokens(html: string): string {
+  const lineRegex = /<span class="line"><span>([\s\S]*?)<\/span><\/span>/g;
+  const lines: string[] = [];
+  let match: RegExpExecArray | null;
+  while ((match = lineRegex.exec(html)) !== null) {
+    lines.push(match[1]);
+  }
+  if (lines.length === 0) return html;
+
+  const rowCount = lines.length;
+  const replacements: FigReplacement[][] = Array.from({ length: rowCount }, () => []);
+
+  // 1. Horizontal arrows: `-->`, `--->`, `+--->`, `|----------->`
+  lines.forEach((line, r) => {
+    const re = /(\+?-{2,}>)/g;
+    let m: RegExpExecArray | null;
+    while ((m = re.exec(line)) !== null) {
+      const shaft = m[0].slice(0, -1);
+      replacements[r].push({
+        start: m.index,
+        end: m.index + m[0].length,
+        html: `${renderMarchingSpan(shaft, "right", r % 3)}<span class="fig-arrow-head">&gt;</span>`,
+      });
+    }
+  });
+
+  // 2. Angled arrow horizontal bars: `+---------+`
+  const angledBars: AngledBar[] = [];
+  lines.forEach((line, r) => {
+    const re = /(\+-{2,}\+)/g;
+    let m: RegExpExecArray | null;
+    while ((m = re.exec(line)) !== null) {
+      const c1 = m.index;
+      const c2 = m.index + m[0].length - 1;
+      const isolatedLeft = c1 === 0 || line[c1 - 1] === " ";
+      const isolatedRight = c2 === line.length - 1 || line[c2 + 1] === " ";
+      if (!isolatedLeft || !isolatedRight) continue;
+
+      const upC1 = r > 0 && (lines[r - 1]?.[c1] === "|" || lines[r - 1]?.[c1] === "+");
+      const upC2 = r > 0 && (lines[r - 1]?.[c2] === "|" || lines[r - 1]?.[c2] === "+");
+      const downC1 =
+        r < rowCount - 1 && (lines[r + 1]?.[c1] === "|" || lines[r + 1]?.[c1] === "v");
+      const downC2 =
+        r < rowCount - 1 && (lines[r + 1]?.[c2] === "|" || lines[r + 1]?.[c2] === "v");
+
+      // In a box border, both corners continue in the same vertical direction
+      const isBox = (downC1 && downC2) || (upC1 && upC2);
+      if (!isBox && ((upC1 && downC2) || (upC2 && downC1))) {
+        const dir: "right" | "left" = upC1 ? "right" : "left";
+        angledBars.push({ r, c1, c2, dir, text: m[0] });
+      }
+    }
+  });
+
+  // 3. Top-down arrow heads: `v` (excludes words and bottom-up arrows)
+  const vHeads: GridCoord[] = [];
+  lines.forEach((line, r) => {
+    line.split("").forEach((ch, c) => {
+      if (ch === "v") {
+        const isWord =
+          (c > 0 && /[a-zA-Z]/.test(line[c - 1])) ||
+          (c < line.length - 1 && /[a-zA-Z]/.test(line[c + 1]));
+        if (!isWord && r > 0 && (lines[r - 1]?.[c] === "|" || lines[r - 1]?.[c] === "+")) {
+          vHeads.push({ r, c });
+          replacements[r].push({
+            start: c,
+            end: c + 1,
+            html: `<span class="fig-arrow-head">v</span>`,
+          });
+        }
+      }
+    });
+  });
+
+  // 4. Trace vertical shafts `|`
+  const vShafts: GridCoord[] = [];
+  // Trace upwards from top-down arrow heads
+  vHeads.forEach(({ r, c }) => {
+    let curr = r - 1;
+    while (curr >= 0) {
+      const ch = lines[curr]?.[c];
+      if (ch === "|") {
+        vShafts.push({ r: curr, c });
+      } else {
+        break;
+      }
+      curr--;
+    }
+  });
+
+  // Trace upwards from entry corners of angled bars
+  angledBars.forEach(({ r, c1, c2, dir }) => {
+    const entryCol = dir === "right" ? c1 : c2;
+    let curr = r - 1;
+    while (curr >= 0) {
+      const ch = lines[curr]?.[entryCol];
+      if (ch === "|") {
+        vShafts.push({ r: curr, c: entryCol });
+      } else {
+        break;
+      }
+      curr--;
+    }
+  });
+
+  // Trace upwards from horizontal arrows starting with `+`
+  lines.forEach((line, r) => {
+    const re = /(\+-{2,}>)/g;
+    let m: RegExpExecArray | null;
+    while ((m = re.exec(line)) !== null) {
+      let curr = r - 1;
+      while (curr >= 0) {
+        const ch = lines[curr]?.[m.index];
+        if (ch === "|") {
+          vShafts.push({ r: curr, c: m.index });
+        } else {
+          break;
+        }
+        curr--;
+      }
+    }
+  });
+
+  // Apply angled bars with synchronized phase offset
+  angledBars.forEach(({ r, c1, c2, dir, text }) => {
+    replacements[r].push({
+      start: c1,
+      end: c2 + 1,
+      html: renderMarchingSpan(text, dir, r % 3),
+    });
+  });
+
+  // Deduplicate and apply vertical shafts with discrete ASCII stepping (· and |)
+  const shaftSet = new Set(vShafts.map((s) => `${s.r},${s.c}`));
+  shaftSet.forEach((coord) => {
+    const [rStr, cStr] = coord.split(",");
+    const r = parseInt(rStr, 10);
+    const c = parseInt(cStr, 10);
+    replacements[r].push({
+      start: c,
+      end: c + 1,
+      html: renderVerticalMarchingSpan(r),
+    });
+  });
+
+  // Rebuild lines
+  let lineIdx = 0;
   return html.replace(
     /<span class="line"><span>([\s\S]*?)<\/span><\/span>/g,
-    (fullMatch, text) => {
-      // ONLY match pure horizontal arrows: `-->`, `--->`, `+--->`, etc.
-      // Must end with `>` and have at least 2 dashes.
-      // NEVER match boxes (`+----+`), table borders, standalone lines, or empty placeholders.
-      const res = text.replace(/(\+?-{2,}>)/g, (m: string) => {
-        const shaft = m.slice(0, -1);
-        const f0 = cycleH(shaft, 0);
-        const f1 = cycleH(shaft, 1);
-        const f2 = cycleH(shaft, 2);
-        return `<span class="fig-march-h"><span class="m-frame m-f0">${f0}</span><span class="m-frame m-f1">${f1}</span><span class="m-frame m-f2">${f2}</span></span><span class="fig-arrow-head">&gt;</span>`;
-      });
+    () => {
+      const line = lines[lineIdx];
+      const reps = replacements[lineIdx] || [];
+      lineIdx++;
 
+      if (reps.length === 0) {
+        return `<span class="line"><span>${line}</span></span>`;
+      }
+
+      reps.sort((a, b) => a.start - b.start);
+      let res = "";
+      let lastIdx = 0;
+      for (const rep of reps) {
+        res += line.slice(lastIdx, rep.start) + rep.html;
+        lastIdx = rep.end;
+      }
+      res += line.slice(lastIdx);
       return `<span class="line"><span>${res}</span></span>`;
     }
   );
