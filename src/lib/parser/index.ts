@@ -252,8 +252,8 @@ export async function highlightCode(
     return await codeToHtml(code.trim(), {
       lang: normalizedLang,
       themes: {
-        light: "rose-pine-dawn",
-        dark: "rose-pine-moon",
+        light: "catppuccin-latte",
+        dark: "catppuccin-macchiato",
       },
       defaultColor: false,
     });
@@ -262,8 +262,8 @@ export async function highlightCode(
       return await codeToHtml(code.trim(), {
         lang: "txt",
         themes: {
-          light: "rose-pine-dawn",
-          dark: "rose-pine-moon",
+          light: "catppuccin-latte",
+          dark: "catppuccin-macchiato",
         },
         defaultColor: false,
       });
@@ -452,33 +452,57 @@ export async function processCustomBlocks(content: string): Promise<string> {
     }
 
     const highlighted = await highlightCode(codeStr, lang);
-    const descHtml = desc
-      ? `<div class="code-desc font-mono italic text-[10px] leading-normal text-rp-muted border-t border-rp-highlight-med/40 pt-2 px-3.5 pb-2 bg-rp-surface/20">${parseSimpleMarkdownInline(desc)}</div>`
-      : "";
-
     const cleanRawCode = codeStr.trim();
     const encodedRawCode = encodeURIComponent(cleanRawCode);
 
-    const displayLang = formatLanguageName(lang);
+    const rawLines = cleanRawCode.split(/\r?\n/);
+    const lineCount = rawLines.length;
+    const byteSize = new TextEncoder().encode(cleanRawCode).length;
+    const byteSizeFormatted = byteSize >= 1024 ? `${(byteSize / 1024).toFixed(1)} KB` : `${byteSize} B`;
 
-    return `<div class="custom-code-block custom-code-block-${style} my-4 sm:my-6 rounded-lg border border-rp-highlight-med bg-rp-surface/60 overflow-hidden shadow-xs" data-block-style="${style}">
-      <div class="code-header flex items-center justify-between px-3 sm:px-3.5 py-1.5 bg-rp-surface/30 border-b border-rp-highlight-med/40 text-xs font-mono text-rp-muted select-none">
-        <span class="code-lang tracking-wider text-[10px] sm:text-[11px] text-rp-subtle font-bold">${displayLang}</span>
-        <button
-          type="button"
-          class="copy-code-btn p-1 rounded text-rp-muted hover:text-rp-text hover:bg-rp-highlight-med/50 transition-colors cursor-pointer"
-          data-code="${encodedRawCode}"
-          aria-label="Copy code"
-          title="Copy code to clipboard"
-        >
-          <svg class="w-3.5 h-3.5 shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
-            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
-          </svg>
-        </button>
+    const padWidth = Math.max(2, String(lineCount).length);
+    const lineNumbersHtml = rawLines
+      .map((_, i) => `<span class="block">${String(i + 1).padStart(padWidth, '0')}</span>`)
+      .join("");
+
+    const rawLang = (lang || "").trim().toLowerCase();
+    const displayLang = rawLang || "code";
+
+    const descText = desc ? parseSimpleMarkdownInline(desc) : "";
+
+    return `<div class="custom-code-block custom-code-block-${style} my-5 rounded border border-ctp-surface0/60 bg-ctp-mantle/40 overflow-hidden font-mono" data-block-style="${style}">
+      <div class="code-header flex items-center justify-between px-3 sm:px-3.5 py-1.5 bg-ctp-surface0/25 border-b border-ctp-surface0/60 text-xs select-none">
+        <div class="flex items-center gap-1.5 text-xs">
+          <span class="text-[var(--color-accent)] font-semibold">~</span>
+          <span class="text-ctp-subtext0 tracking-wide">${displayLang}</span>
+        </div>
+        <div>
+          <button
+            type="button"
+            class="copy-code-btn text-ctp-subtext0 hover:text-[var(--color-accent)] transition-colors cursor-pointer text-xs font-mono"
+            data-code="${encodedRawCode}"
+            aria-label="Copy code"
+            title="Copy code to clipboard"
+          >
+            <span class="copy-label">copy</span>
+          </button>
+        </div>
       </div>
-      <div class="code-body overflow-x-auto p-2.5 sm:p-3.5 font-mono text-xs sm:text-sm leading-relaxed">${highlighted}</div>
-      ${descHtml}
+      <div class="code-viewport flex text-xs sm:text-sm leading-relaxed overflow-x-auto">
+        <div class="code-gutter select-none py-3 pl-3 pr-2 text-right border-r border-ctp-surface0/60 bg-ctp-surface0/10 text-ctp-overlay0 shrink-0 font-mono" aria-hidden="true">${lineNumbersHtml}</div>
+        <div class="code-body flex-1 py-3 px-3 sm:px-4 font-mono overflow-x-auto min-w-0">${highlighted}</div>
+      </div>
+      <div class="code-statusbar flex items-center justify-between gap-3 px-3 sm:px-3.5 py-1 text-[11px] border-t border-ctp-surface0/60 bg-ctp-surface0/20 text-ctp-subtext0 select-none">
+        <div class="flex items-baseline gap-1.5 min-w-0 truncate">
+          <span class="text-ctp-overlay1">↳</span>
+          ${descText ? `<span>${descText}</span>` : `<span class="text-ctp-overlay0 italic">read-only</span>`}
+        </div>
+        <div class="flex items-center gap-2 shrink-0 text-ctp-overlay0 text-[10px]">
+          <span>${lineCount} lines</span>
+          <span>•</span>
+          <span>${byteSizeFormatted}</span>
+        </div>
+      </div>
     </div>\n\n`;
   };
 

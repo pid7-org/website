@@ -351,6 +351,16 @@ const linkedProject = post.frontmatter.project
 
         try {
           await navigator.clipboard.writeText(textToCopy);
+          const label = btn.querySelector('.copy-label');
+          if (label) {
+            const original = label.textContent;
+            label.textContent = 'copied';
+            btn.classList.add('text-[var(--color-accent)]');
+            setTimeout(() => {
+              label.textContent = original;
+              btn.classList.remove('text-[var(--color-accent)]');
+            }, 1500);
+          }
         } catch (err) {
           console.error('Failed to copy code to clipboard', err);
         }

@@ -163,12 +163,12 @@ html, body, * {
   color: var(--color-ctp-text) !important;
 }
 
-/* Custom Code Block Container & Highlighting (Matching Homepage Surface Palette) */
+/* Custom Code Block Container & Highlighting (Matching Homepage Terminal / Surface Palette) */
 .custom-code-block,
 .prose pre {
-  background-color: color-mix(in srgb, var(--color-ctp-surface0) 15%, transparent) !important;
+  background-color: color-mix(in srgb, var(--color-ctp-mantle) 70%, transparent) !important;
   border: 1px solid color-mix(in srgb, var(--color-ctp-surface0) 60%, transparent) !important;
-  border-radius: 0 !important;
+  border-radius: 0.25rem !important;
   margin: 1.5rem 0;
   overflow: hidden;
   box-shadow: none !important;
@@ -176,30 +176,31 @@ html, body, * {
 }
 
 .custom-code-block:hover {
-  border-color: var(--color-accent) !important;
+  border-color: color-mix(in srgb, var(--color-accent) 60%, transparent) !important;
 }
 
 .code-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0.4rem 0.875rem;
+  padding: 0.5rem 0.875rem;
   background-color: color-mix(in srgb, var(--color-ctp-surface0) 25%, transparent) !important;
-  border-bottom: 1px solid color-mix(in srgb, var(--color-ctp-surface0) 40%, transparent) !important;
+  border-bottom: 1px solid color-mix(in srgb, var(--color-ctp-surface0) 60%, transparent) !important;
   font-family: var(--font-mono);
   font-size: 0.75rem;
   color: var(--color-ctp-subtext0) !important;
 }
 
 .code-header .code-lang {
-  font-weight: 600;
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
   letter-spacing: 0.05em;
-  color: var(--color-accent) !important;
+  color: var(--color-ctp-overlay1) !important;
 }
 
 .copy-code-btn {
   color: var(--color-ctp-subtext0) !important;
-  transition: color 0.15s ease;
+  transition: color 0.15s ease, background-color 0.15s ease;
 }
 
 .copy-code-btn:hover {
@@ -207,9 +208,23 @@ html, body, * {
 }
 
 .code-body {
-  padding: 0.875rem 1rem !important;
+  padding: 0.75rem 1rem !important;
   background-color: transparent !important;
   overflow-x: auto;
+}
+
+.code-viewport {
+  background-color: transparent;
+  align-items: stretch;
+}
+
+.code-gutter {
+  user-select: none;
+  line-height: inherit;
+}
+
+.code-statusbar {
+  font-family: var(--font-mono);
 }
 
 .code-body pre {
@@ -221,13 +236,13 @@ html, body, * {
 }
 
 .code-desc {
-  padding: 0.4rem 0.875rem;
+  padding: 0.45rem 0.875rem;
   font-family: var(--font-mono);
   font-style: normal;
-  font-size: 0.6875rem;
+  font-size: 0.75rem;
   color: var(--color-ctp-subtext0) !important;
-  border-top: 1px solid color-mix(in srgb, var(--color-ctp-surface0) 30%, transparent) !important;
-  background-color: color-mix(in srgb, var(--color-ctp-surface0) 10%, transparent) !important;
+  border-top: 1px solid color-mix(in srgb, var(--color-ctp-surface0) 60%, transparent) !important;
+  background-color: color-mix(in srgb, var(--color-ctp-surface0) 15%, transparent) !important;
 }
 
 /* KaTeX Display Styling (Transparent Background & Borderless) */
