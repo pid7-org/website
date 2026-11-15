@@ -86,21 +86,31 @@ export const projects: Project[] =
 
 export interface TeamMember {
   name: string;
+  role?: string;
+  handle?: string;
+  status?: string;
   image?: string;
   bio: string;
+  url?: string;
   github?: string;
 }
 
 export const team: TeamMember[] = [
   {
     name: 'Adii',
+    role: 'engineer',
+    handle: 'adii.fyi',
+    status: 'active',
     image: '/adii.jpg',
-    bio: 'Engineer by choice, exploring systems engineering and turning ideas into reality.',
-    github: 'https://github.com/adityamotale',
+    bio: 'Curious by default. I like understanding how things work from first principles, solving hard problems, and learning every day.',
+    url: 'https://adii.fyi',
   },
   {
     name: 'Sher',
+    role: 'morale',
+    handle: 'pid7-org',
+    status: 'sleeping',
     image: '/sher.jpg',
-    bio: 'Chief Officer of Happiness, keeps morale high and sleeps through code reviews.',
+    bio: 'Chief Happiness Officer. I spend my days keeping team morale up, supervising daily naps, and ignoring all pull requests.',
   },
 ];
