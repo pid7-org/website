@@ -111,7 +111,30 @@ describe('parser: Frontmatter Parsing', () => {
       'A mock blog post containing all markdown extensions for isolated unit testing.',
     );
     expect(frontmatter.tags).toEqual(['rust', 'benchmarks', 'simd', 'tables']);
+    expect(frontmatter.published).toBeUndefined();
     expect(content.startsWith('Welcome to this synthetic blog post')).toBe(true);
+  });
+
+  it('parses published boolean field when specified in frontmatter', () => {
+    const postWithPublishedTrue = `---
+slug: test-published-true
+title: Published True Post
+created: 10-09-2026
+tags: test
+published: true
+---
+Content`;
+    const postWithPublishedFalse = `---
+slug: test-published-false
+title: Published False Post
+created: 10-09-2026
+tags: test
+published: false
+---
+Content`;
+
+    expect(parseFrontmatter(postWithPublishedTrue).frontmatter.published).toBe(true);
+    expect(parseFrontmatter(postWithPublishedFalse).frontmatter.published).toBe(false);
   });
 
   it('falls back to default values when optional fields are missing', () => {

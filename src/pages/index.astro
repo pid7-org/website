@@ -41,7 +41,10 @@ const recentPosts = posts.slice(0, 5);
 			</div>
 			<ul class="text-sm space-y-1">
 				{recentPosts.map((post) => (
-					<li class="group flex items-baseline justify-between gap-3 py-2 border-b border-ctp-surface0/40 last:border-0">
+					<li class:list={[
+						"group flex items-baseline justify-between gap-3 py-2 border-b border-ctp-surface0/40 last:border-0",
+						post.frontmatter.published === false && "opacity-60 hover:opacity-100"
+					]}>
 						<a
 							href={`/blog/${post.frontmatter.slug}`}
 							class="flex items-baseline gap-2 min-w-0 font-serif text-base text-ctp-text font-medium transition-colors hover:text-[var(--color-accent)] leading-snug"

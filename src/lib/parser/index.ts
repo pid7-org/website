@@ -79,6 +79,9 @@ export function parseFrontmatter(markdown: string): {
       ""
     ).trim(),
     tags,
+    ...(fields["published"] !== undefined
+      ? { published: fields["published"].trim().toLowerCase() === "true" }
+      : {}),
     ...(fields["description"]
       ? { description: fields["description"].trim() }
       : {}),

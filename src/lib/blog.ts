@@ -30,7 +30,7 @@ export function formatBlogDate(dateStr: string): string {
   return dateStr;
 }
 
-export async function getAllBlogPosts(): Promise<ParsedBlogPost[]> {
+export async function getAllBlogPosts(options?: { includeUnpublished?: boolean }): Promise<ParsedBlogPost[]> {
   try {
     const files = await fs.readdir(BLOG_DIR);
     const mdFiles = files.filter((f) => f.endsWith('.md'));
@@ -43,7 +43,13 @@ export async function getAllBlogPosts(): Promise<ParsedBlogPost[]> {
       posts.push(parsed);
     }
 
-    return posts.sort((a, b) => {
+    const isDev = Boolean(import.meta.env?.DEV);
+    const allowUnpublished = options?.includeUnpublished ?? isDev;
+    const filteredPosts = allowUnpublished
+      ? posts
+      : posts.filter((p) => p.frontmatter.published !== false);
+
+    return filteredPosts.sort((a, b) => {
       const parseDate = (dStr: string) => {
         if (!dStr) return 0;
         const parts = dStr.split(/[-/]/);

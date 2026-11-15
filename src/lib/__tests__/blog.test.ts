@@ -27,6 +27,15 @@ tags: Architecture
 ---
 Content iso
 `,
+  '/mock/src/content/blog/unpublished-post.md': `---
+slug: unpublished-post
+title: Unpublished Post
+created: 2025-08-01
+tags: Draft
+published: false
+---
+Content draft
+`,
 };
 
 describe('Blog Content Library', () => {
@@ -68,6 +77,24 @@ describe('Blog Content Library', () => {
     expect(posts[0].frontmatter.slug).toBe('iso-post');
     expect(posts[1].frontmatter.slug).toBe('newer-post');
     expect(posts[2].frontmatter.slug).toBe('older-post');
+  });
+
+  it('filters out unpublished posts when includeUnpublished is false', async () => {
+    vi.spyOn(fs, 'readdir').mockResolvedValue(
+      ['older-post.md', 'unpublished-post.md'] as any
+    );
+    vi.spyOn(fs, 'readFile').mockImplementation(async (filePath) => {
+      const match = Object.keys(MOCK_FILES).find((k) => (filePath as string).endsWith(k.split('/').pop()!));
+      if (match) return MOCK_FILES[match];
+      throw new Error(`File not found: ${filePath}`);
+    });
+
+    const publishedOnly = await getAllBlogPosts({ includeUnpublished: false });
+    expect(publishedOnly).toHaveLength(1);
+    expect(publishedOnly[0].frontmatter.slug).toBe('older-post');
+
+    const withUnpublished = await getAllBlogPosts({ includeUnpublished: true });
+    expect(withUnpublished).toHaveLength(2);
   });
 
   it('finds blog post by slug with case-insensitive tolerance', async () => {

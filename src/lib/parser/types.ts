@@ -4,6 +4,7 @@ export interface BlogFrontmatter {
   created: string;
   lastUpdated: string;
   tags: string[];
+  published?: boolean;
   description?: string;
   project?: string;
 }
