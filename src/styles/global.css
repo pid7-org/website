@@ -281,3 +281,27 @@ html.latte .shiki span {
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
 }
+
+/* Center-out expand and contract for glossary and reference line items */
+.item-line-accent {
+  position: relative;
+}
+
+.item-line-accent::before {
+  content: "";
+  position: absolute;
+  left: -1px;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background-color: var(--color-accent);
+  transform-origin: center;
+  transform: scaleY(0);
+  transition: transform 200ms ease-out;
+  pointer-events: none;
+}
+
+.item-line-accent:hover::before {
+  transform: scaleY(1);
+}
+
