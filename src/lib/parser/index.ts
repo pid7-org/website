@@ -416,6 +416,37 @@ export function parseTableBlock(block: string, desc?: string): string | null {
   return renderTableHtml(headerCells, alignments, rows, desc);
 }
 
+function cycleH(str: string, offset: number): string {
+  const chars = str.split("");
+  return chars
+    .map((ch, i) => {
+      if (ch === "+") return "+";
+      const pattern = ["-", "-", " "];
+      return pattern[(i - offset + 99) % pattern.length];
+    })
+    .join("");
+}
+
+export function animateFigTokens(html: string): string {
+  return html.replace(
+    /<span class="line"><span>([\s\S]*?)<\/span><\/span>/g,
+    (fullMatch, text) => {
+      // ONLY match pure horizontal arrows: `-->`, `--->`, `+--->`, etc.
+      // Must end with `>` and have at least 2 dashes.
+      // NEVER match boxes (`+----+`), table borders, standalone lines, or empty placeholders.
+      const res = text.replace(/(\+?-{2,}>)/g, (m: string) => {
+        const shaft = m.slice(0, -1);
+        const f0 = cycleH(shaft, 0);
+        const f1 = cycleH(shaft, 1);
+        const f2 = cycleH(shaft, 2);
+        return `<span class="fig-march-h"><span class="m-frame m-f0">${f0}</span><span class="m-frame m-f1">${f1}</span><span class="m-frame m-f2">${f2}</span></span><span class="fig-arrow-head">&gt;</span>`;
+      });
+
+      return `<span class="line"><span>${res}</span></span>`;
+    }
+  );
+}
+
 export async function processCustomBlocks(content: string): Promise<string> {
   const replaceBlock = async (
     match: string,
@@ -472,9 +503,10 @@ export async function processCustomBlocks(content: string): Promise<string> {
     const descText = desc ? parseSimpleMarkdownInline(desc) : "";
 
     if (style === "fig") {
+      const animatedHighlight = animateFigTokens(highlighted);
       return `<div class="custom-fig-block my-6 font-mono select-none" data-block-style="fig">
       <div class="rounded border border-ctp-surface0/60 bg-ctp-mantle/40 p-3 sm:p-4 overflow-x-auto text-xs sm:text-sm leading-relaxed text-ctp-text font-mono">
-        ${highlighted}
+        ${animatedHighlight}
       </div>
       ${
         descText

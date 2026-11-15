@@ -320,3 +320,59 @@ html.latte .shiki span {
   transform: scaleY(1);
 }
 
+/* Infinite ASCII Animations for Blog Figures (<fig>) */
+@keyframes figMarchF0 {
+  0%, 33.32% { display: inline; }
+  33.33%, 100% { display: none; }
+}
+
+@keyframes figMarchF1 {
+  0%, 33.32% { display: none; }
+  33.33%, 66.65% { display: inline; }
+  66.66%, 100% { display: none; }
+}
+
+@keyframes figMarchF2 {
+  0%, 66.65% { display: none; }
+  66.66%, 100% { display: inline; }
+}
+
+@keyframes figPulseGlow {
+  0%, 100% {
+    opacity: 0.65;
+    color: var(--color-ctp-subtext0);
+  }
+  50% {
+    opacity: 1;
+    color: var(--color-accent);
+  }
+}
+
+.custom-fig-block .fig-march-h {
+  display: inline;
+  color: var(--color-accent);
+}
+
+.custom-fig-block .fig-march-h .m-frame {
+  white-space: pre;
+}
+
+.custom-fig-block .m-f0 {
+  animation: figMarchF0 600ms steps(1) infinite;
+}
+
+.custom-fig-block .m-f1 {
+  animation: figMarchF1 600ms steps(1) infinite;
+}
+
+.custom-fig-block .m-f2 {
+  animation: figMarchF2 600ms steps(1) infinite;
+}
+
+.custom-fig-block .fig-arrow-head {
+  display: inline-block;
+  color: var(--color-accent);
+  animation: figPulseGlow 1.2s ease-in-out infinite;
+  font-weight: 700;
+}
+
