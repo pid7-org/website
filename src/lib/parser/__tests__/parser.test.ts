@@ -208,8 +208,7 @@ describe('parser: Markdown Tables', () => {
     expect(html).not.toBeNull();
     expect(html).toContain('custom-table-container not-prose');
     expect(html).toContain('table class="w-full m-0 text-left font-mono text-xs sm:text-sm border-collapse"');
-    expect(html).toContain('text-[var(--color-accent)] font-semibold border-r border-rp-highlight-med/30');
-    expect(html).toContain('bg-rp-surface/80');
+    expect(html).toContain('border-b border-ctp-surface0/60');
     expect(html).toContain('Item</th>');
     expect(html).toContain('Alignment</th>');
     expect(html).toContain('Score</th>');

@@ -341,36 +341,36 @@ export function renderTableHtml(
   };
 
   const theadHtml =
-    `  <thead>\n    <tr class="bg-rp-surface/80 border-b border-rp-highlight-med text-[var(--color-accent)] font-semibold">\n` +
+    `  <thead>\n    <tr class="border-b border-ctp-surface0/60 text-xs text-[var(--color-accent)] font-semibold uppercase tracking-wider">\n` +
     headers
       .map(
         (h, i) =>
-          `      <th scope="col" class="py-2 px-3 sm:py-2.5 sm:px-3.5 text-[var(--color-accent)] font-semibold border-r border-rp-highlight-med/30 last:border-r-0 ${alignClass(aligns[i] || "left")}">${parseSimpleMarkdownInline(h)}</th>`,
+          `      <th scope="col" class="py-2 px-3 sm:px-4 font-semibold ${alignClass(aligns[i] || "left")}">${parseSimpleMarkdownInline(h)}</th>`,
       )
       .join("\n") +
     `\n    </tr>\n  </thead>`;
 
   const tbodyHtml =
-    `  <tbody class="divide-y divide-rp-highlight-med/30">\n` +
+    `  <tbody class="divide-y divide-ctp-surface0/30">\n` +
     rows
       .map((row) => {
         const cellsHtml = row
           .map(
             (cell, i) =>
-              `      <td class="py-2 px-3 sm:py-2.5 sm:px-3.5 text-rp-text border-r border-rp-highlight-med/30 last:border-r-0 ${alignClass(aligns[i] || "left")}">${parseSimpleMarkdownInline(cell)}</td>`,
+              `      <td class="py-2 px-3 sm:px-4 text-ctp-text ${alignClass(aligns[i] || "left")}">${parseSimpleMarkdownInline(cell)}</td>`,
           )
           .join("\n");
-        return `    <tr class="hover:bg-rp-surface/40 transition-colors">\n${cellsHtml}\n    </tr>`;
+        return `    <tr class="hover:bg-ctp-surface0/15 transition-colors">\n${cellsHtml}\n    </tr>`;
       })
       .join("\n") +
     `\n  </tbody>`;
 
   const descHtml = desc
-    ? `\n  <div class="table-desc font-mono italic text-[10px] leading-normal text-rp-muted border-t border-rp-highlight-med/40 pt-2 px-3.5 pb-2 bg-rp-surface/20">${parseSimpleMarkdownInline(desc)}</div>`
+    ? `\n  <div class="table-desc mt-2 pl-1 flex items-baseline gap-1.5 text-xs italic text-ctp-subtext0">\n    <span class="text-ctp-overlay1 select-none not-italic">↪</span>\n    <span>${parseSimpleMarkdownInline(desc)}</span>\n  </div>`
     : "";
 
   return (
-    `<div class="custom-table-container not-prose my-4 sm:my-6 rounded-lg border border-rp-highlight-med bg-rp-surface/60 overflow-hidden shadow-xs">\n` +
+    `<div class="custom-table-container not-prose my-6 font-mono">\n` +
     `  <div class="overflow-x-auto">\n` +
     `    <table class="w-full m-0 text-left font-mono text-xs sm:text-sm border-collapse">\n` +
     `${theadHtml}\n` +
@@ -382,7 +382,23 @@ export function renderTableHtml(
 }
 
 export function parseTableBlock(block: string, desc?: string): string | null {
-  const lines = block.trim().split(/\r?\n/);
+  const rawLines = block.trim().split(/\r?\n/);
+  if (rawLines.length < 2) return null;
+
+  let tableDesc = desc;
+  const lines: string[] = [];
+
+  for (const line of rawLines) {
+    const trimmed = line.trim();
+    if (trimmed.startsWith("@desc")) {
+      if (!tableDesc) {
+        tableDesc = trimmed.replace(/^@desc\s*/, "");
+      }
+    } else {
+      lines.push(line);
+    }
+  }
+
   if (lines.length < 2) return null;
 
   const headerCells = splitTableRow(lines[0]);
@@ -413,7 +429,7 @@ export function parseTableBlock(block: string, desc?: string): string | null {
     rows.push(rowCells.slice(0, columnCount));
   }
 
-  return renderTableHtml(headerCells, alignments, rows, desc);
+  return renderTableHtml(headerCells, alignments, rows, tableDesc);
 }
 
 function cycleH(str: string, offset: number): string {
@@ -707,14 +723,14 @@ export async function processCustomBlocks(content: string): Promise<string> {
 
     if (style === "fig") {
       const animatedHighlight = animateFigTokens(highlighted);
-      return `<div class="custom-fig-block my-6 font-mono select-none" data-block-style="fig">
-      <div class="rounded border border-ctp-surface0/60 bg-ctp-mantle/40 p-3 sm:p-4 overflow-x-auto text-xs sm:text-sm leading-relaxed text-ctp-text font-mono">
+      return `<div class="custom-fig-block my-6 font-mono" data-block-style="fig">
+      <div class="rounded border border-ctp-surface0/60 bg-ctp-mantle/40 p-3 sm:p-4 overflow-x-auto text-xs sm:text-sm leading-relaxed text-ctp-text font-mono select-none">
         ${animatedHighlight}
       </div>
       ${
         descText
           ? `<div class="mt-2 pl-1 flex items-baseline gap-1.5 text-xs italic text-ctp-subtext0">
-        <span class="text-ctp-overlay1 select-none not-italic">↳</span>
+        <span class="text-ctp-overlay1 select-none not-italic">↪</span>
         <span>${descText}</span>
       </div>`
           : ""
@@ -723,7 +739,7 @@ export async function processCustomBlocks(content: string): Promise<string> {
     }
 
     return `<div class="custom-code-block custom-code-block-${style} my-5 rounded border border-ctp-surface0/60 bg-ctp-mantle/40 overflow-hidden font-mono" data-block-style="${style}">
-      <div class="code-header flex items-center justify-between px-3 sm:px-3.5 py-1.5 bg-ctp-surface0/25 border-b border-ctp-surface0/60 text-xs select-none">
+      <div class="code-header flex items-center justify-between px-3 sm:px-3.5 py-1.5 bg-ctp-surface0/25 border-b border-ctp-surface0/60 text-xs">
         <div class="flex items-center gap-1.5 text-xs">
           <span class="text-[var(--color-accent)] font-semibold">~</span>
           <span class="text-ctp-subtext0 tracking-wide">${displayLang}</span>
@@ -744,12 +760,12 @@ export async function processCustomBlocks(content: string): Promise<string> {
         <div class="code-gutter select-none py-3 pl-3 pr-2 text-right border-r border-ctp-surface0/60 bg-ctp-surface0/10 text-ctp-overlay0 shrink-0 font-mono" aria-hidden="true">${lineNumbersHtml}</div>
         <div class="code-body flex-1 py-3 px-3 sm:px-4 font-mono overflow-x-auto min-w-0">${highlighted}</div>
       </div>
-      <div class="code-statusbar flex items-center justify-between gap-3 px-3 sm:px-3.5 py-1 text-[11px] border-t border-ctp-surface0/60 bg-ctp-surface0/20 text-ctp-subtext0 select-none">
+      <div class="code-statusbar flex items-center justify-between gap-3 px-3 sm:px-3.5 py-1 text-[11px] border-t border-ctp-surface0/60 bg-ctp-surface0/20 text-ctp-subtext0">
         <div class="flex items-baseline gap-1.5 min-w-0 truncate">
-          <span class="text-ctp-overlay1">↳</span>
-          ${descText ? `<span>${descText}</span>` : `<span class="text-ctp-overlay0 italic">read-only</span>`}
+          <span class="text-ctp-overlay1 select-none">↪</span>
+          ${descText ? `<span>${descText}</span>` : `<span class="text-ctp-overlay0 italic select-none">read-only</span>`}
         </div>
-        <div class="flex items-center gap-2 shrink-0 text-ctp-overlay0 text-[10px]">
+        <div class="flex items-center gap-2 shrink-0 text-ctp-overlay0 text-[10px] select-none">
           <span>${lineCount} lines</span>
           <span>•</span>
           <span>${byteSizeFormatted}</span>
@@ -794,7 +810,7 @@ export function processCallouts(content: string): string {
       const typeLower = type.toLowerCase();
 
       return `<div class="callout callout-${typeLower} my-4 sm:my-6 p-3.5 sm:p-4 rounded-r-lg border-l-4 border-[var(--color-accent)] bg-[var(--color-accent)]/5 space-y-1.5">
-      <div class="callout-header font-serif italic text-xs sm:text-sm font-semibold text-[var(--color-accent)] select-none">
+      <div class="callout-header font-serif italic text-xs sm:text-sm font-semibold text-[var(--color-accent)]">
         ${typeLower}
       </div>
       <div class="callout-body font-mono text-xs sm:text-sm leading-relaxed text-rp-text break-words">

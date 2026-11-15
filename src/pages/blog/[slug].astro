@@ -278,7 +278,7 @@ const linkedProject = post.frontmatter.project
 				))}
 			</div>
 			{post.frontmatter.lastUpdated && post.frontmatter.lastUpdated !== post.frontmatter.created && (
-				<span class="text-ctp-subtext0 text-xs select-none">
+				<span class="text-ctp-subtext0 text-xs">
 					last updated on {formatBlogDate(post.frontmatter.lastUpdated)}
 				</span>
 			)}
@@ -316,7 +316,7 @@ const linkedProject = post.frontmatter.project
 								[{ref.label}]
 							</span>
 							<div class="space-y-2 flex-1 min-w-0">
-								<div class="leading-relaxed text-ctp-subtext0 break-words" set:html={ref.contentHtml} />
+								<div class="leading-relaxed text-ctp-subtext0 break-words [&_a]:text-[var(--color-accent)] [&_a]:underline [&_a]:underline-offset-2 [&_a]:decoration-[var(--color-accent)]/50 hover:[&_a]:decoration-[var(--color-accent)]" set:html={ref.contentHtml} />
 							</div>
 							<a
 								href={`#fnref-${ref.id}`}
