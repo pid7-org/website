@@ -439,9 +439,10 @@ Slot 0 -> Slot 1 -> Slot 2
 Paragraph after diagram.
 `;
     const parsed = await parseMarkdownBlog(postWithFig);
-    expect(parsed.html).toContain('custom-code-block-fig');
+    expect(parsed.html).toContain('custom-fig-block');
     expect(parsed.html).toContain('Diagram of slot transitions across stages');
-    expect(parsed.html).toContain('>fig</span>');
+    expect(parsed.html).not.toContain('copy-code-btn');
+    expect(parsed.html).not.toContain('cat diagram.fig');
     expect(parsed.wordCount).toBe(6);
   });
 });

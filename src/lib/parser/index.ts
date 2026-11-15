@@ -471,6 +471,22 @@ export async function processCustomBlocks(content: string): Promise<string> {
 
     const descText = desc ? parseSimpleMarkdownInline(desc) : "";
 
+    if (style === "fig") {
+      return `<div class="custom-fig-block my-6 font-mono select-none" data-block-style="fig">
+      <div class="rounded border border-ctp-surface0/60 bg-ctp-mantle/40 p-3 sm:p-4 overflow-x-auto text-xs sm:text-sm leading-relaxed text-ctp-text font-mono">
+        ${highlighted}
+      </div>
+      ${
+        descText
+          ? `<div class="mt-2 pl-1 flex items-baseline gap-1.5 text-xs italic text-ctp-subtext0">
+        <span class="text-ctp-overlay1 select-none not-italic">↳</span>
+        <span>${descText}</span>
+      </div>`
+          : ""
+      }
+    </div>\n\n`;
+    }
+
     return `<div class="custom-code-block custom-code-block-${style} my-5 rounded border border-ctp-surface0/60 bg-ctp-mantle/40 overflow-hidden font-mono" data-block-style="${style}">
       <div class="code-header flex items-center justify-between px-3 sm:px-3.5 py-1.5 bg-ctp-surface0/25 border-b border-ctp-surface0/60 text-xs select-none">
         <div class="flex items-center gap-1.5 text-xs">

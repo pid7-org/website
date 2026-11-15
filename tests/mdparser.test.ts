@@ -97,9 +97,11 @@ title: Fig Test
 </fig>
 `;
     const parsed = await parseMarkdownBlog(figMarkdownPost);
-    expect(parsed.html).toContain('custom-code-block-fig');
+    expect(parsed.html).toContain('custom-fig-block');
     expect(parsed.html).toContain('Diagram showing slots');
-    expect(parsed.html).toContain('>fig</span>');
+    expect(parsed.html).toContain('italic text-ctp-subtext0');
+    expect(parsed.html).not.toContain('cat diagram.fig');
+    expect(parsed.html).not.toContain('copy-code-btn');
     expect(parsed.html).not.toContain('@desc');
   });
 
